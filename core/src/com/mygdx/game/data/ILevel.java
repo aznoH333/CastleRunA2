@@ -1,0 +1,20 @@
+package com.mygdx.game.data;
+
+import java.util.Random;
+
+public interface ILevel {
+    ITileCollum[] getTileset();
+    // it returns tiles according to their spawn chance
+    ITileCollum randomTile(Random r, int y);
+    // TODO: add a lot of level generation related stuff here
+
+    //height
+    int defaultHeight();
+    int maxHeight();
+    int minHeight();
+
+    //height change
+    float changeChance();
+    int changeLengthMax();
+    int changeLengthMin();
+}
