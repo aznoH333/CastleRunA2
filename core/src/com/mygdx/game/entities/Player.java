@@ -66,9 +66,8 @@ public class Player extends Entity {
 
         // TODO : rework scrolling
         // scroll camera
-        if (x > scrollBorder && x % lvl.getTileScale() == 0 && !lvl.isScrolling() && landed){
-            if ((int) Math.ceil(Math.abs(scrollBorder - x)/lvl.getTileScale()) > 1) System.out.println("gothere");
-            lvl.advanceTiles((int) Math.ceil(Math.abs(scrollBorder - x)/lvl.getTileScale()));
+        if (x > scrollBorder){
+            lvl.advanceToTile(x - scrollBorder);
         }
 
         if (moveTo > x) x += moveSpeed;

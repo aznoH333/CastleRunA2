@@ -11,7 +11,7 @@ public class Level {
 
 
     //constants
-    private final float advanceSpeed = 4f;
+    private final float advanceSpeed = 6f;
     private final int stepHeight = 16;
     private final int tileScale = 64;
     private final int mapWidth = 21;
@@ -103,6 +103,11 @@ public class Level {
         advanceDistance += distanceInTiles * tileScale;
     }
 
+    public void advanceToTile(float dist){
+        if (dist + distance > advanceDistance)
+            advanceDistance = dist + distance;
+    }
+
 
     public boolean isScrolling(){
         return distance < advanceDistance;
@@ -111,12 +116,13 @@ public class Level {
     public void update(){
         //advance
         if (advanceDistance > distance){
-            e.shiftAllEntities((float) Math.ceil(advanceSpeed*(((advanceDistance/tileScale)-(distance/tileScale)))));
-            distance += (float) Math.ceil(advanceSpeed*(((advanceDistance/tileScale)-(distance/tileScale))));
+            float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance/tileScale)-(advanceDistance/tileScale)));
+            e.shiftAllEntities(advanceBy);
+            distance += advanceBy;
 
             //shift map & generate
             //shift only while advancing
-            if(distance%tileScale < advanceSpeed){
+            if(distance%tileScale < advanceBy){
                 for (int i = 1; i < mapWidth; i++) {
                     map[i-1] = map[i];
                 }
