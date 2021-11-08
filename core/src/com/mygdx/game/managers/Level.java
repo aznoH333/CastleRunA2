@@ -35,9 +35,8 @@ public class Level {
         this.e = e;
     }
 
-
+    //TODO: generate start & end to levels
     private void generateLevel(int index){
-        // TODO : implement enemies
         // tile selection & grace handling
         ITileCollum temp;
         while (true) {

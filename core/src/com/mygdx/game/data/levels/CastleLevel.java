@@ -12,7 +12,7 @@ import java.util.Random;
 public class CastleLevel implements ILevel {
 
     //TODO: rewrite levels as abstract classes
-    //TODO: MAKE SOME FUCKING SPRITES YOU LAZY BASTARD!
+    //TODO: MAKE SOME FUCKING SPRITES, YOU LAZY BASTARD!
     private final ITileCollum[] tileSet = {new CastleRegular(), new Gap()};
     private final float[] tileWeight = {20, 5};
     private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
