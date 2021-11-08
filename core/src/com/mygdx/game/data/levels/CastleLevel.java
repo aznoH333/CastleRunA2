@@ -5,7 +5,6 @@ import com.mygdx.game.data.ILevel;
 import com.mygdx.game.data.ITileCollum;
 import com.mygdx.game.data.tilesets.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
-import com.mygdx.game.entities.Slime;
 import com.mygdx.game.managers.EnemyEntityFactory;
 
 import java.util.Random;
@@ -13,16 +12,22 @@ import java.util.Random;
 public class CastleLevel implements ILevel {
 
     //TODO: rewrite levels as abstract classes
+    //TODO: MAKE SOME FUCKING SPRITES YOU LAZY BASTARD!
     private final ITileCollum[] tileSet = {new CastleRegular(), new Gap()};
+    private final float[] tileWeight = {20, 5};
     private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
     private final String[] enemySet = {"slime"};
-    private final float[] tileWeight = {20, 5};
+    private final float[] enemyWeight = {10,5};
     private final float totalWeight;
+    private final float totalEnemyWeight;
 
     public CastleLevel(){
         float temp = 0;
         for (float f: tileWeight) temp += f;
         totalWeight = temp;
+        temp = 0;
+        for (float f: enemyWeight) temp += f;
+        totalEnemyWeight = temp;
     }
 
     @Override
@@ -40,6 +45,19 @@ public class CastleLevel implements ILevel {
         }
         //fall back
         return tileSet[0];
+    }
+
+    @Override
+    public Entity randomEnemy(Random r, float x, int y) {
+        float rng = r.nextFloat() * totalEnemyWeight;
+        float currentWeight = 0;
+        for (int i = 0; i < enemyWeight.length; i++) {
+            currentWeight += enemyWeight[i];
+            if (rng < currentWeight)
+                if (i == 0) return null;
+                else return e.getByName(enemySet[i-1],x,y);
+        }
+        return null;
     }
 
     // height related stuff

@@ -6,6 +6,8 @@ public interface ILevel {
     ITileCollum[] getTileset();
     // it returns tiles according to their spawn chance
     ITileCollum randomTile(Random r, int y);
+
+    Entity randomEnemy(Random r, float x, int y);
     // TODO: add a lot of level generation related stuff here
 
     //height

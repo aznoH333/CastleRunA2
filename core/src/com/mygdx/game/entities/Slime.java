@@ -23,7 +23,7 @@ public class Slime extends Entity {
     }
 
     @Override
-    public Entity getCopy() {
-        return new Slime(x,y, xSize, ySize, hp);
+    public Entity getCopy(float x, float y) {
+        return new Slime(x,y + ySize, xSize, ySize, hp);
     }
 }

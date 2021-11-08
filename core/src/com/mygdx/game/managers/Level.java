@@ -1,9 +1,6 @@
 package com.mygdx.game.managers;
 
-import com.mygdx.game.data.Directions;
-import com.mygdx.game.data.ILevel;
-import com.mygdx.game.data.ITileCollum;
-import com.mygdx.game.data.TileCollumSpecial;
+import com.mygdx.game.data.*;
 
 import java.util.Random;
 
@@ -51,6 +48,13 @@ public class Level {
                     height = lastHeight;
                 }
                 break;
+            }
+        }
+        //add enemies
+        if (!grace){
+            Entity tempE = lvl.randomEnemy(r, index * tileScale, height);
+            if (tempE != null){
+                e.addEntity(tempE);
             }
         }
         moveInDirection();

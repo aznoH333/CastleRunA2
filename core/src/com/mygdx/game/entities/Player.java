@@ -88,7 +88,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public Entity getCopy() {
+    public Entity getCopy(float x, float y) {
         return null;
     }
 

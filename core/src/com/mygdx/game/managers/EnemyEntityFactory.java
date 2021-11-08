@@ -17,10 +17,10 @@ public class EnemyEntityFactory {
 
     public EnemyEntityFactory(){
         //add enemies
-        enemies.put("slime", new Slime(1,1,1,1,1));
+        enemies.put("slime", new Slime(0,0,64,64,1));
     }
 
-    public Entity getByName(String name){
-        return enemies.get(name).getCopy();
+    public Entity getByName(String name, float x, float y){
+        return enemies.get(name).getCopy(x,y);
     }
 }

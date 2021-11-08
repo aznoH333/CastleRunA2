@@ -25,7 +25,7 @@ public abstract class Entity {
     //abstract methods
     public abstract void update(Level lvl, Random r);
     public abstract void draw(SpriteManager spr);
-    public abstract Entity getCopy();
+    public abstract Entity getCopy(float x, float y);
 
     //collision will probably
     public boolean collide(Entity other){
