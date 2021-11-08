@@ -87,6 +87,11 @@ public class Player extends Entity {
 
     }
 
+    @Override
+    public Entity getCopy() {
+        return null;
+    }
+
     //is button pressed
     private boolean left = false;
     private boolean right = false;

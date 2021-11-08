@@ -1,14 +1,21 @@
 package com.mygdx.game.data.levels;
 
+import com.mygdx.game.data.Entity;
 import com.mygdx.game.data.ILevel;
 import com.mygdx.game.data.ITileCollum;
 import com.mygdx.game.data.tilesets.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
+import com.mygdx.game.entities.Slime;
+import com.mygdx.game.managers.EnemyEntityFactory;
+
 import java.util.Random;
 
 public class CastleLevel implements ILevel {
 
+    //TODO: rewrite levels as abstract classes
     private final ITileCollum[] tileSet = {new CastleRegular(), new Gap()};
+    private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
+    private final String[] enemySet = {"slime"};
     private final float[] tileWeight = {20, 5};
     private final float totalWeight;
 
