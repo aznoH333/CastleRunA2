@@ -1,6 +1,6 @@
 package com.mygdx.game.data;
 
-import com.mygdx.game.managers.Level;
+import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -23,7 +23,7 @@ public abstract class Entity {
     }
 
     //abstract methods
-    public abstract void update(Level lvl, Random r);
+    public abstract void update(LevelManager lvl, Random r);
     public abstract void draw(SpriteManager spr);
     public abstract Entity getCopy(float x, float y);
 

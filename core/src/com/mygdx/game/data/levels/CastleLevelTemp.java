@@ -9,30 +9,26 @@ import com.mygdx.game.managers.EnemyEntityFactory;
 
 import java.util.Random;
 
-public class CastleLevel implements ILevel {
+public class CastleLevelTemp implements ILevel {
 
     //TODO: rewrite levels as abstract classes
     //TODO: MAKE SOME FUCKING SPRITES, YOU LAZY BASTARD!
     private final ITileCollum[] tileSet = {new CastleRegular(), new Gap()};
     private final float[] tileWeight = {20, 5};
     private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
+    // note enemies are way rarer than tiles bcs of grace
     private final String[] enemySet = {"slime"};
     private final float[] enemyWeight = {10,5};
     private final float totalWeight;
     private final float totalEnemyWeight;
 
-    public CastleLevel(){
+    public CastleLevelTemp(){
         float temp = 0;
         for (float f: tileWeight) temp += f;
         totalWeight = temp;
         temp = 0;
         for (float f: enemyWeight) temp += f;
         totalEnemyWeight = temp;
-    }
-
-    @Override
-    public ITileCollum[] getTileset() {
-        return tileSet;
     }
 
     @Override

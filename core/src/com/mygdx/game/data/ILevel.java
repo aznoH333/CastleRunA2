@@ -3,7 +3,6 @@ package com.mygdx.game.data;
 import java.util.Random;
 
 public interface ILevel {
-    ITileCollum[] getTileset();
     // it returns tiles according to their spawn chance
     ITileCollum randomTile(Random r, int y);
 

@@ -4,7 +4,7 @@ import com.mygdx.game.data.*;
 
 import java.util.Random;
 
-public class Level {
+public class LevelManager {
 
 
     //constants
@@ -18,7 +18,7 @@ public class Level {
     private float distance = 0;
     private float advanceDistance = 0;
     private ITileCollum[] map = new ITileCollum[mapWidth];
-    private ILevel lvl;
+    private Level lvl;
     private Random r;
     private EntityManager e;
     //lvl generation vars
@@ -27,7 +27,7 @@ public class Level {
     private Directions dir = Directions.None;
     private int changeFor = 0;
 
-    public Level(SpriteManager spr, Random r){
+    public LevelManager(SpriteManager spr, Random r){
         this.spr = spr;
         this.r = r;
     }
@@ -143,7 +143,7 @@ public class Level {
 
     public int getTileScale(){return tileScale;}
 
-    public void loadLevel(ILevel lvl){
+    public void loadLevel(Level lvl){
         distance = 0;
         this.lvl = lvl;
         height = lvl.defaultHeight();

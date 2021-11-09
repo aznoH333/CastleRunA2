@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class EntityManager {
-    private Level lvl;
+    private LevelManager lvl;
     private SpriteManager spr;
     private Random r;
     private ArrayList<Entity> entities;
 
-    public EntityManager(Level lvl, Random r, SpriteManager spr){
+    public EntityManager(LevelManager lvl, Random r, SpriteManager spr){
         this.lvl = lvl;
         this.r = r;
         this.spr = spr;

@@ -1,11 +1,11 @@
 package com.mygdx.game.data;
-import com.mygdx.game.managers.Level;
+import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
 
 public interface IEntity {
-    void update(Level lvl, Random r);
+    void update(LevelManager lvl, Random r);
     void draw(SpriteManager spr);
     boolean collide(IEntity other);
     float getX();

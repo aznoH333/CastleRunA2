@@ -1,7 +1,7 @@
 package com.mygdx.game.entities;
 
 import com.mygdx.game.data.Entity;
-import com.mygdx.game.managers.Level;
+import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -13,7 +13,7 @@ public class Slime extends Entity {
     }
 
     @Override
-    public void update(Level lvl, Random r) {
+    public void update(LevelManager lvl, Random r) {
 
     }
 

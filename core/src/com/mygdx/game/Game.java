@@ -4,10 +4,9 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.data.levels.CastleLevel;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.managers.EntityManager;
-import com.mygdx.game.managers.Level;
+import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -16,7 +15,7 @@ public class Game extends ApplicationAdapter {
 
 
 	private SpriteManager spr;
-	private Level lvl;
+	private LevelManager lvl;
 	private Random r;
 	private EntityManager e;
 	
@@ -24,12 +23,12 @@ public class Game extends ApplicationAdapter {
 	public void create () {
         r = new Random(68);
 		spr = new SpriteManager();
-		lvl = new Level(spr,r);
+		lvl = new LevelManager(spr,r);
 		e = new EntityManager(lvl, r, spr);
 
 		lvl.setE(e);
 		//init stuff
-		lvl.loadLevel(new CastleLevel());
+		lvl.loadLevel();
 		e.addEntity(new Player(0,64, 64, 64));
 	}
 

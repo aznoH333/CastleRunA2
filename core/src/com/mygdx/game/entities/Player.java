@@ -3,7 +3,7 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.Entity;
-import com.mygdx.game.managers.Level;
+import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -24,7 +24,7 @@ public class Player extends Entity {
         super(x, y, sizeX, sizeY, 3);
     }
     @Override
-    public void update(Level lvl, Random r) {
+    public void update(LevelManager lvl, Random r) {
         manageInput();
         lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
 
