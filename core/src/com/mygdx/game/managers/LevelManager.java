@@ -36,6 +36,7 @@ public class LevelManager {
     }
 
     //TODO: generate start & end to levels
+    //TODO: fix generated entities having a 1 pixel offset
     private void generateLevel(int index){
         // tile selection & grace handling
         ITileCollum temp;
