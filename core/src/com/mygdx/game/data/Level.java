@@ -1,6 +1,5 @@
 package com.mygdx.game.data;
 
-import com.mygdx.game.data.tilesets.castle.CastleRegular;
 import com.mygdx.game.managers.EnemyEntityFactory;
 
 import java.util.Random;

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.managers.EntityManager;
+import com.mygdx.game.managers.LevelBuilder;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -28,7 +29,7 @@ public class Game extends ApplicationAdapter {
 
 		lvl.setE(e);
 		//init stuff
-		lvl.loadLevel();
+		lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
 		e.addEntity(new Player(0,64, 64, 64));
 	}
 
