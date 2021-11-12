@@ -3,6 +3,8 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.Entity;
+import com.mygdx.game.managers.EntityFactory;
+import com.mygdx.game.managers.EntityManager;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -11,23 +13,27 @@ import java.util.Random;
 public class Player extends Entity {
     private float lvlY;
     private float yM = 0;
-    private final float scrollBorder = 256;
+    private boolean landed = false;
+    private int actionTimer = 0;
+
 
     //finals
     private final float gravity = 1f;
     private final float hopStrength = 5f;
     private final float jumpStrength = 8f;
     private final float moveSpeed = 8f;
-    private boolean landed = false;
+    private final float scrollBorder = 256;
+    private final EntityFactory entityFactory;
 
     public Player(float x, float y, float sizeX, float sizeY){
         super(x, y, sizeX, sizeY, 3);
+        entityFactory = EntityFactory.getInstance();
     }
     @Override
     public void update(LevelManager lvl, Random r) {
         manageInput();
         lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
-
+        if (actionTimer > 0) actionTimer--;
 
         //land
         landed = y <= lvlY - yM && yM <= 0;
@@ -64,7 +70,19 @@ public class Player extends Entity {
             if (moveTo < 0) moveTo = 0;
         }
 
-        // TODO : rework scrolling
+        // attacks
+        // temporary
+        // TODO: Equip system
+        // TODO: sprite offsets || a workaround
+        if (!aRight && actionTimer == 0 && chargeRight > 0){
+            if(chargeRight < holdSensitivity){
+                e.addEntity(entityFactory.getByName("dagger", x, y));
+            }else {
+
+            }
+        }
+
+
         // scroll camera
         if (x > scrollBorder){
             lvl.advanceToTile(x - scrollBorder);
@@ -102,6 +120,8 @@ public class Player extends Entity {
     //control vals
     private int jumpLeft = 0;
     private int jumpRight = 0;
+    private int chargeLeft = 0;
+    private int chargeRight = 0;
     private int holdSensitivity = 16;
     private void manageInput(){
         // left
@@ -118,10 +138,26 @@ public class Player extends Entity {
         }else {
             right = false;
         }
+        // left attack
+        if (Gdx.input.isKeyPressed(Input.Keys.Q)){
+            chargeLeft++;
+            aLeft = true;
+        }else {
+            aLeft = false;
+        }
+        // right attack
+        if (Gdx.input.isKeyPressed(Input.Keys.W)){
+            chargeRight++;
+            aRight = true;
+        }else {
+            aRight = false;
+        }
     }
 
     private void resetInput(){
         if (!left)  jumpLeft = 0;
         if (!right) jumpRight = 0;
+        if (!aLeft) chargeLeft = 0;
+        if (!aRight)chargeRight = 0;
     }
 }

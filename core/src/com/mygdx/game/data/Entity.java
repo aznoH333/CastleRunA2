@@ -1,5 +1,6 @@
 package com.mygdx.game.data;
 
+import com.mygdx.game.managers.EntityManager;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -12,6 +13,7 @@ public abstract class Entity {
     protected float ySize;
     protected int hp;
     protected float moveTo;
+    protected final EntityManager e;
 
     public Entity(float x, float y, float xSize, float ySize, int hp){
         this.x = x;
@@ -20,6 +22,8 @@ public abstract class Entity {
         this.ySize = ySize;
         this.hp = hp;
         this.moveTo = x;
+
+        e = EntityManager.getINSTANCE();
     }
 
     //abstract methods

@@ -21,7 +21,7 @@ public class LevelBuilder {
     private float[] tileWeight = {20,5};
     private String[] enemySet = {"slime"};
     private float[] enemyWeight = {10,5};
-    private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
+    private EntityFactory e = EntityFactory.getInstance();
 
     //lvl height
     private int defaultH = 128;

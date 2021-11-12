@@ -37,6 +37,7 @@ public class LevelManager {
 
     //TODO: generate start & end to levels
     //TODO: fix generated entities having a 1 pixel offset
+    //TODO: implement backgrounds
     private void generateLevel(int index){
         // tile selection & grace handling
         ITileCollum temp;
@@ -52,7 +53,7 @@ public class LevelManager {
         }
         //add enemies
         if (!grace){
-            Entity tempE = lvl.randomEnemy(r, index * tileScale, height);
+            Entity tempE = lvl.randomEnemy(r, index * tileScale - (distance % tileScale), height);
             if (tempE != null){
                 e.addEntity(tempE);
             }

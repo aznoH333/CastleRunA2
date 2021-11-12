@@ -25,9 +25,11 @@ public class Game extends ApplicationAdapter {
         r = new Random(68);
 		spr = new SpriteManager();
 		lvl = new LevelManager(spr,r);
-		e = new EntityManager(lvl, r, spr);
-
+		// very bad but functional
+		EntityManager.createINSTANCE(lvl, r, spr);
+		e = EntityManager.getINSTANCE();
 		lvl.setE(e);
+
 		//init stuff
 		lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
 		e.addEntity(new Player(0,64, 64, 64));

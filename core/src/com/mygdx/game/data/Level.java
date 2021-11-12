@@ -1,18 +1,17 @@
 package com.mygdx.game.data;
 
-import com.mygdx.game.managers.EnemyEntityFactory;
+import com.mygdx.game.managers.EntityFactory;
 
 import java.util.Random;
 
 public class Level {
-    //TODO: finish this
     private final ITileCollum[] tileSet;
     private final float[] tileWeight;
     private final String[] enemySet;
     private final float[] enemyWeight;
     private final float totalWeight;
     private final float totalEnemyWeight;
-    private EnemyEntityFactory e = EnemyEntityFactory.getInstance();
+    private EntityFactory e = EntityFactory.getInstance();
 
     //lvl height
     private final int defaultH;
