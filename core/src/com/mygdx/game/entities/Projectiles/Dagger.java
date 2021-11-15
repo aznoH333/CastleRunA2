@@ -8,7 +8,9 @@ import java.util.Random;
 
 public class Dagger extends Entity {
     private final float speed = 12f;
+    private final float fallSpeed = 0.05f;
     private float lvlY;
+    private float yM = 0;
 
     public Dagger(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp);
@@ -17,9 +19,16 @@ public class Dagger extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         x += speed;
-        lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
-        //detect ground collision
-        if (lvlY > y) takeDamage(1);
+        y += yM;
+        yM -= fallSpeed;
+        //delete if out of bounds
+        if (x >= (lvl.getMapWidth()-1) * lvl.getTileScale()) destroy();
+        else{
+            lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
+            //detect ground collision
+            if (lvlY > y + ySize) destroy();
+        }
+        // TODO: collision with enemies
     }
 
     @Override

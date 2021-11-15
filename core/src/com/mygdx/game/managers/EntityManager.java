@@ -40,19 +40,11 @@ public class EntityManager {
         for (Entity ent: entities) {
             //kill if falls outside off lvl
             if (ent.getY() < -lvl.getTileScale() || ent.getX() < -lvl.getTileScale())
-                ent.takeDamage(Integer.MAX_VALUE);
+                ent.destroy();
             ent.update(lvl,r);
         }
 
-        // delete dead entities
-        for (int i = 0; i < entities.size(); i++) {
-            if (entities.get(i).getHP() <= 0){
-                entities.remove(i);
-                i--;
-            }
-        }
-
-
+        deleteEntities();
         render();
     }
 
@@ -69,6 +61,16 @@ public class EntityManager {
     public void shiftAllEntities(float x){
         for (Entity ent: entities) {
                 ent.shiftX(-x);
+        }
+    }
+
+    private void deleteEntities(){
+        // delete dead entities or marked
+        for (int i = 0; i < entities.size(); i++) {
+            if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){
+                entities.remove(i);
+                i--;
+            }
         }
     }
 

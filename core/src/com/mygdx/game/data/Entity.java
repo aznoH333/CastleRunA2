@@ -14,6 +14,7 @@ public abstract class Entity {
     protected int hp;
     protected float moveTo;
     protected final EntityManager e;
+    private boolean markForDestruction = false;
 
     public Entity(float x, float y, float xSize, float ySize, int hp){
         this.x = x;
@@ -60,4 +61,8 @@ public abstract class Entity {
     public void takeDamage(int damage){
         hp -= damage;
     }
+
+    // deleting
+    public void destroy(){markForDestruction = true;}
+    public boolean isMarked(){return markForDestruction;}
 }

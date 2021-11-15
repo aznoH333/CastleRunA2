@@ -118,6 +118,10 @@ public class LevelManager {
         return distance < advanceDistance;
     }
 
+    public int getMapWidth(){
+        return mapWidth;
+    }
+
     public void update(){
         //advance
         if (advanceDistance > distance){
