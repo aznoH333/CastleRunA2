@@ -30,11 +30,12 @@ public abstract class Entity {
     //abstract methods
     public abstract void update(LevelManager lvl, Random r);
     public abstract void draw(SpriteManager spr);
+    public abstract void onCollide(Entity other);
     public abstract Entity getCopy(float x, float y);
 
     //collision will probably
     public boolean collide(Entity other){
-        return (x + xSize > other.getX() && x < other.getX() && other.getY() < y + ySize && y < other.getY());
+        return (x - xSize < other.getX() && x > other.getX() - other.getXSize() && y - ySize < other.getY() && y > other.getY() - other.getYSize());
     }
     // position stuff
     public float getX(){
@@ -46,7 +47,7 @@ public abstract class Entity {
     public float getXSize() {
         return xSize;
     }
-    public float getySize(){
+    public float getYSize(){
         return ySize;
     }
     public void shiftX(float shiftBy){

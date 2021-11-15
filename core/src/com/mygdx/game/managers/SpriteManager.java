@@ -31,7 +31,6 @@ public class SpriteManager {
         //dispose of sprites
         try{
             for (Texture t: sprs.values()) {
-                System.out.println(t);
                 t.dispose();
             }
         }catch (Exception e){

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.Entity;
 import com.mygdx.game.managers.EntityFactory;
-import com.mygdx.game.managers.EntityManager;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -102,6 +101,11 @@ public class Player extends Entity {
             spr.draw("player3",x,y);
         else
             spr.draw("player0",x,y);
+
+    }
+
+    @Override
+    public void onCollide(Entity other) {
 
     }
 

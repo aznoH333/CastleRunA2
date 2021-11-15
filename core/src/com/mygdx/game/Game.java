@@ -32,7 +32,7 @@ public class Game extends ApplicationAdapter {
 
 		//init stuff
 		lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
-		e.addEntity(new Player(0,64, 64, 64));
+		e.addEntity(new Player(0,0, 64, 64));
 	}
 
 	@Override

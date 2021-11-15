@@ -7,10 +7,10 @@ import com.mygdx.game.managers.SpriteManager;
 import java.util.Random;
 
 public class Dagger extends Entity {
-    private final float speed = 12f;
-    private final float fallSpeed = 0.05f;
+    private final float speed = 18f;
+    private final float fallSpeed = 0.5f;
     private float lvlY;
-    private float yM = 0;
+    private float yM = 2;
 
     public Dagger(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp);
@@ -34,6 +34,11 @@ public class Dagger extends Entity {
     @Override
     public void draw(SpriteManager spr) {
         spr.draw("dagger1",x,y);
+    }
+
+    @Override
+    public void onCollide(Entity other) {
+
     }
 
     @Override

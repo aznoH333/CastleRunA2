@@ -66,6 +66,12 @@ public class Slime extends Entity {
     }
 
     @Override
+    public void onCollide(Entity other) {
+        System.out.println(other.getClass() + " : " + other.getX() + ", " + other.getY() + " | " + other.getXSize() + ", " + other.getYSize());
+        destroy();
+    }
+
+    @Override
     public Entity getCopy(float x, float y) {
         return new Slime(x,y + ySize, xSize, ySize, hp);
     }

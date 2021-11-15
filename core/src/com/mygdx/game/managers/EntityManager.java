@@ -41,6 +41,13 @@ public class EntityManager {
             //kill if falls outside off lvl
             if (ent.getY() < -lvl.getTileScale() || ent.getX() < -lvl.getTileScale())
                 ent.destroy();
+
+            //entity collisions
+            for (Entity entOther: entities) {
+                if (ent.collide(entOther) && !ent.equals(entOther))
+                    ent.onCollide(entOther);
+            }
+
             ent.update(lvl,r);
         }
 
