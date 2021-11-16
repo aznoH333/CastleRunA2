@@ -31,9 +31,21 @@ public class LevelBuilder {
     private float cChange = 0.8f;
     private int clMax = 3;
     private int clMin = 2;
+    // TODO: make a background builder or somethin
+    private String[][] back = {
+            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack2", "castleBack2", "castleBack2", "castleBack2", "castleBack2"},
+            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack3", "castleBack3", "castleBack3", "castleBack3", "castleBack3"},
+            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
+            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack5", "castleBack4"},
+            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
+            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
+            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack5", "castleBack4"},
+            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
+    };
+    private float parallax = 1;
 
     public Level build(){
-        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin);
+        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin, back, parallax);
         reset();
         return temp;
     }
@@ -46,6 +58,7 @@ public class LevelBuilder {
                 new String[]{"slime"},
                 new float[]{10,5}
         );
+        p(0.25f);
         levels.put("1-1",build());
     }
 
@@ -66,6 +79,9 @@ public class LevelBuilder {
         tileWeight = new float[]{20,5};
         enemySet = new String[]{"slime"};
         enemyWeight = new float[]{10,5};
+        // TODO: background builder
+        back = new String[][]{{"player0"}};
+        parallax = 1;
     }
 
     private void h(int defaultH, int minH, int maxH){
@@ -85,5 +101,9 @@ public class LevelBuilder {
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;
         this.enemyWeight = enemyWeight;
+    }
+
+    private void p(float parallax){
+        this.parallax = parallax;
     }
 }

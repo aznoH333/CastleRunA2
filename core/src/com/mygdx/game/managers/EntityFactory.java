@@ -22,7 +22,7 @@ public class EntityFactory {
 
 
         //add projectiles
-        enemies.put("dagger", new Dagger(0,0,16,16, 1));
+        enemies.put("dagger", new Dagger(0,0,48,32, 1));
     }
 
     public Entity getByName(String name, float x, float y){

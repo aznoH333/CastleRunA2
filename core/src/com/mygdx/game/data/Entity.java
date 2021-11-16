@@ -14,15 +14,17 @@ public abstract class Entity {
     protected int hp;
     protected float moveTo;
     protected final EntityManager e;
+    protected final Team team;
     private boolean markForDestruction = false;
 
-    public Entity(float x, float y, float xSize, float ySize, int hp){
+    public Entity(float x, float y, float xSize, float ySize, int hp, Team team){
         this.x = x;
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
         this.hp = hp;
         this.moveTo = x;
+        this.team = team;
 
         e = EntityManager.getINSTANCE();
     }
@@ -61,6 +63,9 @@ public abstract class Entity {
     }
     public void takeDamage(int damage){
         hp -= damage;
+    }
+    public Team getTeam(){
+        return team;
     }
 
     // deleting

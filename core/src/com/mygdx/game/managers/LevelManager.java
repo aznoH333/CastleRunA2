@@ -14,10 +14,11 @@ public class LevelManager {
     private final int mapWidth = 21;
 
     //vars
-    private SpriteManager spr;
+    private final SpriteManager spr;
     private float distance = 0;
     private float advanceDistance = 0;
-    private ITileCollum[] map = new ITileCollum[mapWidth];
+    private final ITileCollum[] map = new ITileCollum[mapWidth];
+    private final BackgroundRenderer b;
     private Level lvl;
     private Random r;
     private EntityManager e;
@@ -30,14 +31,13 @@ public class LevelManager {
     public LevelManager(SpriteManager spr, Random r){
         this.spr = spr;
         this.r = r;
+        this.b = BackgroundRenderer.getINSTANCE();
     }
     public void setE(EntityManager e){
         this.e = e;
     }
 
     //TODO: generate start & end to levels
-    //TODO: fix generated entities having a 1 pixel offset
-    //TODO: implement backgrounds
     private void generateLevel(int index){
         // tile selection & grace handling
         ITileCollum temp;
@@ -95,6 +95,8 @@ public class LevelManager {
     }
 
     private void renderLevel(){
+        b.draw(spr);
+
         for (int x = 0; x < mapWidth; x++) {
             ITileCollum curr = map[x];
             if (curr.getSpecial() != TileCollumSpecial.Gap)
@@ -128,6 +130,7 @@ public class LevelManager {
             float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance/tileScale)-(advanceDistance/tileScale)));
             e.shiftAllEntities(advanceBy);
             distance += advanceBy;
+            b.advance(advanceBy * lvl.getParallax());
 
             //shift map & generate
             //shift only while advancing
@@ -150,6 +153,7 @@ public class LevelManager {
     public int getTileScale(){return tileScale;}
 
     public void loadLevel(Level lvl){
+        b.setBackground(lvl.getBackground());
         distance = 0;
         this.lvl = lvl;
         height = lvl.defaultHeight();

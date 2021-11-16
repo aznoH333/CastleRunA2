@@ -1,6 +1,7 @@
 package com.mygdx.game.entities;
 
 import com.mygdx.game.data.Entity;
+import com.mygdx.game.data.Team;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -22,7 +23,7 @@ public class Slime extends Entity {
     private boolean direction = false;
 
     public Slime(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp);
+        super(x, y, xSize, ySize, hp, Team.Enemies);
     }
 
     @Override
@@ -67,8 +68,6 @@ public class Slime extends Entity {
 
     @Override
     public void onCollide(Entity other) {
-        System.out.println(other.getClass() + " : " + other.getX() + ", " + other.getY() + " | " + other.getXSize() + ", " + other.getYSize());
-        destroy();
     }
 
     @Override

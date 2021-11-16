@@ -1,6 +1,7 @@
 package com.mygdx.game.entities.Projectiles;
 
 import com.mygdx.game.data.Entity;
+import com.mygdx.game.data.Team;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
 
@@ -13,7 +14,7 @@ public class Dagger extends Entity {
     private float yM = 2;
 
     public Dagger(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp);
+        super(x, y, xSize, ySize, hp, Team.Player);
     }
 
     @Override
@@ -26,9 +27,9 @@ public class Dagger extends Entity {
         else{
             lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
             //detect ground collision
-            if (lvlY > y + ySize) destroy();
+            if (lvlY - lvl.getTileScale() > y - ySize) destroy();
         }
-        // TODO: collision with enemies
+
     }
 
     @Override
@@ -38,7 +39,10 @@ public class Dagger extends Entity {
 
     @Override
     public void onCollide(Entity other) {
-
+        if (other.getTeam() != Team.Player){
+            destroy();
+            other.takeDamage(1);
+        }
     }
 
     @Override

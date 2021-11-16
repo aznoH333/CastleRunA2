@@ -3,6 +3,7 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.Entity;
+import com.mygdx.game.data.Team;
 import com.mygdx.game.managers.EntityFactory;
 import com.mygdx.game.managers.LevelManager;
 import com.mygdx.game.managers.SpriteManager;
@@ -23,9 +24,10 @@ public class Player extends Entity {
     private final float moveSpeed = 8f;
     private final float scrollBorder = 256;
     private final EntityFactory entityFactory;
+    private final int actionTimerFull = 16;
 
     public Player(float x, float y, float sizeX, float sizeY){
-        super(x, y, sizeX, sizeY, 3);
+        super(x, y, sizeX, sizeY, 3, Team.Player);
         entityFactory = EntityFactory.getInstance();
     }
     @Override
@@ -73,12 +75,14 @@ public class Player extends Entity {
         // temporary
         // TODO: Equip system
         // TODO: sprite offsets || a workaround
-        if (!aRight && actionTimer == 0 && chargeRight > 0){
+        // TODO: air attacks?
+        if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
             if(chargeRight < holdSensitivity){
                 e.addEntity(entityFactory.getByName("dagger", x, y));
             }else {
-
+                // TODO: charge attacks
             }
+            actionTimer = actionTimerFull;
         }
 
 
@@ -100,7 +104,12 @@ public class Player extends Entity {
         else if(y != lvlY)
             spr.draw("player3",x,y);
         else
-            spr.draw("player0",x,y);
+            if (actionTimer > actionTimerFull/2)
+                spr.draw("player4",x,y);
+            else if(actionTimer > 0)
+                spr.draw("player5",x,y);
+            else
+                spr.draw("player0",x,y);
 
     }
 
