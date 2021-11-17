@@ -11,11 +11,15 @@ public class TileLoadList {
         spr.loadSprites("Entities/Weapons/SmallDagger/small_dagger_","dagger",1);
 
         //entities
-        spr.loadSprites("Entities/Enemies/Slimes/GreenSlime/geen_slime_","slime",2);
+        spr.loadSprites("Entities/Enemies/Slimes/GreenSlime/green_slime_","slime",6);
 
         //tiles
         spr.loadSprites("Tiles/Castle/Foreground/Castle_", "castle", 3);
         spr.loadSprites("Tiles/Castle/Background/Castle_back_", "castleBack", 5);
 
+
+        //particles
+        spr.loadSprites("Particles/Effects/Sparkle_","sparkle",1);
+        spr.loadSprites("Particles/Gore/Blood_","gore",13);
     }
 }
