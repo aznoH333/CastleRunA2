@@ -123,6 +123,11 @@ public class Player extends Entity {
         return null;
     }
 
+    @Override
+    public void onDestroy() {
+
+    }
+
     //is button pressed
     private boolean left = false;
     private boolean right = false;

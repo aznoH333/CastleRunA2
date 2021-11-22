@@ -75,6 +75,7 @@ public class EntityManager {
         // delete dead entities or marked
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){
+                entities.get(i).onDestroy();
                 entities.remove(i);
                 i--;
             }

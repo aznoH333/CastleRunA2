@@ -34,6 +34,7 @@ public abstract class Entity {
     public abstract void draw(SpriteManager spr);
     public abstract void onCollide(Entity other);
     public abstract Entity getCopy(float x, float y);
+    public abstract void onDestroy();
 
     //collision will probably
     public boolean collide(Entity other){

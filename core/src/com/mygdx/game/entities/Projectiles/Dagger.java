@@ -49,4 +49,9 @@ public class Dagger extends Entity {
     public Entity getCopy(float x, float y) {
         return new Dagger(x,y,xSize,ySize,hp);
     }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }

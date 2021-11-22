@@ -22,6 +22,7 @@ public class LevelManager {
     private Level lvl;
     private Random r;
     private EntityManager e;
+    private ParticleManager part = ParticleManager.getINSTANCE();
     //lvl generation vars
     private int height = 0;
     private boolean grace = false;
@@ -129,6 +130,7 @@ public class LevelManager {
         if (advanceDistance > distance){
             float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance/tileScale)-(advanceDistance/tileScale)));
             e.shiftAllEntities(advanceBy);
+            part.shiftPartsBy(advanceBy);
             distance += advanceBy;
             b.advance(advanceBy * lvl.getParallax());
 

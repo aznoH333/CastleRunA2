@@ -1,8 +1,10 @@
 package com.mygdx.game.entities;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.Entity;
 import com.mygdx.game.data.Team;
 import com.mygdx.game.managers.LevelManager;
+import com.mygdx.game.managers.ParticleManager;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -67,11 +69,22 @@ public class Slime extends Entity {
     }
 
     @Override
-    public void onCollide(Entity other) {
-    }
+    public void onCollide(Entity other) {}
 
     @Override
     public Entity getCopy(float x, float y) {
         return new Slime(x,y + ySize, xSize, ySize, hp);
+    }
+
+    @Override
+    public void onDestroy() {
+        // spawn particles
+        ParticleManager part = ParticleManager.getINSTANCE();
+        Random r = new Random();
+        part.addParticle("greenSlimeDeath",x,y,0,0,0);
+        // spawn 5 - 10 gore particles
+        for (int i = 0; i < r.nextInt(5) + 5; i++) {
+            part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(4)-2,r.nextInt(4)-2,0.5f,r.nextInt(10) + 10);
+        }
     }
 }

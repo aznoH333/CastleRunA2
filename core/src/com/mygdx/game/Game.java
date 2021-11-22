@@ -5,10 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.entities.Player;
-import com.mygdx.game.managers.EntityManager;
-import com.mygdx.game.managers.LevelBuilder;
-import com.mygdx.game.managers.LevelManager;
-import com.mygdx.game.managers.SpriteManager;
+import com.mygdx.game.managers.*;
 
 import java.util.Random;
 
@@ -19,10 +16,11 @@ public class Game extends ApplicationAdapter {
 	private LevelManager lvl;
 	private Random r;
 	private EntityManager e;
+	private ParticleManager part = ParticleManager.getINSTANCE();
 	
 	@Override
 	public void create () {
-        r = new Random(68);
+        r = new Random(69);
 		spr = new SpriteManager();
 		lvl = new LevelManager(spr,r);
 		// very bad but functional
@@ -42,6 +40,8 @@ public class Game extends ApplicationAdapter {
         spr.begin();
 			lvl.update();
 			e.update();
+			part.update();
+			part.draw(spr);
 		spr.end();
 
 		//temp input
@@ -52,4 +52,5 @@ public class Game extends ApplicationAdapter {
 	public void dispose () {
 		spr.dispose();
 	}
+
 }

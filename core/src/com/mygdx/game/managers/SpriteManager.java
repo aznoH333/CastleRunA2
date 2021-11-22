@@ -49,6 +49,7 @@ public class SpriteManager {
         batch.end();
     }
 
+    // TODO: texture scaling
     public void draw(String textureName, float x, float y){
         batch.draw(sprs.get(textureName), x, y, textureScale, textureScale);
     }
