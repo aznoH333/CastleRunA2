@@ -84,7 +84,7 @@ public class Slime extends Entity {
         part.addParticle("greenSlimeDeath",x,y,0,0,0);
         // spawn 5 - 10 gore particles
         for (int i = 0; i < r.nextInt(5) + 5; i++) {
-            part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(4)-2,r.nextInt(4)-2,0.5f,r.nextInt(10) + 10);
+            part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
         }
     }
 }

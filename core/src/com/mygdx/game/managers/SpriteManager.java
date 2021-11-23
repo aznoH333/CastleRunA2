@@ -14,7 +14,7 @@ public class SpriteManager {
     private HashMap<String, Texture> sprs;
     private OrthographicCamera cam;
 
-    private int textureScale = 64;
+    private final int pixelScale = 4;
 
     public SpriteManager(){
         batch = new SpriteBatch();
@@ -51,7 +51,8 @@ public class SpriteManager {
 
     // TODO: texture scaling
     public void draw(String textureName, float x, float y){
-        batch.draw(sprs.get(textureName), x, y, textureScale, textureScale);
+        Texture text = sprs.get(textureName);
+        batch.draw(text, x, y, text.getWidth()*pixelScale, text.getHeight()*pixelScale);
     }
 
     public void loadSprites(String path, String name, int amount){
@@ -60,10 +61,10 @@ public class SpriteManager {
         for (int i = 0; i <= amount; i++) {
 
             //dumb piskel stuff
-            String adder = "";
+            StringBuilder adder = new StringBuilder();
             int dumb = 10;
             while (dumb < amount){
-                if (i < dumb) adder += "0";
+                if (i < dumb) adder.append("0");
                 dumb *= 10;
             }
 
