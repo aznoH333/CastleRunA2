@@ -49,15 +49,12 @@ public class SpriteManager {
         batch.end();
     }
 
-    // TODO: texture scaling
     public void draw(String textureName, float x, float y){
         Texture text = sprs.get(textureName);
         batch.draw(text, x, y, text.getWidth()*pixelScale, text.getHeight()*pixelScale);
     }
 
     public void loadSprites(String path, String name, int amount){
-
-
         for (int i = 0; i <= amount; i++) {
 
             //dumb piskel stuff

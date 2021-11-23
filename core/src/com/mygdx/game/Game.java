@@ -51,6 +51,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		spr.dispose();
+		System.exit(0);
 	}
 
 }

@@ -11,6 +11,5 @@ public class DesktopLauncher {
         config.height = 1080;
         config.fullscreen = true;
 		new LwjglApplication(new Game(), config);
-		//TODO : fix application crash on exit
 	}
 }
