@@ -1,7 +1,7 @@
 package com.mygdx.game.data.tilesets.castle;
 
 import com.mygdx.game.data.ITileCollum;
-import com.mygdx.game.data.TileCollumSpecial;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class CastleRegular implements ITileCollum {
 

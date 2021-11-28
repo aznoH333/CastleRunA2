@@ -1,6 +1,12 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.*;
+import com.mygdx.game.data.enums.Directions;
+import com.mygdx.game.data.enums.TileCollumSpecial;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.SpriteManager;
 
 import java.util.Random;
 
@@ -25,7 +31,7 @@ public class LevelManager {
     private ParticleManager part = ParticleManager.getINSTANCE();
     //lvl generation vars
     private int height = 0;
-    private boolean grace = true;
+    private boolean grace = false;
     private Directions dir = Directions.None;
     private int changeFor = 0;
 

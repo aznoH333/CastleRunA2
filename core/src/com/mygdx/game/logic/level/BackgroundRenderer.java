@@ -1,4 +1,6 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.level;
+
+import com.mygdx.game.logic.SpriteManager;
 
 public class BackgroundRenderer {
     // singleton stuff

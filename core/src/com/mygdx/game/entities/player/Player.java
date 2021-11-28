@@ -1,13 +1,13 @@
-package com.mygdx.game.entities;
+package com.mygdx.game.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.mygdx.game.data.Entity;
-import com.mygdx.game.data.Team;
-import com.mygdx.game.managers.EntityFactory;
-import com.mygdx.game.managers.LevelManager;
-import com.mygdx.game.managers.PlayerInventory;
-import com.mygdx.game.managers.SpriteManager;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.entities.EntityFactory;
+import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.PlayerInventory;
+import com.mygdx.game.logic.SpriteManager;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
-package com.mygdx.game.data;
+package com.mygdx.game.logic.player;
 
-import com.mygdx.game.managers.EntityManager;
+import com.mygdx.game.logic.entities.EntityManager;
 
 public abstract class Weapon {
     protected final String sprite;

@@ -4,8 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.entities.Player;
-import com.mygdx.game.managers.*;
+import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.logic.*;
+import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.level.LevelBuilder;
+import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.Random;
 

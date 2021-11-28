@@ -1,8 +1,8 @@
-package com.mygdx.game.entities.Projectiles;
+package com.mygdx.game.entities.player.Projectiles;
 
-import com.mygdx.game.data.Entity;
-import com.mygdx.game.managers.LevelManager;
-import com.mygdx.game.managers.ParticleManager;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.entities.ParticleManager;
 
 import java.util.Random;
 

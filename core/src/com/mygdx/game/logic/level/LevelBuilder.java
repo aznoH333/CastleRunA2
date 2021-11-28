@@ -1,9 +1,10 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.ITileCollum;
 import com.mygdx.game.data.Level;
 import com.mygdx.game.data.tilesets.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
+import com.mygdx.game.logic.entities.EntityFactory;
 
 import java.util.HashMap;
 

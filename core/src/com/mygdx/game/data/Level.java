@@ -1,6 +1,7 @@
 package com.mygdx.game.data;
 
-import com.mygdx.game.managers.EntityFactory;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.EntityFactory;
 
 import java.util.Random;
 

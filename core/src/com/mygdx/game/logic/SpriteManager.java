@@ -1,9 +1,9 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.data.TileLoadList;
+import com.mygdx.game.data.load.TileLoadList;
 
 
 import java.util.HashMap;

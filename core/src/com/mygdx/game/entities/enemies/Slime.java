@@ -1,11 +1,10 @@
-package com.mygdx.game.entities;
+package com.mygdx.game.entities.enemies;
 
-import com.mygdx.game.Game;
-import com.mygdx.game.data.Entity;
-import com.mygdx.game.data.Team;
-import com.mygdx.game.managers.LevelManager;
-import com.mygdx.game.managers.ParticleManager;
-import com.mygdx.game.managers.SpriteManager;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.SpriteManager;
 
 import java.util.Random;
 

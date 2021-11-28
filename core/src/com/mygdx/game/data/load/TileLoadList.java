@@ -1,6 +1,6 @@
-package com.mygdx.game.data;
+package com.mygdx.game.data.load;
 
-import com.mygdx.game.managers.SpriteManager;
+import com.mygdx.game.logic.SpriteManager;
 
 public class TileLoadList {
     public static void loadAllSprites(SpriteManager spr){

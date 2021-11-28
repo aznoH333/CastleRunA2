@@ -1,7 +1,8 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.entities;
 
-import com.mygdx.game.data.Entity;
 import com.mygdx.game.data.Particle;
+import com.mygdx.game.data.load.ParticleLoadList;
+import com.mygdx.game.logic.SpriteManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,21 +15,12 @@ public class ParticleManager {
         return INSTANCE;
     }
 
-    private final HashMap<String,Particle> particleMap = new HashMap<>();
+    private final HashMap<String,Particle> particleMap;
     private final ArrayList<Particle> particles = new ArrayList<>();
 
     public ParticleManager(){
-        // TODO: rewrite these to an external class like tile loadlist
         // add particles
-        // slimes
-        particleMap.put("greenSlimeDeath",new Particle(new String[]{"slime3", "slime4", "slime5", "slime6"},0,2));
-        particleMap.put("greenGore0",new Particle(new String[]{"gore0"},30,0));
-        particleMap.put("greenGore1",new Particle(new String[]{"gore1"},30,0));
-        particleMap.put("greenGore2",new Particle(new String[]{"gore2"},30,0));
-        particleMap.put("greenGore3",new Particle(new String[]{"gore3"},30,0));
-
-        // sparkles
-        particleMap.put("sparkle", new Particle(new String[]{"sparkle0","sparkle1"},30,8));
+        particleMap = ParticleLoadList.loadParticles();
     }
 
     public void addParticle(String name, float x, float y, float xM, float yM, float gravity){

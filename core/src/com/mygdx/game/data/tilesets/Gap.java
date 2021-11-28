@@ -1,7 +1,7 @@
 package com.mygdx.game.data.tilesets;
 
 import com.mygdx.game.data.ITileCollum;
-import com.mygdx.game.data.TileCollumSpecial;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class Gap implements ITileCollum {
 

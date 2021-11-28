@@ -1,6 +1,5 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.player;
 
-import com.mygdx.game.data.Weapon;
 import com.mygdx.game.data.weapons.None;
 import com.mygdx.game.data.weapons.SmallDagger;
 

@@ -1,6 +1,7 @@
-package com.mygdx.game.managers;
+package com.mygdx.game.logic.entities;
 
-import com.mygdx.game.data.Entity;
+import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.ArrayList;
 import java.util.Random;

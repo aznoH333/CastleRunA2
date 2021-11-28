@@ -1,4 +1,4 @@
-package com.mygdx.game.data;
+package com.mygdx.game.data.enums;
 
 public enum TileCollumSpecial {
     None,
