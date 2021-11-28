@@ -8,11 +8,11 @@ public class None extends Weapon {
     }
 
     @Override
-    public void attack() {
+    public void attack(float x, float y) {
         // do nothing lmao
     }
     @Override
-    public void chargedAttack() {
+    public void chargedAttack(float x, float y) {
 
     }
 }

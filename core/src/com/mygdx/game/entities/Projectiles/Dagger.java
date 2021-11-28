@@ -8,9 +8,6 @@ import com.mygdx.game.managers.SpriteManager;
 import java.util.Random;
 
 public class Dagger extends Entity {
-    private final float speed = 18f;
-    private final float fallSpeed = 0.5f;
-    private float lvlY;
     private float yM = 2;
 
     public Dagger(float x, float y, float xSize, float ySize, int hp) {
@@ -19,13 +16,18 @@ public class Dagger extends Entity {
 
     @Override
     public void update(LevelManager lvl, Random r) {
+        float speed = 12f;
+        float fallSpeed = 0.5f;
+        float lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
+
         x += speed;
         y += yM;
+
         yM -= fallSpeed;
         //delete if out of bounds
         if (x >= (lvl.getMapWidth()-1) * lvl.getTileScale()) destroy();
         else{
-            lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
+
             //detect ground collision
             if (lvlY - lvl.getTileScale() > y - ySize) destroy();
         }

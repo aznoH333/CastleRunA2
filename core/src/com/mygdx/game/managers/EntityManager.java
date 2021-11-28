@@ -12,6 +12,7 @@ public class EntityManager {
     private final ArrayList<Entity> entities;
     private final ArrayList<Entity> entitySpawnQueue;
 
+
     private static EntityManager INSTANCE;
 
     public static EntityManager getINSTANCE(){
@@ -61,8 +62,14 @@ public class EntityManager {
         }
     }
 
+    // outdated
     public void addEntity(Entity ent){
         entitySpawnQueue.add(ent);
+    }
+
+    // spawns a new entity at x y
+    public void spawnEntity(String name,float x, float y){
+        addEntity(EntityFactory.getInstance().getByName(name,x,y));
     }
 
     public void shiftAllEntities(float x){

@@ -21,11 +21,16 @@ public class PlayerInventory {
 
     private PlayerInventory(){
         // TODO: starting equipment??
+        // TODO: rewrite these to an external class like tile loadlist
+
         weapons.put("Nothing", new None(""));
         weapons.put("Small daggers", new SmallDagger("dagger0"));
+
+        // temporary
         unlockWeapon("Nothing");
+        unlockWeapon("Small daggers");
         equipWeapon("Nothing", true);
-        equipWeapon("Nothing", false);
+        equipWeapon("Small daggers", false);
     }
     // equips a weapon
     // left determines the slot in which a weapon is equipped
@@ -37,6 +42,7 @@ public class PlayerInventory {
 
     // unlocks a weapon
     // !doesn't check if a weapon exists!
+    // TODO: unlock system
     public void unlockWeapon(String name){
         unlockedWeapons.add(name);
     }

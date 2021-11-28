@@ -6,6 +6,7 @@ import com.mygdx.game.data.Entity;
 import com.mygdx.game.data.Team;
 import com.mygdx.game.managers.EntityFactory;
 import com.mygdx.game.managers.LevelManager;
+import com.mygdx.game.managers.PlayerInventory;
 import com.mygdx.game.managers.SpriteManager;
 
 import java.util.Random;
@@ -15,6 +16,7 @@ public class Player extends Entity {
     private float yM = 0;
     private boolean landed = false;
     private int actionTimer = 0;
+    private final PlayerInventory inv;
 
 
     //finals
@@ -29,6 +31,7 @@ public class Player extends Entity {
     public Player(float x, float y, float sizeX, float sizeY){
         super(x, y, sizeX, sizeY, 3, Team.Player);
         entityFactory = EntityFactory.getInstance();
+        inv = PlayerInventory.getINSTANCE();
     }
     @Override
     public void update(LevelManager lvl, Random r) {
@@ -72,18 +75,27 @@ public class Player extends Entity {
         }
 
         // attacks
-        // temporary
-        // TODO: Equip system
         // TODO: sprite offsets || a workaround
         // TODO: air attacks?
         if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
             if(chargeRight < holdSensitivity){
-                e.addEntity(entityFactory.getByName("dagger", x, y));
+                inv.getRightWeapon().attack(x,y);
             }else {
-                // TODO: charge attacks
+                inv.getRightWeapon().chargedAttack(x,y);
             }
             actionTimer = actionTimerFull;
         }
+
+        if (!aLeft && actionTimer == 0 && chargeLeft > 0 && landed){
+            if(chargeLeft < holdSensitivity){
+                inv.getLeftWeapon().attack(x,y);
+            }else {
+                inv.getLeftWeapon().chargedAttack(x,y);
+            }
+            actionTimer = actionTimerFull;
+        }
+
+
 
 
         // scroll camera
@@ -96,9 +108,10 @@ public class Player extends Entity {
         y += yM;
         resetInput();
     }
+
     @Override
     public void draw(SpriteManager spr) {
-        // yabba dabba dooo
+        // player rendering
         if ((jumpLeft > holdSensitivity || jumpRight > holdSensitivity) && y == lvlY)
             spr.draw("player2",x,y);
         else if(y != lvlY)
@@ -140,7 +153,8 @@ public class Player extends Entity {
     private int jumpRight = 0;
     private int chargeLeft = 0;
     private int chargeRight = 0;
-    private int holdSensitivity = 16;
+    // TODO: sensitivity setting in menu
+    private final int holdSensitivity = 16;
     private void manageInput(){
         // left
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
