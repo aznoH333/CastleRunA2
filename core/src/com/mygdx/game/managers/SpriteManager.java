@@ -10,6 +10,12 @@ import java.util.HashMap;
 
 public class SpriteManager {
 
+    private static SpriteManager INSTANCE;
+    public static SpriteManager getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new SpriteManager();
+        return INSTANCE;
+    }
+
     private SpriteBatch batch;
     private HashMap<String, Texture> sprs;
     private OrthographicCamera cam;

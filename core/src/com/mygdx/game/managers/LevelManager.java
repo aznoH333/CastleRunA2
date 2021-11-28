@@ -25,7 +25,7 @@ public class LevelManager {
     private ParticleManager part = ParticleManager.getINSTANCE();
     //lvl generation vars
     private int height = 0;
-    private boolean grace = false;
+    private boolean grace = true;
     private Directions dir = Directions.None;
     private int changeFor = 0;
 
@@ -137,9 +137,7 @@ public class LevelManager {
             //shift map & generate
             //shift only while advancing
             if(distance%tileScale < advanceBy){
-                for (int i = 1; i < mapWidth; i++) {
-                    map[i-1] = map[i];
-                }
+                System.arraycopy(map, 1, map, 0, mapWidth - 1);
                 generateLevel(20);
             }
         }
