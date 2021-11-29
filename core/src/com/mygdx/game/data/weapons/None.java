@@ -4,7 +4,7 @@ import com.mygdx.game.logic.player.Weapon;
 
 public class None extends Weapon {
     public None(String sprite) {
-        super(sprite);
+        super(sprite,0,0);
     }
 
     @Override

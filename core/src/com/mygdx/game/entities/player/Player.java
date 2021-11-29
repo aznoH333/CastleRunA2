@@ -40,6 +40,7 @@ public class Player extends Entity {
     }
     @Override
     public void update(LevelManager lvl, Random r) {
+        PlayerStats ps = PlayerStats.getINSTANCE();
         manageInput();
         lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
         if (actionTimer > 0) actionTimer--;
@@ -85,6 +86,7 @@ public class Player extends Entity {
         if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
             if(chargeRight < holdSensitivity){
                 inv.getRightWeapon().attack(x,y);
+
             }else {
                 inv.getRightWeapon().chargedAttack(x,y);
             }

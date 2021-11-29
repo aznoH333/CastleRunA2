@@ -29,8 +29,8 @@ public class PlayerStats {
         // TODO: starting equipment??
         // TODO: rewrite these to an external class like tile loadlist
 
-        weapons.put("Nothing", new None("",0,0));
-        weapons.put("Small daggers", new SmallDagger("dagger0"));
+        weapons.put("Nothing", new None(""));
+        weapons.put("Small daggers", new SmallDagger("dagger0",1,1));
 
         // temporary
         unlockWeapon("Nothing");
