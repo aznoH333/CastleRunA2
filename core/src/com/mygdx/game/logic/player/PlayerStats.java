@@ -6,10 +6,10 @@ import com.mygdx.game.data.weapons.SmallDagger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PlayerInventory {
-    private static PlayerInventory INSTANCE;
-    public static PlayerInventory getINSTANCE(){
-        if (INSTANCE == null) INSTANCE = new PlayerInventory();
+public class PlayerStats {
+    private static PlayerStats INSTANCE;
+    public static PlayerStats getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new PlayerStats();
         return INSTANCE;
     }
 
@@ -18,11 +18,18 @@ public class PlayerInventory {
     private final HashMap<String,Weapon> weapons = new HashMap<>();
     private final ArrayList<String> unlockedWeapons = new ArrayList<>();
 
-    private PlayerInventory(){
+
+    private int maxHp = 3;
+    private int maxEnergy = 3;
+    private int hp = 3;
+    private int energy = 3;
+
+    private PlayerStats(){
+        // TODO: separate permanent unlocks & run unlocks
         // TODO: starting equipment??
         // TODO: rewrite these to an external class like tile loadlist
 
-        weapons.put("Nothing", new None(""));
+        weapons.put("Nothing", new None("",0,0));
         weapons.put("Small daggers", new SmallDagger("dagger0"));
 
         // temporary
@@ -54,5 +61,35 @@ public class PlayerInventory {
         return currentRightWeapon;
     }
 
-    // TODO: ui display
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public void setMaxEnergy(int maxEnergy) {
+        this.maxEnergy = maxEnergy;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
 }

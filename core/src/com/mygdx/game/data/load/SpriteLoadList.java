@@ -2,7 +2,7 @@ package com.mygdx.game.data.load;
 
 import com.mygdx.game.logic.SpriteManager;
 
-public class TileLoadList {
+public class SpriteLoadList {
     public static void loadAllSprites(SpriteManager spr){
         //player
         spr.loadSprites("Entities/Player/Player_","player",5);
@@ -16,6 +16,9 @@ public class TileLoadList {
         //tiles
         spr.loadSprites("Tiles/Castle/Foreground/Castle_", "castle", 3);
         spr.loadSprites("Tiles/Castle/Background/Castle_back_", "castleBack", 5);
+
+        //UI
+        spr.loadSprites("UI/Bars/UiBars_", "barUI", 6);
 
 
         //particles

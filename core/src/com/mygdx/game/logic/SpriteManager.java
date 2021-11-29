@@ -3,7 +3,7 @@ package com.mygdx.game.logic;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.data.load.TileLoadList;
+import com.mygdx.game.data.load.SpriteLoadList;
 
 
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class SpriteManager {
         cam = new OrthographicCamera();
         cam.setToOrtho(false, 1280,720);
         batch.setProjectionMatrix(cam.combined);
-        TileLoadList.loadAllSprites(this);
+        SpriteLoadList.loadAllSprites(this);
     }
 
 

@@ -5,8 +5,9 @@ import com.badlogic.gdx.Input;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.EntityFactory;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.player.PlayerInventory;
+import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.SpriteManager;
 
 import java.util.Random;
@@ -16,8 +17,8 @@ public class Player extends Entity {
     private float yM = 0;
     private boolean landed = false;
     private int actionTimer = 0;
-    private final PlayerInventory inv;
-
+    private int particleTimer = 0;
+    private int iFrame = 0;
 
     //finals
     private final float gravity = 1f;
@@ -27,11 +28,15 @@ public class Player extends Entity {
     private final float scrollBorder = 256;
     private final EntityFactory entityFactory;
     private final int actionTimerFull = 16;
+    private final PlayerStats inv;
+    private final int particleTimerFull = 8;
+    // TODO: rework iframes to give invincibility until fall
+    private final int iFrameMax = 60;
 
     public Player(float x, float y, float sizeX, float sizeY){
         super(x, y, sizeX, sizeY, 3, Team.Player);
         entityFactory = EntityFactory.getInstance();
-        inv = PlayerInventory.getINSTANCE();
+        inv = PlayerStats.getINSTANCE();
     }
     @Override
     public void update(LevelManager lvl, Random r) {
@@ -95,7 +100,21 @@ public class Player extends Entity {
             actionTimer = actionTimerFull;
         }
 
-
+        // spawn particle
+        if (chargeLeft > holdSensitivity || chargeRight > holdSensitivity){
+            if (particleTimer <= 0){
+                particleTimer = particleTimerFull;
+                ParticleManager.getINSTANCE().addParticle(
+                        "sparkle",
+                        (int) (Math.random() * (lvl.getTileScale()-16)) + x,
+                        (int) (Math.random() * (lvl.getTileScale()-16)) + y - 16,
+                        0,
+                        -0.5f,
+                        0,
+                        (int) (Math.random() * 20 + 10));
+            }else particleTimer--;
+        }
+        if (iFrame > 0) iFrame--;
 
 
         // scroll camera
@@ -111,6 +130,7 @@ public class Player extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
+        // TODO: re do player sprites
         // player rendering
         if ((jumpLeft > holdSensitivity || jumpRight > holdSensitivity) && y == lvlY)
             spr.draw("player2",x,y);
@@ -128,7 +148,13 @@ public class Player extends Entity {
 
     @Override
     public void onCollide(Entity other) {
+        if(other.getTeam() == Team.Enemies && iFrame == 0){
+            hp--;
+            PlayerStats.getINSTANCE().setHp(hp);
+            iFrame = iFrameMax;
 
+            // TODO : knock back on hit Castlevania style
+        }
     }
 
     @Override
@@ -154,6 +180,7 @@ public class Player extends Entity {
     private int chargeLeft = 0;
     private int chargeRight = 0;
     // TODO: sensitivity setting in menu
+    // TODO: touch controls
     private final int holdSensitivity = 16;
     private void manageInput(){
         // left

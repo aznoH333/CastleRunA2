@@ -10,6 +10,7 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelBuilder;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.UIManager;
 
 import java.util.Random;
 
@@ -21,7 +22,8 @@ public class Game extends ApplicationAdapter {
 	private Random r;
 	private EntityManager e;
 	private ParticleManager part = ParticleManager.getINSTANCE();
-	
+	private UIManager ui = UIManager.getINSTANCE();
+
 	@Override
 	public void create () {
         r = new Random(69);
@@ -46,6 +48,7 @@ public class Game extends ApplicationAdapter {
 			e.update();
 			part.update();
 			part.draw(spr);
+			ui.draw();
 		spr.end();
 
 		//temp input

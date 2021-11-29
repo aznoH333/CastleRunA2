@@ -16,8 +16,8 @@ public class LevelManager {
     //constants
     private final float advanceSpeed = 6f;
     private final int stepHeight = 16;
-    private final int tileScale = 64;
-    private final int mapWidth = 21;
+    public static final int tileScale = 64;
+    public static final int mapWidth = 21;
 
     //vars
     private final SpriteManager spr;
