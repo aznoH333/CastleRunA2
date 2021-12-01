@@ -9,6 +9,7 @@ import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.player.Weapon;
 
 import java.util.Random;
 
@@ -40,7 +41,6 @@ public class Player extends Entity {
     }
     @Override
     public void update(LevelManager lvl, Random r) {
-        PlayerStats ps = PlayerStats.getINSTANCE();
         manageInput();
         lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
         if (actionTimer > 0) actionTimer--;
@@ -84,20 +84,19 @@ public class Player extends Entity {
         // TODO: sprite offsets || a workaround
         // TODO: air attacks?
         if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
-            if(chargeRight < holdSensitivity){
-                inv.getRightWeapon().attack(x,y);
-
+            if(chargeRight < holdSensitivity ){
+                inv.useWeapon(x,y,false);
             }else {
-                inv.getRightWeapon().chargedAttack(x,y);
+                inv.useChargedWeapon(x,y,false);
             }
             actionTimer = actionTimerFull;
         }
 
         if (!aLeft && actionTimer == 0 && chargeLeft > 0 && landed){
             if(chargeLeft < holdSensitivity){
-                inv.getLeftWeapon().attack(x,y);
+                inv.useWeapon(x,y,true);
             }else {
-                inv.getLeftWeapon().chargedAttack(x,y);
+                inv.useWeapon(x,y,true);
             }
             actionTimer = actionTimerFull;
         }

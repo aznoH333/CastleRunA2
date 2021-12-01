@@ -20,9 +20,9 @@ public class PlayerStats {
 
 
     private int maxHp = 3;
-    private int maxEnergy = 3;
+    private int maxEnergy = 15;
     private int hp = 3;
-    private int energy = 3;
+    private int energy = 15;
 
     private PlayerStats(){
         // TODO: separate permanent unlocks & run unlocks
@@ -30,7 +30,7 @@ public class PlayerStats {
         // TODO: rewrite these to an external class like tile loadlist
 
         weapons.put("Nothing", new None(""));
-        weapons.put("Small daggers", new SmallDagger("dagger0",1,1));
+        weapons.put("Small daggers", new SmallDagger("dagger0",1,2));
 
         // temporary
         unlockWeapon("Nothing");
@@ -44,6 +44,29 @@ public class PlayerStats {
         if (unlockedWeapons.contains(weaponName))
             if (left)   currentLeftWeapon = weapons.get(weaponName);
             else        currentRightWeapon = weapons.get(weaponName);
+    }
+
+    // FIXME remove boolean left, it's fucking stupid
+    public void useWeapon(float x, float y, boolean left){
+        Weapon w;
+        if (left)   w = currentLeftWeapon;
+        else        w = currentRightWeapon;
+
+        if (w.getAttackCost() <= energy){
+            w.attack(x,y);
+            energy -= w.getAttackCost();
+        }
+    }
+
+    public void useChargedWeapon(float x, float y, boolean left){
+        Weapon w;
+        if (left)   w = currentLeftWeapon;
+        else        w = currentRightWeapon;
+
+        if (w.getChargedAttackCost() <= energy){
+            w.attack(x,y);
+            energy -= w.getChargedAttackCost();
+        }
     }
 
     // unlocks a weapon

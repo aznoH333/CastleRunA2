@@ -1,9 +1,10 @@
 package com.mygdx.game.logic.level;
 
-import com.mygdx.game.data.ITileCollum;
+import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.Level;
-import com.mygdx.game.data.tilesets.Gap;
+import com.mygdx.game.data.tilesets.universal.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
+import com.mygdx.game.data.tilesets.universal.SpikeTrap;
 import com.mygdx.game.logic.entities.EntityFactory;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class LevelBuilder {
     }
     private HashMap<String, Level> levels = new HashMap<>();
 
-    private ITileCollum[] tileSet = {new CastleRegular(), new Gap()};
+    private TileCollum[] tileSet = {new CastleRegular(), new Gap()};
     private float[] tileWeight = {20,5};
     private String[] enemySet = {"slime"};
     private float[] enemyWeight = {10,5};
@@ -54,8 +55,8 @@ public class LevelBuilder {
     public LevelBuilder(){
         // stage 1
         s(
-                new ITileCollum[]{new CastleRegular(), new Gap()},
-                new float[]{20,5},
+                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
+                new float[]{20,5,5},
                 new String[]{"slime"},
                 new float[]{10,5}
         );
@@ -76,7 +77,7 @@ public class LevelBuilder {
         cChange = 0.8f;
         clMax = 3;
         clMin = 2;
-        tileSet = new ITileCollum[]{new CastleRegular(), new Gap()};
+        tileSet = new TileCollum[]{new CastleRegular(), new Gap()};
         tileWeight = new float[]{20,5};
         enemySet = new String[]{"slime"};
         enemyWeight = new float[]{10,5};
@@ -97,7 +98,7 @@ public class LevelBuilder {
         this.clMax = clMax;
     }
 
-    private void s(ITileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight) {
+    private void s(TileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight) {
         this.tileSet = tileSet;
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;

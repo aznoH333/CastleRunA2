@@ -23,7 +23,7 @@ public class LevelManager {
     private final SpriteManager spr;
     private float distance = 0;
     private float advanceDistance = 0;
-    private final ITileCollum[] map = new ITileCollum[mapWidth];
+    private final TileCollum[] map = new TileCollum[mapWidth];
     private final BackgroundRenderer b;
     private Level lvl;
     private Random r;
@@ -47,7 +47,7 @@ public class LevelManager {
     //TODO: generate start & end to levels
     private void generateLevel(int index){
         // tile selection & grace handling
-        ITileCollum temp;
+        TileCollum temp;
         while (true) {
             temp = lvl.randomTile(r, height);
             if (!grace || !temp.grace()){
@@ -105,7 +105,7 @@ public class LevelManager {
         b.draw(spr);
 
         for (int x = 0; x < mapWidth; x++) {
-            ITileCollum curr = map[x];
+            TileCollum curr = map[x];
             if (curr.getSpecial() != TileCollumSpecial.Gap)
                 for (int y = 0; y < curr.getY()/tileScale+2; y++) {
                     spr.draw(curr.getTexture(y), x*tileScale-(distance%tileScale), curr.getY() - y*tileScale);
@@ -152,7 +152,7 @@ public class LevelManager {
         renderLevel();
     }
 
-    public ITileCollum getOnPos(float i){
+    public TileCollum getOnPos(float i){
         return map[(int) (i/tileScale)];
     }
 

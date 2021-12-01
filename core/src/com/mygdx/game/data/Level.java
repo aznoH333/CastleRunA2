@@ -6,7 +6,7 @@ import com.mygdx.game.logic.entities.EntityFactory;
 import java.util.Random;
 
 public class Level {
-    private final ITileCollum[] tileSet;
+    private final TileCollum[] tileSet;
     private final float[] tileWeight;
     private final String[] enemySet;
     private final float[] enemyWeight;
@@ -27,7 +27,7 @@ public class Level {
     private final String[][] background;
     private final float parallax;
 
-    public Level(ITileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight, int defaultH, int maxH, int minH, float cChange, int clMax, int clMin, String[][] background, float parallax){
+    public Level(TileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight, int defaultH, int maxH, int minH, float cChange, int clMax, int clMin, String[][] background, float parallax){
         this.tileSet = tileSet;
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;
@@ -50,7 +50,7 @@ public class Level {
     }
 
     // it returns tiles according to their spawn chance
-    public ITileCollum randomTile(Random r, int y) {
+    public TileCollum randomTile(Random r, int y) {
         float rng = r.nextFloat() * totalWeight;
         float currentWeight = 0;
         for (int i = 0; i < tileSet.length; i++) {
