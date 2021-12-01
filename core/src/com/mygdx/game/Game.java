@@ -26,7 +26,7 @@ public class Game extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-        r = new Random(69);
+        r = new Random(258);
 		spr = SpriteManager.getINSTANCE();
 		lvl = new LevelManager(spr,r);
 		// very bad but functional

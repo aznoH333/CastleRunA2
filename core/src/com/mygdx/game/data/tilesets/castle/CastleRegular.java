@@ -13,4 +13,18 @@ public class CastleRegular extends TileCollum {
     public CastleRegular(){
         super(sprites, repeated, grace, special);
     }
+    public CastleRegular(int y){super(y,sprites, repeated, grace, special);}
+
+    @Override
+    public TileCollum getNew(int y) {
+        return new CastleRegular(y);
+    }
+    @Override
+    public void update() {
+
+    }
+    @Override
+    public void draw(float x, float y) {
+
+    }
 }

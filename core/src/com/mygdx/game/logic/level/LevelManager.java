@@ -106,10 +106,15 @@ public class LevelManager {
 
         for (int x = 0; x < mapWidth; x++) {
             TileCollum curr = map[x];
-            if (curr.getSpecial() != TileCollumSpecial.Gap)
+            if (curr.getSpecial() != TileCollumSpecial.Gap){
                 for (int y = 0; y < curr.getY()/tileScale+2; y++) {
                     spr.draw(curr.getTexture(y), x*tileScale-(distance%tileScale), curr.getY() - y*tileScale);
                 }
+
+                if (curr.getSpecial() != TileCollumSpecial.None)
+                    curr.draw(x * tileScale, curr.getY());
+            }
+
         }
     }
 
@@ -147,7 +152,11 @@ public class LevelManager {
                 generateLevel(20);
             }
         }
-
+        // special tile update
+        for (final TileCollum collum : map) {
+            if (collum.getSpecial() != TileCollumSpecial.None && collum.getSpecial() != TileCollumSpecial.Gap)
+                collum.update();
+        }
 
         renderLevel();
     }

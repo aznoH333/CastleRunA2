@@ -2,7 +2,7 @@ package com.mygdx.game.data;
 
 import com.mygdx.game.data.enums.TileCollumSpecial;
 
-public class TileCollum {
+public abstract class TileCollum {
 
     private final String[] sprites;
     private final String repeated;
@@ -30,7 +30,7 @@ public class TileCollum {
         if (index >= sprites.length) return repeated;
         return sprites[index];
     }
-
+    // TODO: probably remove special. It's not necessary.
     public TileCollumSpecial getSpecial(){
         return special;
     }
@@ -39,11 +39,13 @@ public class TileCollum {
         return grace;
     }
     //bad code moment
-    public TileCollum getNew(int y){
-        return new TileCollum(y, sprites, repeated, grace, special);
-    }
+    public abstract TileCollum getNew(int y);
 
     public int getY(){
         return y;
     }
+
+    public abstract void update();
+
+    public abstract void draw(float x, float y);
 }

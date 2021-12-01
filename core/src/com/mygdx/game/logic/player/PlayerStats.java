@@ -64,7 +64,7 @@ public class PlayerStats {
         else        w = currentRightWeapon;
 
         if (w.getChargedAttackCost() <= energy){
-            w.attack(x,y);
+            w.chargedAttack(x,y);
             energy -= w.getChargedAttackCost();
         }
     }

@@ -153,7 +153,8 @@ public class Player extends Entity {
             hp--;
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
-
+            yM = hopStrength;
+            if (moveTo > 0) moveTo -= LevelManager.tileScale;
             // TODO : knock back on hit Castlevania style
         }
     }
@@ -165,7 +166,8 @@ public class Player extends Entity {
 
     @Override
     public void onDestroy() {
-
+        hp = 0;
+        inv.setHp(0);
     }
 
     //is button pressed

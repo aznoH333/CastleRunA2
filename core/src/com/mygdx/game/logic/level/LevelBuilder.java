@@ -56,7 +56,7 @@ public class LevelBuilder {
         // stage 1
         s(
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
-                new float[]{20,5,5},
+                new float[]{20,5,1},
                 new String[]{"slime"},
                 new float[]{10,5}
         );
