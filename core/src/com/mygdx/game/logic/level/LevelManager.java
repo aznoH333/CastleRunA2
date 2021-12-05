@@ -1,12 +1,15 @@
 package com.mygdx.game.logic.level;
 
-import com.mygdx.game.data.*;
+import com.mygdx.game.data.Level;
+import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
+import com.mygdx.game.data.tilesets.universal.LevelEnd;
+import com.mygdx.game.data.tilesets.universal.LevelStart;
+import com.mygdx.game.logic.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
-import com.mygdx.game.logic.SpriteManager;
 
 import java.util.Random;
 
@@ -34,60 +37,74 @@ public class LevelManager {
     private boolean grace = false;
     private Directions dir = Directions.None;
     private int changeFor = 0;
+    private int levelLength = 6400;
+    private int startGenerationIndex = 3;
 
-    public LevelManager(SpriteManager spr, Random r){
+    public LevelManager(SpriteManager spr, Random r) {
         this.spr = spr;
         this.r = r;
         this.b = BackgroundRenderer.getINSTANCE();
     }
-    public void setE(EntityManager e){
+
+    public void setE(EntityManager e) {
         this.e = e;
     }
 
     //TODO: generate start & end to levels
-    private void generateLevel(int index){
-        // tile selection & grace handling
-        TileCollum temp;
-        while (true) {
-            temp = lvl.randomTile(r, height);
-            if (!grace || !temp.grace()){
-                if (temp.grace()){
-                    grace = true;
-                    height = lastHeight;
+    //TODO: side passages
+    //TODO: pickups
+    //TODO: chests
+    private void generateLevel(int index) {
+        if (startGenerationIndex > 0) {
+            map[index] = new LevelStart(height);
+            startGenerationIndex--;
+        } else if (distance > levelLength - 196) {
+            map[index] = new LevelEnd(height);
+        } else {
+            // tile selection & grace handling
+            TileCollum temp;
+            while (true) {
+                temp = lvl.randomTile(r, height);
+                if (!grace || !temp.grace()) {
+                    if (temp.grace()) {
+                        grace = true;
+                        height = lastHeight;
+                    }
+                    break;
                 }
-                break;
             }
-        }
-        //add enemies
-        if (!grace){
-            Entity tempE = lvl.randomEnemy(r, index * tileScale - (distance % tileScale), height);
-            if (tempE != null){
-                e.addEntity(tempE);
+            //add enemies
+            if (!grace) {
+                Entity tempE = lvl.randomEnemy(r, index * tileScale - (distance % tileScale), height);
+                if (tempE != null) {
+                    e.addEntity(tempE);
+                }
             }
+            moveInDirection();
+            changeDirection();
+            if (!temp.grace()) grace = false;
+            map[index] = temp;
         }
-        moveInDirection();
-        changeDirection();
-        if (!temp.grace()) grace = false;
-        map[index] = temp;
-
     }
 
-    private void changeDirection(){
+    private void changeDirection() {
         //change direction
-        if (changeFor < 1){
-            if (r.nextFloat() < lvl.changeChance()){
+        if (changeFor < 1) {
+            if (r.nextFloat() < lvl.changeChance()) {
                 if (r.nextBoolean()) dir = Directions.Up;
-                else                 dir = Directions.Down;
-            }   else                 dir = Directions.None;
-            changeFor = r.nextInt(lvl.changeLengthMax()-lvl.changeLengthMin()) + lvl.changeLengthMin();
+                else dir = Directions.Down;
+            } else dir = Directions.None;
+            changeFor = r.nextInt(lvl.changeLengthMax() - lvl.changeLengthMin()) + lvl.changeLengthMin();
         }
     }
+
     private int lastHeight = 0;
-    private void moveInDirection(){
+
+    private void moveInDirection() {
         // move in direction
-        if (!grace){
+        if (!grace) {
             lastHeight = height;
-            switch (dir){
+            switch (dir) {
                 case Down:
                     if (height > lvl.minHeight())
                         height -= stepHeight;
@@ -101,45 +118,48 @@ public class LevelManager {
         }
     }
 
-    private void renderLevel(){
+    private void renderLevel() {
         b.draw(spr);
 
         for (int x = 0; x < mapWidth; x++) {
             TileCollum curr = map[x];
-            if (curr.getSpecial() != TileCollumSpecial.Gap){
-                for (int y = 0; y < curr.getY()/tileScale+2; y++) {
-                    spr.draw(curr.getTexture(y), x*tileScale-(distance%tileScale), curr.getY() - y*tileScale);
+            if (curr.getSpecial() != TileCollumSpecial.Gap) {
+                for (int y = 0; y < curr.getY() / tileScale + 2; y++) {
+                    spr.draw(curr.getTexture(y), x * tileScale - (distance % tileScale), curr.getY() - y * tileScale);
                 }
 
                 if (curr.getSpecial() != TileCollumSpecial.None)
-                    curr.draw(x * tileScale, curr.getY());
+                    curr.draw(x * tileScale - (distance % tileScale), curr.getY());
             }
 
         }
     }
 
-    public void advanceTiles(int distanceInTiles){
+    public void advanceTiles(int distanceInTiles) {
         advanceDistance += distanceInTiles * tileScale;
     }
 
-    public void advanceToTile(float dist){
-        if (dist + distance > advanceDistance)
-            advanceDistance = dist + distance;
+    public void advanceToTile(float dist) {
+        if (dist + distance > advanceDistance){
+            if (dist + distance > levelLength) advanceDistance = levelLength;
+            else advanceDistance = dist + distance;
+        }
+
     }
 
 
-    public boolean isScrolling(){
+    public boolean isScrolling() {
         return distance < advanceDistance;
     }
 
-    public int getMapWidth(){
+    public int getMapWidth() {
         return mapWidth;
     }
 
-    public void update(){
+    public void update() {
         //advance
-        if (advanceDistance > distance){
-            float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance/tileScale)-(advanceDistance/tileScale)));
+        if (advanceDistance > distance) {
+            float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
             e.shiftAllEntities(advanceBy);
             part.shiftPartsBy(advanceBy);
             distance += advanceBy;
@@ -147,7 +167,7 @@ public class LevelManager {
 
             //shift map & generate
             //shift only while advancing
-            if(distance%tileScale < advanceBy){
+            if (distance % tileScale < advanceBy) {
                 System.arraycopy(map, 1, map, 0, mapWidth - 1);
                 generateLevel(20);
             }
@@ -161,13 +181,15 @@ public class LevelManager {
         renderLevel();
     }
 
-    public TileCollum getOnPos(float i){
-        return map[(int) (i/tileScale)];
+    public TileCollum getOnPos(float i) {
+        return map[(int) (i / tileScale)];
     }
 
-    public int getTileScale(){return tileScale;}
+    public int getTileScale() {
+        return tileScale;
+    }
 
-    public void loadLevel(Level lvl){
+    public void loadLevel(Level lvl) {
         b.setBackground(lvl.getBackground());
         distance = 0;
         this.lvl = lvl;

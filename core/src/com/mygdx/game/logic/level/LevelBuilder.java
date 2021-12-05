@@ -2,9 +2,9 @@ package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.Level;
-import com.mygdx.game.data.tilesets.universal.Gap;
+import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
-import com.mygdx.game.data.tilesets.universal.SpikeTrap;
+import com.mygdx.game.data.tilesets.traps.SpikeTrap;
 import com.mygdx.game.logic.entities.EntityFactory;
 
 import java.util.HashMap;

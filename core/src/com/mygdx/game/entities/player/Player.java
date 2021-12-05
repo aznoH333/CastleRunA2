@@ -2,6 +2,7 @@ package com.mygdx.game.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.EntityFactory;
@@ -85,18 +86,18 @@ public class Player extends Entity {
         // TODO: air attacks?
         if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
             if(chargeRight < holdSensitivity ){
-                inv.useWeapon(x,y,false);
+                inv.useWeapon(x,y, Controls.AttackRight);
             }else {
-                inv.useChargedWeapon(x,y,false);
+                inv.useChargedWeapon(x,y,Controls.AttackRight);
             }
             actionTimer = actionTimerFull;
         }
 
         if (!aLeft && actionTimer == 0 && chargeLeft > 0 && landed){
             if(chargeLeft < holdSensitivity){
-                inv.useWeapon(x,y,true);
+                inv.useWeapon(x,y,Controls.AttackLeft);
             }else {
-                inv.useWeapon(x,y,true);
+                inv.useWeapon(x,y,Controls.AttackLeft);
             }
             actionTimer = actionTimerFull;
         }
@@ -117,6 +118,8 @@ public class Player extends Entity {
         }
         if (iFrame > 0) iFrame--;
 
+        // map hazards
+        if (lvl.getOnPos(x + (lvl.getTileScale() -1)).getHurts() && landed) takeDamage(1);
 
         // scroll camera
         if (x > scrollBorder){
@@ -149,13 +152,19 @@ public class Player extends Entity {
 
     @Override
     public void onCollide(Entity other) {
-        if(other.getTeam() == Team.Enemies && iFrame == 0){
-            hp--;
+        if(other.getTeam() == Team.Enemies){
+            takeDamage(1);
+        }
+    }
+
+    @Override
+    public void takeDamage(int damage){
+        if (iFrame == 0){
+            hp -= damage;
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
             yM = hopStrength;
             if (moveTo > 0) moveTo -= LevelManager.tileScale;
-            // TODO : knock back on hit Castlevania style
         }
     }
 
@@ -168,6 +177,8 @@ public class Player extends Entity {
     public void onDestroy() {
         hp = 0;
         inv.setHp(0);
+
+        // TODO : death animations
     }
 
     //is button pressed

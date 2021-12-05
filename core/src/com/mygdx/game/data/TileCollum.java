@@ -9,6 +9,7 @@ public abstract class TileCollum {
     private final int y;
     private final TileCollumSpecial special;
     private final boolean grace;
+    protected boolean hurts = false;
 
     public TileCollum(String[] sprites, String repeated, boolean grace, TileCollumSpecial special){
         this.sprites = sprites;
@@ -30,7 +31,7 @@ public abstract class TileCollum {
         if (index >= sprites.length) return repeated;
         return sprites[index];
     }
-    // TODO: probably remove special. It's not necessary.
+
     public TileCollumSpecial getSpecial(){
         return special;
     }
@@ -43,6 +44,10 @@ public abstract class TileCollum {
 
     public int getY(){
         return y;
+    }
+
+    public boolean getHurts(){
+        return hurts;
     }
 
     public abstract void update();

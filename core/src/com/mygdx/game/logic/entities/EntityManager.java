@@ -50,6 +50,7 @@ public class EntityManager {
                     ent.onCollide(entOther);
             }
 
+
             ent.update(lvl,r);
         }
 
