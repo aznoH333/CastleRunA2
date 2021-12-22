@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.player.PlayerStats;
 
@@ -18,14 +18,14 @@ public class Coin extends Pickup{
     public void draw(SpriteManager spr) {
         switch (animation){
             case 0:
-                spr.draw("pickup1",x,y);
+                spr.draw("pickup1",x,y,1);
                 break;
             case 1:
             case 3:
-                spr.draw("pickup2",x,y);
+                spr.draw("pickup2",x,y,1);
                 break;
             case 2:
-                spr.draw("pickup3",x,y);
+                spr.draw("pickup3",x,y,1);
                 break;
         }
 

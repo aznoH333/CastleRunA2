@@ -1,6 +1,6 @@
 package com.mygdx.game.logic.level;
 
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class BackgroundRenderer {
     // singleton stuff
@@ -26,7 +26,8 @@ public class BackgroundRenderer {
             for (int y = 0; y < 12; y++) {
                 spr.draw(background[x%background.length][y%background[0].length]
                         , x * tileScale - distance%(tileScale * background.length)
-                        , y * tileScale);
+                        , y * tileScale,
+                        -1);
             }
         }
 

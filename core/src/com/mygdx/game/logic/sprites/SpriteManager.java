@@ -1,11 +1,13 @@
-package com.mygdx.game.logic;
+package com.mygdx.game.logic.sprites;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.data.load.SpriteLoadList;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class SpriteManager {
@@ -16,11 +18,11 @@ public class SpriteManager {
         return INSTANCE;
     }
 
-    private SpriteBatch batch;
-    private HashMap<String, Texture> sprs;
-    private OrthographicCamera cam;
-
-    private final int pixelScale = 4;
+    private final SpriteBatch batch;
+    private final HashMap<String, Texture> sprs;
+    private final OrthographicCamera cam;
+    private static final int pixelScale = 4;
+    private final ArrayList<SpriteData> spriteDraw = new ArrayList();
 
     public SpriteManager(){
         batch = new SpriteBatch();
@@ -47,19 +49,42 @@ public class SpriteManager {
 
     }
 
-    public void begin(){
+
+    /**
+        Z Index Listings
+     ---------------------
+       -1 : background
+        0 : level
+        1 : entities
+        2 : gameplay affecting entities
+        3 : particles
+
+     ---------------------
+     */
+
+    public void render(){
+        Collections.sort(spriteDraw);
         batch.begin();
-
-    }
-    public void end(){
+        for (SpriteData s : spriteDraw) {
+            batch.draw(s.getTexture(), s.getX(), s.getY(), s.getTexture().getWidth()*pixelScale, s.getTexture().getHeight()*pixelScale);
+        }
         batch.end();
+        spriteDraw.clear();
     }
 
-    // TODO: draw priority or z indexes
+    // draws sprite with the default sprite index
+    // default sprite index is 0
     public void draw(String textureName, float x, float y){
         Texture text = sprs.get(textureName);
-        batch.draw(text, x, y, text.getWidth()*pixelScale, text.getHeight()*pixelScale);
+        spriteDraw.add(new SpriteData(text, x, y, (byte) 0));
     }
+
+    // draws with set index
+    public void draw(String textureName, float x, float y, int zIndex){
+        Texture text = sprs.get(textureName);
+        spriteDraw.add(new SpriteData(text, x, y, (byte) zIndex));
+    }
+
 
     public void loadSprites(String path, String name, int amount){
         for (int i = 0; i <= amount; i++) {
@@ -75,4 +100,5 @@ public class SpriteManager {
             sprs.put(name + i,new Texture(path + adder + i + ".png"));
         }
     }
+
 }

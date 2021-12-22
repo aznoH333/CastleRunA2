@@ -2,7 +2,7 @@ package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.level.LevelManager;
 
 public class SpikeTrap extends TileCollum {
@@ -39,6 +39,6 @@ public class SpikeTrap extends TileCollum {
     // FIXME: calculated offsets
     @Override
     public void draw(float x, float y) {
-        if (hurts) SpriteManager.getINSTANCE().draw("spikeTrap3",x, y + LevelManager.tileScale);
+        if (hurts) SpriteManager.getINSTANCE().draw("spikeTrap3",x, y + LevelManager.tileScale,2);
     }
 }

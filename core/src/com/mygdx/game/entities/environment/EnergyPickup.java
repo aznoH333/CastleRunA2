@@ -1,7 +1,6 @@
 package com.mygdx.game.entities.environment;
 
-import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.player.PlayerStats;
 
@@ -12,7 +11,7 @@ public class EnergyPickup extends Pickup{
 
     @Override
     public void draw(SpriteManager spr) {
-        spr.draw("pickup0",x,y);
+        spr.draw("pickup0",x,y,1);
     }
 
     @Override

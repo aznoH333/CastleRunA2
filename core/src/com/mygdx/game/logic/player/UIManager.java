@@ -1,6 +1,6 @@
 package com.mygdx.game.logic.player;
 
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class UIManager {
 

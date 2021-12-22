@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -26,7 +26,7 @@ public class SwordSwipe extends Entity {
         // me when bruh
 
         if (lifeTime>0)
-            spr.draw("sword" + (int) Math.ceil((11 - lifeTime) >> 1),x,y);
+            spr.draw("sword" + (int) Math.ceil((11 - lifeTime) >> 1),x,y,1);
 
 
     }

@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -48,8 +48,8 @@ public class Chest extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        if (isOpen) spr.draw("chest1",x,y);
-        else        spr.draw("chest0",x,y);
+        if (isOpen) spr.draw("chest1",x,y, 0);
+        else        spr.draw("chest0",x,y,0);
     }
 
     @Override

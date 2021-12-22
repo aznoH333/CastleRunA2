@@ -2,7 +2,7 @@ package com.mygdx.game.entities.player;
 
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -133,15 +133,15 @@ public class Player extends Entity {
         // TODO: re do player sprites
         // player rendering
         if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-            spr.draw("player2", x, y);
+            spr.draw("player2", x, y,2);
         else if (y != lvlY)
-            spr.draw("player3", x, y);
+            spr.draw("player3", x, y,2);
         else if (actionTimer > actionTimerFull / 2)
-            spr.draw("player4", x, y);
+            spr.draw("player4", x, y,2);
         else if (actionTimer > 0)
-            spr.draw("player5", x, y);
+            spr.draw("player5", x, y,2);
         else
-            spr.draw("player0", x, y);
+            spr.draw("player0", x, y,2);
 
     }
 

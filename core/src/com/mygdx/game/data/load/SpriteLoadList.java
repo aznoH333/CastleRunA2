@@ -1,6 +1,6 @@
 package com.mygdx.game.data.load;
 
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class SpriteLoadList {
     public static void loadAllSprites(SpriteManager spr){

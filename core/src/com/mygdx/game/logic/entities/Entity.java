@@ -2,7 +2,7 @@ package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 import java.util.Random;
 
@@ -36,8 +36,8 @@ public abstract class Entity {
     public abstract Entity getCopy(float x, float y);
     public abstract void onDestroy();
 
-    //TODO collision offsets
-    // FIXME horizontal collision being weird
+    // TODO collision offsets
+    // FIXME horizontal collision being weird * they are weird in general*
     public boolean collide(Entity other){
         return (x + xSize > other.getX()
                 && x < other.getX() + other.getXSize()

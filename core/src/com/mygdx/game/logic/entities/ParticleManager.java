@@ -2,7 +2,7 @@ package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.Particle;
 import com.mygdx.game.data.load.ParticleLoadList;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class ParticleManager {
 
     public void draw(SpriteManager spr){
         for (Particle part: particles) {
-            spr.draw(part.getSpr(),part.getX(), part.getY());
+            spr.draw(part.getSpr(),part.getX(), part.getY(),3);
         }
     }
 

@@ -3,7 +3,7 @@ package com.mygdx.game.entities.player.Projectiles;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 import java.util.Random;
 
@@ -36,7 +36,7 @@ public class Dagger extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        spr.draw("dagger1",x,y);
+        spr.draw("dagger1",x,y,1);
     }
 
     @Override

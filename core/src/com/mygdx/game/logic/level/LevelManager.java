@@ -4,7 +4,7 @@ import com.mygdx.game.data.Level;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;

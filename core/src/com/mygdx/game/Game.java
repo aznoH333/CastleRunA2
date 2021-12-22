@@ -5,71 +5,71 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.entities.player.Player;
-import com.mygdx.game.logic.*;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelBuilder;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.UIManager;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 
 
-	private SpriteManager spr;
-	private LevelManager lvl;
-	private Random r;
-	private EntityManager e;
-	private ParticleManager part = ParticleManager.getINSTANCE();
-	private UIManager ui = UIManager.getINSTANCE();
-	private InputManager input = InputManager.getINSTANCE();
-	private static long time = 0;
+    private SpriteManager spr;
+    private LevelManager lvl;
+    private Random r;
+    private EntityManager e;
+    private ParticleManager part = ParticleManager.getINSTANCE();
+    private UIManager ui = UIManager.getINSTANCE();
+    private InputManager input = InputManager.getINSTANCE();
+    private static long time = 0;
 
-	@Override
-	public void create () {
+    @Override
+    public void create() {
         r = new Random(258);
-		spr = SpriteManager.getINSTANCE();
-		lvl = new LevelManager(spr,r);
-		// very bad but functional
-		EntityManager.createINSTANCE(lvl, r, spr);
-		e = EntityManager.getINSTANCE();
-		lvl.setE(e);
+        spr = SpriteManager.getINSTANCE();
+        lvl = new LevelManager(spr, r);
+        // very bad but functional
+        EntityManager.createINSTANCE(lvl, r, spr);
+        e = EntityManager.getINSTANCE();
+        lvl.setE(e);
 
-		//init stuff
-		lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
-		e.addEntity(new Player(64,0, 64, 64));
-	}
+        //init stuff
+        lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
+        e.addEntity(new Player(64, 0, 64, 64));
+    }
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(0, 0, 0, 1);
-		//main cycle
-        spr.begin();
-			input.manageInput();
-			lvl.update();
-			e.update();
-			part.update();
-			part.draw(spr);
-			ui.draw();
-			input.resetInput();
-		spr.end();
+    @Override
+    public void render() {
+        ScreenUtils.clear(0, 0, 0, 1);
+        //main cycle
 
-		//temp input
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit();
+        input.manageInput();
+        lvl.update();
+        e.update();
+        part.update();
+        part.draw(spr);
+        ui.draw();
+        input.resetInput();
+        spr.render();
 
-		//pavliku tohle je validni a drz hubu
-		time++;
-	}
-	
-	@Override
-	public void dispose () {
-		spr.dispose();
-		System.exit(0);
-	}
+        //temp input
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit();
 
-	public static long Time(){
-		return time;
-	}
+        //pavliku tohle je validni a drz hubu
+        time++;
+    }
+
+    @Override
+    public void dispose() {
+        spr.dispose();
+        System.exit(0);
+    }
+
+    public static long Time() {
+        return time;
+    }
 }
