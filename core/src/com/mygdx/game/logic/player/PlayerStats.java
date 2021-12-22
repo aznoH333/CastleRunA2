@@ -3,6 +3,7 @@ package com.mygdx.game.logic.player;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.weapons.None;
 import com.mygdx.game.data.weapons.SmallDagger;
+import com.mygdx.game.data.weapons.Sword;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,23 +22,26 @@ public class PlayerStats {
 
 
     private int maxHp = 3;
-    private int maxEnergy = 32;
+    private int maxEnergy = 3;
     private int hp = 3;
-    private int energy = 32;
+    private int energy = 0;
+    private int coins = 0;
 
     private PlayerStats(){
         // TODO: separate permanent unlocks & run unlocks
         // TODO: starting equipment??
         // TODO: rewrite these to an external class like tile loadlist
 
-        weapons.put("Nothing", new None(""));
-        weapons.put("Small daggers", new SmallDagger("dagger0",1,2));
+        weapons.put("Nothing", new None());
+        weapons.put("Small daggers", new SmallDagger());
+        weapons.put("Sword", new Sword());
 
         // temporary
         unlockWeapon("Nothing");
         unlockWeapon("Small daggers");
+        unlockWeapon("Sword");
         equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon("Small daggers", Controls.AttackRight);
+        equipWeapon("Sword", Controls.AttackRight);
     }
     // equips a weapon
     public void equipWeapon(String weaponName, Controls slot){
@@ -46,7 +50,6 @@ public class PlayerStats {
             else                                currentRightWeapon = weapons.get(weaponName);
     }
 
-    // FIXME remove boolean left, it's fucking stupid
     public void useWeapon(float x, float y, Controls slot){
         Weapon w;
         if (slot == Controls.AttackLeft)    w = currentLeftWeapon;
@@ -87,32 +90,35 @@ public class PlayerStats {
     public int getMaxHp() {
         return maxHp;
     }
-
     public int getMaxEnergy() {
         return maxEnergy;
     }
-
     public int getHp() {
         return hp;
     }
-
     public int getEnergy() {
         return energy;
     }
-
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
-
     public void setMaxEnergy(int maxEnergy) {
         this.maxEnergy = maxEnergy;
     }
-
     public void setHp(int hp) {
         this.hp = hp;
     }
-
     public void setEnergy(int energy) {
         this.energy = energy;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+    public void addCoins(int coins) {
+        this.coins += coins;
     }
 }

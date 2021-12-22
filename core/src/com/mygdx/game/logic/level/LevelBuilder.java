@@ -57,8 +57,8 @@ public class LevelBuilder {
         s(
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
                 new float[]{20,5,1},
-                new String[]{"slime"},
-                new float[]{10,5}
+                new String[]{"slime","chest"},
+                new float[]{10,5,20}
         );
         p(0.25f);
         levels.put("1-1",build());

@@ -2,6 +2,7 @@ package com.mygdx.game.entities.enemies;
 
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.SpriteManager;
@@ -85,5 +86,9 @@ public class Slime extends Entity {
         for (int i = 0; i < r.nextInt(5) + 5; i++) {
             part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
         }
+
+        //spawn pickup
+        if (Math.random() > 0.5)
+            EntityManager.getINSTANCE().spawnEntity("energy pickup",x,y);
     }
 }

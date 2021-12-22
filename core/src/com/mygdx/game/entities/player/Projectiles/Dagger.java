@@ -11,7 +11,7 @@ public class Dagger extends Entity {
     private float yM = 2;
 
     public Dagger(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.Player);
+        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
     }
 
     @Override

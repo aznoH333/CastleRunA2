@@ -1,0 +1,51 @@
+package com.mygdx.game.entities.player.Projectiles;
+
+import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.level.LevelManager;
+
+import java.util.Random;
+
+public class SwordSwipe extends Entity {
+
+    private int lifeTime = 10;
+    private boolean hurts = true;
+    public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
+        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
+    }
+
+    @Override
+    public void update(LevelManager lvl, Random r) {
+        lifeTime--;
+        if (lifeTime == 0) destroy();
+    }
+
+    @Override
+    public void draw(SpriteManager spr) {
+        // me when bruh
+
+        if (lifeTime>0)
+            spr.draw("sword" + (int) Math.ceil((11 - lifeTime) >> 1),x,y);
+
+
+    }
+
+    @Override
+    public void onCollide(Entity other) {
+        if (other.getTeam() == Team.Enemies && hurts){
+            other.takeDamage(1);
+            hurts = false;
+        }
+    }
+
+    @Override
+    public Entity getCopy(float x, float y) {
+        return new SwordSwipe(x,y,64,64,1);
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
+}

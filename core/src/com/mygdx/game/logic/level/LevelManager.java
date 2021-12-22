@@ -4,8 +4,6 @@ import com.mygdx.game.data.Level;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.data.tilesets.universal.LevelEnd;
-import com.mygdx.game.data.tilesets.universal.LevelStart;
 import com.mygdx.game.logic.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
@@ -50,16 +48,17 @@ public class LevelManager {
         this.e = e;
     }
 
-    //TODO: generate start & end to levels
+    //TODO: exiting levels
     //TODO: side passages
-    //TODO: pickups
-    //TODO: chests
     private void generateLevel(int index) {
-        if (startGenerationIndex > 0) {
-            map[index] = new LevelStart(height);
+        // generate starts & ends
+        if (startGenerationIndex > 0 || distance > levelLength - 196) {
+            TileCollum temp;
+            do {
+                temp = lvl.randomTile(r, height);
+            } while (temp.getSpecial() != TileCollumSpecial.None);
+            map[index] = temp;
             startGenerationIndex--;
-        } else if (distance > levelLength - 196) {
-            map[index] = new LevelEnd(height);
         } else {
             // tile selection & grace handling
             TileCollum temp;
@@ -80,6 +79,7 @@ public class LevelManager {
                     e.addEntity(tempE);
                 }
             }
+
             moveInDirection();
             changeDirection();
             if (!temp.grace()) grace = false;
@@ -122,22 +122,21 @@ public class LevelManager {
         b.draw(spr);
 
         for (int x = 0; x < mapWidth; x++) {
-            TileCollum curr = map[x];
-            if (curr.getSpecial() != TileCollumSpecial.Gap) {
-                for (int y = 0; y < curr.getY() / tileScale + 2; y++) {
-                    spr.draw(curr.getTexture(y), x * tileScale - (distance % tileScale), curr.getY() - y * tileScale);
+            TileCollum currentCollum = map[x];
+            if (currentCollum.getSpecial() != TileCollumSpecial.Gap) {
+                // render tiles
+                for (int y = 0; y < currentCollum.getY() / tileScale + 2; y++) {
+                    spr.draw(currentCollum.getTexture(y), x * tileScale - (distance % tileScale), currentCollum.getY() - y * tileScale);
                 }
 
-                if (curr.getSpecial() != TileCollumSpecial.None)
-                    curr.draw(x * tileScale - (distance % tileScale), curr.getY());
+                // render special tile objects
+                if (currentCollum.getSpecial() != TileCollumSpecial.None)
+                    currentCollum.draw(x * tileScale - (distance % tileScale), currentCollum.getY());
             }
 
         }
     }
 
-    public void advanceTiles(int distanceInTiles) {
-        advanceDistance += distanceInTiles * tileScale;
-    }
 
     public void advanceToTile(float dist) {
         if (dist + distance > advanceDistance){
@@ -147,10 +146,6 @@ public class LevelManager {
 
     }
 
-
-    public boolean isScrolling() {
-        return distance < advanceDistance;
-    }
 
     public int getMapWidth() {
         return mapWidth;
@@ -185,6 +180,10 @@ public class LevelManager {
         return map[(int) (i / tileScale)];
     }
 
+    public float snapToPosition(float x){
+        return x-(x%tileScale)-distance%tileScale;
+    }
+
     public int getTileScale() {
         return tileScale;
     }
@@ -193,7 +192,7 @@ public class LevelManager {
         b.setBackground(lvl.getBackground());
         distance = 0;
         this.lvl = lvl;
-        height = lvl.defaultHeight();
+        height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
 
         // pre generate first screen
         for (int i = 0; i < mapWidth; i++) {

@@ -1,16 +1,13 @@
 package com.mygdx.game.entities.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.mygdx.game.data.enums.Controls;
-import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.entities.EntityFactory;
+import com.mygdx.game.logic.SpriteManager;
+import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.SpriteManager;
-import com.mygdx.game.logic.player.Weapon;
 
 import java.util.Random;
 
@@ -23,57 +20,56 @@ public class Player extends Entity {
     private int iFrame = 0;
 
     //finals
-    private final float gravity = 1f;
-    private final float hopStrength = 5f;
-    private final float jumpStrength = 8f;
-    private final float moveSpeed = 8f;
-    private final float scrollBorder = 256;
-    private final EntityFactory entityFactory;
-    private final int actionTimerFull = 16;
+    private static final float gravity = 1f;
+    private static final float hopStrength = 5f;
+    private static final float jumpStrength = 8f;
+    private static final float moveSpeed = 8f;
+    private static final float scrollBorder = 256;
+    private static final int actionTimerFull = 16;
     private final PlayerStats inv;
-    private final int particleTimerFull = 8;
-    // TODO: rework iframes to give invincibility until fall
-    private final int iFrameMax = 60;
+    private static final int particleTimerFull = 8;
+    private static final int iFrameMax = 60;
+    private final static InputManager input = InputManager.getINSTANCE();
 
-    public Player(float x, float y, float sizeX, float sizeY){
+    public Player(float x, float y, float sizeX, float sizeY) {
         super(x, y, sizeX, sizeY, 3, Team.Player);
-        entityFactory = EntityFactory.getInstance();
         inv = PlayerStats.getINSTANCE();
     }
+
     @Override
     public void update(LevelManager lvl, Random r) {
-        manageInput();
-        lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
+        lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
         if (actionTimer > 0) actionTimer--;
 
         //land
         landed = y <= lvlY - yM && yM <= 0;
-        if (landed){
+        if (landed) {
             yM = 0;
             y = lvlY;
-        }else{
+        } else {
             yM -= gravity;
         }
 
         // execute movement
         // jump left
-        if (!right && y == lvlY && jumpRight > 0){
+
+        if (!input.getButton(Controls.MoveRight) && y == lvlY && input.getButtonCharge(Controls.MoveRight) > 0) {
             // hop
-            if (jumpRight < holdSensitivity){
+            if (input.getButtonCharge(Controls.MoveRight) < input.getHoldSensitivity()) {
                 yM = hopStrength;
                 moveTo = x + lvl.getTileScale();
-            }else {
+            } else {
                 yM = jumpStrength;
                 moveTo = x + lvl.getTileScale() * 2;
             }
         }
         // jump right
-        if (!left && y == lvlY && jumpLeft > 0){
+        if (!input.getButton(Controls.MoveLeft) && y == lvlY && input.getButtonCharge(Controls.MoveLeft) > 0) {
             // hop
-            if (jumpLeft < holdSensitivity){
+            if (input.getButtonCharge(Controls.MoveLeft) < input.getHoldSensitivity()) {
                 yM = hopStrength;
                 moveTo = x - lvl.getTileScale();
-            }else {
+            } else {
                 yM = jumpStrength;
                 moveTo = x - lvl.getTileScale() * 2;
             }
@@ -83,83 +79,82 @@ public class Player extends Entity {
 
         // attacks
         // TODO: sprite offsets || a workaround
-        // TODO: air attacks?
-        if (!aRight && actionTimer == 0 && chargeRight > 0 && landed){
-            if(chargeRight < holdSensitivity ){
-                inv.useWeapon(x,y, Controls.AttackRight);
-            }else {
-                inv.useChargedWeapon(x,y,Controls.AttackRight);
+
+        if (!input.getButton(Controls.AttackRight) && actionTimer == 0 && input.getButtonCharge(Controls.AttackRight) > 0 && landed) {
+            if (input.getButtonCharge(Controls.AttackRight) < input.getHoldSensitivity()) {
+                inv.useWeapon(x, y, Controls.AttackRight);
+            } else {
+                inv.useChargedWeapon(x, y, Controls.AttackRight);
             }
             actionTimer = actionTimerFull;
         }
 
-        if (!aLeft && actionTimer == 0 && chargeLeft > 0 && landed){
-            if(chargeLeft < holdSensitivity){
-                inv.useWeapon(x,y,Controls.AttackLeft);
-            }else {
-                inv.useWeapon(x,y,Controls.AttackLeft);
+        if (!input.getButton(Controls.AttackLeft) && actionTimer == 0 && input.getButtonCharge(Controls.AttackLeft) > 0 && landed) {
+            if (input.getButtonCharge(Controls.AttackLeft) < input.getHoldSensitivity()) {
+                inv.useWeapon(x, y, Controls.AttackLeft);
+            } else {
+                inv.useChargedWeapon(x, y, Controls.AttackLeft);
             }
             actionTimer = actionTimerFull;
         }
+
 
         // spawn particle
-        if (chargeLeft > holdSensitivity || chargeRight > holdSensitivity){
-            if (particleTimer <= 0){
+        if (input.getButtonCharge(Controls.AttackRight) > input.getHoldSensitivity() || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity()) {
+            if (particleTimer <= 0) {
                 particleTimer = particleTimerFull;
                 ParticleManager.getINSTANCE().addParticle(
                         "sparkle",
-                        (int) (Math.random() * (lvl.getTileScale()-16)) + x,
-                        (int) (Math.random() * (lvl.getTileScale()-16)) + y - 16,
+                        (int) (Math.random() * (lvl.getTileScale() - 16)) + x,
+                        (int) (Math.random() * (lvl.getTileScale() - 16)) + y - 16,
                         0,
                         -0.5f,
                         0,
                         (int) (Math.random() * 20 + 10));
-            }else particleTimer--;
+            } else particleTimer--;
         }
         if (iFrame > 0) iFrame--;
 
         // map hazards
-        if (lvl.getOnPos(x + (lvl.getTileScale() -1)).getHurts() && landed) takeDamage(1);
+        if (lvl.getOnPos(x + (lvl.getTileScale() - 1)).getHurts() && landed) takeDamage(1);
 
         // scroll camera
-        if (x > scrollBorder){
+        if (x > scrollBorder) {
             lvl.advanceToTile(x - scrollBorder);
         }
 
         if (moveTo > x) x += moveSpeed;
         if (moveTo < x) x -= moveSpeed;
         y += yM;
-        resetInput();
     }
 
     @Override
     public void draw(SpriteManager spr) {
         // TODO: re do player sprites
         // player rendering
-        if ((jumpLeft > holdSensitivity || jumpRight > holdSensitivity) && y == lvlY)
-            spr.draw("player2",x,y);
-        else if(y != lvlY)
-            spr.draw("player3",x,y);
+        if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
+            spr.draw("player2", x, y);
+        else if (y != lvlY)
+            spr.draw("player3", x, y);
+        else if (actionTimer > actionTimerFull / 2)
+            spr.draw("player4", x, y);
+        else if (actionTimer > 0)
+            spr.draw("player5", x, y);
         else
-            if (actionTimer > actionTimerFull/2)
-                spr.draw("player4",x,y);
-            else if(actionTimer > 0)
-                spr.draw("player5",x,y);
-            else
-                spr.draw("player0",x,y);
+            spr.draw("player0", x, y);
 
     }
 
     @Override
     public void onCollide(Entity other) {
-        if(other.getTeam() == Team.Enemies){
+        if (other.getTeam() == Team.Enemies) {
             takeDamage(1);
         }
     }
 
     @Override
-    public void takeDamage(int damage){
-        if (iFrame == 0){
+    public void takeDamage(int damage) {
+        if (iFrame == 0) {
             hp -= damage;
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
@@ -181,56 +176,5 @@ public class Player extends Entity {
         // TODO : death animations
     }
 
-    //is button pressed
-    private boolean left = false;
-    private boolean right = false;
-    private boolean aLeft = false;
-    private boolean aRight = false;
 
-
-    //control vals
-    private int jumpLeft = 0;
-    private int jumpRight = 0;
-    private int chargeLeft = 0;
-    private int chargeRight = 0;
-    // TODO: sensitivity setting in menu
-    // TODO: touch controls
-    private final int holdSensitivity = 16;
-    private void manageInput(){
-        // left
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            jumpLeft++;
-            left = true;
-        }else {
-            left = false;
-        }
-        // right
-        if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            jumpRight++;
-            right = true;
-        }else {
-            right = false;
-        }
-        // left attack
-        if (Gdx.input.isKeyPressed(Input.Keys.Q)){
-            chargeLeft++;
-            aLeft = true;
-        }else {
-            aLeft = false;
-        }
-        // right attack
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            chargeRight++;
-            aRight = true;
-        }else {
-            aRight = false;
-        }
-    }
-
-    private void resetInput(){
-        if (!left)  jumpLeft = 0;
-        if (!right) jumpRight = 0;
-        if (!aLeft) chargeLeft = 0;
-        if (!aRight)chargeRight = 0;
-    }
 }

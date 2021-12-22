@@ -5,8 +5,8 @@ import com.mygdx.game.logic.player.Weapon;
 public class SmallDagger extends Weapon {
 
 
-    public SmallDagger(String sprite, int attackCost, int chargedAttackCost) {
-        super(sprite,attackCost,chargedAttackCost);
+    public SmallDagger() {
+        super("dagger0",1,2);
     }
 
     @Override

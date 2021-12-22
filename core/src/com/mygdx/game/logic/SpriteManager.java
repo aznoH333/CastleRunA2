@@ -55,6 +55,7 @@ public class SpriteManager {
         batch.end();
     }
 
+    // TODO: draw priority or z indexes
     public void draw(String textureName, float x, float y){
         Texture text = sprs.get(textureName);
         batch.draw(text, x, y, text.getWidth()*pixelScale, text.getHeight()*pixelScale);

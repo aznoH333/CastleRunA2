@@ -10,6 +10,7 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelBuilder;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.UIManager;
 
 import java.util.Random;
@@ -23,6 +24,8 @@ public class Game extends ApplicationAdapter {
 	private EntityManager e;
 	private ParticleManager part = ParticleManager.getINSTANCE();
 	private UIManager ui = UIManager.getINSTANCE();
+	private InputManager input = InputManager.getINSTANCE();
+	private static long time = 0;
 
 	@Override
 	public void create () {
@@ -44,15 +47,20 @@ public class Game extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 		//main cycle
         spr.begin();
+			input.manageInput();
 			lvl.update();
 			e.update();
 			part.update();
 			part.draw(spr);
 			ui.draw();
+			input.resetInput();
 		spr.end();
 
 		//temp input
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit();
+
+		//pavliku tohle je validni a drz hubu
+		time++;
 	}
 	
 	@Override
@@ -61,4 +69,7 @@ public class Game extends ApplicationAdapter {
 		System.exit(0);
 	}
 
+	public static long Time(){
+		return time;
+	}
 }

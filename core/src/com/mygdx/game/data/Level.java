@@ -74,7 +74,6 @@ public class Level {
     }
 
     //height
-    public int defaultHeight(){return defaultH;}
     public int maxHeight(){return maxH;}
     public int minHeight(){return minH;}
 

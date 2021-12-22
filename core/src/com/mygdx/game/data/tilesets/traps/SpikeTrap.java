@@ -14,7 +14,7 @@ public class SpikeTrap extends TileCollum {
     private int timer = 0;
     private static final int timerMax = 120;
     private static final int activeTime = 60;
-
+    
 
     public SpikeTrap(){
         super(sprites, repeated, grace, special);

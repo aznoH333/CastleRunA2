@@ -1,16 +1,19 @@
 package com.mygdx.game.data.weapons;
 
+import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.Weapon;
 
-public class None extends Weapon {
-    public None() {
-        super("",0,0);
+public class Sword extends Weapon {
+
+    public Sword() {
+        super("sword0", 0, 1);
     }
 
     @Override
     public void attack(float x, float y) {
-        // do nothing lmao
+        ent.spawnEntity("sword swipe",x + 48,y);
     }
+
     @Override
     public void chargedAttack(float x, float y) {
 

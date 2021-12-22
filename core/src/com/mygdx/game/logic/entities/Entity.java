@@ -36,9 +36,13 @@ public abstract class Entity {
     public abstract Entity getCopy(float x, float y);
     public abstract void onDestroy();
 
-    //collision will probably
+    //TODO collision offsets
+    // FIXME horizontal collision being weird
     public boolean collide(Entity other){
-        return (x - xSize < other.getX() && x > other.getX() - other.getXSize() && y - ySize < other.getY() && y > other.getY() - other.getYSize());
+        return (x + xSize > other.getX()
+                && x < other.getX() + other.getXSize()
+                && y - ySize < other.getY()
+                && y > other.getY() - other.getYSize());
     }
     // position stuff
     public float getX(){

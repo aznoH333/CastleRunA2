@@ -4,5 +4,6 @@ public enum Controls {
     MoveLeft,
     MoveRight,
     AttackLeft,
-    AttackRight
+    AttackRight,
+    Pause,
 }

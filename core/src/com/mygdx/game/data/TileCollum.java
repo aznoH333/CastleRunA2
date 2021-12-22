@@ -36,6 +36,7 @@ public abstract class TileCollum {
         return special;
     }
 
+
     public boolean grace(){
         return grace;
     }
