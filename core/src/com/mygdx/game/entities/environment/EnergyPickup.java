@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.environment;
 
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -24,5 +25,6 @@ public class EnergyPickup extends Pickup{
         final PlayerStats ps = PlayerStats.getINSTANCE();
         if (ps.getEnergy() < ps.getMaxEnergy())
             ps.setEnergy(ps.getEnergy() + 1);
+        SoundManager.getINSTANCE().playSound("energy");
     }
 }

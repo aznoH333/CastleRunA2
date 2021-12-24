@@ -35,9 +35,6 @@ public class ParticleManager {
     }
 
     public void update(){
-        for (Particle part: particles) {
-            part.update();
-        }
         //destroy marked particles
         for (int i = 0; i < particles.size(); i++) {
             if (particles.get(i).isMarked()){
@@ -45,6 +42,12 @@ public class ParticleManager {
                 i--;
             }
         }
+
+
+        for (Particle part: particles) {
+            part.update();
+        }
+
     }
 
     public void draw(SpriteManager spr){

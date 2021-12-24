@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.enemies;
 
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.EntityManager;
@@ -48,6 +49,7 @@ public class Slime extends Entity {
             if (direction)  moveTo = x + lvl.getTileScale();
             else            moveTo = x - lvl.getTileScale();
             direction = !direction;
+            SoundManager.getINSTANCE().playSound("slimeJump");
         }
 
 
@@ -80,12 +82,12 @@ public class Slime extends Entity {
     public void onDestroy() {
         // spawn particles
         ParticleManager part = ParticleManager.getINSTANCE();
+        SoundManager.getINSTANCE().playSound("enemyDeath1");
         Random r = new Random();
         part.addParticle("greenSlimeDeath",x,y,0,0,0);
         // spawn 5 - 10 gore particles
-        for (int i = 0; i < r.nextInt(5) + 5; i++) {
+        for (int i = 0; i < r.nextInt(5) + 5; i++)
             part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
-        }
 
         //spawn pickup
         if (Math.random() > 0.5)

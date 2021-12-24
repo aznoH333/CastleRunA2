@@ -1,6 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.Game;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -37,8 +38,10 @@ public class Coin extends Pickup{
         return new Coin(x,y,xSize,ySize,hp);
     }
 
+    // TODO: add a delayed pickup
     @Override
     public void onDestroy() {
         PlayerStats.getINSTANCE().addCoins(1);
+        SoundManager.getINSTANCE().playSound("coin");
     }
 }

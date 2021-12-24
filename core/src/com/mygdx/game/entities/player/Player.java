@@ -1,7 +1,9 @@
 package com.mygdx.game.entities.player;
 
+import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -30,6 +32,7 @@ public class Player extends Entity {
     private static final int particleTimerFull = 8;
     private static final int iFrameMax = 60;
     private final static InputManager input = InputManager.getINSTANCE();
+    private final SoundManager s = SoundManager.getINSTANCE();
 
     public Player(float x, float y, float sizeX, float sizeY) {
         super(x, y, sizeX, sizeY, 3, Team.Player);
@@ -58,9 +61,11 @@ public class Player extends Entity {
             if (input.getButtonCharge(Controls.MoveRight) < input.getHoldSensitivity()) {
                 yM = hopStrength;
                 moveTo = x + lvl.getTileScale();
+                s.playSound("hop");
             } else {
                 yM = jumpStrength;
                 moveTo = x + lvl.getTileScale() * 2;
+                s.playSound("jump");
             }
         }
         // jump right
@@ -69,9 +74,11 @@ public class Player extends Entity {
             if (input.getButtonCharge(Controls.MoveLeft) < input.getHoldSensitivity()) {
                 yM = hopStrength;
                 moveTo = x - lvl.getTileScale();
+                s.playSound("hop");
             } else {
                 yM = jumpStrength;
                 moveTo = x - lvl.getTileScale() * 2;
+                s.playSound("jump");
             }
             //prevent player moving out off bounds
             if (moveTo < 0) moveTo = 0;

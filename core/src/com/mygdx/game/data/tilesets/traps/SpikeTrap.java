@@ -2,6 +2,7 @@ package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -31,8 +32,13 @@ public class SpikeTrap extends TileCollum {
     @Override
     public void update() {
         if (timer <= 0){
-            if (hurts){timer = timerMax;
-            }else       timer = activeTime;
+            if (hurts){
+                timer = timerMax;
+                SoundManager.getINSTANCE().playSound("spike1");
+            }else {
+                timer = activeTime;
+                SoundManager.getINSTANCE().playSound("spike2");
+            }
             hurts = !hurts;
         }else timer--;
     }

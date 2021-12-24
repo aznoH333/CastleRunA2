@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.data.load.SpriteLoadList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -62,6 +61,7 @@ public class SpriteManager {
      ---------------------
      */
 
+    // FIXME : particles somehow sometimes crash the game
     public void render(){
         Collections.sort(spriteDraw);
         batch.begin();

@@ -4,7 +4,9 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelBuilder;
@@ -36,10 +38,15 @@ public class Game extends ApplicationAdapter {
         EntityManager.createINSTANCE(lvl, r, spr);
         e = EntityManager.getINSTANCE();
         lvl.setE(e);
+        SoundLoadList.loadAllSounds();
 
         //init stuff
+
         lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
         e.addEntity(new Player(64, 0, 64, 64));
+
+        //temporary music
+        SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
     }
 
     @Override
@@ -49,9 +56,9 @@ public class Game extends ApplicationAdapter {
 
         input.manageInput();
         lvl.update();
-        e.update();
         part.update();
         part.draw(spr);
+        e.update();
         ui.draw();
         input.resetInput();
         spr.render();
@@ -66,7 +73,9 @@ public class Game extends ApplicationAdapter {
     @Override
     public void dispose() {
         spr.dispose();
+        SoundManager.getINSTANCE().dispose();
         System.exit(0);
+
     }
 
     public static long Time() {

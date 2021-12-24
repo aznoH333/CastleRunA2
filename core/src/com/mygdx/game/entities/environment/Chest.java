@@ -1,6 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
@@ -15,7 +16,7 @@ public class Chest extends Entity {
     private float yM = 0f;
     private static final float hopStrength = 5f;
     private boolean airborne = false;
-    private int coinsToSpawn = 30;
+    private int coinsToSpawn = 12;
 
     public Chest(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Environment);
@@ -55,6 +56,7 @@ public class Chest extends Entity {
     @Override
     public void onCollide(Entity other) {
         if (other.getTeam() == Team.PlayerProjectiles && !isOpen){
+            SoundManager.getINSTANCE().playSound("chest");
             isOpen = true;
             airborne = true;
             yM = hopStrength;
