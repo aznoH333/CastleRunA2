@@ -61,7 +61,7 @@ public class SpriteManager {
      ---------------------
      */
 
-    // FIXME : particles somehow sometimes crash the game
+    // TODO : redo z indexes (now they arent crashing the game but they look weird)
     public void render(){
         Collections.sort(spriteDraw);
         batch.begin();

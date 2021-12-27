@@ -121,4 +121,5 @@ public class PlayerStats {
     public void addCoins(int coins) {
         this.coins += coins;
     }
+
 }

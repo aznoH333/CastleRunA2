@@ -4,6 +4,7 @@ import com.mygdx.game.entities.enemies.Slime;
 import com.mygdx.game.entities.environment.Chest;
 import com.mygdx.game.entities.environment.Coin;
 import com.mygdx.game.entities.environment.EnergyPickup;
+import com.mygdx.game.entities.environment.PickedCoin;
 import com.mygdx.game.entities.player.Projectiles.ChargedDagger;
 import com.mygdx.game.entities.player.Projectiles.Dagger;
 import com.mygdx.game.entities.player.Projectiles.SwordSwipe;
@@ -28,6 +29,7 @@ public class EntityLoadList {
         // pickups
         entities.put("energy pickup", new EnergyPickup(0,0,16,16,1));
         entities.put("coin pickup", new Coin(0,0,16,16,1));
+        entities.put("picked coin", new PickedCoin(0,0,16,16,1));
 
 
         // environment

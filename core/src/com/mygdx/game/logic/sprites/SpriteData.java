@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.Game;
 
 public class SpriteData implements Comparable<SpriteData>{
     private final Texture texture;
@@ -33,8 +34,6 @@ public class SpriteData implements Comparable<SpriteData>{
 
     @Override
     public int compareTo(SpriteData o) {
-        if (z >= o.getZ())
-            return 1;
-        return -1;
+        return Math.abs(z-o.getZ());
     }
 }

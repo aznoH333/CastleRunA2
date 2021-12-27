@@ -1,15 +1,16 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.logic.SoundManager;
+
+import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.entities.Entity;
-import com.mygdx.game.logic.player.PlayerStats;
 
 public class Coin extends Pickup{
     private byte animation = 0;
     private final byte animationOffset;
     private static final int animationLength = 4;
+
     public Coin(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp);
         animationOffset = (byte) (Math.random() * animationLength);
@@ -38,10 +39,8 @@ public class Coin extends Pickup{
         return new Coin(x,y,xSize,ySize,hp);
     }
 
-    // TODO: add a delayed pickup
     @Override
     public void onDestroy() {
-        PlayerStats.getINSTANCE().addCoins(1);
-        SoundManager.getINSTANCE().playSound("coin");
+        EntityManager.getINSTANCE().spawnEntity("picked coin",x,y);
     }
 }

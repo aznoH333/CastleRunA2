@@ -181,6 +181,10 @@ public class Player extends Entity {
         inv.setHp(0);
 
         // TODO : death animations
+        // TODO : rework knock back to work properly
+        // player can escape knock back with some jank
+        // TODO : combine knock back and iframes
+        // FIXME: player can sometimes escape gaps
     }
 
 
