@@ -23,6 +23,7 @@ public class PickedCoin extends Entity {
 
     public PickedCoin(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Environment);
+        shifts = false;
         x = Math.round(x);
         y = Math.round(y);
         startX = x;

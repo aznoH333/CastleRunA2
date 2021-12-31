@@ -16,6 +16,7 @@ public abstract class Entity {
     protected final EntityManager e;
     protected final Team team;
     private boolean markForDestruction = false;
+    protected boolean shifts = true;
 
     public Entity(float x, float y, float xSize, float ySize, int hp, Team team){
         this.x = x;
@@ -58,8 +59,10 @@ public abstract class Entity {
         return ySize;
     }
     public void shiftX(float shiftBy){
-        x += shiftBy;
-        moveTo += shiftBy;
+        if (shifts){
+            x += shiftBy;
+            moveTo += shiftBy;
+        }
     }
 
     //hp stuff

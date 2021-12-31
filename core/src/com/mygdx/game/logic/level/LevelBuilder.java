@@ -2,6 +2,7 @@ package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.Level;
+import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
@@ -33,17 +34,7 @@ public class LevelBuilder {
     private float cChange = 0.8f;
     private int clMax = 3;
     private int clMin = 2;
-    // TODO: make a background builder or somethin
-    private String[][] back = {
-            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack2", "castleBack2", "castleBack2", "castleBack2", "castleBack2"},
-            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack3", "castleBack3", "castleBack3", "castleBack3", "castleBack3"},
-            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
-            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack5", "castleBack4"},
-            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
-            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
-            {"castleBack0", "castleBack1", "castleBack0", "castleBack1", "castleBack4", "castleBack4", "castleBack4", "castleBack5", "castleBack4"},
-            {"castleBack1", "castleBack0", "castleBack1", "castleBack0", "castleBack4", "castleBack4", "castleBack4", "castleBack4", "castleBack4"},
-    };
+
     private float parallax = 1;
 
     public Level build(){
@@ -58,16 +49,38 @@ public class LevelBuilder {
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
                 new float[]{20,5,1},
                 new String[]{"slime","chest"},
-                new float[]{10,5,90}
+                new float[]{10,5,2}
         );
         p(0.25f);
         levels.put("1-1",build());
+        s(
+                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
+                new float[]{20,5,1},
+                new String[]{"slime","chest"},
+                new float[]{10,5,2}
+        );
+        p(0.25f);
+        levels.put("1-1",build());
+
+        s(
+                new TileCollum[]{new CaveRegular(), new Gap()},
+                new float[]{15,5},
+                new String[]{"slime","chest"},
+                new float[]{10,5,1}
+        );
+        c(0.9f,1,3);
+        h(96,64,128);
+        p(0.1f);
+        b(Backgrounds.cave());
+        levels.put("1-2",build());
+
     }
 
     public Level getByName(String name){
         return levels.get(name);
     }
 
+    private String[][] back;
 
     //builder stuff
     private void reset(){
@@ -81,8 +94,7 @@ public class LevelBuilder {
         tileWeight = new float[]{20,5};
         enemySet = new String[]{"slime"};
         enemyWeight = new float[]{10,5};
-        // TODO: background builder
-        back = new String[][]{{"player0"}};
+        back = Backgrounds.castle();
         parallax = 1;
     }
 
@@ -107,5 +119,8 @@ public class LevelBuilder {
 
     private void p(float parallax){
         this.parallax = parallax;
+    }
+    private void b(String[][] back){
+        this.back = back;
     }
 }

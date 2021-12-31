@@ -140,13 +140,13 @@ public class Player extends Entity {
         // TODO: re do player sprites
         // player rendering
         if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-            spr.draw("player2", x, y,2);
+            spr.draw("player1", x, y,2);
         else if (y != lvlY)
-            spr.draw("player3", x, y,2);
+            spr.draw("player2", x, y,2);
         else if (actionTimer > actionTimerFull / 2)
-            spr.draw("player4", x, y,2);
+            spr.draw("player3", x, y,2);
         else if (actionTimer > 0)
-            spr.draw("player5", x, y,2);
+            spr.draw("player4", x, y,2);
         else
             spr.draw("player0", x, y,2);
 

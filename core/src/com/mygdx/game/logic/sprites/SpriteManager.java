@@ -61,7 +61,6 @@ public class SpriteManager {
      ---------------------
      */
 
-    // TODO : redo z indexes (now they arent crashing the game but they look weird)
     public void render(){
         Collections.sort(spriteDraw);
         batch.begin();
@@ -91,10 +90,10 @@ public class SpriteManager {
 
             //dumb piskel stuff
             StringBuilder adder = new StringBuilder();
-            int dumb = 10;
-            while (dumb < amount){
-                if (i < dumb) adder.append("0");
-                dumb *= 10;
+            int dumb = 9;
+            while (dumb <= amount){
+                if (i <= dumb) adder.append("0");
+                dumb = (dumb * 10) + 9;
             }
 
             sprs.put(name + i,new Texture(path + adder + i + ".png"));

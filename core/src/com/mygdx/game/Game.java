@@ -42,7 +42,7 @@ public class Game extends ApplicationAdapter {
 
         //init stuff
 
-        lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
+        lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-2"));
         e.addEntity(new Player(64, 0, 64, 64));
 
         //temporary music

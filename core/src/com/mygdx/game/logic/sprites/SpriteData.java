@@ -34,6 +34,6 @@ public class SpriteData implements Comparable<SpriteData>{
 
     @Override
     public int compareTo(SpriteData o) {
-        return Math.abs(z-o.getZ());
+        return z-o.getZ();
     }
 }

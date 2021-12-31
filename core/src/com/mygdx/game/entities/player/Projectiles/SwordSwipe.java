@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class SwordSwipe extends Entity {
 
-    private int lifeTime = 10;
+    private int lifeTime = 12;
     private boolean hurts = true;
     public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
@@ -29,7 +29,7 @@ public class SwordSwipe extends Entity {
         // me when bruh
 
         if (lifeTime>0)
-            spr.draw("sword" + (int) Math.ceil((11 - lifeTime) >> 1),x,y,1);
+            spr.draw("sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
 
 
     }

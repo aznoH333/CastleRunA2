@@ -8,8 +8,8 @@ import com.mygdx.game.logic.level.LevelManager;
 
 public class SpikeTrap extends TileCollum {
 
-    private static final String[] sprites = {"spikeTrap0", "spikeTrap1"};
-    private static final String repeated = "spikeTrap2";
+    private static final String[] sprites = {"spikeTrap1", "spikeTrap2"};
+    private static final String repeated = "spikeTrap3";
     private static final TileCollumSpecial special = TileCollumSpecial.SpikeTrap;
     private static final boolean grace = false;
     private int timer = 0;
@@ -45,6 +45,6 @@ public class SpikeTrap extends TileCollum {
     // FIXME: calculated offsets
     @Override
     public void draw(float x, float y) {
-        if (hurts) SpriteManager.getINSTANCE().draw("spikeTrap3",x, y + LevelManager.tileScale,2);
+        if (hurts) SpriteManager.getINSTANCE().draw("spikeTrap0",x, y + LevelManager.tileScale,2);
     }
 }
