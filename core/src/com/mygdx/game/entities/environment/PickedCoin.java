@@ -31,7 +31,7 @@ public class PickedCoin extends Entity {
         animationOffset = (byte) (Math.random() * animationLength);
     }
 
-    // TODO : make picked coins unaffected by shifting
+
     @Override
     public void update(LevelManager lvl, Random r) {
         // suicide

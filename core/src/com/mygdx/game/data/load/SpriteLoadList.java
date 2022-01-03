@@ -11,7 +11,7 @@ public class SpriteLoadList {
 
         //weapons
         spr.loadSprites("Entities/Weapons/SmallDagger/small_dagger_","dagger",1);
-        spr.loadSprites("Entities/Weapons/BasicSword/Sword_","sword",6);
+        spr.loadSprites("Entities/Weapons/BasicSword/sword_","sword",6);
 
         //entities
         spr.loadSprites("Entities/Enemies/Slimes/GreenSlime/green_slime_","slime",6);

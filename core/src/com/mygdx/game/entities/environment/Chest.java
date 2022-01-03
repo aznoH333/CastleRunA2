@@ -16,7 +16,7 @@ public class Chest extends Entity {
     private float yM = 0f;
     private static final float hopStrength = 5f;
     private boolean airborne = false;
-    private int coinsToSpawn = 12;
+    private int coinsToSpawn = 0;
 
     public Chest(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Environment);
@@ -57,6 +57,8 @@ public class Chest extends Entity {
     public void onCollide(Entity other) {
         if (other.getTeam() == Team.PlayerProjectiles && !isOpen){
             SoundManager.getINSTANCE().playSound("chest");
+            if (Math.random() > 0.2) coinsToSpawn = (int) (Math.random() * 20) + 10;
+            else                     EntityManager.getINSTANCE().spawnEntity("health potion",x,y);
             isOpen = true;
             airborne = true;
             yM = hopStrength;

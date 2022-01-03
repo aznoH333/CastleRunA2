@@ -1,6 +1,6 @@
 package com.mygdx.game.entities.player;
 
-import com.mygdx.game.Config;
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
@@ -137,18 +137,18 @@ public class Player extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        // TODO: re do player sprites
         // player rendering
-        if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-            spr.draw("player1", x, y,2);
-        else if (y != lvlY)
-            spr.draw("player2", x, y,2);
-        else if (actionTimer > actionTimerFull / 2)
-            spr.draw("player3", x, y,2);
-        else if (actionTimer > 0)
-            spr.draw("player4", x, y,2);
-        else
-            spr.draw("player0", x, y,2);
+        if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
+            if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
+                spr.draw("player1", x, y,2);
+            else if (y != lvlY)
+                spr.draw("player2", x, y,2);
+            else if (actionTimer > actionTimerFull / 2)
+                spr.draw("player3", x, y,2);
+            else if (actionTimer > 0)
+                spr.draw("player4", x, y,2);
+            else
+                spr.draw("player0", x, y,2);
 
     }
 
@@ -166,7 +166,9 @@ public class Player extends Entity {
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
             yM = hopStrength;
-            if (moveTo > 0) moveTo -= LevelManager.tileScale;
+            if (moveTo > 0)
+                if (moveTo == x) moveTo -= LevelManager.tileScale;
+                else             moveTo -= LevelManager.tileScale*2;
         }
     }
 
@@ -184,7 +186,8 @@ public class Player extends Entity {
         // TODO : rework knock back to work properly
         // player can escape knock back with some jank
         // TODO : combine knock back and iframes
-        // FIXME: player can sometimes escape gaps
+        // FIXME : player can sometimes clip through the ground (probably something with knock back)
+
     }
 
 

@@ -25,9 +25,9 @@ public abstract class Pickup extends Entity {
             x += xM;
             y += yM;
             yM -= gravity;
-            float lvlY = lvl.getOnPos(x + (lvl.getTileScale()/2)).getY() + lvl.getTileScale();
+            float lvlY = lvl.getOnPos(x + ((int)xSize>>1)).getY() + lvl.getTileScale();
 
-            if (y+ySize <= lvlY + ySize) {
+            if (y <= lvlY) {
                 landed = true;
                 y = lvlY;
                 yM = 0;

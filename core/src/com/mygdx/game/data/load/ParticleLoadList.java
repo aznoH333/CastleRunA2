@@ -18,6 +18,9 @@ public class ParticleLoadList {
         // sparkles
         particleMap.put("sparkle", new Particle(new String[]{"sparkle0","sparkle1"},30,8));
 
+        // potions
+        particleMap.put("potion", new Particle(new String[]{"potion0"},420,0));
+
 
         return particleMap;
     }
