@@ -75,7 +75,7 @@ public class Slime extends Entity {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new Slime(x,y + ySize, xSize, ySize, hp);
+        return new Slime(x,y + LevelManager.tileScale, xSize, ySize, hp);
     }
 
     @Override

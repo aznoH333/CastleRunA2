@@ -41,13 +41,17 @@ public abstract class Pickup extends Entity {
 
     @Override
     public void onCollide(Entity other){
-        if (other.getTeam() == Team.Player && landed)
+        if (other.getTeam() == Team.Player && landed){
+            onPickup();
             destroy();
+        }
     }
 
     @Override
     public abstract Entity getCopy(float x, float y);
 
     @Override
-    public abstract void onDestroy();
+    public void onDestroy(){}
+
+    public abstract void onPickup();
 }

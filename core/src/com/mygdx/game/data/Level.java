@@ -12,6 +12,7 @@ public class Level {
     private final float[] enemyWeight;
     private final float totalWeight;
     private final float totalEnemyWeight;
+    private final int length;
     private EntityFactory e = EntityFactory.getInstance();
 
     //lvl height
@@ -27,7 +28,7 @@ public class Level {
     private final String[][] background;
     private final float parallax;
 
-    public Level(TileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight, int defaultH, int maxH, int minH, float cChange, int clMax, int clMin, String[][] background, float parallax){
+    public Level(TileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight, int defaultH, int maxH, int minH, float cChange, int clMax, int clMin, String[][] background, float parallax, int length){
         this.tileSet = tileSet;
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;
@@ -40,6 +41,7 @@ public class Level {
         this.clMin = clMin;
         this.background = background;
         this.parallax = parallax;
+        this.length = length;
 
         float temp = 0;
         for (float f: tileWeight) temp += f;
@@ -84,4 +86,8 @@ public class Level {
 
     public String[][] getBackground(){return background;}
     public float getParallax() {return parallax;}
+
+    public int getLength(){
+        return length;
+    }
 }

@@ -32,6 +32,7 @@ public class EntityLoadList {
 
         // environment
         entities.put("chest", new Chest(0,0,64,64,1));
+        entities.put("exit door", new ExitDoor(0,0,64,64,1));
 
         //return
         return entities;

@@ -18,6 +18,13 @@ public class SpriteLoadList {
         spr.loadSprites("Entities/Pickups/Pick_up_","pickup",3);
         spr.loadSprites("Entities/Pickups/Potion_","potion",2);
 
+
+        // environmental objects
+        spr.loadSprites("Tiles/General/Chest/Chest_","chest",1);
+        spr.loadSprites("Tiles/General/Door/Door_","door",1);
+
+
+
         //tiles
         spr.loadSprites("Tiles/Castle/Foreground/Castle_", "castle", 3);
         spr.loadSprites("Tiles/Castle/Background/Castle_back_", "castleBack", 5);
@@ -25,9 +32,6 @@ public class SpriteLoadList {
         spr.loadSprites("Tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("Tiles/cave/background/cave_back_","caveBack",9);
 
-
-        //background objects
-        spr.loadSprites("Tiles/General/Chest/Chest_","chest",1);
 
         //UI
         spr.loadSprites("UI/Bars/UiBars_", "barUI", 6);

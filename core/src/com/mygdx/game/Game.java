@@ -14,6 +14,7 @@ import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.UIManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.stage.StageManager;
 
 import java.util.Random;
 
@@ -33,7 +34,8 @@ public class Game extends ApplicationAdapter {
     public void create() {
         r = new Random(258);
         spr = SpriteManager.getINSTANCE();
-        lvl = new LevelManager(spr, r);
+        LevelManager.setUpINSTANCE(spr,r);
+        lvl = LevelManager.getINSTANCE();
         // very bad but functional
         EntityManager.createINSTANCE(lvl, r, spr);
         e = EntityManager.getINSTANCE();
@@ -41,9 +43,7 @@ public class Game extends ApplicationAdapter {
         SoundLoadList.loadAllSounds();
 
         //init stuff
-
-        lvl.loadLevel(LevelBuilder.getINSTANCE().getByName("1-1"));
-        e.addEntity(new Player(64, 0, 64, 64));
+        StageManager.getINSTANCE().startLevel();
 
         //temporary music
         SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);

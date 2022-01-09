@@ -13,6 +13,16 @@ import java.util.Random;
 
 public class LevelManager {
 
+    private static LevelManager INSTANCE;
+
+    public static LevelManager getINSTANCE(){
+        return INSTANCE;
+    }
+
+    public static void setUpINSTANCE(SpriteManager spr, Random r){
+        INSTANCE = new LevelManager(spr, r);
+    }
+
 
     //constants
     private final float advanceSpeed = 6f;
@@ -52,15 +62,18 @@ public class LevelManager {
     //TODO: side passages
     private void generateLevel(int index) {
         // generate starts & ends
-        if (startGenerationIndex > 0 || distance > levelLength - 196) {
+        if (startGenerationIndex > 0 || distance > levelLength - (tileScale * 4)) {
             TileCollum temp;
             do {
                 temp = lvl.randomTile(r, height);
             } while (temp.getSpecial() != TileCollumSpecial.None);
+            // spawn exit door
+            if (Math.abs(levelLength-(tileScale*2) - distance) < 10 )
+                EntityManager.getINSTANCE().spawnEntity("exit door",index * tileScale - (distance % tileScale), height);
             map[index] = temp;
             startGenerationIndex--;
         } else {
-            // tile selection & grace handling
+            // tile selection & grace handlingw
             TileCollum temp;
             while (true) {
                 temp = lvl.randomTile(r, height);
@@ -188,11 +201,23 @@ public class LevelManager {
         return tileScale;
     }
 
+    public int getLevelLength(){
+        return levelLength;
+    }
+
+    public float getDistance(){
+        return distance;
+    }
+
     public void loadLevel(Level lvl) {
         b.setBackground(lvl.getBackground());
         distance = 0;
+        advanceDistance = 0;
         this.lvl = lvl;
+        startGenerationIndex = 3;
         height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
+        levelLength = lvl.getLength();
+        e.clear();
 
         // pre generate first screen
         for (int i = 0; i < mapWidth; i++) {

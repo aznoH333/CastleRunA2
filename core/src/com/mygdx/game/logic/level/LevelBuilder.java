@@ -36,9 +36,10 @@ public class LevelBuilder {
     private int clMin = 2;
 
     private float parallax = 1;
+    private int length = 6400;
 
     public Level build(){
-        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin, back, parallax);
+        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin, back, parallax, length);
         reset();
         return temp;
     }
@@ -49,17 +50,11 @@ public class LevelBuilder {
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
                 new float[]{20,5,1},
                 new String[]{"slime","chest"},
-                new float[]{10,5,2}
+                new float[]{20,5,1}
         );
+        b(Backgrounds.castle());
         p(0.25f);
-        levels.put("1-1",build());
-        s(
-                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
-                new float[]{20,5,1},
-                new String[]{"slime","chest"},
-                new float[]{10,5,2}
-        );
-        p(0.25f);
+        l(6);
         levels.put("1-1",build());
 
         s(
@@ -72,6 +67,7 @@ public class LevelBuilder {
         h(96,64,128);
         p(0.1f);
         b(Backgrounds.cave());
+        l(120);
         levels.put("1-2",build());
 
     }
@@ -96,6 +92,7 @@ public class LevelBuilder {
         enemyWeight = new float[]{10,5};
         back = Backgrounds.castle();
         parallax = 1;
+        length = 6400;
     }
 
     private void h(int defaultH, int minH, int maxH){
@@ -115,6 +112,10 @@ public class LevelBuilder {
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;
         this.enemyWeight = enemyWeight;
+    }
+
+    private void l(int length){
+        this.length = length * LevelManager.tileScale;
     }
 
     private void p(float parallax){

@@ -37,6 +37,9 @@ public class Player extends Entity {
     public Player(float x, float y, float sizeX, float sizeY) {
         super(x, y, sizeX, sizeY, 3, Team.Player);
         inv = PlayerStats.getINSTANCE();
+
+        hp = inv.getMaxHp();
+        inv.setHp(hp);
     }
 
     @Override
@@ -54,7 +57,7 @@ public class Player extends Entity {
         }
 
         // execute movement
-        // jump left
+        // jump right
 
         if (!input.getButton(Controls.MoveRight) && y == lvlY && input.getButtonCharge(Controls.MoveRight) > 0) {
             // hop
@@ -67,8 +70,9 @@ public class Player extends Entity {
                 moveTo = x + lvl.getTileScale() * 2;
                 s.playSound("jump");
             }
+            if (moveTo > lvl.getLevelLength() - lvl.getDistance() + (lvl.getMapWidth()-2) * lvl.getTileScale()) moveTo = (lvl.getMapWidth()-2) * lvl.getTileScale();
         }
-        // jump right
+        // jump left
         if (!input.getButton(Controls.MoveLeft) && y == lvlY && input.getButtonCharge(Controls.MoveLeft) > 0) {
             // hop
             if (input.getButtonCharge(Controls.MoveLeft) < input.getHoldSensitivity()) {
@@ -157,6 +161,7 @@ public class Player extends Entity {
         if (other.getTeam() == Team.Enemies) {
             takeDamage(1);
         }
+
     }
 
     @Override
@@ -181,6 +186,7 @@ public class Player extends Entity {
     public void onDestroy() {
         hp = 0;
         inv.setHp(0);
+        System.out.println("get owned");
 
         // TODO : death animations
         // TODO : rework knock back to work properly

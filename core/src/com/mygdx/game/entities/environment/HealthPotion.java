@@ -23,7 +23,7 @@ public class HealthPotion extends Pickup{
     }
 
     @Override
-    public void onDestroy() {
+    public void onPickup() {
         //set hp
         PlayerStats ps = PlayerStats.getINSTANCE();
         ps.setHp(Math.min(ps.getHp() + fillHp, ps.getMaxHp()));

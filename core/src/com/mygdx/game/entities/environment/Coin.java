@@ -40,7 +40,7 @@ public class Coin extends Pickup{
     }
 
     @Override
-    public void onDestroy() {
+    public void onPickup() {
         EntityManager.getINSTANCE().spawnEntity("picked coin",x,y);
     }
 }
