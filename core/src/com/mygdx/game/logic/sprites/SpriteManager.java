@@ -96,7 +96,7 @@ public class SpriteManager {
                 dumb = (dumb * 10) + 9;
             }
 
-            sprs.put(name + i,new Texture(path + adder + i + ".png"));
+            sprs.put(name + i,new Texture("sprites/" + path + adder + i + ".png"));
         }
     }
 

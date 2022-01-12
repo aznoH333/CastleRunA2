@@ -40,7 +40,6 @@ public class ExitDoor extends Entity {
         }
 
         if (other.getTeam() == Team.Player && isOpen){
-            // TODO : exiting levels
             // TODO : some kind of an exit level animation
             StageManager.getINSTANCE().advanceInStage();
         }

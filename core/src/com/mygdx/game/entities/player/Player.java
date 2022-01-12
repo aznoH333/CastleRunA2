@@ -184,14 +184,8 @@ public class Player extends Entity {
 
     @Override
     public void onDestroy() {
-        hp = 0;
-        inv.setHp(0);
-        System.out.println("get owned");
 
         // TODO : death animations
-        // TODO : rework knock back to work properly
-        // player can escape knock back with some jank
-        // TODO : combine knock back and iframes
         // FIXME : player can sometimes clip through the ground (probably something with knock back)
 
     }

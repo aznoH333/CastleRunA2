@@ -106,7 +106,6 @@ public class PlayerStats {
         this.maxEnergy = maxEnergy;
     }
     public void setHp(int hp) {
-        System.out.println(hp);
         this.hp = hp;
     }
     public void setEnergy(int energy) {

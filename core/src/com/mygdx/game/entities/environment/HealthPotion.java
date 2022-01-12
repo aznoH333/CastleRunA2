@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.environment;
 
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -27,6 +28,7 @@ public class HealthPotion extends Pickup{
         //set hp
         PlayerStats ps = PlayerStats.getINSTANCE();
         ps.setHp(Math.min(ps.getHp() + fillHp, ps.getMaxHp()));
+        SoundManager.getINSTANCE().playSound("pickup");
 
         //spawn particle
         ParticleManager.getINSTANCE().addParticle("potion",x,y,(float) Math.random()*6-3, 10 - (float) Math.random()*5,0.6f);

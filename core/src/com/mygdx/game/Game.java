@@ -4,12 +4,11 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
-import com.mygdx.game.entities.player.Player;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
-import com.mygdx.game.logic.level.LevelBuilder;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.UIManager;
@@ -29,6 +28,7 @@ public class Game extends ApplicationAdapter {
     private UIManager ui = UIManager.getINSTANCE();
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 0;
+    private static GameState state = GameState.Game;
 
     @Override
     public void create() {
@@ -55,11 +55,29 @@ public class Game extends ApplicationAdapter {
         //main cycle
 
         input.manageInput();
-        lvl.update();
-        part.update();
-        part.draw(spr);
-        e.update();
-        ui.draw();
+
+        switch (state){
+            case Game:
+                game();
+                break;
+            case StageMenu:
+                stageMenu();
+                break;
+            case Shop:
+                shop();
+                break;
+            case GameOver:
+                gameOver();
+                break;
+            case MainMenu:
+                mainMenu();
+                break;
+            case EquipMenu:
+                equipMenu();
+                break;
+
+        }
+
         input.resetInput();
         spr.render();
 
@@ -69,6 +87,8 @@ public class Game extends ApplicationAdapter {
         //pavliku tohle je validni a drz hubu
         time++;
     }
+
+
 
     @Override
     public void dispose() {
@@ -80,5 +100,43 @@ public class Game extends ApplicationAdapter {
 
     public static long Time() {
         return time;
+    }
+
+    public static void changeState(GameState state){
+        Game.state = state;
+    }
+
+    //status functions
+    private void game(){
+        lvl.update();
+        part.update();
+        part.draw(spr);
+        e.update();
+        ui.draw();
+    }
+
+    private void stageMenu() {
+        spr.draw("icon6",0,0);
+        //temp input
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.Shop);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D)) changeState(GameState.Game);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S)) changeState(GameState.EquipMenu);
+        // TODO : this
+    }
+
+    private void shop(){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
+        spr.draw("icon10",0,0);
+    }
+    private void gameOver(){
+        // TODO : this
+    }
+    private void mainMenu(){
+        // TODO : this
+    }
+
+    private void equipMenu(){
+        spr.draw("icon4",0,0);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
     }
 }
