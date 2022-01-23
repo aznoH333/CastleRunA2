@@ -1,5 +1,8 @@
-package com.mygdx.game.logic.player;
+package com.mygdx.game.logic.UI;
 
+import com.mygdx.game.data.IInputFunction;
+import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class UIManager {
@@ -9,16 +12,21 @@ public class UIManager {
         if (INSTANCE == null) INSTANCE = new UIManager();
         return INSTANCE;
     }
-
+    // 336 px per button
 
     private final int xOffset = 32;
     private final int yOffset = 640;
     private final int energyOffset = 48;
+    private static final byte uiHeight = 9;
+    private static final byte buttonWidth = 4;
+    private static final byte buttonHeight = 4;
+    private static final byte buttonOffset = 16;
+    private SpriteManager spr = SpriteManager.getINSTANCE();
+    private PlayerStats ps = PlayerStats.getINSTANCE();
+    //private Button[] buttons = {new Button("button0","button1","player0","player1",buttonOffset, buttonOffset,()->{},()->{})};
 
-    public void draw(){
-        SpriteManager spr = SpriteManager.getINSTANCE();
-        PlayerStats ps = PlayerStats.getINSTANCE();
 
+    public void drawGameUI(){
         // bars
         // health
         spr.draw("barUI2",xOffset-32,yOffset);
@@ -36,6 +44,20 @@ public class UIManager {
         }
         spr.draw("barUI4",xOffset+ ps.getMaxEnergy()*32,yOffset - energyOffset);
 
-        // TODO: touch controls
+
+
+        // TODO: introduce new drawing constants
+        // TODO: button background sprites
+        // touch buttons
+        // background
+        for (int x = 0; x < LevelManager.mapWidth; x++) {
+            for (int y = 0; y < uiHeight; y++) {
+                spr.drawAbsolute("castle3",x*LevelManager.tileScale, y*LevelManager.tileScale,4);
+            }
+        }
+        // buttons
+        spr.drawAbsolute("button0",buttonOffset, buttonOffset,5);
     }
+
+
 }

@@ -18,25 +18,26 @@ public class SoundLoadList {
          */
 
         SoundManager s = SoundManager.getINSTANCE();
-        s.loadSound("Sounds/Music/PlaceHolder/23 - Bloody Tears.mp3", "placeholder music");
+        // FIXME : music not loading (probably try using Music class instead of Sound class)
+        //s.loadSound("music/PlaceHolder/23 - Bloody Tears.mp3", "placeholder music");
 
         //player
-        s.loadSound("Sounds/player/HopSound.wav", "hop");
-        s.loadSound("Sounds/player/JumpSound.wav", "jump");
-        s.loadSound("Sounds/player/PlayerDeath.wav", "playerDie");
-        s.loadSound("Sounds/player/weapons/Attack1.wav", "weapon1");
+        s.loadSound("player/HopSound.wav", "hop");
+        s.loadSound("player/JumpSound.wav", "jump");
+        s.loadSound("player/PlayerDeath.wav", "playerDie");
+        s.loadSound("player/weapons/Attack1.wav", "weapon1");
 
         //environment
-        s.loadSound("Sounds/pickups/CoinPickup.wav", "coin");
-        s.loadSound("Sounds/pickups/CoolPickup.wav", "pickup");
-        s.loadSound("Sounds/pickups/EnergyPickup.wav", "energy");
-        s.loadSound("Sounds/environment/other/ChestDestroy.wav", "chest");
-        s.loadSound("Sounds/environment/traps/Spikes1.wav", "spike1");
-        s.loadSound("Sounds/environment/traps/Spikes2.wav", "spike2");
+        s.loadSound("pickups/CoinPickup.wav", "coin");
+        s.loadSound("pickups/CoolPickup.wav", "pickup");
+        s.loadSound("pickups/EnergyPickup.wav", "energy");
+        s.loadSound("environment/other/ChestDestroy.wav", "chest");
+        s.loadSound("environment/traps/Spikes1.wav", "spike1");
+        s.loadSound("environment/traps/Spikes2.wav", "spike2");
 
         //enemies
-        s.loadSound("Sounds/enemies/EnemyDeath1.wav", "enemyDeath1");
-        s.loadSound("Sounds/enemies/slimes/SlimeJump.wav", "slimeJump");
+        s.loadSound("enemies/EnemyDeath1.wav", "enemyDeath1");
+        s.loadSound("enemies/slimes/SlimeJump.wav", "slimeJump");
 
 
     }

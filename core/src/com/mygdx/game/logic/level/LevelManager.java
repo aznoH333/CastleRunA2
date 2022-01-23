@@ -28,7 +28,7 @@ public class LevelManager {
     private final float advanceSpeed = 6f;
     private final int stepHeight = 16;
     public static final int tileScale = 64;
-    public static final int mapWidth = 21;
+    public static final int mapWidth = 13;
 
     //vars
     private final SpriteManager spr;
@@ -177,7 +177,7 @@ public class LevelManager {
             //shift only while advancing
             if (distance % tileScale < advanceBy) {
                 System.arraycopy(map, 1, map, 0, mapWidth - 1);
-                generateLevel(20);
+                generateLevel(mapWidth-1);
             }
         }
         // special tile update

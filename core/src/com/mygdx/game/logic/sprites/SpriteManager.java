@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.data.load.SpriteLoadList;
+import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,7 @@ public class SpriteManager {
         batch = new SpriteBatch();
         sprs = new HashMap<>();
         cam = new OrthographicCamera();
-        cam.setToOrtho(false, 1280,720);
+        cam.setToOrtho(false, 720,1280);
         batch.setProjectionMatrix(cam.combined);
         SpriteLoadList.loadAllSprites(this);
     }
@@ -73,13 +74,21 @@ public class SpriteManager {
 
     // draws sprite with the default sprite index
     // default sprite index is 0
+    // use to draw only in game graphics
     public void draw(String textureName, float x, float y){
         Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y, (byte) 0));
+        spriteDraw.add(new SpriteData(text, x, y + 640 - LevelManager.tileScale, (byte) 0));
     }
 
     // draws with set index
+    // use to draw only in game graphics
     public void draw(String textureName, float x, float y, int zIndex){
+        Texture text = sprs.get(textureName);
+        spriteDraw.add(new SpriteData(text, x, y + 640 - LevelManager.tileScale, (byte) zIndex));
+    }
+
+    // use to draw ui stuff
+    public void drawAbsolute(String textureName, float x, float y, int zIndex){
         Texture text = sprs.get(textureName);
         spriteDraw.add(new SpriteData(text, x, y, (byte) zIndex));
     }

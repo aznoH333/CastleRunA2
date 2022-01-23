@@ -11,7 +11,7 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
-import com.mygdx.game.logic.player.UIManager;
+import com.mygdx.game.logic.UI.UIManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.stage.StageManager;
 
@@ -19,13 +19,12 @@ import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 
-
     private SpriteManager spr;
     private LevelManager lvl;
     private Random r;
     private EntityManager e;
     private ParticleManager part = ParticleManager.getINSTANCE();
-    private UIManager ui = UIManager.getINSTANCE();
+    private UIManager ui;
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 0;
     private static GameState state = GameState.Game;
@@ -41,12 +40,13 @@ public class Game extends ApplicationAdapter {
         e = EntityManager.getINSTANCE();
         lvl.setE(e);
         SoundLoadList.loadAllSounds();
+        ui = UIManager.getINSTANCE();
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
 
         //temporary music
-        SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
+        //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Game extends ApplicationAdapter {
         part.update();
         part.draw(spr);
         e.update();
-        ui.draw();
+        ui.drawGameUI();
     }
 
     private void stageMenu() {

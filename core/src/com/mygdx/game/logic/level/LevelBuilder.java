@@ -54,7 +54,7 @@ public class LevelBuilder {
         );
         b(Backgrounds.castle());
         p(0.25f);
-        l(6);
+        l(120);
         levels.put("1-1",build());
 
         s(

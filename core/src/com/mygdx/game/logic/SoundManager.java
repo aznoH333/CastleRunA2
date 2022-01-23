@@ -20,7 +20,7 @@ public class SoundManager {
     private Sound currentMusic;
 
     public void loadSound(String path, String name){
-        sounds.put(name, Gdx.audio.newSound(Gdx.files.internal(path)));
+        sounds.put(name, Gdx.audio.newSound(Gdx.files.internal("sounds/" + path)));
     }
 
 

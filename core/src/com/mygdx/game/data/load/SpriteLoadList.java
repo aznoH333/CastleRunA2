@@ -2,14 +2,17 @@ package com.mygdx.game.data.load;
 
 import com.mygdx.game.logic.sprites.SpriteManager;
 
+
+
+
 public class SpriteLoadList {
     public static void loadAllSprites(SpriteManager spr){
         //TODO: rework to iterate through folders
 
         //player
-        spr.loadSprites("entities/player/Player_","player",4);
+        spr.loadSprites("entities/player/player_","player",4);
 
-        //weapons
+        //weapons assets/sprites/entities/player/player_0.png
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
         spr.loadSprites("entities/weapons/basic_sword/sword_","sword",6);
         spr.loadSprites("entities/weapons/throwing_axe/Axe_","axe",3);
@@ -31,16 +34,16 @@ public class SpriteLoadList {
 
 
         //tiles
-        spr.loadSprites("tiles/castle/foreground/Castle_", "castle", 3);
+        spr.loadSprites("tiles/castle/foreground/castle_", "castle", 3);
         spr.loadSprites("tiles/castle/background/Castle_back_", "castleBack", 5);
-        spr.loadSprites("tiles/general/spike_trap/Spike_trap_", "spikeTrap", 3);
+        spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
-        spr.loadSprites("Tiles/cave/background/cave_back_","caveBack",9);
+        spr.loadSprites("tiles/cave/background/cave_back_","caveBack",9);
 
 
         //UI
         spr.loadSprites("ui/bars/UiBars_", "barUI", 6);
-        spr.loadSprites("ui/buttons/button_", "button", 13);
+        spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 11);
 
 
