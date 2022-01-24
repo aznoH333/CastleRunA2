@@ -20,6 +20,11 @@ public class InputManager {
     private boolean aLeft = false;
     private boolean aRight = false;
 
+    private boolean bLeft = false;
+    private boolean bRight = false;
+    private boolean bALeft = false;
+    private boolean bARight = false;
+
 
 
     //control vals
@@ -31,28 +36,28 @@ public class InputManager {
     // TODO: touch controls
     public void manageInput(){
         // left
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
+        if (Gdx.input.isKeyPressed(Input.Keys.A) || bLeft){
             jumpLeft++;
             left = true;
         }else {
             left = false;
         }
         // right
-        if (Gdx.input.isKeyPressed(Input.Keys.S)){
+        if (Gdx.input.isKeyPressed(Input.Keys.S) || bRight){
             jumpRight++;
             right = true;
         }else {
             right = false;
         }
         // left attack
-        if (Gdx.input.isKeyPressed(Input.Keys.Q)){
+        if (Gdx.input.isKeyPressed(Input.Keys.Q) || bALeft){
             chargeLeft++;
             aLeft = true;
         }else {
             aLeft = false;
         }
         // right attack
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
+        if (Gdx.input.isKeyPressed(Input.Keys.W) || bARight){
             chargeRight++;
             aRight = true;
         }else {
@@ -83,6 +88,12 @@ public class InputManager {
     }
 
     public int getButtonCharge(Controls control){
+        // this is pretty sad, but I am tired
+        bRight = false;
+        bLeft = false;
+        bARight = false;
+        bALeft = false;
+
         switch (control){
             case MoveLeft:
                 return jumpLeft;
@@ -99,5 +110,22 @@ public class InputManager {
 
     public int getHoldSensitivity(){
         return holdSensitivity;
+    }
+
+    public void buttonHold(Controls button){
+        switch (button){
+            case AttackLeft:
+                bALeft = true;
+                break;
+            case MoveRight:
+                bRight = true;
+                break;
+            case MoveLeft:
+                bLeft = true;
+                break;
+            case AttackRight:
+                bARight = true;
+                break;
+        }
     }
 }

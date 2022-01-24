@@ -1,7 +1,8 @@
 package com.mygdx.game.logic.UI;
 
-import com.mygdx.game.data.IInputFunction;
+import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
@@ -18,12 +19,26 @@ public class UIManager {
     private final int yOffset = 640;
     private final int energyOffset = 48;
     private static final byte uiHeight = 9;
-    private static final byte buttonWidth = 4;
-    private static final byte buttonHeight = 4;
+    public static final int buttonWidth = 84 * 4;
+    public static final int buttonHeight = 48 * 4;
     private static final byte buttonOffset = 16;
+    private static final int iconOffsetX = 128;
+    private static final int iconOffsetY = 96;
     private SpriteManager spr = SpriteManager.getINSTANCE();
     private PlayerStats ps = PlayerStats.getINSTANCE();
-    //private Button[] buttons = {new Button("button0","button1","player0","player1",buttonOffset, buttonOffset,()->{},()->{})};
+    private InputManager input = InputManager.getINSTANCE();
+    private Button[] buttons = {
+            new Button("button0","button1","player0","player1"
+                    ,buttonOffset, buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveLeft)),
+            new Button("button0","button1","player0","player1"
+                    ,buttonOffset * 2 + buttonWidth , buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveRight)),
+            new Button("button0","button1","player0","player1"
+                    ,buttonOffset , buttonOffset * 2 + buttonHeight,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackLeft)),
+            new Button("button0","button1","player0","player1"
+                    ,buttonOffset * 2 + buttonWidth , buttonOffset * 2 + buttonHeight, iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackRight)),
+    };
+
+    // TODO: re-do ui to fit the screen perfectly
 
 
     public void drawGameUI(){
@@ -56,7 +71,11 @@ public class UIManager {
             }
         }
         // buttons
-        spr.drawAbsolute("button0",buttonOffset, buttonOffset,5);
+        for(Button button: buttons){
+            button.manageInput();
+            button.draw();
+        }
+
     }
 
 
