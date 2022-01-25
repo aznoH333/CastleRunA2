@@ -25,8 +25,8 @@ public class LevelManager {
 
 
     //constants
-    private final float advanceSpeed = 6f;
-    private final int stepHeight = 16;
+    private static final float advanceSpeed = 6f;
+    private static final int stepHeight = 16;
     public static final int tileScale = 64;
     public static final int mapWidth = 13;
 
@@ -37,7 +37,7 @@ public class LevelManager {
     private final TileCollum[] map = new TileCollum[mapWidth];
     private final BackgroundRenderer b;
     private Level lvl;
-    private Random r;
+    private final Random r;
     private EntityManager e;
     private ParticleManager part = ParticleManager.getINSTANCE();
     //lvl generation vars
@@ -45,7 +45,7 @@ public class LevelManager {
     private boolean grace = false;
     private Directions dir = Directions.None;
     private int changeFor = 0;
-    private int levelLength = 6400;
+    private int levelLength = 0;
     private int startGenerationIndex = 3;
 
     public LevelManager(SpriteManager spr, Random r) {

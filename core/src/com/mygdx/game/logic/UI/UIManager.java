@@ -28,13 +28,13 @@ public class UIManager {
     private PlayerStats ps = PlayerStats.getINSTANCE();
     private InputManager input = InputManager.getINSTANCE();
     private Button[] buttons = {
-            new Button("button0","button1","player0","player1"
+            new Button("button0","button1","player2","player3"
                     ,buttonOffset, buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveLeft)),
-            new Button("button0","button1","player0","player1"
+            new Button("button0","button1","icon0","icon1"
                     ,buttonOffset * 2 + buttonWidth , buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveRight)),
-            new Button("button0","button1","player0","player1"
+            new Button("button0","button1","icon4","icon5"
                     ,buttonOffset , buttonOffset * 2 + buttonHeight,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackLeft)),
-            new Button("button0","button1","player0","player1"
+            new Button("button0","button1","icon4","icon5"
                     ,buttonOffset * 2 + buttonWidth , buttonOffset * 2 + buttonHeight, iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackRight)),
     };
 

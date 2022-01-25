@@ -41,7 +41,7 @@ public class Button {
     public void draw(){
         if (pressed){
             spr.drawAbsolute(spritePressed,x,y,5);
-            spr.drawAbsolute(iconPressed,x + yIconOffset,y + yIconOffset,6);
+            spr.drawAbsolute(iconPressed,x + xIconOffset,y + yIconOffset - 8,6);
         }
         else{
             spr.drawAbsolute(sprite,x,y,5);
