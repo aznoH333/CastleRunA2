@@ -51,14 +51,14 @@ public class PickedCoin extends Entity {
     public void draw(SpriteManager spr) {
         switch (animation){
             case 0:
-                spr.draw("pickup1",x,y,1);
+                spr.drawGame("pickup1",x,y,1);
                 break;
             case 1:
             case 3:
-                spr.draw("pickup2",x,y,1);
+                spr.drawGame("pickup2",x,y,1);
                 break;
             case 2:
-                spr.draw("pickup3",x,y,1);
+                spr.drawGame("pickup3",x,y,1);
                 break;
         }
 

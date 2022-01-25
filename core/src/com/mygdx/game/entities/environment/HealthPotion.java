@@ -15,7 +15,7 @@ public class HealthPotion extends Pickup{
 
     @Override
     public void draw(SpriteManager spr) {
-        SpriteManager.getINSTANCE().draw("potion1",x,y);
+        SpriteManager.getINSTANCE().drawGame("potion1",x,y);
     }
 
     @Override

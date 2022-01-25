@@ -12,7 +12,7 @@ public class EnergyPickup extends Pickup{
 
     @Override
     public void draw(SpriteManager spr) {
-        spr.draw("pickup0",x,y,1);
+        spr.drawGame("pickup0",x,y,1);
     }
 
     @Override

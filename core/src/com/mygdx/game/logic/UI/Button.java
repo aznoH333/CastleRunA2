@@ -40,12 +40,12 @@ public class Button {
 
     public void draw(){
         if (pressed){
-            spr.drawAbsolute(spritePressed,x,y,5);
-            spr.drawAbsolute(iconPressed,x + xIconOffset,y + yIconOffset - 8,6);
+            spr.draw(spritePressed,x,y,5);
+            spr.draw(iconPressed,x + xIconOffset,y + yIconOffset - 8,6);
         }
         else{
-            spr.drawAbsolute(sprite,x,y,5);
-            spr.drawAbsolute(icon,x + xIconOffset,y + yIconOffset,6);
+            spr.draw(sprite,x,y,5);
+            spr.draw(icon,x + xIconOffset,y + yIconOffset,6);
         }
     }
 
@@ -53,16 +53,19 @@ public class Button {
         // this is temp (made to work with lower than base resolution)
         int mx = Gdx.input.getX()*2;
         int my = (640 - Gdx.input.getY())*2;
+        //int mx = (int) (Gdx.input.getX() / 1.5);
+        //int my = (int) ((Game.androidHeight - Gdx.input.getY()) / 1.5);
 
 
         // temp
         if(mx > x && mx < x + UIManager.buttonWidth && my > y && my < y + UIManager.buttonHeight
-        && Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+        && (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
             btnHold.function();
         }else {
             pressed = false;
         }
+
 
 
     }

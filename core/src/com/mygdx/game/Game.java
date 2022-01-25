@@ -19,6 +19,11 @@ import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 
+    public static final int androidHeight = 1920;
+    public static final int androidWidth = 1080;
+    public static final int pcHeight = 640;
+    public static final int pcWidth = 360;
+
     private SpriteManager spr;
     private LevelManager lvl;
     private Random r;
@@ -116,7 +121,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void stageMenu() {
-        spr.draw("icon6",0,0);
+        spr.drawGame("icon6",0,0);
         //temp input
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.Shop);
         if (Gdx.input.isKeyJustPressed(Input.Keys.D)) changeState(GameState.Game);
@@ -126,7 +131,7 @@ public class Game extends ApplicationAdapter {
 
     private void shop(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
-        spr.draw("icon10",0,0);
+        spr.drawGame("icon10",0,0);
     }
     private void gameOver(){
         // TODO : this
@@ -136,7 +141,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void equipMenu(){
-        spr.draw("icon4",0,0);
+        spr.drawGame("icon4",0,0);
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
     }
 }

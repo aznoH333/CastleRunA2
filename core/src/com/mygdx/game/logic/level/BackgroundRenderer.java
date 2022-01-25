@@ -24,7 +24,7 @@ public class BackgroundRenderer {
     public void draw(SpriteManager spr){
         for (int x = 0; x < LevelManager.mapWidth + background.length; x++) {
             for (int y = 0; y < 12; y++) {
-                spr.draw(background[x%background.length][y%background[0].length]
+                spr.drawGame(background[x%background.length][y%background[0].length]
                         , x * tileScale - distance%(tileScale * background.length)
                         , y * tileScale,
                         -1);

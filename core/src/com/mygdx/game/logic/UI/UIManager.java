@@ -42,34 +42,32 @@ public class UIManager {
 
 
     public void drawGameUI(){
+
+        // TopUi
+        spr.draw("hudTop0",0,1184,4);
+        spr.draw("hudTop1",0,1184,4);
+        spr.draw("hudTop2",0,1184,4);
+
         // bars
         // health
-        spr.draw("barUI2",xOffset-32,yOffset);
+        spr.drawGame("barUI2",xOffset-32,yOffset);
         for (int i = 0; i < ps.getMaxHp(); i++) {
-            if (i < ps.getHp()) spr.draw("barUI0",xOffset + i*32,yOffset);
-            else                spr.draw("barUI1",xOffset + i*32,yOffset);
+            if (i < ps.getHp()) spr.drawGame("barUI0",xOffset + i*32,yOffset);
+            else                spr.drawGame("barUI1",xOffset + i*32,yOffset);
         }
-        spr.draw("barUI4",xOffset+ ps.getMaxHp()*32,yOffset);
+        spr.drawGame("barUI4",xOffset+ ps.getMaxHp()*32,yOffset);
 
         // energy
-        spr.draw("barUI3",xOffset-32,yOffset - energyOffset);
+        spr.drawGame("barUI3",xOffset-32,yOffset - energyOffset);
         for (int i = 0; i < ps.getMaxEnergy(); i++) {
-            if (i < ps.getEnergy()) spr.draw("barUI5",xOffset + i*32,yOffset - energyOffset);
-            else                    spr.draw("barUI6",xOffset + i*32,yOffset - energyOffset);
+            if (i < ps.getEnergy()) spr.drawGame("barUI5",xOffset + i*32,yOffset - energyOffset);
+            else                    spr.drawGame("barUI6",xOffset + i*32,yOffset - energyOffset);
         }
-        spr.draw("barUI4",xOffset+ ps.getMaxEnergy()*32,yOffset - energyOffset);
+        spr.drawGame("barUI4",xOffset+ ps.getMaxEnergy()*32,yOffset - energyOffset);
 
 
-
-        // TODO: introduce new drawing constants
-        // TODO: button background sprites
         // touch buttons
-        // background
-        for (int x = 0; x < LevelManager.mapWidth; x++) {
-            for (int y = 0; y < uiHeight; y++) {
-                spr.drawAbsolute("castle3",x*LevelManager.tileScale, y*LevelManager.tileScale,4);
-            }
-        }
+        spr.draw("hudBot0",0,0,4);
         // buttons
         for(Button button: buttons){
             button.manageInput();

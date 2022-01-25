@@ -63,11 +63,11 @@ public class Slime extends Entity {
     public void draw(SpriteManager spr) {
         if (landed)
             if (jumpTimer%animationSpeed > animationSpeed/2)
-                spr.draw("slime0",x,y,1);
+                spr.drawGame("slime0",x,y,1);
             else
-                spr.draw("slime1",x,y,1);
+                spr.drawGame("slime1",x,y,1);
         else
-            spr.draw("slime2",x,y,1);
+            spr.drawGame("slime2",x,y,1);
     }
 
     @Override

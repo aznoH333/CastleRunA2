@@ -1,6 +1,5 @@
 package com.mygdx.game.entities.environment;
 
-import com.badlogic.gdx.Gdx;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
@@ -25,8 +24,8 @@ public class ExitDoor extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        if (isOpen)     spr.draw("door1",x,y,1);
-        else            spr.draw("door0",x,y,1);
+        if (isOpen)     spr.drawGame("door1",x,y,1);
+        else            spr.drawGame("door0",x,y,1);
     }
 
     @Override

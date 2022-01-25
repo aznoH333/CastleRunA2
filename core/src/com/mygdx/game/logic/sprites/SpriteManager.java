@@ -22,6 +22,7 @@ public class SpriteManager {
     private final HashMap<String, Texture> sprs;
     private final OrthographicCamera cam;
     private static final int pixelScale = 4;
+    public static final int gamePosition = 576;
     private final ArrayList<SpriteData> spriteDraw = new ArrayList();
 
     public SpriteManager(){
@@ -58,6 +59,7 @@ public class SpriteManager {
         1 : entities
         2 : gameplay affecting entities
         3 : particles
+        4 - 6 : hud
 
      ---------------------
      */
@@ -75,20 +77,20 @@ public class SpriteManager {
     // draws sprite with the default sprite index
     // default sprite index is 0
     // use to draw only in game graphics
-    public void draw(String textureName, float x, float y){
+    public void drawGame(String textureName, float x, float y){
         Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y + 640 - LevelManager.tileScale, (byte) 0));
+        spriteDraw.add(new SpriteData(text, x, y + gamePosition - LevelManager.tileScale, (byte) 0));
     }
 
     // draws with set index
     // use to draw only in game graphics
-    public void draw(String textureName, float x, float y, int zIndex){
+    public void drawGame(String textureName, float x, float y, int zIndex){
         Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y + 640 - LevelManager.tileScale, (byte) zIndex));
+        spriteDraw.add(new SpriteData(text, x, y + gamePosition - LevelManager.tileScale, (byte) zIndex));
     }
 
     // use to draw ui stuff
-    public void drawAbsolute(String textureName, float x, float y, int zIndex){
+    public void draw(String textureName, float x, float y, int zIndex){
         Texture text = sprs.get(textureName);
         spriteDraw.add(new SpriteData(text, x, y, (byte) zIndex));
     }

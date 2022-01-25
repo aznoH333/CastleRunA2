@@ -36,7 +36,7 @@ public class Dagger extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        spr.draw("dagger1",x,y,1);
+        spr.drawGame("dagger1",x,y,1);
     }
 
     @Override

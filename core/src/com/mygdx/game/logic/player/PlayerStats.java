@@ -22,9 +22,9 @@ public class PlayerStats {
 
 
     private int maxHp = 3;
-    private int maxEnergy = 3;
+    private int maxEnergy = 1;
     private int hp = 3;
-    private int energy = 0;
+    private int energy = 1;
     private int coins = 0;
 
     private PlayerStats(){
