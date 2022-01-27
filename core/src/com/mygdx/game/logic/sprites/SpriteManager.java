@@ -23,7 +23,7 @@ public class SpriteManager {
     private final OrthographicCamera cam;
     private static final int pixelScale = 4;
     public static final int gamePosition = 576;
-    private final ArrayList<SpriteData> spriteDraw = new ArrayList();
+    private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
 
     public SpriteManager(){
         batch = new SpriteBatch();
@@ -67,34 +67,35 @@ public class SpriteManager {
     // TODO : rewrite draw to use sperate arrays for layering instead of ordered sprites
 
     public void render(){
-        Collections.sort(spriteDraw);
         batch.begin();
-        for (SpriteData s : spriteDraw) {
-            batch.draw(s.getTexture(), s.getX(), s.getY(), s.getTexture().getWidth()*pixelScale, s.getTexture().getHeight()*pixelScale);
+        for (ArrayList<SpriteData> layer : spriteDraw.values()) {
+            for (SpriteData s: layer) {
+                batch.draw(s.getTexture(), s.getX(), s.getY(), s.getTexture().getWidth()*pixelScale, s.getTexture().getHeight()*pixelScale);
+            }
+            layer.clear();
         }
         batch.end();
-        spriteDraw.clear();
     }
 
     // draws sprite with the default sprite index
     // default sprite index is 0
     // use to draw only in game graphics
     public void drawGame(String textureName, float x, float y){
-        Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y + gamePosition - LevelManager.tileScale, (byte) 0));
+        draw(textureName, x, y + gamePosition - LevelManager.tileScale,0);
     }
 
     // draws with set index
     // use to draw only in game graphics
     public void drawGame(String textureName, float x, float y, int zIndex){
-        Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y + gamePosition - LevelManager.tileScale, (byte) zIndex));
+        draw(textureName, x, y + gamePosition - LevelManager.tileScale, (byte) zIndex);
     }
 
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex){
         Texture text = sprs.get(textureName);
-        spriteDraw.add(new SpriteData(text, x, y, (byte) zIndex));
+        if (!spriteDraw.containsKey(zIndex))
+            spriteDraw.put(zIndex, new ArrayList<>());
+        spriteDraw.get(zIndex).add(new SpriteData(text, x, y));
     }
 
 

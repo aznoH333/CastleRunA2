@@ -1,19 +1,15 @@
 package com.mygdx.game.logic.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.Game;
 
-public class SpriteData implements Comparable<SpriteData>{
+public class SpriteData {
     private final Texture texture;
     private final float x;
     private final float y;
-    private final byte z;
-
-    public SpriteData(Texture texture, float x, float y, byte z) {
+    public SpriteData(Texture texture, float x, float y){
         this.texture = texture;
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     public Texture getTexture() {
@@ -26,14 +22,5 @@ public class SpriteData implements Comparable<SpriteData>{
 
     public float getY() {
         return y;
-    }
-
-    public byte getZ() {
-        return z;
-    }
-
-    @Override
-    public int compareTo(SpriteData o) {
-        return z-o.getZ();
     }
 }
