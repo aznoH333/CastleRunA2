@@ -48,6 +48,11 @@ public class SpriteLoadList {
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);
 
+        //map ui
+        spr.loadSprites("ui/map/levels/castle/map_icon_castle_", "mIconCastle", 2);
+        spr.loadSprites("ui/map/levels/caves/map_icon_cave_", "mIconCave", 1);
+        spr.loadSprites("ui/map/tiles/map_icon_tiles_", "mTile", 2);
+
 
         //particles
         spr.loadSprites("particles/effects/Sparkle_","sparkle",1);
