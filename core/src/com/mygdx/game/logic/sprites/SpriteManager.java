@@ -20,7 +20,6 @@ public class SpriteManager {
 
     private final SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
-    private final OrthographicCamera cam;
     private static final int pixelScale = 4;
     public static final int gamePosition = 576;
     private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
@@ -28,7 +27,7 @@ public class SpriteManager {
     public SpriteManager(){
         batch = new SpriteBatch();
         sprs = new HashMap<>();
-        cam = new OrthographicCamera();
+        OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, 720,1280);
         batch.setProjectionMatrix(cam.combined);
         SpriteLoadList.loadAllSprites(this);
