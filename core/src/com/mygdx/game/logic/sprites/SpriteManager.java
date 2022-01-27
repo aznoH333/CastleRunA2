@@ -64,6 +64,8 @@ public class SpriteManager {
      ---------------------
      */
 
+    // TODO : rewrite draw to use sperate arrays for layering instead of ordered sprites
+
     public void render(){
         Collections.sort(spriteDraw);
         batch.begin();

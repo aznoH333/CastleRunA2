@@ -15,30 +15,37 @@ public class UIManager {
     }
     // 336 px per button
 
-    private final int xOffset = 32;
-    private final int yOffset = 640;
-    private final int energyOffset = 48;
-    private static final byte uiHeight = 9;
+    private static final float barYPos = 1224;
+    private static final float barCenterPositionA = 320;
+    private static final float barCenterPositionB = 380;
+    private static final float barStart = 64;
+    private static final float barEnd = 632;
+
+
+
     public static final int buttonWidth = 84 * 4;
     public static final int buttonHeight = 48 * 4;
     private static final byte buttonOffset = 16;
+    private static final int bottomButtonOffset = 32;
     private static final int iconOffsetX = 128;
     private static final int iconOffsetY = 96;
-    private SpriteManager spr = SpriteManager.getINSTANCE();
-    private PlayerStats ps = PlayerStats.getINSTANCE();
-    private InputManager input = InputManager.getINSTANCE();
-    private Button[] buttons = {
+    private final SpriteManager spr = SpriteManager.getINSTANCE();
+    private final PlayerStats ps = PlayerStats.getINSTANCE();
+    private final InputManager input = InputManager.getINSTANCE();
+    private final Button[] buttons = {
             new Button("button0","button1","player2","player3"
-                    ,buttonOffset, buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveLeft)),
+                    ,buttonOffset, buttonOffset + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveLeft)),
             new Button("button0","button1","icon0","icon1"
-                    ,buttonOffset * 2 + buttonWidth , buttonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveRight)),
+                    ,buttonOffset * 2 + buttonWidth , buttonOffset + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveRight)),
             new Button("button0","button1","icon4","icon5"
-                    ,buttonOffset , buttonOffset * 2 + buttonHeight,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackLeft)),
+                    ,buttonOffset , buttonOffset * 2 + buttonHeight + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackLeft)),
             new Button("button0","button1","icon4","icon5"
-                    ,buttonOffset * 2 + buttonWidth , buttonOffset * 2 + buttonHeight, iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackRight)),
+                    ,buttonOffset * 2 + buttonWidth , buttonOffset * 2 + buttonHeight + bottomButtonOffset, iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackRight)),
     };
 
-    // TODO: re-do ui to fit the screen perfectly
+    // FIXME : when the player dies and his health is negative, the health bar overflows
+    // TODO : add a bit more wood to the ui
+    // FIXME : player sometimes takes damage from spikes when jumping over them (happen only if the spikes are higher than the player)
 
 
     public void drawGameUI(){
@@ -46,24 +53,38 @@ public class UIManager {
         // TopUi
         spr.draw("hudTop0",0,1184,4);
         spr.draw("hudTop1",0,1184,4);
-        spr.draw("hudTop2",0,1184,4);
+        spr.draw("hudTop2",0,1184,8);
 
-        // bars
-        // health
-        spr.drawGame("barUI2",xOffset-32,yOffset);
+        // hpbar
         for (int i = 0; i < ps.getMaxHp(); i++) {
-            if (i < ps.getHp()) spr.drawGame("barUI0",xOffset + i*32,yOffset);
-            else                spr.drawGame("barUI1",xOffset + i*32,yOffset);
+            final float x = barStart + (i * ((barCenterPositionA-barStart)/ps.getMaxHp()));
+            final boolean b = i >= ps.getMaxHp() - ps.getHp();
+            if (b)
+                spr.draw("barUI0",x,barYPos,7);
+            else
+                spr.draw("barUI5",x,barYPos,7);
         }
-        spr.drawGame("barUI4",xOffset+ ps.getMaxHp()*32,yOffset);
+        for (int i = (int) (barStart + ((ps.getMaxHp() - ps.getHp()) * ((barCenterPositionA-barStart)/ps.getMaxHp())))+24; i < barCenterPositionA; i+=24)
+            spr.draw("barUI1",i,barYPos,6);
 
-        // energy
-        spr.drawGame("barUI3",xOffset-32,yOffset - energyOffset);
-        for (int i = 0; i < ps.getMaxEnergy(); i++) {
-            if (i < ps.getEnergy()) spr.drawGame("barUI5",xOffset + i*32,yOffset - energyOffset);
-            else                    spr.drawGame("barUI6",xOffset + i*32,yOffset - energyOffset);
+        for (int i = (int) (barStart+24); i < (barStart + ((ps.getMaxHp() - ps.getHp()) * ((barCenterPositionA-barStart)/ps.getMaxHp())))+24; i+=24)
+            spr.draw("barUI4",i,barYPos,5);
+
+
+        // energybar
+        for (int i = ps.getMaxEnergy(); i > 0; i--) {
+            final float x = barCenterPositionB + (i * ((barEnd - barCenterPositionB)/ps.getMaxEnergy()));
+            final boolean b = i <= ps.getEnergy();
+            if (b)
+                spr.draw("barUI3",x,barYPos,7);
+            else
+                spr.draw("barUI6",x,barYPos,7);
         }
-        spr.drawGame("barUI4",xOffset+ ps.getMaxEnergy()*32,yOffset - energyOffset);
+        for (int i = (int) Math.ceil(barEnd - ((ps.getMaxEnergy() - ps.getEnergy()) * ((barEnd - barCenterPositionB)/ps.getMaxEnergy())))-24; i > barCenterPositionB; i-=24)
+            spr.draw("barUI2",i,barYPos,6);
+        for (int i = (int) barEnd-24; i > (int) Math.ceil(barEnd - ((ps.getMaxEnergy() - ps.getEnergy()) * ((barEnd - barCenterPositionB)/ps.getMaxEnergy())))-24; i-=24)
+            spr.draw("barUI4",i,barYPos,5);
+
 
 
         // touch buttons

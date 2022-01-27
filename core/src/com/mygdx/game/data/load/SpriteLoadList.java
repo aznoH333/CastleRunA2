@@ -42,7 +42,7 @@ public class SpriteLoadList {
 
 
         //UI
-        spr.loadSprites("ui/bars/UiBars_", "barUI", 6);
+        spr.loadSprites("ui/bars/ui_bars_", "barUI", 6);
         spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 11);
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
