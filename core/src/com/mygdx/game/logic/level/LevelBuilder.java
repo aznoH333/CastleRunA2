@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.level;
 
+import com.mygdx.game.data.Background;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.Level;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
@@ -76,7 +77,7 @@ public class LevelBuilder {
         return levels.get(name);
     }
 
-    private String[][] back;
+    private Background back;
 
     //builder stuff
     private void reset(){
@@ -121,7 +122,7 @@ public class LevelBuilder {
     private void p(float parallax){
         this.parallax = parallax;
     }
-    private void b(String[][] back){
+    private void b(Background back){
         this.back = back;
     }
 }

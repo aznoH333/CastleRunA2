@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.level;
 
+import com.mygdx.game.data.Background;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class BackgroundRenderer {
@@ -13,9 +14,8 @@ public class BackgroundRenderer {
 
 
     //Temp
-    private String[][] background = {{"player0"}};
     private float distance = 0;
-    private final int tileScale = 64;
+    Background background;
     public BackgroundRenderer(){
 
     }
@@ -24,19 +24,12 @@ public class BackgroundRenderer {
 
 
     public void draw(SpriteManager spr){
-        for (int x = 0; x < LevelManager.mapWidth + background.length; x++) {
-            for (int y = 0; y < 14; y++) {
-                spr.drawGame(background[x%background.length][y%background[0].length]
-                        , x * tileScale - distance%(tileScale * background.length)
-                        , y * tileScale,
-                        -1);
-            }
+        for (int i = 0; i < background.getBackgrounds().length; i++) {
+            spr.drawGame(background.getBackgrounds()[i],0,0, -1);
         }
-
-
     }
 
-    public void setBackground(String[][] nBack){
+    public void setBackground(Background nBack){
         background = nBack;
         distance = 0;
     }

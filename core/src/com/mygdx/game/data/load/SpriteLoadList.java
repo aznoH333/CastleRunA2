@@ -35,7 +35,7 @@ public class SpriteLoadList {
 
         //tiles
         spr.loadSprites("tiles/castle/foreground/castle_", "castle", 3);
-        spr.loadSprites("tiles/castle/background/Castle_back_", "castleBack", 5);
+        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 1);
         spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_back_","caveBack",9);

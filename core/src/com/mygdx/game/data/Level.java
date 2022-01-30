@@ -25,10 +25,22 @@ public class Level {
     private final int clMin;
 
     //back
-    private final String[][] background;
+    private final Background background;
     private final float parallax;
 
-    public Level(TileCollum[] tileSet, float[] tileWeight, String[] enemySet, float[] enemyWeight, int defaultH, int maxH, int minH, float cChange, int clMax, int clMin, String[][] background, float parallax, int length){
+    public Level(TileCollum[] tileSet,
+                 float[] tileWeight,
+                 String[] enemySet,
+                 float[] enemyWeight,
+                 int defaultH,
+                 int maxH,
+                 int minH,
+                 float cChange,
+                 int clMax,
+                 int clMin,
+                 Background background,
+                 float parallax,
+                 int length){
         this.tileSet = tileSet;
         this.tileWeight = tileWeight;
         this.enemySet = enemySet;
@@ -84,7 +96,7 @@ public class Level {
     public int changeLengthMax(){return clMax;}
     public int changeLengthMin(){return clMin;}
 
-    public String[][] getBackground(){return background;}
+    public Background getBackground(){return background;}
     public float getParallax() {return parallax;}
 
     public int getLength(){
