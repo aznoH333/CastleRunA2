@@ -186,7 +186,8 @@ public class Player extends Entity {
     public void onDestroy() {
 
         // TODO : death animations
-        // FIXME : player can sometimes clip through the ground (probably something with knock back)
+        // FIXME : player can sometimes clip through the ground (probably something with level scrolling)
+        // hard to replicate though
 
     }
 

@@ -3,6 +3,7 @@ package com.mygdx.game.logic.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.IInputFunction;
+import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class Button {
@@ -10,7 +11,6 @@ public class Button {
     private final String sprite;
     private final String spritePressed;
     private final String icon;
-    private final String iconPressed;
     private final int x;
     private final int y;
     private boolean pressed = false;
@@ -18,30 +18,46 @@ public class Button {
     private final IInputFunction btnHold;
     private final int xIconOffset;
     private final int yIconOffset;
+    private final int width;
+    private final int height;
 
 
-    public Button(String sprite,
-                  String spritePressed,
+    public Button(ButtonType type,
                   String icon,
-                  String iconPressed,
                   int x, int y,
-                  int xIconOffset, int yIconOffset,
                   IInputFunction btnHold){
-        this.sprite = sprite;
-        this.spritePressed = spritePressed;
+        switch (type){
+            case Small:
+            default:
+                sprite = "button0";
+                spritePressed = "button1";
+                height = 120;
+                width = 336;
+                xIconOffset = 136;
+                yIconOffset = 38;
+                break;
+            case Large:
+                sprite = "button_large0";
+                spritePressed = "button_large1";
+                height = 120;
+                width = 668;
+                xIconOffset = 302;
+                yIconOffset = 38;
+                break;
+
+        }
+
+
         this.icon = icon;
-        this.iconPressed = iconPressed;
         this.x = x;
         this.y = y;
         this.btnHold = btnHold;
-        this.xIconOffset = xIconOffset;
-        this.yIconOffset = yIconOffset;
     }
 
     public void draw(){
         if (pressed){
             spr.draw(spritePressed,x,y,5);
-            spr.draw(iconPressed,x + xIconOffset,y + yIconOffset - 8,6);
+            spr.draw(icon,x + xIconOffset,y + yIconOffset - 10,6);
         }
         else{
             spr.draw(sprite,x,y,5);
@@ -58,7 +74,7 @@ public class Button {
 
 
         // temp
-        if(mx > x && mx < x + UIManager.buttonWidth && my > y && my < y + UIManager.buttonHeight
+        if(mx > x && mx < x + width && my > y && my < y + height
         && (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
             btnHold.function();

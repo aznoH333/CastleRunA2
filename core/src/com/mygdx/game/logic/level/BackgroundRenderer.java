@@ -20,10 +20,12 @@ public class BackgroundRenderer {
 
     }
 
+    // TODO: rewrite backgrounds to not use tiles
+
 
     public void draw(SpriteManager spr){
         for (int x = 0; x < LevelManager.mapWidth + background.length; x++) {
-            for (int y = 0; y < 12; y++) {
+            for (int y = 0; y < 14; y++) {
                 spr.drawGame(background[x%background.length][y%background[0].length]
                         , x * tileScale - distance%(tileScale * background.length)
                         , y * tileScale,

@@ -21,7 +21,7 @@ public class SpriteManager {
     private final SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
     private static final int pixelScale = 4;
-    public static final int gamePosition = 576;
+    public static final int gamePosition = 426;
     private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
 
     public SpriteManager(){
@@ -63,7 +63,6 @@ public class SpriteManager {
      ---------------------
      */
 
-    // TODO : rewrite draw to use sperate arrays for layering instead of ordered sprites
 
     public void render(){
         batch.begin();

@@ -58,7 +58,7 @@ public class LevelManager {
         this.e = e;
     }
 
-    //TODO: exiting levels
+
     //TODO: side passages
     private void generateLevel(int index) {
         // generate starts & ends

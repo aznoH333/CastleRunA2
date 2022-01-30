@@ -7,11 +7,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.UI.MenuUIManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
-import com.mygdx.game.logic.UI.UIManager;
+import com.mygdx.game.logic.UI.GameUIManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.stage.StageManager;
 
@@ -29,10 +30,11 @@ public class Game extends ApplicationAdapter {
     private Random r;
     private EntityManager e;
     private ParticleManager part = ParticleManager.getINSTANCE();
-    private UIManager ui;
+    private GameUIManager ui;
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 0;
     private static GameState state = GameState.Game;
+    private final MenuUIManager menuUI = MenuUIManager.getINSTANCE();
 
     @Override
     public void create() {
@@ -45,7 +47,7 @@ public class Game extends ApplicationAdapter {
         e = EntityManager.getINSTANCE();
         lvl.setE(e);
         SoundLoadList.loadAllSounds();
-        ui = UIManager.getINSTANCE();
+        ui = GameUIManager.getINSTANCE();
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
@@ -109,6 +111,8 @@ public class Game extends ApplicationAdapter {
 
     public static void changeState(GameState state){
         Game.state = state;
+        if (state != GameState.Game)
+            MenuUIManager.getINSTANCE().changeButtonSet(state);
     }
 
     //status functions
@@ -121,12 +125,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void stageMenu() {
-        spr.drawGame("icon6",0,0);
-        //temp input
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.Shop);
-        if (Gdx.input.isKeyJustPressed(Input.Keys.D)) changeState(GameState.Game);
-        if (Gdx.input.isKeyJustPressed(Input.Keys.S)) changeState(GameState.EquipMenu);
-        // TODO : this
+        menuUI.update();
     }
 
     private void shop(){

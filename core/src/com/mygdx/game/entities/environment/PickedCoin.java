@@ -35,7 +35,7 @@ public class PickedCoin extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         // suicide
-        if (Math.abs(x-destinationX) < 1 && Math.abs(x-destinationX) < 1) destroy();
+        if (Math.abs(x-destinationX) < 1 && Math.abs(y-destinationY) < 1) destroy();
 
         float xM = (destinationX / startX) * (x - destinationX) * -speed;
         float yM = (destinationY / startY) * (y - destinationY) * -speed;

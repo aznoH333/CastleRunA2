@@ -1,16 +1,16 @@
 package com.mygdx.game.logic.UI;
 
+import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
-import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
-public class UIManager {
+public class GameUIManager {
 
-    private static UIManager INSTANCE;
-    public static UIManager getINSTANCE(){
-        if (INSTANCE == null) INSTANCE = new UIManager();
+    private static GameUIManager INSTANCE;
+    public static GameUIManager getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new GameUIManager();
         return INSTANCE;
     }
     // 336 px per button
@@ -22,25 +22,20 @@ public class UIManager {
     private static final float barEnd = 632;
 
 
-
-    public static final int buttonWidth = 84 * 4;
-    public static final int buttonHeight = 48 * 4;
     private static final byte buttonOffset = 16;
     private static final int bottomButtonOffset = 32;
-    private static final int iconOffsetX = 128;
-    private static final int iconOffsetY = 96;
     private final SpriteManager spr = SpriteManager.getINSTANCE();
     private final PlayerStats ps = PlayerStats.getINSTANCE();
     private final InputManager input = InputManager.getINSTANCE();
-    private final Button[] buttons = {
-            new Button("button0","button1","player2","player3"
-                    ,buttonOffset, buttonOffset + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveLeft)),
-            new Button("button0","button1","icon0","icon1"
-                    ,buttonOffset * 2 + buttonWidth , buttonOffset + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.MoveRight)),
-            new Button("button0","button1","icon4","icon5"
-                    ,buttonOffset , buttonOffset * 2 + buttonHeight + bottomButtonOffset,iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackLeft)),
-            new Button("button0","button1","icon4","icon5"
-                    ,buttonOffset * 2 + buttonWidth , buttonOffset * 2 + buttonHeight + bottomButtonOffset, iconOffsetX,iconOffsetY,()-> input.buttonHold(Controls.AttackRight)),
+    private Button[] buttons = {
+            new Button(ButtonType.Small,"icon1"
+                    ,buttonOffset, buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveLeft)),
+            new Button(ButtonType.Small,"icon0"
+                    ,buttonOffset * 2 + 336 , buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveRight)),
+            new Button(ButtonType.Small,"icon3"
+                    ,buttonOffset , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackLeft)),
+            new Button(ButtonType.Small,"icon2"
+                    ,buttonOffset * 2 + 336 , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackRight)),
     };
 
     // FIXME : when the player dies and his health is negative, the health bar overflows
@@ -88,7 +83,7 @@ public class UIManager {
 
 
         // touch buttons
-        spr.draw("hudBot0",0,0,4);
+        spr.draw("hudBot0",0,-150,4);
         // buttons
         for(Button button: buttons){
             button.manageInput();
@@ -96,6 +91,7 @@ public class UIManager {
         }
 
     }
+
 
 
 }
