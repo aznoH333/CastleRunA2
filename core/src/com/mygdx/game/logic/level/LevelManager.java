@@ -171,7 +171,7 @@ public class LevelManager {
             e.shiftAllEntities(advanceBy);
             part.shiftPartsBy(advanceBy);
             distance += advanceBy;
-            b.advance(advanceBy * lvl.getParallax());
+            b.advance(advanceBy);
 
             //shift map & generate
             //shift only while advancing

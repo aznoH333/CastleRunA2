@@ -15,6 +15,7 @@ import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.UI.GameUIManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.stage.StageManager;
+import com.mygdx.game.logic.stage.StageMap;
 
 import java.util.Random;
 
@@ -34,7 +35,8 @@ public class Game extends ApplicationAdapter {
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 0;
     private static GameState state = GameState.Game;
-    private final MenuUIManager menuUI = MenuUIManager.getINSTANCE();
+    private MenuUIManager menuUI;
+    private StageMap stageMap;
 
     @Override
     public void create() {
@@ -48,6 +50,8 @@ public class Game extends ApplicationAdapter {
         lvl.setE(e);
         SoundLoadList.loadAllSounds();
         ui = GameUIManager.getINSTANCE();
+        menuUI = MenuUIManager.getINSTANCE();
+        stageMap = StageMap.getINSTANCE();
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
@@ -125,7 +129,9 @@ public class Game extends ApplicationAdapter {
     }
 
     private void stageMenu() {
+        stageMap.update();
         menuUI.update();
+
     }
 
     private void shop(){

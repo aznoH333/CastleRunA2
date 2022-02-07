@@ -29,7 +29,7 @@ public class StageManager {
 
     public StageManager(){
         // I hate this
-        String[] bruh = {"1-1","1-2"};
+        String[] bruh = {"1-1","1-2","1-3","1-4"};
         stages.add(new Stage(bruh));
 
         currentStage = stages.get(0);
@@ -45,6 +45,11 @@ public class StageManager {
     public void advanceInStage(){
         Game.changeState(GameState.StageMenu);
         currentStage.advanceInStage();
+        StageMap.getINSTANCE().updateCurrentStage();
         startLevel();
+    }
+
+    public Stage getCurrentStage(){
+        return currentStage;
     }
 }

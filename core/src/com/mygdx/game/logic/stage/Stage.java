@@ -15,4 +15,12 @@ public class Stage {
     public String getCurrentLevel(){
         return levels[currentStageIndex];
     }
+
+    public byte getCurrentStageIndex(){
+        return currentStageIndex;
+    }
+
+    public String[] getLevels(){
+        return levels;
+    }
 }

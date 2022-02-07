@@ -8,7 +8,7 @@ public class Backgrounds {
     // TODO: multilayered backgrounds
 
     public static Background castle(){
-        return new Background(new String[]{"castleBack0","castleBack1"}, new float[]{0.5f,0.25f});
+        return new Background(new String[]{"castleBack1","castleBack0"}, new float[]{0.5f,0.75f});
     }
 
     // TODO : cave background

@@ -20,12 +20,13 @@ public class BackgroundRenderer {
 
     }
 
-    // TODO: rewrite backgrounds to not use tiles
-
+    // TODO : maybe come up with a way to get background width instead of a dumb constant
+    private final static int veryDumb = 768;
 
     public void draw(SpriteManager spr){
         for (int i = 0; i < background.getBackgrounds().length; i++) {
-            spr.drawGame(background.getBackgrounds()[i],0,0, -1);
+            spr.drawGame(background.getBackgrounds()[i],(- distance * background.getParallaxes()[i])%veryDumb,0, -1);
+            spr.drawGame(background.getBackgrounds()[i],(- distance * background.getParallaxes()[i])%veryDumb+veryDumb,0, -1);
         }
     }
 

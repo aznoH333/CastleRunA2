@@ -36,11 +36,13 @@ public class LevelBuilder {
     private int clMax = 3;
     private int clMin = 2;
 
-    private float parallax = 1;
     private int length = 6400;
 
+    private String mapIcon = "mIconCastle0";
+    private String mapTile = "mTile0";
+
     public Level build(){
-        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin, back, parallax, length);
+        Level temp = new Level(tileSet, tileWeight, enemySet, enemyWeight, defaultH, maxH, minH, cChange, clMax, clMin, back, length, mapTile, mapIcon);
         reset();
         return temp;
     }
@@ -54,8 +56,8 @@ public class LevelBuilder {
                 new float[]{20,5,1}
         );
         b(Backgrounds.castle());
-        p(0.25f);
         l(30);
+        m("mIconCastle0","mTile0");
         levels.put("1-1",build());
 
         s(
@@ -66,10 +68,36 @@ public class LevelBuilder {
         );
         c(0.9f,1,3);
         h(96,64,128);
-        p(0.1f);
         b(Backgrounds.cave());
         l(120);
+        m("mIconCave0","mTile0");
         levels.put("1-2",build());
+
+        s(
+                new TileCollum[]{new CaveRegular(), new Gap()},
+                new float[]{15,5},
+                new String[]{"slime","chest"},
+                new float[]{10,5,1}
+        );
+        c(0.9f,1,3);
+        h(96,64,128);
+        b(Backgrounds.cave());
+        l(120);
+        m("mIconCave1","mTile0");
+        levels.put("1-3",build());
+
+        s(
+                new TileCollum[]{new CaveRegular(), new Gap()},
+                new float[]{15,5},
+                new String[]{"slime","chest"},
+                new float[]{10,5,1}
+        );
+        c(0.9f,1,3);
+        h(96,64,128);
+        b(Backgrounds.cave());
+        l(120);
+        m("mIconCastle1","mTile2");
+        levels.put("1-4",build());
 
     }
 
@@ -92,8 +120,9 @@ public class LevelBuilder {
         enemySet = new String[]{"slime"};
         enemyWeight = new float[]{10,5};
         back = Backgrounds.castle();
-        parallax = 1;
         length = 6400;
+        mapIcon = "mIconCastle0";
+        mapTile = "mTile0";
     }
 
     private void h(int defaultH, int minH, int maxH){
@@ -115,12 +144,13 @@ public class LevelBuilder {
         this.enemyWeight = enemyWeight;
     }
 
-    private void l(int length){
-        this.length = length * LevelManager.tileScale;
+    private void m(String icon, String tile){
+        this.mapIcon = icon;
+        this.mapTile = tile;
     }
 
-    private void p(float parallax){
-        this.parallax = parallax;
+    private void l(int length){
+        this.length = length * LevelManager.tileScale;
     }
     private void b(Background back){
         this.back = back;

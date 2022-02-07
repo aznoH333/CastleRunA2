@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
+import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class MenuUIManager {
     private static MenuUIManager INSTANCE;
@@ -15,9 +16,11 @@ public class MenuUIManager {
     }
 
     private Button[] buttons;
+    private SpriteManager spr = SpriteManager.getINSTANCE();
 
 
     public void update(){
+        spr.draw("hudBot0",0,-30,4);
         for (Button button: buttons) {
             button.draw();
             button.manageInput();
@@ -28,10 +31,16 @@ public class MenuUIManager {
         switch (state){
             case StageMenu:
                 buttons = new Button[]{
-                        new Button(ButtonType.Large,"icon0",16,152,()->{
+                        new Button(ButtonType.Large,"icon0",16,303,()->{
                             Game.changeState(GameState.Game);}),
-                        new Button(ButtonType.Large,"icon4",16,16,()->{
+                        new Button(ButtonType.Large,"icon4",16,31,()->{
                             Gdx.app.exit();
+                        }),
+                        new Button(ButtonType.Small, "icon3",16,167,()->{
+
+                        }),
+                        new Button(ButtonType.Small, "icon3",368,167,()->{
+
                         })
                 };
                 break;
