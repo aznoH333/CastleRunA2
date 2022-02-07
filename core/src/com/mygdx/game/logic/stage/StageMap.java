@@ -25,6 +25,7 @@ public class StageMap {
     private static final int pathOffsetX = 64;
     private static final int pathOffsetY = 32;
     private int playerNumber = 256;
+    private int waitNumber = 45;
 
     public StageMap(){
         spr = SpriteManager.getINSTANCE();
@@ -61,18 +62,21 @@ public class StageMap {
                     spr.draw("mTile1",levelRightX - j * pathOffsetX,i * levelOffset + offset + j * pathOffsetY,1);
         }
 
-
+        // TODO : optimize this
         //player
         if (currentStageIndex % 2 == 0)
-            spr.draw("player0",levelLeftX + 16, currentStageIndex * levelOffset + offset + currentStageIndex * pathOffsetY,2);
+            spr.draw("player0",levelLeftX + 22 + playerNumber, currentStageIndex * levelOffset + offset + 14 - (playerNumber>>1),2);
         else
-            spr.draw("player0",levelRightX + 16, currentStageIndex * levelOffset + offset + currentStageIndex * pathOffsetY,2);
-
+            spr.draw("player0",levelRightX + 22 - playerNumber, currentStageIndex * levelOffset + offset + 14 - (playerNumber>>1),2);
+        if (playerNumber > 0 && waitNumber <= 0) playerNumber-=2;
+        if (waitNumber > 0) waitNumber--;
+        // TODO: add player map sprites
     }
 
     public void updateCurrentStage(){
         currentStage = stageManager.getCurrentStage();
         currentStageIndex = currentStage.getCurrentStageIndex();
         playerNumber = 256;
+        waitNumber = 45;
     }
 }
