@@ -136,7 +136,6 @@ public class Game extends ApplicationAdapter {
 
     private void shop(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
-        spr.drawGame("icon10",0,0);
     }
     private void gameOver(){
         // TODO : this
@@ -146,7 +145,6 @@ public class Game extends ApplicationAdapter {
     }
 
     private void equipMenu(){
-        spr.drawGame("icon4",0,0);
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
+        menuUI.update();
     }
 }

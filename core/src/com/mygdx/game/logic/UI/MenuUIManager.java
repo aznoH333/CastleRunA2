@@ -8,6 +8,7 @@ import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class MenuUIManager {
     private static MenuUIManager INSTANCE;
+    private int hudOffset = -30;
 
     public static MenuUIManager getINSTANCE(){
         if(INSTANCE == null)
@@ -20,7 +21,7 @@ public class MenuUIManager {
 
 
     public void update(){
-        spr.draw("hudBot0",0,-30,4);
+        spr.draw("hudBot0",0,hudOffset,4);
         for (Button button: buttons) {
             button.draw();
             button.manageInput();
@@ -37,12 +38,26 @@ public class MenuUIManager {
                             Gdx.app.exit();
                         }),
                         new Button(ButtonType.Small, "icon3",16,167,()->{
-
+                            Game.changeState(GameState.EquipMenu);
                         }),
                         new Button(ButtonType.Small, "icon3",368,167,()->{
 
                         })
                 };
+                hudOffset = -30;
+                break;
+            case EquipMenu:
+                buttons = new Button[]{
+                        new Button(ButtonType.Large,"icon0",16,31,()->{
+                            Game.changeState(GameState.StageMenu);}),
+                        new Button(ButtonType.Small, "icon3", 16, 167,()->{
+
+                        }),
+                        new Button(ButtonType.Small, "icon2", 368, 167,()->{
+
+                        })
+                };
+                hudOffset = -148;
                 break;
             default:
                 buttons = new Button[]{};
