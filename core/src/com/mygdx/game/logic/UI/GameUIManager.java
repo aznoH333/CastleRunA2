@@ -28,13 +28,13 @@ public class GameUIManager {
     private final PlayerStats ps = PlayerStats.getINSTANCE();
     private final InputManager input = InputManager.getINSTANCE();
     private Button[] buttons = {
-            new Button(ButtonType.Small,"icon1"
+            new Button(ButtonType.SmallAction,"icon1"
                     ,buttonOffset, buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveLeft)),
-            new Button(ButtonType.Small,"icon0"
+            new Button(ButtonType.SmallAction,"icon0"
                     ,buttonOffset * 2 + 336 , buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveRight)),
-            new Button(ButtonType.Small,"icon3"
+            new Button(ButtonType.SmallAction,"icon3"
                     ,buttonOffset , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackLeft)),
-            new Button(ButtonType.Small,"icon2"
+            new Button(ButtonType.SmallAction,"icon2"
                     ,buttonOffset * 2 + 336 , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackRight)),
     };
 

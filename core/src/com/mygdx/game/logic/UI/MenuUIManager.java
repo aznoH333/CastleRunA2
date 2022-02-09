@@ -50,14 +50,8 @@ public class MenuUIManager {
                 buttons = new Button[]{
                         new Button(ButtonType.Large,"icon0",16,31,()->{
                             Game.changeState(GameState.StageMenu);}),
-                        new Button(ButtonType.Small, "icon3", 16, 167,()->{
-
-                        }),
-                        new Button(ButtonType.Small, "icon2", 368, 167,()->{
-
-                        })
                 };
-                hudOffset = -148;
+                hudOffset = -284;
                 break;
             default:
                 buttons = new Button[]{};

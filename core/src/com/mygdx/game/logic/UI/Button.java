@@ -20,6 +20,7 @@ public class Button {
     private final int yIconOffset;
     private final int width;
     private final int height;
+    private final boolean actionButton;
 
 
     public Button(ButtonType type,
@@ -28,6 +29,7 @@ public class Button {
                   IInputFunction btnHold){
         switch (type){
             case Small:
+            case SmallAction:
             default:
                 sprite = "button0";
                 spritePressed = "button1";
@@ -44,9 +46,9 @@ public class Button {
                 xIconOffset = 302;
                 yIconOffset = 38;
                 break;
-
         }
 
+        actionButton = type == ButtonType.SmallAction;
 
         this.icon = icon;
         this.x = x;
@@ -65,6 +67,7 @@ public class Button {
         }
     }
 
+    private boolean lFrameState = false;
     public void manageInput(){
         // this is temp (made to work with lower than base resolution)
         int mx = Gdx.input.getX()*2;
@@ -72,16 +75,18 @@ public class Button {
         //int mx = (int) (Gdx.input.getX() / 1.5);
         //int my = (int) ((Game.androidHeight - Gdx.input.getY()) / 1.5);
 
-
+        lFrameState = pressed;
         // temp
         if(mx > x && mx < x + width && my > y && my < y + height
         && (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
-            btnHold.function();
+            if (actionButton)
+                btnHold.function();
         }else {
             pressed = false;
         }
-
+        if (lFrameState && !pressed && !actionButton)
+            btnHold.function();
 
 
     }
