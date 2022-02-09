@@ -17,9 +17,6 @@ public class PlayerStats {
 
     private Weapon currentLeftWeapon;
     private Weapon currentRightWeapon;
-    private final HashMap<String,Weapon> weapons = new HashMap<>();
-    private final ArrayList<String> unlockedWeapons = new ArrayList<>();
-
 
     private int maxHp = 3;
     private int maxEnergy = 2;
@@ -27,27 +24,23 @@ public class PlayerStats {
     private int energy = 2;
     private int coins = 0;
 
+    private final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
     private PlayerStats(){
-        // TODO: separate permanent unlocks & run unlocks
-        // TODO: starting equipment??
-        // TODO: rewrite these to an external class like tile loadlist
 
-        weapons.put("Nothing", new None());
-        weapons.put("Small daggers", new SmallDagger());
-        weapons.put("Sword", new Sword());
+        // TODO: starting equipment??
+
+
 
         // temporary
-        unlockWeapon("Nothing");
-        unlockWeapon("Small daggers");
-        unlockWeapon("Sword");
+
         equipWeapon("Nothing", Controls.AttackLeft);
         equipWeapon("Sword", Controls.AttackRight);
     }
     // equips a weapon
     public void equipWeapon(String weaponName, Controls slot){
-        if (unlockedWeapons.contains(weaponName))
-            if (slot == Controls.AttackLeft)    currentLeftWeapon = weapons.get(weaponName);
-            else                                currentRightWeapon = weapons.get(weaponName);
+        if (inventoryManager.isWeaponUnlocked(weaponName))
+            if (slot == Controls.AttackLeft)    currentLeftWeapon = inventoryManager.getWeapon(weaponName);
+            else                                currentRightWeapon = inventoryManager.getWeapon(weaponName);
     }
 
     public void useWeapon(float x, float y, Controls slot){
@@ -72,12 +65,8 @@ public class PlayerStats {
         }
     }
 
-    // unlocks a weapon
-    // !doesn't check if a weapon exists!
-    // TODO: unlock system
-    public void unlockWeapon(String name){
-        unlockedWeapons.add(name);
-    }
+
+
 
     public Weapon getLeftWeapon(){
         return currentLeftWeapon;
