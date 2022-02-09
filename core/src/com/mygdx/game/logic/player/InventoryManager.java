@@ -19,6 +19,10 @@ public class InventoryManager {
     private final ArrayList<String> unlockedWeapons = new ArrayList<>();
     // TODO : this
 
+    private InventoryManager(){
+        loadWeapons();
+    }
+
     private void loadWeapons(){
         // TODO: separate permanent unlocks & run unlocks
         weapons.put("Nothing", new None());
@@ -31,8 +35,8 @@ public class InventoryManager {
         unlockWeapon("Sword");
     }
 
-    public Weapon[] getWeapons(){
-        return null;
+    public ArrayList<String> getUnlockedWeapons(){
+        return unlockedWeapons;
     }
 
     // unlocks a weapon

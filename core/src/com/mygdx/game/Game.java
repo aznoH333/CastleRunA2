@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.UI.ItemViewer;
 import com.mygdx.game.logic.UI.MenuUIManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -37,6 +38,8 @@ public class Game extends ApplicationAdapter {
     private static GameState state = GameState.Game;
     private MenuUIManager menuUI;
     private StageMap stageMap;
+    private ItemViewer itemViewer;
+
 
     @Override
     public void create() {
@@ -52,6 +55,7 @@ public class Game extends ApplicationAdapter {
         ui = GameUIManager.getINSTANCE();
         menuUI = MenuUIManager.getINSTANCE();
         stageMap = StageMap.getINSTANCE();
+        itemViewer = ItemViewer.getINSTANCE();
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
@@ -117,6 +121,14 @@ public class Game extends ApplicationAdapter {
         Game.state = state;
         if (state != GameState.Game)
             MenuUIManager.getINSTANCE().changeButtonSet(state);
+
+        switch(state){
+            case Shop:
+                ItemViewer.getINSTANCE().changeDimensions(0,0);
+                break;
+            case EquipMenu:
+                ItemViewer.getINSTANCE().changeDimensions(500,500);
+        }
     }
 
     //status functions
@@ -136,6 +148,7 @@ public class Game extends ApplicationAdapter {
 
     private void shop(){
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
+        itemViewer.update();
     }
     private void gameOver(){
         // TODO : this
@@ -146,5 +159,6 @@ public class Game extends ApplicationAdapter {
 
     private void equipMenu(){
         menuUI.update();
+        itemViewer.update();
     }
 }

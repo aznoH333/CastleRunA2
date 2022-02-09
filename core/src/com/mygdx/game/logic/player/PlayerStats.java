@@ -1,12 +1,6 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.data.enums.Controls;
-import com.mygdx.game.data.weapons.None;
-import com.mygdx.game.data.weapons.SmallDagger;
-import com.mygdx.game.data.weapons.Sword;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PlayerStats {
     private static PlayerStats INSTANCE;
@@ -24,11 +18,11 @@ public class PlayerStats {
     private int energy = 2;
     private int coins = 0;
 
-    private final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
+    private final InventoryManager inventoryManager;
     private PlayerStats(){
 
         // TODO: starting equipment??
-
+        inventoryManager = InventoryManager.getINSTANCE();
 
 
         // temporary
