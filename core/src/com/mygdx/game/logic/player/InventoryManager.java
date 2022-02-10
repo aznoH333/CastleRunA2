@@ -46,6 +46,10 @@ public class InventoryManager {
         unlockedWeapons.add(name);
     }
 
+    public Weapon getUnlockedWeapon(int index){
+        return getWeapon(unlockedWeapons.get(index));
+    }
+
     public boolean isWeaponUnlocked(String weaponName){
         return unlockedWeapons.contains(weaponName);
     }

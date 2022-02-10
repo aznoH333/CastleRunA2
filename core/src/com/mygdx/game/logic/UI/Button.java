@@ -46,6 +46,15 @@ public class Button {
                 xIconOffset = 302;
                 yIconOffset = 38;
                 break;
+            case LargeItemSelect:
+                sprite = "button_large0";
+                spritePressed = "button_large1";
+                height = 120;
+                width = 668;
+                xIconOffset = 32;
+                yIconOffset = 38;
+                break;
+
         }
 
         actionButton = type == ButtonType.SmallAction;

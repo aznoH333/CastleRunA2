@@ -37,6 +37,12 @@ public class PlayerStats {
             else                                currentRightWeapon = inventoryManager.getWeapon(weaponName);
     }
 
+    public void equipWeapon(Weapon weapon, Controls slot){
+        if (slot == Controls.AttackLeft)    currentLeftWeapon = weapon;
+        else                                currentRightWeapon = weapon;
+        System.out.println("Equipped weapon to slot " + slot);
+    }
+
     public void useWeapon(float x, float y, Controls slot){
         Weapon w;
         if (slot == Controls.AttackLeft)    w = currentLeftWeapon;

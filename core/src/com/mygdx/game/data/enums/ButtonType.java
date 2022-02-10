@@ -4,4 +4,5 @@ public enum ButtonType {
     SmallAction,
     Small,
     Large,
+    LargeItemSelect,
 }

@@ -90,10 +90,13 @@ public class SpriteManager {
 
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex){
-        Texture text = sprs.get(textureName);
-        if (!spriteDraw.containsKey(zIndex))
-            spriteDraw.put(zIndex, new ArrayList<>());
-        spriteDraw.get(zIndex).add(new SpriteData(text, x, y));
+        if (textureName != null){
+            Texture text = sprs.get(textureName);
+            if (!spriteDraw.containsKey(zIndex))
+                spriteDraw.put(zIndex, new ArrayList<>());
+            spriteDraw.get(zIndex).add(new SpriteData(text, x, y));
+        }
+
     }
 
 
