@@ -2,11 +2,9 @@ package com.mygdx.game.data.weapons;
 
 import com.mygdx.game.logic.player.Weapon;
 
-public class Sword extends Weapon {
+public class ThrowingAxe extends Weapon {
 
-    public Sword() {
-        super("sword0", 0, 1);
-    }
+    public ThrowingAxe() { super("axe0", 0, 1); }
 
     @Override
     public void attack(float x, float y) {
