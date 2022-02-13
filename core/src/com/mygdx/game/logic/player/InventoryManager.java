@@ -1,8 +1,6 @@
 package com.mygdx.game.logic.player;
 
-import com.mygdx.game.data.weapons.None;
-import com.mygdx.game.data.weapons.SmallDagger;
-import com.mygdx.game.data.weapons.Sword;
+import com.mygdx.game.data.weapons.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +26,13 @@ public class InventoryManager {
         weapons.put("Nothing", new None());
         weapons.put("Small daggers", new SmallDagger());
         weapons.put("Sword", new Sword());
+        weapons.put("Axe", new ThrowingAxe());
 
 
         unlockWeapon("Nothing");
         unlockWeapon("Small daggers");
         unlockWeapon("Sword");
+        unlockWeapon("Axe");
     }
 
     public ArrayList<String> getUnlockedWeapons(){

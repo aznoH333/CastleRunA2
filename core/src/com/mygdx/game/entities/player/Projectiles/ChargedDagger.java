@@ -9,7 +9,7 @@ import java.util.Random;
 public class ChargedDagger extends Dagger {
     private float yM = 2;
     private int particleTimer = 0;
-    private final int particleTimerMax = 4;
+    private static final int particleTimerMax = 4;
 
     public ChargedDagger(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp);
