@@ -20,6 +20,12 @@ public class ParticleLoadList {
         particleMap.put("fleshGore2",new Particle(new String[]{"gore6"},30,0));
         particleMap.put("fleshGore3",new Particle(new String[]{"gore7"},30,0));
 
+        // skeletons
+        particleMap.put("boneGore0",new Particle(new String[]{"gore8"},30,0));
+        particleMap.put("boneGore1",new Particle(new String[]{"gore9"},30,0));
+        particleMap.put("boneGore2",new Particle(new String[]{"gore10"},30,0));
+        particleMap.put("boneGore3",new Particle(new String[]{"gore11"},30,0));
+
 
         // sparkles
         particleMap.put("sparkle", new Particle(new String[]{"sparkle0","sparkle1"},30,8));

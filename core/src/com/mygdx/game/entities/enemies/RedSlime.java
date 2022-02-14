@@ -33,7 +33,7 @@ public class RedSlime extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         if (landed) jumpTimer++;
-        float lvlY = lvl.getOnPos(x + ((int) xSize >> 1)).getY() + lvl.getTileScale();
+        float lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
 
         //land
         landed = y <= lvlY - yM && yM <= 0;

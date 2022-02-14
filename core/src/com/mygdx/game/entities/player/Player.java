@@ -168,7 +168,7 @@ public class Player extends Entity {
 
     @Override
     public void onCollide(Entity other) {
-        if (other.getTeam() == Team.Enemies) {
+        if (other.getTeam() == Team.Enemies || other.getTeam() == Team.EnemyProjectiles) {
             takeDamage(1);
         }
 

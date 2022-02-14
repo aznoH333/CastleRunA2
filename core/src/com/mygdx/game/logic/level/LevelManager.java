@@ -196,11 +196,11 @@ public class LevelManager {
     }
 
     public TileCollum getOnPos(float i) {
-        int b = (int) i;
-        if ((b >> 6) < 0 || b >> 6> mapWidth)
+        int b = (int) i >> 6;
+        if (b < 0 || b > mapWidth)
             return map[0];
         else
-            return map[b >> 6];
+            return map[b];
     }
 
     public float snapToPosition(float x){
