@@ -47,7 +47,7 @@ public class RedSlime extends Entity {
         if (jumpTimer > jumpTime){
             jumpTimer = 0;
 
-            if (lvl.getOnPos(x-LevelManager.tileScale).getSpecial() == TileCollumSpecial.Gap){
+            if (lvl.getOnPos(x-LevelManager.tileScale+1).getSpecial() == TileCollumSpecial.Gap){
                 moveTo = x - (lvl.getTileScale() * 2);
                 yM = jumpStrength;
             } else {

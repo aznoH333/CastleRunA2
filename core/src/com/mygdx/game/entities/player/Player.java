@@ -181,6 +181,7 @@ public class Player extends Entity {
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
             yM = hopStrength;
+            landed = false;
             if (moveTo > 0)
                 if (moveTo == x) moveTo -= LevelManager.tileScale;
                 else             moveTo -= LevelManager.tileScale*2;

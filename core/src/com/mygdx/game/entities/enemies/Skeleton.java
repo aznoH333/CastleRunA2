@@ -12,8 +12,9 @@ import java.util.Random;
 
 public class Skeleton extends Entity {
 
-    private int throwTimer = throwTimerMax;
-    private final static int throwTimerMax = 100;
+    private int throwTimer = throwTimerMin;
+    private int animationTimer = 0;
+    private final static int throwTimerMin = 200;
     private final static int timerVariance = 40;
     private final static Random r = new Random();
 
@@ -27,15 +28,21 @@ public class Skeleton extends Entity {
             throwTimer--;
         }else{
             EntityManager.getINSTANCE().spawnEntity("bone",x,y);
-            throwTimer = r.nextInt(timerVariance) + throwTimerMax;
+            throwTimer = r.nextInt(timerVariance) + throwTimerMin;
+            animationTimer = 45;
         }
-
+        if (animationTimer > 0) animationTimer--;
 
     }
-
+    // TODO : boner
     @Override
     public void draw(SpriteManager spr) {
-        spr.drawGame("skeleton0",x,y,2);
+        if (animationTimer > 30)
+            spr.drawGame("skeleton1",x,y,2);
+        else if (animationTimer > 15)
+            spr.drawGame("skeleton2",x,y,2);
+        else
+            spr.drawGame("skeleton0",x,y,2);
     }
 
     @Override

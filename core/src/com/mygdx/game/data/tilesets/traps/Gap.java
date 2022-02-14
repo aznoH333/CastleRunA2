@@ -17,7 +17,7 @@ public class Gap extends TileCollum {
 
     @Override
     public TileCollum getNew(int y) {
-        return new Gap(-129);
+        return new Gap(-9999);
     }
 
     @Override
