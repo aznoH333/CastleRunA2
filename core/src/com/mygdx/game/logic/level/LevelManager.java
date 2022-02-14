@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.level;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.Level;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
@@ -164,6 +165,11 @@ public class LevelManager {
         return mapWidth;
     }
 
+    private int trapOffset = 0;
+    public int getTrapOffset(){
+        return trapOffset++;
+    }
+
     public void update() {
         //advance
         if (advanceDistance > distance) {
@@ -213,11 +219,13 @@ public class LevelManager {
         b.setBackground(lvl.getBackground());
         distance = 0;
         advanceDistance = 0;
+        trapOffset = 0;
         this.lvl = lvl;
         startGenerationIndex = 3;
         height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
         levelLength = lvl.getLength();
         e.clear();
+
 
         // pre generate first screen
         for (int i = 0; i < mapWidth; i++) {

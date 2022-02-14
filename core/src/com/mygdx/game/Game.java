@@ -34,7 +34,7 @@ public class Game extends ApplicationAdapter {
     private ParticleManager part = ParticleManager.getINSTANCE();
     private GameUIManager ui;
     private InputManager input = InputManager.getINSTANCE();
-    private static long time = 0;
+    private static long time = 1;
     private static GameState state = GameState.Game;
     private MenuUIManager menuUI;
     private StageMap stageMap;

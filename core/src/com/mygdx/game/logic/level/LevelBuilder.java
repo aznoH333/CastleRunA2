@@ -51,7 +51,7 @@ public class LevelBuilder {
         // stage 1
         s(
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
-                new float[]{20,5,1},
+                new float[]{20,5,2},
                 new String[]{"slime","chest"},
                 new float[]{20,5,1}
         );
@@ -74,16 +74,16 @@ public class LevelBuilder {
         levels.put("1-2",build());
 
         s(
-                new TileCollum[]{new CaveRegular(), new Gap()},
-                new float[]{15,5},
+                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
+                new float[]{20,5,5},
                 new String[]{"slime","chest"},
                 new float[]{10,5,1}
         );
         c(0.9f,1,3);
         h(96,64,128);
-        b(Backgrounds.cave());
+        b(Backgrounds.castle());
         l(120);
-        m("mIconCave1","mTile0");
+        m("mIconCastle1","mTile0");
         levels.put("1-3",build());
 
         s(
@@ -96,7 +96,7 @@ public class LevelBuilder {
         h(96,64,128);
         b(Backgrounds.cave());
         l(120);
-        m("mIconCastle1","mTile2");
+        m("mIconCave1","mTile2");
         levels.put("1-4",build());
 
     }
