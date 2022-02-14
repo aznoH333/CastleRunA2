@@ -1,6 +1,6 @@
 package com.mygdx.game.data.load;
 
-import com.mygdx.game.entities.enemies.Slime;
+import com.mygdx.game.entities.enemies.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
 import com.mygdx.game.logic.entities.Entity;
@@ -13,6 +13,7 @@ public class EntityLoadList {
 
         //add enemies
         entities.put("slime", new Slime(0,0,64,64,1));
+        entities.put("red slime", new RedSlime(0,0,64,64,2));
 
 
         //add projectiles

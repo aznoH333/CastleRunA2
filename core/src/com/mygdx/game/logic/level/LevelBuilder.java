@@ -63,8 +63,8 @@ public class LevelBuilder {
         s(
                 new TileCollum[]{new CaveRegular(), new Gap()},
                 new float[]{15,5},
-                new String[]{"slime","chest"},
-                new float[]{10,5,1}
+                new String[]{"slime","chest","red slime"},
+                new float[]{10, 5, 1, 3}
         );
         c(0.9f,1,3);
         h(96,64,128);
