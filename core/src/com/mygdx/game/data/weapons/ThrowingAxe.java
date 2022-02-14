@@ -4,9 +4,7 @@ import com.mygdx.game.logic.player.Weapon;
 
 public class ThrowingAxe extends Weapon {
 
-    public ThrowingAxe() { super("axe0", 0, 1); }
-
-
+    public ThrowingAxe() { super("axe0", 1, 1); }
 
     @Override
     public void attack(float x, float y) {

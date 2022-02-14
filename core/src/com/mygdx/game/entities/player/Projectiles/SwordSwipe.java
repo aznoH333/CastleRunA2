@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class SwordSwipe extends Entity {
 
-    private int lifeTime = 12;
-    private boolean hurts = true;
+    protected int lifeTime = 12;
+    protected boolean hurts = true;
     public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
         SoundManager.getINSTANCE().playSound("weapon1");
@@ -29,7 +29,6 @@ public class SwordSwipe extends Entity {
 
         if (lifeTime>0)
             spr.drawGame("sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
-
 
     }
 

@@ -40,7 +40,16 @@ public class PlayerStats {
     public void equipWeapon(Weapon weapon, Controls slot){
         if (slot == Controls.AttackLeft)    currentLeftWeapon = weapon;
         else                                currentRightWeapon = weapon;
-        System.out.println("Equipped weapon to slot " + slot);
+    }
+
+    public boolean isAttackAffordable(Controls slot, boolean isCharged){
+        if (isCharged){
+            if (slot == Controls.AttackLeft)    return currentLeftWeapon.getChargedAttackCost() <= energy;
+            else                                return currentRightWeapon.getChargedAttackCost() <= energy;
+        }else{
+            if (slot == Controls.AttackLeft)    return currentLeftWeapon.getAttackCost() <= energy;
+            else                                return currentRightWeapon.getAttackCost() <= energy;
+        }
     }
 
     public void useWeapon(float x, float y, Controls slot){
@@ -63,6 +72,11 @@ public class PlayerStats {
             w.chargedAttack(x,y);
             energy -= w.getChargedAttackCost();
         }
+    }
+
+    public void restoreStats(){
+        hp = maxHp;
+        energy = maxEnergy;
     }
 
 
@@ -95,7 +109,8 @@ public class PlayerStats {
         this.maxEnergy = maxEnergy;
     }
     public void setHp(int hp) {
-        this.hp = hp;
+        this.hp = Math.max(hp, 0);
+
     }
     public void setEnergy(int energy) {
         this.energy = energy;

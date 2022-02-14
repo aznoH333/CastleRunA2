@@ -40,6 +40,7 @@ public class StageManager {
         // xtreme lidl
         // respawns the player
         EntityManager.getINSTANCE().addEntity(new Player(64, 0, 64, 64));
+        PlayerStats.getINSTANCE().restoreStats();
     }
 
     public void advanceInStage(){

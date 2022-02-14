@@ -17,6 +17,7 @@ public class EntityLoadList {
 
         //add projectiles
         entities.put("sword swipe", new SwordSwipe(0,0,64,64, 1));
+        entities.put("charged sword swipe", new ChargedSwordSwipe(0,0,64,64, 1));
         entities.put("dagger", new Dagger(0,0,48,32, 1));
         entities.put("charged dagger", new ChargedDagger(0,0,48,32, 1));
         entities.put("throwing axe", new Axe(0,0,48,32, 1));

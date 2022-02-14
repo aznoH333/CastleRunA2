@@ -94,24 +94,34 @@ public class Player extends Entity {
         if (!input.getButton(Controls.AttackRight) && actionTimer == 0 && input.getButtonCharge(Controls.AttackRight) > 0 && landed) {
             if (input.getButtonCharge(Controls.AttackRight) < input.getHoldSensitivity()) {
                 inv.useWeapon(x, y, Controls.AttackRight);
+                if (inv.isAttackAffordable(Controls.AttackRight, false))
+                    actionTimer = actionTimerFull;
             } else {
                 inv.useChargedWeapon(x, y, Controls.AttackRight);
+                if (inv.isAttackAffordable(Controls.AttackRight, true))
+                    actionTimer = actionTimerFull;
             }
-            actionTimer = actionTimerFull;
         }
 
         if (!input.getButton(Controls.AttackLeft) && actionTimer == 0 && input.getButtonCharge(Controls.AttackLeft) > 0 && landed) {
+
+
             if (input.getButtonCharge(Controls.AttackLeft) < input.getHoldSensitivity()) {
                 inv.useWeapon(x, y, Controls.AttackLeft);
+                if (inv.isAttackAffordable(Controls.AttackLeft, false))
+                    actionTimer = actionTimerFull;
             } else {
                 inv.useChargedWeapon(x, y, Controls.AttackLeft);
+                if (inv.isAttackAffordable(Controls.AttackLeft, true))
+                    actionTimer = actionTimerFull;
             }
-            actionTimer = actionTimerFull;
+
         }
 
 
         // spawn particle
-        if (input.getButtonCharge(Controls.AttackRight) > input.getHoldSensitivity() || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity()) {
+        if (input.getButtonCharge(Controls.AttackRight) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackRight,true)
+                || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackRight,true)) {
             if (particleTimer <= 0) {
                 particleTimer = particleTimerFull;
                 ParticleManager.getINSTANCE().addParticle(

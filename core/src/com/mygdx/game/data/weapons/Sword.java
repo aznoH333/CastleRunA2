@@ -15,6 +15,6 @@ public class Sword extends Weapon {
 
     @Override
     public void chargedAttack(float x, float y) {
-
+        ent.spawnEntity("charged sword swipe",x + 48,y);
     }
 }
