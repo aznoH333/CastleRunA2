@@ -38,7 +38,6 @@ public abstract class Entity {
     public abstract void onDestroy();
 
     // TODO collision offsets
-    // FIXME horizontal collision being weird * they are weird in general*
     public boolean collide(Entity other){
         return (x + xSize > other.getX()
                 && x < other.getX() + other.getXSize()

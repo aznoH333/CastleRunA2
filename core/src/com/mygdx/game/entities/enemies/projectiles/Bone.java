@@ -15,7 +15,7 @@ public class Bone extends Entity {
 
     public Bone(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.EnemyProjectiles);
-        xM = (float) -((Math.random() * 5) + 5);
+        xM = (float) -((Math.random() * 4) + 3);
         yM = (float) (Math.random() * 5) + 5;
     }
 

@@ -4,6 +4,8 @@ import com.mygdx.game.data.Background;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.Level;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
+import com.mygdx.game.data.tilesets.traps.BreakingPlatform;
+import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.castle.CastleRegular;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
@@ -50,8 +52,8 @@ public class LevelBuilder {
     public LevelBuilder(){
         // stage 1
         s(
-                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
-                new float[]{20,5,2},
+                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new BreakingPlatform()},
+                new float[]{20,5,2,5},
                 new String[]{"slime","chest"},
                 new float[]{20,5,1}
         );
@@ -74,8 +76,8 @@ public class LevelBuilder {
         levels.put("1-2",build());
 
         s(
-                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap()},
-                new float[]{20,5,5},
+                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new GhostPlatform()},
+                new float[]{20,5,2,3},
                 new String[]{"slime","chest", "red slime","skeleton"},
                 new float[]{20,2,1,2,5}
         );

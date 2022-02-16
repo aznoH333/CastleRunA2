@@ -38,7 +38,6 @@ public class GameUIManager {
                     ,buttonOffset * 2 + 336 , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackRight)),
     };
 
-    // FIXME : when the player dies and his health is negative, the health bar overflows
     // TODO : add a bit more wood to the ui
     // FIXME : player sometimes takes damage from spikes when jumping over them (happen only if the spikes are higher than the player)
 

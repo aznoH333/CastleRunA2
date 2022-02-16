@@ -62,7 +62,6 @@ public class StageMap {
                     spr.draw("mTile1",levelRightX - j * pathOffsetX,i * levelOffset + offset + j * pathOffsetY,1);
         }
 
-        // TODO : optimize this
         //player
         if (currentStageIndex % 2 == 0)
             spr.draw("player0",levelLeftX + 22 + playerNumber, currentStageIndex * levelOffset + offset + 14 - (playerNumber>>1),2);

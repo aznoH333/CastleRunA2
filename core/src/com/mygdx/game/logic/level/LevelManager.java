@@ -60,7 +60,6 @@ public class LevelManager {
     }
 
 
-    //TODO: side passages
     private void generateLevel(int index) {
         // generate starts & ends
         if (startGenerationIndex > 0 || distance > levelLength - (tileScale * 4)) {
@@ -68,6 +67,7 @@ public class LevelManager {
             do {
                 temp = lvl.randomTile(r, height);
             } while (temp.getSpecial() != TileCollumSpecial.None);
+            lastHeight = height;
             // spawn exit door
             if (Math.abs(levelLength-(tileScale*2) - distance) < 10 )
                 EntityManager.getINSTANCE().spawnEntity("exit door",index * tileScale - (distance % tileScale), height);

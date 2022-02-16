@@ -54,4 +54,8 @@ public abstract class TileCollum {
     public abstract void update();
 
     public abstract void draw(float x, float y);
+
+    public void onPlayerStep(){
+
+    }
 }

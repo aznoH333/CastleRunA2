@@ -33,7 +33,6 @@ public class InputManager {
     private int chargeLeft = 0;
     private int chargeRight = 0;
     // TODO: sensitivity setting in menu
-    // TODO: touch controls
     public void manageInput(){
         // left
         if (Gdx.input.isKeyPressed(Input.Keys.A) || bLeft){

@@ -150,6 +150,9 @@ public class Game extends ApplicationAdapter {
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
         itemViewer.update();
     }
+
+    // TODO : add perks (kind of like items in tboi but not really)
+
     private void gameOver(){
         // TODO : this
     }

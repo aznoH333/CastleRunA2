@@ -1,6 +1,7 @@
 package com.mygdx.game.entities.player;
 
 import com.mygdx.game.Game;
+import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
@@ -137,7 +138,13 @@ public class Player extends Entity {
         if (iFrame > 0) iFrame--;
 
         // map hazards
-        if (lvl.getOnPos(x + (lvl.getTileScale() - 1)).getHurts() && landed) takeDamage(1);
+        TileCollum tile = lvl.getOnPos(x + (lvl.getTileScale() - 1));
+        if (tile.getHurts() && landed) {
+            takeDamage(1);
+        }
+        if (landed)
+            tile.onPlayerStep();
+
 
         // scroll camera
         if (x > scrollBorder) {

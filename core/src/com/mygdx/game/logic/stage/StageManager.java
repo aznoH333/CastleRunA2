@@ -19,8 +19,6 @@ public class StageManager {
         return INSTANCE;
     }
 
-    // TODO : stage backdrops
-    // TODO : some interstage screen
     // TODO : shops
     // TODO : save stage unlocks
 

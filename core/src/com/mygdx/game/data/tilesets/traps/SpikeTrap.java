@@ -44,7 +44,6 @@ public class SpikeTrap extends TileCollum {
             hurts = !hurts;
         }else timer--;
     }
-    // FIXME: calculated offsets
     @Override
     public void draw(float x, float y) {
         if (hurts) SpriteManager.getINSTANCE().drawGame("spikeTrap0",x, y + LevelManager.tileScale,2);
