@@ -47,7 +47,7 @@ public class RedSlime extends Entity {
         if (jumpTimer > jumpTime){
             jumpTimer = 0;
 
-            if (lvl.getOnPos(x-LevelManager.tileScale+1).getSpecial() == TileCollumSpecial.Gap){
+            if (lvl.getOnPos(x + (lvl.getTileScale() -1) - lvl.getTileScale()).getSpecial() == TileCollumSpecial.Gap){
                 moveTo = x - (lvl.getTileScale() * 2);
                 yM = jumpStrength;
             } else {
@@ -65,6 +65,8 @@ public class RedSlime extends Entity {
         if (moveTo < x) x -= moveSpeed;
         y += yM;
     }
+
+    // FIXME: sometimes red slimes suicide themselves (sometimes they don't) might already be fixed idk
 
     @Override
     public void draw(SpriteManager spr) {

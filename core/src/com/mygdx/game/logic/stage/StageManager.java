@@ -4,7 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.entities.player.Player;
 import com.mygdx.game.logic.entities.EntityManager;
-import com.mygdx.game.logic.level.LevelBuilder;
+import com.mygdx.game.logic.level.LevelOwner;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
 
@@ -34,7 +34,7 @@ public class StageManager {
     }
 
     public void startLevel(){
-        LevelManager.getINSTANCE().loadLevel(LevelBuilder.getINSTANCE().getByName(currentStage.getCurrentLevel()));
+        LevelManager.getINSTANCE().loadLevel(LevelOwner.getINSTANCE().getByName(currentStage.getCurrentLevel()));
         // xtreme lidl
         // respawns the player
         EntityManager.getINSTANCE().addEntity(new Player(64, 0, 64, 64));

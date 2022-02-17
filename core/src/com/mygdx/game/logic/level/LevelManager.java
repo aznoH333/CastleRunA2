@@ -1,7 +1,6 @@
 package com.mygdx.game.logic.level;
 
 
-import com.mygdx.game.data.Level;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;

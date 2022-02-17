@@ -1,7 +1,7 @@
 package com.mygdx.game.logic.stage;
 
-import com.mygdx.game.data.Level;
-import com.mygdx.game.logic.level.LevelBuilder;
+import com.mygdx.game.logic.level.Level;
+import com.mygdx.game.logic.level.LevelOwner;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
 public class StageMap {
@@ -16,7 +16,7 @@ public class StageMap {
     private StageManager stageManager;
     private Stage currentStage;
     private byte currentStageIndex;
-    private LevelBuilder lvb = LevelBuilder.getINSTANCE();
+    private LevelOwner lvb = LevelOwner.getINSTANCE();
 
     private static final int offset = 482;
     private static final int levelOffset = 128;

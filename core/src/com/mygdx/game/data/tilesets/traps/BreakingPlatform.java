@@ -65,8 +65,11 @@ public class BreakingPlatform extends TileCollum {
 
     @Override
     public void onPlayerStep(){
-        isInAStateOfCollapse = true;
-        timer = fallTime;
+        if (!isInAStateOfCollapse){
+            isInAStateOfCollapse = true;
+            timer = fallTime;
+        }
+
     }
 
     @Override
