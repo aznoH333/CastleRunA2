@@ -47,6 +47,7 @@ public class LevelManager {
     private int changeFor = 0;
     private int levelLength = 0;
     private int startGenerationIndex = 3;
+    private boolean isBossLevel = false;
 
     public LevelManager(SpriteManager spr, Random r) {
         this.spr = spr;
@@ -68,12 +69,15 @@ public class LevelManager {
             } while (temp.getSpecial() != TileCollumSpecial.None);
             lastHeight = height;
             // spawn exit door
-            if (Math.abs(levelLength-(tileScale*2) - distance) < 10 )
-                EntityManager.getINSTANCE().spawnEntity("exit door",index * tileScale - (distance % tileScale), height);
+            if (Math.abs(levelLength-(tileScale*2) - distance) < 10)
+                if (!isBossLevel)
+                    EntityManager.getINSTANCE().spawnEntity("exit door",index * tileScale - (distance % tileScale), height);
+                else
+                    EntityManager.getINSTANCE().spawnEntity(lvl.getBoss(),index * tileScale - (distance % tileScale), height);
             map[index] = temp;
             startGenerationIndex--;
         } else {
-            // tile selection & grace handlingw
+            // tile selection & grace handling
             TileCollum temp;
             while (true) {
                 temp = lvl.randomTile(r, height);
@@ -92,9 +96,11 @@ public class LevelManager {
                     e.addEntity(tempE);
                 }
             }
+            if (!isBossLevel){
+                moveInDirection();
+                changeDirection();
+            }
 
-            moveInDirection();
-            changeDirection();
             if (!temp.grace()) grace = false;
             map[index] = temp;
         }
@@ -217,19 +223,22 @@ public class LevelManager {
     public float getDistance(){
         return distance;
     }
-
+    // FIXME: loading normal levels after boss levels breaks the game
     public void loadLevel(Level lvl) {
+        this.lvl = lvl;
+        isBossLevel = lvl.isBossLevel();
         b.setBackground(lvl.getBackground());
         distance = 0;
         advanceDistance = 0;
         trapOffset = 0;
-        this.lvl = lvl;
+
         startGenerationIndex = 3;
-        height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
+        if (!isBossLevel)
+            height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
+        else
+            height = lvl.defaultH;
         levelLength = lvl.getLength();
         e.clear();
-
-
         // pre generate first screen
         for (int i = 0; i < mapWidth; i++) {
             generateLevel(i);

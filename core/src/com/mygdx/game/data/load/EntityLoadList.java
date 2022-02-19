@@ -1,6 +1,7 @@
 package com.mygdx.game.data.load;
 
 import com.mygdx.game.entities.enemies.*;
+import com.mygdx.game.entities.enemies.bosses.SlimeBoss;
 import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
@@ -16,6 +17,9 @@ public class EntityLoadList {
         entities.put("slime", new Slime(0,0,64,64,1));
         entities.put("red slime", new RedSlime(0,0,64,64,2));
         entities.put("skeleton", new Skeleton(0,0,64,64,1));
+
+        // bosses
+        entities.put("slime boss", new SlimeBoss(0,0,128,128,1));
 
         // add enemy projectiles
         entities.put("bone", new Bone(0,0,64,64,1));

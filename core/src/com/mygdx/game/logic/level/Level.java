@@ -110,6 +110,8 @@ public class Level {
         return mapIcon;
     }
 
+    public String getBoss(){ return null; }
+
 
     public static class LevelBuilder{
 
@@ -118,8 +120,8 @@ public class Level {
         private final Background background;
         private final int length;
 
-        private String[] enemySet = {"slime"};
-        private float[] enemyWeight = {10,5};
+        private String[] enemySet = {};
+        private float[] enemyWeight = {1};
 
         //lvl height
         protected final int defaultH;
@@ -129,6 +131,7 @@ public class Level {
         private float cChange = 0.8f;
         private int clMax = 3;
         private int clMin = 2;
+        private String boss;
 
         //map stuff
         private String mapIcon = "mIconCastle0";
@@ -174,14 +177,20 @@ public class Level {
         }
 
         public BossLevel buildBossLevel(){
-            BossLevel lvl = new BossLevel(this);
+            BossLevel lvl = new BossLevel(this, boss);
             reset();
             return lvl;
         }
 
+        public LevelBuilder setBoss(String boss){
+            this.boss = boss;
+            return this;
+        }
+
         private void reset(){
-            enemySet = new String[]{"slime"};
-            enemyWeight = new float[]{10,5};
+            enemySet = new String[]{};
+            enemyWeight = new float[]{1};
+            boss = null;
             maxH = 192;
             minH = 64;
             cChange = 0.8f;

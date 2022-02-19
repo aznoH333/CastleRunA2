@@ -27,7 +27,7 @@ public class StageManager {
 
     public StageManager(){
         // I hate this
-        String[] bruh = {"1-1","1-2","1-3","1-4"};
+        String[] bruh = {"1-4","1-1","1-3","1-1"};
         stages.add(new Stage(bruh));
 
         currentStage = stages.get(0);

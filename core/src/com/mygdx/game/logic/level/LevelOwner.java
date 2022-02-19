@@ -59,10 +59,11 @@ public class LevelOwner {
                 .build());
 
         levels.put("1-4", new Level.LevelBuilder(
-                new TileCollum[]{new CaveRegular()},
+                new TileCollum[]{new CastleRegular()},
                 new float[]{1},
                 20,96, Backgrounds.castle())
                 .mapTiles("mIconCave1", "mTile2")
+                .setBoss("slime boss")
                 .buildBossLevel());
 
     }

@@ -113,6 +113,7 @@ public class Game extends ApplicationAdapter {
 
     }
 
+
     public static long Time() {
         return time;
     }
