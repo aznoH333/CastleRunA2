@@ -40,7 +40,7 @@ public class LevelOwner {
         levels.put("1-2", new Level.LevelBuilder(
                 new TileCollum[]{new CaveRegular(), new Gap(), new BreakingPlatform()},
                 new float[]{15, 5, 1},
-                120, 128,
+                30, 128,
                 Backgrounds.cave())
                 .mapTiles("mIconCave0", "mTile0")
                 .enemies(new String[]{"slime", "chest", "red slime"}, new float[]{20, 5, 1, 3})
@@ -50,7 +50,7 @@ public class LevelOwner {
         levels.put("1-3", new Level.LevelBuilder(
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new GhostPlatform()},
                 new float[]{20, 5, 2, 3},
-                120,128,
+                30,128,
                 Backgrounds.castle())
                 .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{20, 2, 1, 2, 5})
                 .chance(0.9f, 3, 1)
@@ -62,7 +62,7 @@ public class LevelOwner {
                 new TileCollum[]{new CastleRegular()},
                 new float[]{1},
                 20,96, Backgrounds.castle())
-                .mapTiles("mIconCave1", "mTile2")
+                .mapTiles("mIconCave1", "mTile0")
                 .setBoss("slime boss")
                 .buildBossLevel());
 

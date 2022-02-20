@@ -27,8 +27,16 @@ public class StageManager {
 
     public StageManager(){
         // I hate this
-        String[] bruh = {"1-4","1-1","1-3","1-1"};
-        stages.add(new Stage(bruh));
+        stages.add(new Stage(
+                new String[]{"1-1","1-2","1-3","1-4"},
+                "mapBack0",
+                new Decorator[]{
+                        new Decorator("islandDecorator0",-32,-2),
+                        new Decorator("islandDecorator3",320,170),
+                        new Decorator("islandDecorator2",-20,294),
+                        new Decorator("islandDecorator1",340,385),
+                },
+                120));
 
         currentStage = stages.get(0);
     }
