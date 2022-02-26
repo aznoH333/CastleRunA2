@@ -177,6 +177,11 @@ public class Player extends Entity {
     public void onCollide(Entity other) {
         if (other.getTeam() == Team.Enemies || other.getTeam() == Team.EnemyProjectiles) {
             takeDamage(1);
+            System.out.println("this");
+            System.out.println("x:" + x + ", y:" + y + ", xSize:" + xSize);
+            System.out.println("other");
+            System.out.println("x:" + other.getX() + ", y:" + other.getY() + ", xSize:" + other.getXSize());
+
         }
 
     }

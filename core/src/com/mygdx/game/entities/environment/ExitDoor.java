@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.environment;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
@@ -40,7 +41,7 @@ public class ExitDoor extends Entity {
 
         if (other.getTeam() == Team.Player && isOpen){
             // TODO : some kind of an exit level animation
-            StageManager.getINSTANCE().advanceInStage();
+            Game.exitLevel();
         }
     }
 

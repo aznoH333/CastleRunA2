@@ -12,18 +12,17 @@ import java.util.Random;
 
 public class Slime extends Entity {
     // constants
-    private final static int animationSpeed = 32;
-    private final static float gravity = 0.5f;
-    private final static float hopStrength = 3.5f;
-    private final static int jumpTime = 60;
-    private final static float moveSpeed = 4f;
+    protected final static int animationSpeed = 32;
+    protected final static float gravity = 0.5f;
+    protected final static float hopStrength = 3.5f;
+    protected final static int jumpTime = 60;
+    protected final static float moveSpeed = 4f;
 
     // vars
-    private int jumpTimer = 0;
-    private boolean landed = false;
-    private float lvlY;
-    private float yM = 0;
-    private boolean direction = false;
+    protected int jumpTimer = 0;
+    protected boolean landed = false;
+    protected float yM = 0;
+    protected boolean direction = false;
 
     public Slime(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
@@ -32,11 +31,12 @@ public class Slime extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         if (landed) jumpTimer++;
-        lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
+        float lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
 
         //land
         landed = y <= lvlY - yM && yM <= 0;
         if (landed){
+            x = Math.round(x);
             yM = 0;
             y = lvlY;
         }else{

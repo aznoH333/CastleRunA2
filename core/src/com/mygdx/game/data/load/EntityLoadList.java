@@ -19,15 +19,15 @@ public class EntityLoadList {
         entities.put("skeleton", new Skeleton(0,0,64,64,1));
 
         // bosses
-        entities.put("slime boss", new SlimeBoss(0,0,128,128,1));
+        entities.put("slime boss", new SlimeBoss(0,0,128,128,30));
 
         // add enemy projectiles
         entities.put("bone", new Bone(0,0,64,64,1));
 
 
         //add projectiles
-        entities.put("sword swipe", new SwordSwipe(0,0,64,64, 1));
-        entities.put("charged sword swipe", new ChargedSwordSwipe(0,0,64,64, 1));
+        entities.put("sword swipe", new SwordSwipe(0,0,48,64, 1));
+        entities.put("charged sword swipe", new ChargedSwordSwipe(0,0,48,64, 1));
         entities.put("dagger", new Dagger(0,0,48,32, 1));
         entities.put("charged dagger", new ChargedDagger(0,0,48,32, 1));
         entities.put("throwing axe", new Axe(0,0,48,32, 1));

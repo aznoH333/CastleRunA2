@@ -91,9 +91,10 @@ public class EntityManager {
         }
     }
 
-    public void clear() {
+    public void clear(){
         for (Entity entity: entities) {
             entity.destroy();
         }
+        deleteEntities();
     }
 }

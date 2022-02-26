@@ -35,6 +35,7 @@ public class Game extends ApplicationAdapter {
     private GameUIManager ui;
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 1;
+    private static long exitTime = 0;
     private static GameState state = GameState.Game;
     private MenuUIManager menuUI;
     private StageMap stageMap;
@@ -69,8 +70,14 @@ public class Game extends ApplicationAdapter {
         ScreenUtils.clear(0, 0, 0, 1);
         //main cycle
 
-        input.manageInput();
+        // exit level
+        if (time == exitTime){
+            exitTime = 0;
+            StageManager.getINSTANCE().advanceInStage();
+        }
 
+        if (exitTime < 1)
+            input.manageInput();
         switch (state){
             case Game:
                 game();
@@ -101,6 +108,8 @@ public class Game extends ApplicationAdapter {
 
         //pavliku tohle je validni a drz hubu
         time++;
+
+
     }
 
 
@@ -164,5 +173,14 @@ public class Game extends ApplicationAdapter {
     private void equipMenu(){
         menuUI.update();
         itemViewer.update();
+    }
+
+    public static void exitLevel(int time){
+        if (exitTime == 0)
+            exitTime = Game.time + time;
+    }
+
+    public static void exitLevel(){
+        exitLevel(120);
     }
 }

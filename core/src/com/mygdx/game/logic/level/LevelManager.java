@@ -69,10 +69,9 @@ public class LevelManager {
             } while (temp.getSpecial() != TileCollumSpecial.None);
             lastHeight = height;
             // spawn exit door
-            if (Math.abs(levelLength-(tileScale*2) - distance) < 10)
-                if (!isBossLevel)
+            if (Math.abs(levelLength-(tileScale*2) - distance) < 10 && !isBossLevel)
                     EntityManager.getINSTANCE().spawnEntity("exit door",index * tileScale - (distance % tileScale), height);
-                else
+            else if ((Math.abs(levelLength-(tileScale*3) - distance) < 32 && isBossLevel))
                     EntityManager.getINSTANCE().spawnEntity(lvl.getBoss(),index * tileScale - (distance % tileScale), height);
             map[index] = temp;
             startGenerationIndex--;
@@ -197,6 +196,9 @@ public class LevelManager {
                 collum.update();
         }
 
+        // snap camera to boss
+        if (isBossLevel && Math.abs(levelLength-(tileScale*((mapWidth>>1)-2)) - distance) < 10)
+            advanceToTile(levelLength);
         renderLevel();
     }
 
