@@ -1,9 +1,10 @@
-package com.mygdx.game.entities.enemies.bosses;
+package com.mygdx.game.entities.enemies.bosses.slimeboss;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.entities.enemies.Slime;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
@@ -17,7 +18,9 @@ public class SlimeBoss extends Slime {
     protected final static int jumpTime = 120;
     protected final static float moveSpeed = 4f;
     private final static int slimeTimerMax = 240;
+    private final static int slimeTimerAnimation = 60;
     private int slimeTimer = slimeTimerMax;
+    private final Random random = new Random();
     private final int hpMax;
     private float targetX;
 
@@ -42,11 +45,11 @@ public class SlimeBoss extends Slime {
             yM -= gravity;
         }
         //hop
-        if (jumpTimer > jumpTime){
+        if (jumpTimer > jumpTime && slimeTimer > slimeTimerAnimation){
             jumpTimer = 0;
             yM = hopStrength;
-            if (direction)  moveTo = targetX;
-            else            moveTo = targetX - (lvl.getTileScale()<<1);
+            if (moveTo != targetX)  moveTo = targetX;
+            else                    moveTo = Math.max(targetX - (lvl.getTileScale()<<1),x - (lvl.getTileScale()<<1));
             direction = !direction;
             SoundManager.getINSTANCE().playSound("slimeJump");
         }
@@ -55,36 +58,34 @@ public class SlimeBoss extends Slime {
         //update positions
         if (moveTo > x) x += moveSpeed;
         if (moveTo < x) x -= moveSpeed;
-        targetX = (float) Math.ceil(((float)hp/(float)hpMax) * (LevelManager.mapWidth - 4)) * LevelManager.tileScale;
+        targetX = (float) (Math.ceil(((float)hp/(float)hpMax) * (LevelManager.mapWidth - 5))+1) * LevelManager.tileScale;
         y += yM;
 
         // spawn slimes
         if (slimeTimer < 1 && landed){
             slimeTimer = slimeTimerMax;
-            e.spawnEntity("red slime", x,y);
+            ParticleManager part = ParticleManager.getINSTANCE();
+            SoundManager.getINSTANCE().playSound("enemyDeath1");
+            e.spawnEntity("red slime", x-64,752);
+
+            // spawn 5 - 10 gore particles
+            for (int i = 0; i < random.nextInt(5) + 5; i++)
+                part.addParticle("fleshGore" + random.nextInt(3),x-64,752,random.nextInt(10)-5,-random.nextInt(5),0.5f,random.nextInt(10) + 10);
+
         }
     }
 
     @Override
     public void draw(SpriteManager spr) {
         if (landed)
-            if (jumpTimer%animationSpeed > animationSpeed/2){
-                spr.drawGame("player0",x,y,1);
-                spr.drawGame("player0",x,y+64,1);
-                spr.drawGame("player0",x+64,y,1);
-                spr.drawGame("player0",x+64,y+64,1);
+            if (jumpTimer%animationSpeed > animationSpeed>>1 && slimeTimer > slimeTimerAnimation || slimeTimer <= slimeTimerAnimation && Game.Time()%4 > 2){
+                spr.drawGame("slime_boss0",x,y,1);
             } else{
-                spr.drawGame("player1",x,y,1);
-                spr.drawGame("player1",x,y+64,1);
-                spr.drawGame("player1",x+64,y,1);
-                spr.drawGame("player1",x+64,y+64,1);
+                spr.drawGame("slime_boss1",x,y,1);
             }
 
         else{
-            spr.drawGame("player2",x,y,1);
-            spr.drawGame("player2",x,y+64,1);
-            spr.drawGame("player2",x+64,y,1);
-            spr.drawGame("player2",x+64,y+64,1);
+            spr.drawGame("slime_boss2",x,y,1);
         }
         // TODO : boss sprites
     }
@@ -105,7 +106,8 @@ public class SlimeBoss extends Slime {
 
     @Override
     public void onDestroy() {
-        Game.exitLevel();
+        e.spawnEntity("slime boss death",x,y);
+        Game.exitLevel(600);
         // TODO : some sort of exit level after few seconds function
     }
 }

@@ -35,6 +35,10 @@ public class StageMap {
     }
 
     public void update(){
+        // do the lmao
+
+        skullSprite = (byte) (Math.round((Math.sin(Game.Time()>>5) +1)*2));
+
         // draw back
         spr.draw(currentStage.getBackground(),0, offset, 0);
         for (Decorator d: currentStage.getDecorators()) {
@@ -51,11 +55,15 @@ public class StageMap {
                 spr.draw(lvl.getMapTile(),levelLeftX,i * levelOffset + offset + currentStage.getAdditionalLevelOffset(),1);
                 spr.draw(lvl.getMapIcon(),levelLeftX,i * levelOffset + offset + currentStage.getAdditionalLevelOffset() + 14,1);
 
+                if (lvl.isBossLevel())
+                    drawBossSkull(levelRightX + 80, i * levelOffset + offset + currentStage.getAdditionalLevelOffset() - 20);
             }
             else{
                 spr.draw(lvl.getMapTile(),levelRightX,i * levelOffset + offset + currentStage.getAdditionalLevelOffset(),1);
                 spr.draw(lvl.getMapIcon(),levelRightX,i * levelOffset + offset + currentStage.getAdditionalLevelOffset() + 14,1);
 
+                if (lvl.isBossLevel())
+                    drawBossSkull(levelRightX - 16, i * levelOffset + offset + currentStage.getAdditionalLevelOffset() - 20);
             }
 
 
@@ -83,5 +91,10 @@ public class StageMap {
         currentStageIndex = currentStage.getCurrentStageIndex();
         playerNumber = 256;
         waitNumber = 45;
+    }
+
+    private byte skullSprite = 0;
+    private void drawBossSkull(float x, float y){
+        spr.draw("bossIcon" + skullSprite,x,y,2);
     }
 }

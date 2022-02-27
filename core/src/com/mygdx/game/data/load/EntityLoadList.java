@@ -1,7 +1,8 @@
 package com.mygdx.game.data.load;
 
 import com.mygdx.game.entities.enemies.*;
-import com.mygdx.game.entities.enemies.bosses.SlimeBoss;
+import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBoss;
+import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
 import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
@@ -20,6 +21,8 @@ public class EntityLoadList {
 
         // bosses
         entities.put("slime boss", new SlimeBoss(0,0,128,128,30));
+        entities.put("slime boss death", new SlimeBossDeathAnimation(0,0,128,128,1));
+
 
         // add enemy projectiles
         entities.put("bone", new Bone(0,0,64,64,1));
@@ -35,10 +38,10 @@ public class EntityLoadList {
 
         // FIXME normalize naming conventions
         // pickups
-        entities.put("energy pickup", new EnergyPickup(0,0,16,16,1));
-        entities.put("coin pickup", new Coin(0,0,16,16,1));
-        entities.put("picked coin", new PickedCoin(0,0,16,16,1));
-        entities.put("health potion", new HealthPotion(0,0,32,32,1));
+        entities.put("energy pickup", new EnergyPickup(0,0,32,32,1));
+        entities.put("coin pickup", new Coin(0,0,32,32,1));
+        entities.put("picked coin", new PickedCoin(0,0,32,32,1));
+        entities.put("health potion", new HealthPotion(0,0,64,64,1));
 
 
         // environment

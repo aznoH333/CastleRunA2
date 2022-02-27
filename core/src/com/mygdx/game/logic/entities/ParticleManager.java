@@ -24,6 +24,7 @@ public class ParticleManager {
     }
 
     public void addParticle(String name, float x, float y, float xM, float yM, float gravity){
+
         particles.add(particleMap.get(name).clone(x,y,xM,yM,gravity));
     }
     // also changes lifetime

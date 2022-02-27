@@ -28,12 +28,12 @@ public class StageManager {
     public StageManager(){
         // I hate this
         stages.add(new Stage(
-                new String[]{"1-4","1-2","1-3","1-4"},
+                new String[]{"1-1","1-2","1-3","1-4"},
                 "mapBack0",
                 new Decorator[]{
-                        new Decorator("islandDecorator0",-32,-2),
-                        new Decorator("islandDecorator3",320,170),
-                        new Decorator("islandDecorator2",-20,294),
+                        new Decorator("islandDecorator0",-96,-2),
+                        new Decorator("islandDecorator3",260,130),
+                        new Decorator("islandDecorator2",-20,270),
                         new Decorator("islandDecorator1",340,385),
                 },
                 120));

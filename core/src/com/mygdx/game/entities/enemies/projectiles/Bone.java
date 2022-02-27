@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.enemies.projectiles;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
@@ -28,7 +29,7 @@ public class Bone extends Entity {
 
     @Override
     public void draw(SpriteManager spr) {
-        spr.drawGame("player0",x,y,2);
+        spr.drawGame("bone" + Game.Time()%6,x,y,2);
     }
 
     @Override

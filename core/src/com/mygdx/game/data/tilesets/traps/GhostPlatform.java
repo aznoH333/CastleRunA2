@@ -42,7 +42,7 @@ public class GhostPlatform extends TileCollum {
     @Override
     public void draw(float x, float y) {
         if (isOn && timer >= 60 && timer <= 180 || isOn && Game.Time() % 4 >> 1 == 0)
-            SpriteManager.getINSTANCE().drawGame("player0",x,y);
+            SpriteManager.getINSTANCE().drawGame("ghost_platform0",x,y);
     }
 
     @Override

@@ -21,13 +21,13 @@ public class EntityManager {
     }
 
     // a nasty workaround but i am very lazy
-    public static void createINSTANCE(LevelManager lvl, Random r, SpriteManager spr){
-        INSTANCE = new EntityManager(lvl, r, spr);
+    public static void createINSTANCE(LevelManager lvl, SpriteManager spr){
+        INSTANCE = new EntityManager(lvl, spr);
     }
 
-    public EntityManager(LevelManager lvl, Random r, SpriteManager spr){
+    public EntityManager(LevelManager lvl, SpriteManager spr){
         this.lvl = lvl;
-        this.r = r;
+        this.r = new Random();
         this.spr = spr;
         entities = new ArrayList<>();
         entitySpawnQueue = new ArrayList<>();

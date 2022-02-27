@@ -12,16 +12,21 @@ public class SpriteLoadList {
         //player
         spr.loadSprites("entities/player/player_","player",4);
 
-        //weapons assets/sprites/entities/player/player_0.png
+        //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
         spr.loadSprites("entities/weapons/basic_sword/sword_","sword",6);
         spr.loadSprites("entities/weapons/throwing_axe/Axe_","axe",3);
+        spr.loadSprites("entities/weapons/boomerang/cross_","cross",4);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
+        spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
         spr.loadSprites("entities/enemies/slimes/red_slime/red_slime_","red_slime",6);
         spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",2);
-        spr.loadSprites("entities/enemies/bullshit/skull/skull_","skull",1);
+        spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
+
+        // enemy projectiles
+        spr.loadSprites("entities/enemies/projectiles/bone/bone_","bone",5);
 
 
 
@@ -38,6 +43,7 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 1);
         spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
         spr.loadSprites("tiles/general/platform/platform_", "platform", 5);
+        spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_back_","caveBack",2);
 
@@ -55,12 +61,14 @@ public class SpriteLoadList {
         spr.loadSprites("ui/map/levels/caves/map_icon_cave_", "mIconCave", 1);
         spr.loadSprites("ui/map/tiles/map_icon_tiles_", "mTile", 2);
         spr.loadSprites("ui/map/backgrounds/map_back_", "mapBack", 2);
-        spr.loadSprites("ui/map/decorators/islands/island_decorator", "islandDecorator", 3);
+        spr.loadSprites("ui/map/decorators/islands/island_decorator_", "islandDecorator", 3);
         spr.loadSprites("ui/icons/boss_icon_", "bossIcon", 4);
 
 
         //particles
         spr.loadSprites("particles/effects/Sparkle_","sparkle",1);
+        spr.loadSprites("particles/effects/part_small_","particle",14);
         spr.loadSprites("particles/gore/Blood_","gore",13);
+        spr.loadSprites("particles/gore/slime_explosion_","slimeExplosion",2);
     }
 }

@@ -49,7 +49,7 @@ public class Game extends ApplicationAdapter {
         LevelManager.setUpINSTANCE(spr,r);
         lvl = LevelManager.getINSTANCE();
         // very bad but functional
-        EntityManager.createINSTANCE(lvl, r, spr);
+        EntityManager.createINSTANCE(lvl, spr);
         e = EntityManager.getINSTANCE();
         lvl.setE(e);
         SoundLoadList.loadAllSounds();

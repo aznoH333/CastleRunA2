@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class ChargedSwordSwipe extends SwordSwipe{
 
-    private static final float xM = 2.5f;
+    private static final float xM = 5f;
     private int particleTimer = 0;
     private static final int particleTimerMax = 4;
 
@@ -26,7 +26,7 @@ public class ChargedSwordSwipe extends SwordSwipe{
         //particles
         if(particleTimer == 0){
             particleTimer = particleTimerMax;
-            ParticleManager.getINSTANCE().addParticle("sparkle",x+16,y+10,-0.5f,0f,0f);
+            ParticleManager.getINSTANCE().addParticle("miniSparkle",x+16,y+10,-0.5f,0f,0f);
         }else particleTimer--;
         // TODO: smaller particles
     }
