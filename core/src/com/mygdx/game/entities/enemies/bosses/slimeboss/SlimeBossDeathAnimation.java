@@ -74,6 +74,9 @@ public class SlimeBossDeathAnimation extends Entity {
 
     @Override
     public void onDestroy() {
+        for (int i = 0; i < random.nextInt(30)+30; i++) {
+            part.addParticle("fleshGore" + random.nextInt(3),x + random.nextInt((int) xSize),y + random.nextInt((int) ySize) - 32,random.nextInt(10)-5,5-random.nextInt(10),0.5f,random.nextInt(10) + 10);
+        }
 
     }
 }

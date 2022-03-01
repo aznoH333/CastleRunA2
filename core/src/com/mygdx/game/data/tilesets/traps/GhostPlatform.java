@@ -51,4 +51,5 @@ public class GhostPlatform extends TileCollum {
             return super.getY();
         return -999;
     }
+    // FIXME : player teleports to the platform if he is bellow it and it respawns
 }

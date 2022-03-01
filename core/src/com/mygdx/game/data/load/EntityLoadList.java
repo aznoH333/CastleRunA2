@@ -35,13 +35,15 @@ public class EntityLoadList {
         entities.put("charged dagger", new ChargedDagger(0,0,48,32, 1));
         entities.put("throwing axe", new Axe(0,0,48,32, 1));
         entities.put("charged throwing axe", new ChargedAxe(0,0,48,32, 1));
+        entities.put("cross", new Cross(0,0,48,48,1));
+
 
         // FIXME normalize naming conventions
         // pickups
         entities.put("energy pickup", new EnergyPickup(0,0,32,32,1));
         entities.put("coin pickup", new Coin(0,0,32,32,1));
         entities.put("picked coin", new PickedCoin(0,0,32,32,1));
-        entities.put("health potion", new HealthPotion(0,0,64,64,1));
+        entities.put("health potion", new HealthPotion(0,0,48,48,1));
 
 
         // environment

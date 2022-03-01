@@ -37,6 +37,11 @@ public abstract class Entity {
     public abstract Entity getCopy(float x, float y);
     public abstract void onDestroy();
 
+    // has to be overriden in order to do something
+    public Entity getCopy(float x, float y, int specialParam){
+        return getCopy(x,y);
+    }
+
     // TODO collision offsets
     public boolean collide(Entity other){
         return (x + xSize > other.getX()
@@ -74,6 +79,7 @@ public abstract class Entity {
     public Team getTeam(){
         return team;
     }
+
 
     // deleting
     public void destroy(){markForDestruction = true;}

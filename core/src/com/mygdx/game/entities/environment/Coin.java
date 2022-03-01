@@ -25,7 +25,7 @@ public class Coin extends Pickup{
     public void update(LevelManager lvl, Random r){
         super.update(lvl, r);
         if (Game.Time() % 8 == 0 && r.nextInt(10) == 1)
-            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize >> 1) - 16,y + r.nextInt((int)ySize >> 1) - 16,0,0,0);
+            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize) - 16,y + r.nextInt((int)ySize) - 16,0,0,0);
     }
 
     @Override

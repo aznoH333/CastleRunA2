@@ -4,6 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.sprites.SpriteManager;
@@ -11,6 +12,7 @@ import com.mygdx.game.logic.sprites.SpriteManager;
 import java.util.Random;
 
 public class PickedCoin extends Entity {
+    // TODO : change destinations to player coordinates
     private final static int destinationX = 64;
     private final static int destinationY = 64;
     private final float startX;
@@ -19,6 +21,7 @@ public class PickedCoin extends Entity {
     private final byte animationOffset;
     private static final int animationLength = 4;
     private static final float speed = 0.5f;
+    private static final ParticleManager part = ParticleManager.getINSTANCE();
 
 
     public PickedCoin(float x, float y, float xSize, float ySize, int hp) {
@@ -45,6 +48,9 @@ public class PickedCoin extends Entity {
 
         x += xM;
         y += yM;
+        if (Game.Time() % 8 == 0 && r.nextInt(10) == 1)
+            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize >> 1) - 16,y + r.nextInt((int)ySize >> 1) - 16,0,0,0);
+
     }
 
     @Override
@@ -78,5 +84,9 @@ public class PickedCoin extends Entity {
     public void onDestroy() {
         PlayerStats.getINSTANCE().addCoins(1);
         SoundManager.getINSTANCE().playSound("coin");
+        Random r = new Random();
+        for (int i = 0; i  < 3; i++)
+            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize) - 16,y + r.nextInt((int)ySize) - 16,0,0,0);
+
     }
 }

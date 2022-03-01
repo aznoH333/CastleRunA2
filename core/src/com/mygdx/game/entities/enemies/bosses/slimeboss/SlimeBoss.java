@@ -48,7 +48,7 @@ public class SlimeBoss extends Slime {
         if (jumpTimer > jumpTime && slimeTimer > slimeTimerAnimation){
             jumpTimer = 0;
             yM = hopStrength;
-            if (moveTo != targetX)  moveTo = targetX;
+            if (moveTo != targetX)  moveTo = Math.max(targetX,64);
             else                    moveTo = Math.max(targetX - (lvl.getTileScale()<<1),x - (lvl.getTileScale()<<1));
             direction = !direction;
             SoundManager.getINSTANCE().playSound("slimeJump");

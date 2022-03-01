@@ -27,12 +27,14 @@ public class InventoryManager {
         weapons.put("Small daggers", new SmallDagger());
         weapons.put("Sword", new Sword());
         weapons.put("Axe", new ThrowingAxe());
+        weapons.put("Cross", new BoomerangCross());
 
 
         unlockWeapon("Nothing");
         unlockWeapon("Small daggers");
         unlockWeapon("Sword");
         unlockWeapon("Axe");
+        unlockWeapon("Cross");
     }
 
     public ArrayList<String> getUnlockedWeapons(){

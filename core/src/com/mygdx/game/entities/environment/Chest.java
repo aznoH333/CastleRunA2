@@ -58,7 +58,7 @@ public class Chest extends Entity {
         if (other.getTeam() == Team.PlayerProjectiles && !isOpen){
             SoundManager.getINSTANCE().playSound("chest");
             if (Math.random() > 0.2) coinsToSpawn = (int) (Math.random() * 20) + 10;
-            else                     EntityManager.getINSTANCE().spawnEntity("health potion",x,y);
+            else                     EntityManager.getINSTANCE().spawnEntity("health potion",x,y+16);
             isOpen = true;
             airborne = true;
             yM = hopStrength;
