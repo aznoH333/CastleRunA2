@@ -14,6 +14,9 @@ public class BoomerangCross extends Weapon {
 
     @Override
     public void chargedAttack(float x, float y) {
-        ent.spawnEntity("charged cross",x,y);
+        ent.spawnEntity("charged cross",x,y,1);
+        ent.spawnEntity("charged cross",x,y,2);
+        ent.spawnEntity("charged cross",x,y,3);
+        ent.spawnEntity("charged cross",x,y,4);
     }
 }

@@ -66,7 +66,6 @@ public class RedSlime extends Entity {
         y += yM;
     }
 
-    // FIXME: sometimes red slimes suicide themselves (sometimes they don't) might already be fixed idk
 
     @Override
     public void draw(SpriteManager spr) {

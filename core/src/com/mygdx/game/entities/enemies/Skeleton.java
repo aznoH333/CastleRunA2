@@ -34,7 +34,7 @@ public class Skeleton extends Entity {
         if (animationTimer > 0) animationTimer--;
 
     }
-    // TODO : boner
+
     @Override
     public void draw(SpriteManager spr) {
         if (animationTimer > 30)

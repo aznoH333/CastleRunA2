@@ -28,7 +28,6 @@ public class ChargedSwordSwipe extends SwordSwipe{
             particleTimer = particleTimerMax;
             ParticleManager.getINSTANCE().addParticle("miniSparkle",x+16,y+10,-0.5f,0f,0f);
         }else particleTimer--;
-        // TODO: smaller particles
     }
 
 

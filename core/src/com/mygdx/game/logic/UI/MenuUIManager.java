@@ -5,6 +5,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.stage.StageMap;
 
 public class MenuUIManager {
     private static MenuUIManager INSTANCE;
@@ -33,14 +34,18 @@ public class MenuUIManager {
             case StageMenu:
                 buttons = new Button[]{
                         new Button(ButtonType.Large,"icon0",16,303,()->{
+                            StageMap.getINSTANCE().skipTransition();
                             Game.changeState(GameState.Game);}),
                         new Button(ButtonType.Large,"icon4",16,31,()->{
+                            StageMap.getINSTANCE().skipTransition();
                             Gdx.app.exit();
                         }),
                         new Button(ButtonType.Small, "icon3",16,167,()->{
+                            StageMap.getINSTANCE().skipTransition();
                             Game.changeState(GameState.EquipMenu);
                         }),
                         new Button(ButtonType.Small, "icon3",368,167,()->{
+                            StageMap.getINSTANCE().skipTransition();
 
                         })
                 };

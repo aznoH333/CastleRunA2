@@ -225,7 +225,7 @@ public class LevelManager {
     public float getDistance(){
         return distance;
     }
-    // FIXME: loading normal levels after boss levels breaks the game
+
     public void loadLevel(Level lvl) {
         this.lvl = lvl;
         isBossLevel = lvl.isBossLevel();

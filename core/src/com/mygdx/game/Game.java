@@ -176,8 +176,11 @@ public class Game extends ApplicationAdapter {
     }
 
     public static void exitLevel(int time){
-        if (exitTime == 0)
+        if (exitTime == 0){
             exitTime = Game.time + time;
+            EntityManager.getINSTANCE().clearEnemyEntities();
+        }
+
     }
 
     public static void exitLevel(){

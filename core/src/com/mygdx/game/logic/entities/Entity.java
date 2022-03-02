@@ -42,7 +42,6 @@ public abstract class Entity {
         return getCopy(x,y);
     }
 
-    // TODO collision offsets
     public boolean collide(Entity other){
         return (x + xSize > other.getX()
                 && x < other.getX() + other.getXSize()

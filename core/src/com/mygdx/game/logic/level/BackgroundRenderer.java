@@ -20,7 +20,6 @@ public class BackgroundRenderer {
 
     }
 
-    // TODO : maybe come up with a way to get background width instead of a dumb constant
     private final static int veryDumb = 768;
 
     public void draw(SpriteManager spr){

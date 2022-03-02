@@ -36,6 +36,7 @@ public class EntityLoadList {
         entities.put("throwing axe", new Axe(0,0,48,32, 1));
         entities.put("charged throwing axe", new ChargedAxe(0,0,48,32, 1));
         entities.put("cross", new Cross(0,0,48,48,1));
+        entities.put("charged cross", new ChargedCross(0,0,48,48,1));
 
 
         // FIXME normalize naming conventions

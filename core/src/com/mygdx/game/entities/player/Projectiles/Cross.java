@@ -38,7 +38,7 @@ public class Cross extends Entity {
     public void onCollide(Entity other) {
         if (other.getTeam() == Team.Enemies && pierceTimer == 0){
             other.takeDamage(1);
-            pierceTimer = 32;
+            pierceTimer = 24;
         }
         else if (other.getTeam() == Team.Player && thrownTimer == 0){
             destroy();

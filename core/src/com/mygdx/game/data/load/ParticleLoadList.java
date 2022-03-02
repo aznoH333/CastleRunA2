@@ -35,6 +35,8 @@ public class ParticleLoadList {
         particleMap.put("miniSparkle", new Particle(new String[]{"particle5","particle3","particle4","particle3","particle5"},0,8));
         particleMap.put("coinSparkle", new Particle(new String[]{"particle2","particle0","particle1","particle0","particle2"},0,8));
 
+        // environmental effects
+        particleMap.put("smoke", new Particle(new String[]{"particle12","particle13","particle14"},0,8));
 
         // potions
         particleMap.put("potion", new Particle(new String[]{"potion0"},420,0));

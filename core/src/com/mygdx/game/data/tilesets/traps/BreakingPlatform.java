@@ -1,8 +1,12 @@
 package com.mygdx.game.data.tilesets.traps;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
+
+import java.util.Random;
 
 public class BreakingPlatform extends TileCollum {
 
@@ -14,8 +18,10 @@ public class BreakingPlatform extends TileCollum {
     private boolean isInAStateOfCollapse = false;
     private int timer = 0;
     private final static int respawnTime = 120;
-    private final static int fallTime = 30;
+    private final static int fallTime = 50;
     private int flickerTimer = 0;
+    private static ParticleManager part = ParticleManager.getINSTANCE();
+    private Random r = new Random();
     // FIXME : when a platform breaks under and object like chest | skeleton they float in the air
     public BreakingPlatform() {
         super(sprites, repeated, grace, special);
@@ -49,16 +55,20 @@ public class BreakingPlatform extends TileCollum {
     @Override
     public void draw(float x, float y) {
         // TODO : add some collapse particles here
-
         if(isOn && flickerTimer % 4 < 2){
             if (!isInAStateOfCollapse)
                 SpriteManager.getINSTANCE().drawGame("platform0",x,y,1);
             else{
-                if (timer < 6)     SpriteManager.getINSTANCE().drawGame("platform5",x,y,1);
-                else if (timer < 12)SpriteManager.getINSTANCE().drawGame("platform4",x,y,1);
-                else if (timer < 18)SpriteManager.getINSTANCE().drawGame("platform3",x,y,1);
-                else if (timer < 24)SpriteManager.getINSTANCE().drawGame("platform2",x,y,1);
-                else if (timer < 30)SpriteManager.getINSTANCE().drawGame("platform1",x,y,1);
+
+                if (Game.Time() % 4 == 0){
+                    part.addParticle("smoke", x + r.nextInt(48), y + 32 + r.nextInt(16),0,-r.nextFloat(),0.2f);
+                }
+
+                if (timer < 10)     SpriteManager.getINSTANCE().drawGame("platform5",x,y,1);
+                else if (timer < 20)SpriteManager.getINSTANCE().drawGame("platform4",x,y,1);
+                else if (timer < 30)SpriteManager.getINSTANCE().drawGame("platform3",x,y,1);
+                else if (timer < 40)SpriteManager.getINSTANCE().drawGame("platform2",x,y,1);
+                else if (timer < 50)SpriteManager.getINSTANCE().drawGame("platform1",x,y,1);
             }
         }
     }

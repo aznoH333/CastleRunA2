@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.entities;
 
+import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -73,6 +74,9 @@ public class EntityManager {
     public void spawnEntity(String name,float x, float y){
         addEntity(EntityFactory.getInstance().getByName(name,x,y));
     }
+    public void spawnEntity(String name,float x, float y, int specialParam){
+        addEntity(EntityFactory.getInstance().getByName(name,x,y, specialParam));
+    }
 
     public void shiftAllEntities(float x){
         for (Entity ent: entities) {
@@ -89,6 +93,14 @@ public class EntityManager {
                 i--;
             }
         }
+    }
+
+    public void clearEnemyEntities(){
+        for (Entity entity: entities) {
+            if (entity.getTeam() == Team.Enemies || entity.getTeam() == Team.EnemyProjectiles)
+                entity.destroy();
+        }
+        deleteEntities();
     }
 
     public void clear(){

@@ -34,6 +34,10 @@ public class StageMap {
         updateCurrentStage();
     }
 
+    public void skipTransition(){
+        playerNumber = 0;
+    }
+
     public void update(){
         // do the lmao
 
@@ -48,7 +52,6 @@ public class StageMap {
         // levels
         for (int i = 0; i < currentStage.getLevels().length; i++) {
 
-            // TODO : this is ugly as shit, rewrite pls
 
             Level lvl = lvb.getByName(currentStage.getLevels()[i]);
             if (i%2 == 0){

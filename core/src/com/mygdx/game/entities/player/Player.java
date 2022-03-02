@@ -46,6 +46,7 @@ public class Player extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
+        // TODO : a better terrain collision system
         if (actionTimer > 0) actionTimer--;
 
         //land
@@ -122,7 +123,7 @@ public class Player extends Entity {
 
         // spawn particle
         if (input.getButtonCharge(Controls.AttackRight) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackRight,true)
-                || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackRight,true)) {
+                || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackLeft,true)) {
             if (particleTimer <= 0) {
                 particleTimer = particleTimerFull;
                 ParticleManager.getINSTANCE().addParticle(
@@ -184,6 +185,7 @@ public class Player extends Entity {
     @Override
     public void takeDamage(int damage) {
         if (iFrame == 0) {
+            hp = inv.getHp();
             hp -= damage;
             PlayerStats.getINSTANCE().setHp(hp);
             iFrame = iFrameMax;
@@ -194,6 +196,7 @@ public class Player extends Entity {
                 else             moveTo -= LevelManager.tileScale*2;
         }
     }
+
 
     @Override
     public Entity getCopy(float x, float y) {

@@ -87,15 +87,22 @@ public class SlimeBoss extends Slime {
         else{
             spr.drawGame("slime_boss2",x,y,1);
         }
-        // TODO : boss sprites
     }
 
     @Override
     public void onCollide(Entity other) {
-        // TODO : this
-        // position on screen related to boss hp
-        // hp-- = x--
-        // spawns red slimes (or some slime minion?)
+
+    }
+
+    public void takeDamage(int damage){
+        // TODO: hurt sound
+
+        ParticleManager part = ParticleManager.getINSTANCE();
+        SoundManager.getINSTANCE().playSound("enemyDeath1");
+        // spawn 1 - 3 gore particles
+        for (int i = 0; i < random.nextInt(2) + 1; i++)
+            part.addParticle("fleshGore" + random.nextInt(3),x + random.nextInt((int) xSize),y + random.nextInt((int) ySize) - 32,random.nextInt(10)-5,5-random.nextInt(10),0.5f,random.nextInt(10) + 10);
+        super.takeDamage(damage);
     }
 
     @Override
@@ -108,6 +115,5 @@ public class SlimeBoss extends Slime {
     public void onDestroy() {
         e.spawnEntity("slime boss death",x,y);
         Game.exitLevel(600);
-        // TODO : some sort of exit level after few seconds function
     }
 }

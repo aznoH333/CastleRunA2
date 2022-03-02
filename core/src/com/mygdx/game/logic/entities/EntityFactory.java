@@ -24,4 +24,8 @@ public class EntityFactory {
     public Entity getByName(String name, float x, float y){
         return entities.get(name).getCopy(x,y);
     }
+
+    public Entity getByName(String name, float x, float y, int specialParam){
+        return entities.get(name).getCopy(x,y, specialParam);
+    }
 }
