@@ -9,6 +9,8 @@ import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.UI.ItemViewer;
 import com.mygdx.game.logic.UI.MenuUIManager;
+import com.mygdx.game.logic.UI.Shops.Shop;
+import com.mygdx.game.logic.UI.Shops.ShopStock;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -31,7 +33,7 @@ public class Game extends ApplicationAdapter {
     private LevelManager lvl;
     private Random r;
     private EntityManager e;
-    private ParticleManager part = ParticleManager.getINSTANCE();
+    private final ParticleManager part = ParticleManager.getINSTANCE();
     private GameUIManager ui;
     private InputManager input = InputManager.getINSTANCE();
     private static long time = 1;
@@ -40,12 +42,14 @@ public class Game extends ApplicationAdapter {
     private MenuUIManager menuUI;
     private StageMap stageMap;
     private ItemViewer itemViewer;
+    private final Shop shop = Shop.getINSTANCE();
 
 
     @Override
     public void create() {
         r = new Random(258);
         spr = SpriteManager.getINSTANCE();
+        shop.setRandom(r);
         LevelManager.setUpINSTANCE(spr,r);
         lvl = LevelManager.getINSTANCE();
         // very bad but functional
@@ -166,6 +170,7 @@ public class Game extends ApplicationAdapter {
     private void gameOver(){
         // TODO : this
     }
+
     private void mainMenu(){
         // TODO : this
     }

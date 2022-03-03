@@ -3,6 +3,7 @@ package com.mygdx.game.logic.stage;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.logic.UI.Shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelOwner;
 import com.mygdx.game.logic.level.LevelManager;
@@ -23,7 +24,9 @@ public class StageManager {
     // TODO : save stage unlocks
 
     private static final ArrayList<Stage> stages = new ArrayList<>();
+    private static final Shop shop = Shop.getINSTANCE();
     private Stage currentStage;
+    private int currentStageIndex = 0;
 
     public StageManager(){
         // I hate this
@@ -36,8 +39,7 @@ public class StageManager {
                         new Decorator("islandDecorator2",-20,270),
                         new Decorator("islandDecorator1",340,385),
                 },
-                120));
-
+                120,3));
         currentStage = stages.get(0);
     }
 
@@ -54,6 +56,12 @@ public class StageManager {
         currentStage.advanceInStage();
         StageMap.getINSTANCE().updateCurrentStage();
         startLevel();
+    }
+
+    public void advanceStage(){
+        currentStageIndex++;
+        currentStage = stages.get(currentStageIndex);
+        shop.restock(currentStage.getShopLevel());
     }
 
     public Stage getCurrentStage(){

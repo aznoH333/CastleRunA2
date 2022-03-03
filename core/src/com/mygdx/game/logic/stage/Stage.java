@@ -6,12 +6,14 @@ public class Stage {
     private final String background;
     private final Decorator[] decorators;
     private final int additionalLevelOffset;
+    private final int shopLevel;
 
-    public Stage(String[] levels, String background, Decorator[] decorators, int additionalLevelOffset){
+    public Stage(String[] levels, String background, Decorator[] decorators, int additionalLevelOffset, int shopLevel){
         this.levels = levels;
         this.background = background;
         this.decorators = decorators;
         this.additionalLevelOffset = additionalLevelOffset;
+        this.shopLevel = shopLevel;
     }
 
     public void advanceInStage(){
@@ -40,5 +42,9 @@ public class Stage {
 
     public int getAdditionalLevelOffset() {
         return additionalLevelOffset;
+    }
+
+    public int getShopLevel(){
+        return shopLevel;
     }
 }

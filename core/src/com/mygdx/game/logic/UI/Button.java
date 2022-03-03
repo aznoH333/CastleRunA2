@@ -2,7 +2,7 @@ package com.mygdx.game.logic.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.mygdx.game.data.IInputFunction;
+import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
@@ -15,7 +15,7 @@ public class Button {
     private final int y;
     private boolean pressed = false;
     private final SpriteManager spr = SpriteManager.getINSTANCE();
-    private final IInputFunction btnHold;
+    private final ILambdaFunction btnHold;
     private final int xIconOffset;
     private final int yIconOffset;
     private final int width;
@@ -26,7 +26,7 @@ public class Button {
     public Button(ButtonType type,
                   String icon,
                   int x, int y,
-                  IInputFunction btnHold){
+                  ILambdaFunction btnHold){
         switch (type){
             case Small:
             case SmallAction:

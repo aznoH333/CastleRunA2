@@ -1,5 +1,5 @@
 package com.mygdx.game.data;
 
-public interface IInputFunction {
+public interface ILambdaFunction {
     public void function();
 }
