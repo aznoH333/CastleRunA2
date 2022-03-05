@@ -42,14 +42,13 @@ public class Game extends ApplicationAdapter {
     private MenuUIManager menuUI;
     private StageMap stageMap;
     private ItemViewer itemViewer;
-    private final Shop shop = Shop.getINSTANCE();
+    private Shop shop;
 
 
     @Override
     public void create() {
         r = new Random(258);
         spr = SpriteManager.getINSTANCE();
-        shop.setRandom(r);
         LevelManager.setUpINSTANCE(spr,r);
         lvl = LevelManager.getINSTANCE();
         // very bad but functional
@@ -61,6 +60,8 @@ public class Game extends ApplicationAdapter {
         menuUI = MenuUIManager.getINSTANCE();
         stageMap = StageMap.getINSTANCE();
         itemViewer = ItemViewer.getINSTANCE();
+        shop = Shop.getINSTANCE();
+        shop.setRandom(r);
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
@@ -161,8 +162,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void shop(){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) changeState(GameState.StageMenu);
-        itemViewer.update();
+        shop.draw();
     }
 
     // TODO : add perks (kind of like items in tboi but not really)

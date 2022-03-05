@@ -46,7 +46,7 @@ public class MenuUIManager {
                         }),
                         new Button(ButtonType.Small, "icon3",368,167,()->{
                             StageMap.getINSTANCE().skipTransition();
-
+                            Game.changeState(GameState.Shop);
                         })
                 };
                 hudOffset = -30;

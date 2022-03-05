@@ -32,4 +32,6 @@ public class ShopItem {
     public String getSprite(){
         return sprite;
     }
+
+    public ILambdaFunction getAction(){return action;}
 }

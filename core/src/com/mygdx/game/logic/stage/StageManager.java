@@ -40,7 +40,8 @@ public class StageManager {
                         new Decorator("islandDecorator1",340,385),
                 },
                 120,3));
-        currentStage = stages.get(0);
+
+        advanceStage();
     }
 
     public void startLevel(){
@@ -59,9 +60,9 @@ public class StageManager {
     }
 
     public void advanceStage(){
-        currentStageIndex++;
         currentStage = stages.get(currentStageIndex);
         shop.restock(currentStage.getShopLevel());
+        currentStageIndex++;
     }
 
     public Stage getCurrentStage(){
