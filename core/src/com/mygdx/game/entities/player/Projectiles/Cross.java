@@ -46,6 +46,8 @@ public class Cross extends Entity {
         // TODO: hit priority
     }
 
+
+
     @Override
     public Entity getCopy(float x, float y) {
         return new Cross(x,y,xSize,ySize,hp);

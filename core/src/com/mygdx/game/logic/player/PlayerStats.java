@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.data.enums.Controls;
+import com.mygdx.game.entities.player.Player;
 
 public class PlayerStats {
     private static PlayerStats INSTANCE;
@@ -17,6 +18,7 @@ public class PlayerStats {
     private int hp = 3;
     private int energy = 2;
     private int coins = 0;
+    private Player player;
 
     private final InventoryManager inventoryManager;
     private PlayerStats(){
@@ -50,6 +52,11 @@ public class PlayerStats {
             if (slot == Controls.AttackLeft)    return currentLeftWeapon.getAttackCost() <= energy;
             else                                return currentRightWeapon.getAttackCost() <= energy;
         }
+    }
+
+    public void updatePlayerStats(Player player){
+        this.player = player;
+        player.setHp(hp);
     }
 
     public void useWeapon(float x, float y, Controls slot){

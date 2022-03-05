@@ -41,6 +41,8 @@ public class Player extends Entity {
 
         hp = inv.getMaxHp();
         inv.setHp(hp);
+
+        inv.updatePlayerStats(this);
     }
 
     @Override
@@ -210,6 +212,10 @@ public class Player extends Entity {
         // FIXME : player can sometimes clip through the ground (probably something with level scrolling)
         // hard to replicate though
 
+    }
+
+    public void setHp(int hp){
+        this.hp = hp;
     }
 
 

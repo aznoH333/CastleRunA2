@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
+import com.mygdx.game.items.items.DebugItem;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.UI.ItemViewer;
 import com.mygdx.game.logic.UI.MenuUIManager;
@@ -16,6 +17,7 @@ import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.UI.GameUIManager;
+import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.logic.stage.StageMap;
@@ -43,10 +45,12 @@ public class Game extends ApplicationAdapter {
     private StageMap stageMap;
     private ItemViewer itemViewer;
     private Shop shop;
+    private final static ItemManager itemManager = ItemManager.getINSTANCE();
 
 
     @Override
     public void create() {
+        // TODO: clean up this
         r = new Random(258);
         spr = SpriteManager.getINSTANCE();
         LevelManager.setUpINSTANCE(spr,r);
@@ -62,6 +66,8 @@ public class Game extends ApplicationAdapter {
         itemViewer = ItemViewer.getINSTANCE();
         shop = Shop.getINSTANCE();
         shop.setRandom(r);
+        // temporary
+        itemManager.addItem(new DebugItem());
 
         //init stuff
         StageManager.getINSTANCE().startLevel();

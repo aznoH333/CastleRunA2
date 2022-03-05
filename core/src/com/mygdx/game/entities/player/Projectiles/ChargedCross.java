@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class ChargedCross extends Entity {
 
-    private final float startPositionX;
+    private float startPositionX;
     private final float startPositionY;
     private final static float rotationTime = 0.1f;
     private final static float speed = 1.5f;
@@ -58,6 +58,11 @@ public class ChargedCross extends Entity {
         spr.drawGame("cross" + (animationIndex+1),x-16,y,2);
     }
 
+    @Override
+    public void shiftX(float shiftBy){
+        startPositionX += shiftBy;
+        super.shiftX(shiftBy);
+    }
 
     @Override
     public void onCollide(Entity other) {

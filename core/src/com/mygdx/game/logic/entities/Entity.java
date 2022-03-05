@@ -2,6 +2,7 @@ package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 
 import java.util.Random;
@@ -81,6 +82,8 @@ public abstract class Entity {
 
 
     // deleting
-    public void destroy(){markForDestruction = true;}
+    public void destroy(){
+        markForDestruction = true;
+    }
     public boolean isMarked(){return markForDestruction;}
 }

@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -88,7 +89,10 @@ public class EntityManager {
         // delete dead entities or marked
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){
-                entities.get(i).onDestroy();
+                Entity ent = entities.get(i);
+                if (ent.getTeam() == Team.Enemies)
+                    ItemManager.getINSTANCE().onKill(ent.getX(),ent.getY());
+                ent.onDestroy();
                 entities.remove(i);
                 i--;
             }
