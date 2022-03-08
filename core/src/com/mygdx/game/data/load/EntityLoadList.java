@@ -6,6 +6,7 @@ import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
 import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
+import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.logic.entities.Entity;
 
 import java.util.HashMap;
@@ -45,6 +46,10 @@ public class EntityLoadList {
         entities.put("coin pickup", new Coin(0,0,32,32,1));
         entities.put("picked coin", new PickedCoin(0,0,32,32,1));
         entities.put("health potion", new HealthPotion(0,0,48,48,1));
+
+
+        //item entities
+        entities.put("friendlyOrb", new FriendlyOrb(0,0,16,16,1));
 
 
         // environment

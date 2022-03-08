@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.entities;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.sprites.SpriteManager;
@@ -19,18 +20,17 @@ public class EntityManager {
     private static EntityManager INSTANCE;
 
     public static EntityManager getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new EntityManager();
         return INSTANCE;
     }
 
     // a nasty workaround but i am very lazy
-    public static void createINSTANCE(LevelManager lvl, SpriteManager spr){
-        INSTANCE = new EntityManager(lvl, spr);
-    }
 
-    public EntityManager(LevelManager lvl, SpriteManager spr){
-        this.lvl = lvl;
-        this.r = new Random();
-        this.spr = spr;
+
+    public EntityManager(){
+        this.lvl = LevelManager.getINSTANCE();
+        this.r = Game.getGeneralRandom();
+        this.spr = SpriteManager.getINSTANCE();
         entities = new ArrayList<>();
         entitySpawnQueue = new ArrayList<>();
     }

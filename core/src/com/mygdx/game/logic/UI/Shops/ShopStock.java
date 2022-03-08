@@ -1,5 +1,9 @@
 package com.mygdx.game.logic.UI.Shops;
 
+import com.mygdx.game.data.ILambdaFunction;
+import com.mygdx.game.items.items.FriendlyOrbItem;
+import com.mygdx.game.logic.player.InventoryManager;
+import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
 
 import java.util.Random;
@@ -14,6 +18,8 @@ public class ShopStock {
 
     private final Random r;
     private final static PlayerStats stats = PlayerStats.getINSTANCE();
+    private final static InventoryManager inventory = InventoryManager.getINSTANCE();
+    private final static ItemManager item = ItemManager.getINSTANCE();
     public ShopStock(Random r){
         this.r = r;
     }
@@ -21,12 +27,31 @@ public class ShopStock {
     private ShopItem[] items;
 
     // generate new items for sale
+
     public void restock(int shopLevel){
         items = new ShopItem[shopLevel];
-        for (int i = 0; i < shopLevel; i++) {
-            items[i] = new ShopItem("player0", 2, 3, ()->{
-                System.out.println("scam lmao");
-            });
+
+        // first items is always a restock
+        items[0] = new ShopItem("player1",15,3, stats::restoreStats);
+
+        for (int i = 1; i < shopLevel; i++) {
+
+            float random = r.nextFloat();
+            ILambdaFunction buyFunction;
+            // random permanent upgrade
+            if (random < 0.33f){
+                if (r.nextBoolean())    items[i] = new ShopItem("player2", 20, 1, stats::upgradeHp);
+                else                    items[i] = new ShopItem("player2", 20, 1, stats::upgradeEnergy);
+            }else if (random < 0.66f){
+                // random weapon unlock
+                // TODO : unlock randomization
+                items[i] = new ShopItem("player0", 15, 1, ()->inventory.unlockWeapon("Cross"));
+            }else{
+                // random item
+                // TODO : item randomization
+                items[i] = new ShopItem("player3", 15, 1, ()->item.addItem(new FriendlyOrbItem()));
+            }
+
         }
     }
 

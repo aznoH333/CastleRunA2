@@ -7,11 +7,11 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.items.items.DebugItem;
+import com.mygdx.game.items.items.FriendlyOrbItem;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.UI.ItemViewer;
 import com.mygdx.game.logic.UI.MenuUIManager;
 import com.mygdx.game.logic.UI.Shops.Shop;
-import com.mygdx.game.logic.UI.Shops.ShopStock;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -31,43 +31,35 @@ public class Game extends ApplicationAdapter {
     public static final int pcHeight = 640;
     public static final int pcWidth = 360;
 
-    private SpriteManager spr;
-    private LevelManager lvl;
-    private Random r;
-    private EntityManager e;
-    private final ParticleManager part = ParticleManager.getINSTANCE();
-    private GameUIManager ui;
-    private InputManager input = InputManager.getINSTANCE();
+    private final static Random seededRandom = new Random(258);
+    private final static Random generalRandom = new Random();
+    private final static SpriteManager spr = SpriteManager.getINSTANCE();
+    private final static LevelManager lvl = LevelManager.getINSTANCE();
+    private final static ParticleManager part = ParticleManager.getINSTANCE();
+    private final static GameUIManager ui = GameUIManager.getINSTANCE();
+    private final static InputManager input = InputManager.getINSTANCE();
+    private final static EntityManager ent = EntityManager.getINSTANCE();
     private static long time = 1;
     private static long exitTime = 0;
     private static GameState state = GameState.Game;
-    private MenuUIManager menuUI;
-    private StageMap stageMap;
-    private ItemViewer itemViewer;
-    private Shop shop;
+    private final static MenuUIManager menuUI = MenuUIManager.getINSTANCE();
+    private final static StageMap stageMap = StageMap.getINSTANCE();
+    private final static ItemViewer itemViewer = ItemViewer.getINSTANCE();
+    private final static Shop shop = Shop.getINSTANCE();
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
+
+
+
 
 
     @Override
     public void create() {
-        // TODO: clean up this
-        r = new Random(258);
-        spr = SpriteManager.getINSTANCE();
-        LevelManager.setUpINSTANCE(spr,r);
-        lvl = LevelManager.getINSTANCE();
-        // very bad but functional
-        EntityManager.createINSTANCE(lvl, spr);
-        e = EntityManager.getINSTANCE();
-        lvl.setE(e);
+        SpriteManager.getINSTANCE().wtfKterejDebilTohleNapsal();
         SoundLoadList.loadAllSounds();
-        ui = GameUIManager.getINSTANCE();
-        menuUI = MenuUIManager.getINSTANCE();
-        stageMap = StageMap.getINSTANCE();
-        itemViewer = ItemViewer.getINSTANCE();
-        shop = Shop.getINSTANCE();
-        shop.setRandom(r);
+
         // temporary
         itemManager.addItem(new DebugItem());
+        itemManager.addItem(new FriendlyOrbItem());
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
@@ -157,7 +149,7 @@ public class Game extends ApplicationAdapter {
         lvl.update();
         part.update();
         part.draw(spr);
-        e.update();
+        ent.update();
         ui.drawGameUI();
     }
 
@@ -169,9 +161,9 @@ public class Game extends ApplicationAdapter {
 
     private void shop(){
         shop.draw();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.F)) Game.changeState(GameState.StageMenu);
     }
 
-    // TODO : add perks (kind of like items in tboi but not really)
 
     private void gameOver(){
         // TODO : this
@@ -192,6 +184,14 @@ public class Game extends ApplicationAdapter {
             EntityManager.getINSTANCE().clearEnemyEntities();
         }
 
+    }
+
+    public static Random getSeededRandom(){
+        return seededRandom;
+    }
+
+    public static Random getGeneralRandom(){
+        return generalRandom;
     }
 
     public static void exitLevel(){

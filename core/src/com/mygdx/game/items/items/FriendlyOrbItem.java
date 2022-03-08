@@ -1,17 +1,20 @@
 package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
-import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
 import com.mygdx.game.items.interfaces.ItemActivationType;
+import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.player.PlayerStats;
 
-public class DebugItem implements IItem, IItemOnLevelStart, IItemOnKill {
+
+public class FriendlyOrbItem implements IItem, IItemOnLevelStart {
+
+    private final EntityManager ent = EntityManager.getINSTANCE();
+    private final PlayerStats stats = PlayerStats.getINSTANCE();
 
     @Override
     public ItemActivationType[] getActivationType() {
-        return new ItemActivationType[]{
-                ItemActivationType.OnLevelStart
-                , ItemActivationType.OnKill};
+        return new ItemActivationType[]{ItemActivationType.OnLevelStart};
     }
 
     @Override
@@ -31,16 +34,11 @@ public class DebugItem implements IItem, IItemOnLevelStart, IItemOnKill {
 
     @Override
     public String getName() {
-        return "Debug item";
+        return "Friendly orb";
     }
 
     @Override
     public void onLevelStart() {
-        System.out.println("intefacy jsou asi cool");
-    }
-
-    @Override
-    public void onKillFunction(float enemyX, float enemyY) {
-        System.out.println("vražda je poggers");
+        ent.spawnEntity("friendlyOrb",stats.getPlayer().getX()-8, stats.getPlayer().getY()-8);
     }
 }

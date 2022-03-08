@@ -1,9 +1,9 @@
 package com.mygdx.game.logic.UI.Shops;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.UI.Button;
 import com.mygdx.game.logic.sprites.SpriteManager;
-import com.mygdx.game.logic.stage.StageManager;
 
 import java.util.Random;
 
@@ -15,14 +15,10 @@ public class Shop {
         return INSTANCE;
     }
 
-    private Random r;
+    private final static Random r = Game.getSeededRandom();
     private ShopStock shopStock;
     private final SpriteManager spr = SpriteManager.getINSTANCE();
 
-
-    public void setRandom(Random r){
-        this.r = r;
-    }
 
     private Button[] buttons = new Button[0];
 
@@ -33,7 +29,7 @@ public class Shop {
 
         for (int i = 0; i < shopStock.getLength(); i++) {
             int finalI = i;
-            buttons[i] = new Button(ButtonType.Small,"player0",i * 96 + 16, 270,()-> shopStock.buyItem(finalI));
+            buttons[i] = new Button(ButtonType.Small,"player0",96, 270 + (i* 96),()-> shopStock.buyItem(finalI));
         }
     }
 

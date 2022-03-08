@@ -39,9 +39,6 @@ public class Player extends Entity {
         super(x, y, sizeX, sizeY, 3, Team.Player);
         inv = PlayerStats.getINSTANCE();
 
-        hp = inv.getMaxHp();
-        inv.setHp(hp);
-
         inv.updatePlayerStats(this);
     }
 
@@ -138,6 +135,8 @@ public class Player extends Entity {
                         (int) (Math.random() * 20 + 10));
             } else particleTimer--;
         }
+
+
         if (iFrame > 0) iFrame--;
 
         // map hazards

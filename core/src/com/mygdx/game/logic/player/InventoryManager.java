@@ -34,7 +34,6 @@ public class InventoryManager {
         unlockWeapon("Small daggers");
         unlockWeapon("Sword");
         unlockWeapon("Axe");
-        unlockWeapon("Cross");
     }
 
     public ArrayList<String> getUnlockedWeapons(){

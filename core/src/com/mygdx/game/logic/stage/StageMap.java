@@ -13,11 +13,11 @@ public class StageMap {
         return INSTANCE;
     }
 
-    private SpriteManager spr;
-    private StageManager stageManager;
+    private final SpriteManager spr;
+    private final StageManager stageManager;
     private Stage currentStage;
     private byte currentStageIndex;
-    private LevelOwner lvb = LevelOwner.getINSTANCE();
+    private final static LevelOwner lvb = LevelOwner.getINSTANCE();
 
     private static final int offset = 482;
     private static final int levelOffset = 128;

@@ -8,4 +8,6 @@ public interface IItem {
     int getCost();
 
     float getSpawnChance();
+
+    String getName();
 }

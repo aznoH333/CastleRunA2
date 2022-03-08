@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.level;
 
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
@@ -16,12 +17,10 @@ public class LevelManager {
     private static LevelManager INSTANCE;
 
     public static LevelManager getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new LevelManager();
         return INSTANCE;
     }
 
-    public static void setUpINSTANCE(SpriteManager spr, Random r){
-        INSTANCE = new LevelManager(spr, r);
-    }
 
 
     //constants
@@ -31,15 +30,15 @@ public class LevelManager {
     public static final int mapWidth = 13;
 
     //vars
-    private final SpriteManager spr;
+    private final SpriteManager spr = SpriteManager.getINSTANCE();
     private float distance = 0;
     private float advanceDistance = 0;
     private final TileCollum[] map = new TileCollum[mapWidth];
-    private final BackgroundRenderer b;
+    private final BackgroundRenderer backgroundRenderer = BackgroundRenderer.getINSTANCE();
     private Level lvl;
-    private final Random r;
-    private EntityManager e;
+    private final Random random = Game.getSeededRandom();
     private ParticleManager part = ParticleManager.getINSTANCE();
+    private static final EntityManager e = EntityManager.getINSTANCE();
     //lvl generation vars
     private int height = 0;
     private boolean grace = false;
@@ -49,15 +48,8 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
 
-    public LevelManager(SpriteManager spr, Random r) {
-        this.spr = spr;
-        this.r = r;
-        this.b = BackgroundRenderer.getINSTANCE();
-    }
 
-    public void setE(EntityManager e) {
-        this.e = e;
-    }
+
 
 
     private void generateLevel(int index) {
@@ -65,7 +57,7 @@ public class LevelManager {
         if (startGenerationIndex > 0 || distance > levelLength - (tileScale * 4)) {
             TileCollum temp;
             do {
-                temp = lvl.randomTile(r, height);
+                temp = lvl.randomTile(random, height);
             } while (temp.getSpecial() != TileCollumSpecial.None);
             lastHeight = height;
             // spawn exit door
@@ -79,7 +71,7 @@ public class LevelManager {
             // tile selection & grace handling
             TileCollum temp;
             while (true) {
-                temp = lvl.randomTile(r, height);
+                temp = lvl.randomTile(random, height);
                 if (!grace || !temp.grace()) {
                     if (temp.grace()) {
                         grace = true;
@@ -90,7 +82,7 @@ public class LevelManager {
             }
             //add enemies
             if (!grace) {
-                Entity tempE = lvl.randomEnemy(r, index * tileScale - (distance % tileScale), height);
+                Entity tempE = lvl.randomEnemy(random, index * tileScale - (distance % tileScale), height);
                 if (tempE != null) {
                     e.addEntity(tempE);
                 }
@@ -108,11 +100,11 @@ public class LevelManager {
     private void changeDirection() {
         //change direction
         if (changeFor < 1) {
-            if (r.nextFloat() < lvl.changeChance()) {
-                if (r.nextBoolean()) dir = Directions.Up;
+            if (random.nextFloat() < lvl.changeChance()) {
+                if (random.nextBoolean()) dir = Directions.Up;
                 else dir = Directions.Down;
             } else dir = Directions.None;
-            changeFor = r.nextInt(lvl.changeLengthMax() - lvl.changeLengthMin()) + lvl.changeLengthMin();
+            changeFor = random.nextInt(lvl.changeLengthMax() - lvl.changeLengthMin()) + lvl.changeLengthMin();
         }
     }
 
@@ -137,7 +129,7 @@ public class LevelManager {
     }
 
     private void renderLevel() {
-        b.draw(spr);
+        backgroundRenderer.draw(spr);
 
         for (int x = 0; x < mapWidth; x++) {
             TileCollum currentCollum = map[x];
@@ -181,7 +173,7 @@ public class LevelManager {
             e.shiftAllEntities(advanceBy);
             part.shiftPartsBy(advanceBy);
             distance += advanceBy;
-            b.advance(advanceBy);
+            backgroundRenderer.advance(advanceBy);
 
             //shift map & generate
             //shift only while advancing
@@ -227,16 +219,18 @@ public class LevelManager {
     }
 
     public void loadLevel(Level lvl) {
+
         this.lvl = lvl;
+
         isBossLevel = lvl.isBossLevel();
-        b.setBackground(lvl.getBackground());
+        backgroundRenderer.setBackground(lvl.getBackground());
         distance = 0;
         advanceDistance = 0;
         trapOffset = 0;
 
         startGenerationIndex = 3;
         if (!isBossLevel)
-            height = r.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
+            height = random.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
         else
             height = lvl.defaultH;
         levelLength = lvl.getLength();

@@ -3,6 +3,7 @@ package com.mygdx.game.logic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.mygdx.game.Config;
+import com.mygdx.game.data.load.SoundLoadList;
 
 import java.util.HashMap;
 
@@ -18,6 +19,8 @@ public class SoundManager {
     private HashMap<String, Sound> sounds = new HashMap<>();
     private long musicId;
     private Sound currentMusic;
+
+
 
     public void loadSound(String path, String name){
         sounds.put(name, Gdx.audio.newSound(Gdx.files.internal("sounds/" + path)));

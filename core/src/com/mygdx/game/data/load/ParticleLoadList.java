@@ -37,6 +37,7 @@ public class ParticleLoadList {
 
         // environmental effects
         particleMap.put("smoke", new Particle(new String[]{"particle12","particle13","particle14"},0,8));
+        particleMap.put("electricity", new Particle(new String[]{"particle6","particle7","particle8","particle7","particle6","particle8"},0,4));
 
         // potions
         particleMap.put("potion", new Particle(new String[]{"potion0"},420,0));

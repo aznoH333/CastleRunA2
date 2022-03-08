@@ -18,15 +18,19 @@ public class SpriteManager {
         return INSTANCE;
     }
 
-    private final SpriteBatch batch;
+    private SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
     private static final int pixelScale = 4;
     public static final int gamePosition = 426;
     private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
 
     public SpriteManager(){
-        batch = new SpriteBatch();
         sprs = new HashMap<>();
+    }
+
+    public void wtfKterejDebilTohleNapsal(){
+        batch = new SpriteBatch();
+
         OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, 720,1280);
         batch.setProjectionMatrix(cam.combined);

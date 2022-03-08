@@ -14,7 +14,7 @@ public class SwordSwipe extends Entity {
     protected boolean hurts = true;
     public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
-        SoundManager.getINSTANCE().playSound("weapon1");
+        //SoundManager.getINSTANCE().playSound("weapon1");
     }
 
     @Override

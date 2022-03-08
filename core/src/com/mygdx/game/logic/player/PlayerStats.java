@@ -59,6 +59,10 @@ public class PlayerStats {
         player.setHp(hp);
     }
 
+    public Player getPlayer(){
+        return player;
+    }
+
     public void useWeapon(float x, float y, Controls slot){
         Weapon w;
         if (slot == Controls.AttackLeft)    w = currentLeftWeapon;
@@ -86,7 +90,15 @@ public class PlayerStats {
         energy = maxEnergy;
     }
 
+    public void upgradeHp(){
+        maxHp++;
+        hp++;
+    }
 
+    public void upgradeEnergy(){
+        maxEnergy++;
+        energy++;
+    }
 
 
     public Weapon getLeftWeapon(){

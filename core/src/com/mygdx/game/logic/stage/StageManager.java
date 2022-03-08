@@ -46,12 +46,13 @@ public class StageManager {
     }
 
     public void startLevel(){
+
         LevelManager.getINSTANCE().loadLevel(LevelOwner.getINSTANCE().getByName(currentStage.getCurrentLevel()));
         // xtreme lidl
         // respawns the player
-        ItemManager.getINSTANCE().onLevelStart();
         EntityManager.getINSTANCE().addEntity(new Player(64, 0, 64, 64));
-        PlayerStats.getINSTANCE().restoreStats();
+        ItemManager.getINSTANCE().onLevelStart();
+        //PlayerStats.getINSTANCE().restoreStats();
     }
 
     public void advanceInStage(){
