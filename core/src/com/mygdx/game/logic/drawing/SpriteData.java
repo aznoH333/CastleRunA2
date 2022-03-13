@@ -1,4 +1,4 @@
-package com.mygdx.game.logic.sprites;
+package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.graphics.Texture;
 

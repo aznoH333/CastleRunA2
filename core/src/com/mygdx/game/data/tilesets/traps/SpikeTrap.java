@@ -4,7 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.LevelManager;
 
 public class SpikeTrap extends TileCollum {
@@ -46,6 +46,6 @@ public class SpikeTrap extends TileCollum {
     }
     @Override
     public void draw(float x, float y) {
-        if (hurts) SpriteManager.getINSTANCE().drawGame("spikeTrap0",x, y + LevelManager.tileScale,2);
+        if (hurts) DrawingManager.getINSTANCE().drawGame("spikeTrap0",x, y + LevelManager.tileScale,2);
     }
 }

@@ -3,7 +3,7 @@ package com.mygdx.game.logic.stage;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelOwner;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class StageMap {
     public static StageMap INSTANCE;
@@ -13,7 +13,7 @@ public class StageMap {
         return INSTANCE;
     }
 
-    private final SpriteManager spr;
+    private final DrawingManager spr;
     private final StageManager stageManager;
     private Stage currentStage;
     private byte currentStageIndex;
@@ -29,7 +29,7 @@ public class StageMap {
     private int waitNumber = 45;
 
     public StageMap(){
-        spr = SpriteManager.getINSTANCE();
+        spr = DrawingManager.getINSTANCE();
         stageManager = StageManager.getINSTANCE();
         updateCurrentStage();
     }
@@ -39,8 +39,8 @@ public class StageMap {
     }
 
     public void update(){
-        // do the lmao
 
+        // do the lmao
         skullSprite = (byte) (Math.round((Math.sin(Game.Time()>>5) +1)*2));
 
         // draw back

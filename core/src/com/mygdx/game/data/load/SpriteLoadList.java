@@ -1,16 +1,17 @@
 package com.mygdx.game.data.load;
 
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 
 
 
 public class SpriteLoadList {
-    public static void loadAllSprites(SpriteManager spr){
+    public static void loadAllSprites(DrawingManager spr){
         //TODO: rework to iterate through folders
 
         //player
         spr.loadSprites("entities/player/player_","player",4);
+        spr.loadSprites("entities/player/mapSprites/player_map_","playerMap",5);
 
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
@@ -52,9 +53,13 @@ public class SpriteLoadList {
         spr.loadSprites("ui/bars/ui_bars_", "barUI", 6);
         spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_large_", "button_large", 1);
+        spr.loadSprites("ui/buttons/card_", "item_card", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
+        spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
+
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);
+
 
         //map ui
         spr.loadSprites("ui/map/levels/castle/map_icon_castle_", "mIconCastle", 2);

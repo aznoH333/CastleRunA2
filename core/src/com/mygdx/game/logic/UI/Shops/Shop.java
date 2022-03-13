@@ -3,7 +3,9 @@ package com.mygdx.game.logic.UI.Shops;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.UI.Button;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.player.InventoryManager;
+import com.mygdx.game.logic.player.PlayerStats;
 
 import java.util.Random;
 
@@ -17,7 +19,8 @@ public class Shop {
 
     private final static Random r = Game.getSeededRandom();
     private ShopStock shopStock;
-    private final SpriteManager spr = SpriteManager.getINSTANCE();
+    private final static DrawingManager spr = DrawingManager.getINSTANCE();
+    private final static PlayerStats stats = PlayerStats.getINSTANCE();
 
 
     private Button[] buttons = new Button[0];
@@ -29,7 +32,7 @@ public class Shop {
 
         for (int i = 0; i < shopStock.getLength(); i++) {
             int finalI = i;
-            buttons[i] = new Button(ButtonType.Small,"player0",96, 270 + (i* 96),()-> shopStock.buyItem(finalI));
+            buttons[i] = new Button(ButtonType.Small,shopStock.getItem(i).getSprite(),96, 270 + (i* 96),()-> shopStock.buyItem(finalI), shopStock.getItem(i).getText());
         }
     }
 
@@ -38,5 +41,6 @@ public class Shop {
             buttons[i].manageInput();
             buttons[i].draw();
         }
+        spr.drawText(String.valueOf(stats.getCoins()),64,64);
     }
 }

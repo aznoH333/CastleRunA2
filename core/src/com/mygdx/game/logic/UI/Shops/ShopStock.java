@@ -32,7 +32,7 @@ public class ShopStock {
         items = new ShopItem[shopLevel];
 
         // first items is always a restock
-        items[0] = new ShopItem("player1",15,3, stats::restoreStats);
+        items[0] = new ShopItem("shop_icon2",15,3, stats::restoreStats, "restore");
 
         for (int i = 1; i < shopLevel; i++) {
 
@@ -40,16 +40,18 @@ public class ShopStock {
             ILambdaFunction buyFunction;
             // random permanent upgrade
             if (random < 0.33f){
-                if (r.nextBoolean())    items[i] = new ShopItem("player2", 20, 1, stats::upgradeHp);
-                else                    items[i] = new ShopItem("player2", 20, 1, stats::upgradeEnergy);
+                if (r.nextFloat() <= 0.5f)      items[i] = new ShopItem("shop_icon0", 20, 1, stats::upgradeHp, "upgrade hp");
+                else                            items[i] = new ShopItem("shop_icon1", 20, 1, stats::upgradeEnergy, "upgrade energy");
             }else if (random < 0.66f){
                 // random weapon unlock
                 // TODO : unlock randomization
-                items[i] = new ShopItem("player0", 15, 1, ()->inventory.unlockWeapon("Cross"));
+                items[i] = new ShopItem("player0", 15, 1, ()->inventory.unlockWeapon("Cross"), "buy weapon");
             }else{
                 // random item
                 // TODO : item randomization
-                items[i] = new ShopItem("player3", 15, 1, ()->item.addItem(new FriendlyOrbItem()));
+                items[i] = new ShopItem("player3", 15, 1, ()->{
+                    item.addItem(new FriendlyOrbItem());
+                }, "buy item");
             }
 
         }

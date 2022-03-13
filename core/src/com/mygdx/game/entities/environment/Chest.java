@@ -2,7 +2,7 @@ package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -48,7 +48,7 @@ public class Chest extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         if (isOpen) spr.drawGame("chest1",x,y, 0);
         else        spr.drawGame("chest0",x,y,0);
     }

@@ -7,7 +7,7 @@ import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -54,7 +54,7 @@ public class PickedCoin extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         switch (animation){
             case 0:
                 spr.drawGame("pickup1",x,y,1);

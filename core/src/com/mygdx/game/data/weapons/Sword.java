@@ -5,7 +5,7 @@ import com.mygdx.game.logic.player.Weapon;
 public class Sword extends Weapon {
 
     public Sword() {
-        super("sword0", 0, 1);
+        super("sword0", 0, 1, "weapon1", "weapon1");
     }
 
     @Override

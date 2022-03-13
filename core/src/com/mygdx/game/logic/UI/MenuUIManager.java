@@ -4,7 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.logic.stage.StageMap;
 
 public class MenuUIManager {
@@ -18,7 +19,7 @@ public class MenuUIManager {
     }
 
     private Button[] buttons;
-    private SpriteManager spr = SpriteManager.getINSTANCE();
+    private DrawingManager spr = DrawingManager.getINSTANCE();
 
 
     public void update(){
@@ -35,26 +36,27 @@ public class MenuUIManager {
                 buttons = new Button[]{
                         new Button(ButtonType.Large,"icon0",16,303,()->{
                             StageMap.getINSTANCE().skipTransition();
-                            Game.changeState(GameState.Game);}),
+                            Game.changeState(GameState.Game);
+                            StageManager.getINSTANCE().startLevel();}, ""),
                         new Button(ButtonType.Large,"icon4",16,31,()->{
                             StageMap.getINSTANCE().skipTransition();
                             Gdx.app.exit();
-                        }),
+                        }, ""),
                         new Button(ButtonType.Small, "icon3",16,167,()->{
                             StageMap.getINSTANCE().skipTransition();
                             Game.changeState(GameState.EquipMenu);
-                        }),
+                        }, ""),
                         new Button(ButtonType.Small, "icon3",368,167,()->{
                             StageMap.getINSTANCE().skipTransition();
                             Game.changeState(GameState.Shop);
-                        })
+                        }, "")
                 };
                 hudOffset = -30;
                 break;
             case EquipMenu:
                 buttons = new Button[]{
                         new Button(ButtonType.Large,"icon0",16,31,()->{
-                            Game.changeState(GameState.StageMenu);}),
+                            Game.changeState(GameState.StageMenu);}, ""),
                 };
                 hudOffset = -284;
                 break;

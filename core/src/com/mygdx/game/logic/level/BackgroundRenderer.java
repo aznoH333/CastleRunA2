@@ -1,7 +1,7 @@
 package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.Background;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class BackgroundRenderer {
     // singleton stuff
@@ -22,7 +22,7 @@ public class BackgroundRenderer {
 
     private final static int veryDumb = 768;
 
-    public void draw(SpriteManager spr){
+    public void draw(DrawingManager spr){
         for (int i = 0; i < background.getBackgrounds().length; i++) {
             spr.drawGame(background.getBackgrounds()[i],(- distance * background.getParallaxes()[i])%veryDumb,0, -1);
             spr.drawGame(background.getBackgrounds()[i],(- distance * background.getParallaxes()[i])%veryDumb+veryDumb,0, -1);

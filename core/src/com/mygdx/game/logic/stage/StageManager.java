@@ -30,7 +30,6 @@ public class StageManager {
     private int currentStageIndex = 0;
 
     public StageManager(){
-        // I hate this
         stages.add(new Stage(
                 new String[]{"1-1","1-2","1-3","1-4"},
                 "mapBack0",
@@ -40,26 +39,27 @@ public class StageManager {
                         new Decorator("islandDecorator2",-20,270),
                         new Decorator("islandDecorator1",340,385),
                 },
-                120,3));
+                120,10));
 
         advanceStage();
     }
 
     public void startLevel(){
-
         LevelManager.getINSTANCE().loadLevel(LevelOwner.getINSTANCE().getByName(currentStage.getCurrentLevel()));
-        // xtreme lidl
-        // respawns the player
         EntityManager.getINSTANCE().addEntity(new Player(64, 0, 64, 64));
         ItemManager.getINSTANCE().onLevelStart();
-        //PlayerStats.getINSTANCE().restoreStats();
     }
 
     public void advanceInStage(){
         Game.changeState(GameState.StageMenu);
+        if (currentStage.getLevels().length == currentStage.getCurrentStageIndex()){
+            // TODO : this
+            currentStageIndex++;
+            currentStage = stages.get(currentStageIndex);
+            System.out.println("progressed");
+        }
         currentStage.advanceInStage();
         StageMap.getINSTANCE().updateCurrentStage();
-        startLevel();
     }
 
     public void advanceStage(){

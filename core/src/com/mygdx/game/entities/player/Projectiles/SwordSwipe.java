@@ -1,8 +1,7 @@
 package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -14,7 +13,6 @@ public class SwordSwipe extends Entity {
     protected boolean hurts = true;
     public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
-        //SoundManager.getINSTANCE().playSound("weapon1");
     }
 
     @Override
@@ -24,7 +22,7 @@ public class SwordSwipe extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         // me when bruh
 
         if (lifeTime>0)

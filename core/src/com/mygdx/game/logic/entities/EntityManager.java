@@ -3,7 +3,7 @@ package com.mygdx.game.logic.entities;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.player.ItemManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class EntityManager {
     private final LevelManager lvl;
-    private final SpriteManager spr;
+    private final DrawingManager spr;
     private final Random r;
     private final ArrayList<Entity> entities;
     private final ArrayList<Entity> entitySpawnQueue;
@@ -30,7 +30,7 @@ public class EntityManager {
     public EntityManager(){
         this.lvl = LevelManager.getINSTANCE();
         this.r = Game.getGeneralRandom();
-        this.spr = SpriteManager.getINSTANCE();
+        this.spr = DrawingManager.getINSTANCE();
         entities = new ArrayList<>();
         entitySpawnQueue = new ArrayList<>();
     }

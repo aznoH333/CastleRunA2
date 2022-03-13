@@ -3,7 +3,7 @@ package com.mygdx.game.data.tilesets.traps;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class GhostPlatform extends TileCollum {
 
@@ -42,7 +42,7 @@ public class GhostPlatform extends TileCollum {
     @Override
     public void draw(float x, float y) {
         if (isOn && timer >= 60 && timer <= 180 || isOn && Game.Time() % 4 >> 1 == 0)
-            SpriteManager.getINSTANCE().drawGame("ghost_platform0",x,y);
+            DrawingManager.getINSTANCE().drawGame("ghost_platform0",x,y);
     }
 
     @Override

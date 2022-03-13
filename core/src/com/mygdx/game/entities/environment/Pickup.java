@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -37,7 +37,7 @@ public abstract class Pickup extends Entity {
     }
 
     @Override
-    public abstract void draw(SpriteManager spr);
+    public abstract void draw(DrawingManager spr);
 
     @Override
     public void onCollide(Entity other){

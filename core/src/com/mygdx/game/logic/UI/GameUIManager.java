@@ -4,7 +4,7 @@ import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class GameUIManager {
 
@@ -24,18 +24,18 @@ public class GameUIManager {
 
     private static final byte buttonOffset = 16;
     private static final int bottomButtonOffset = 32;
-    private final SpriteManager spr = SpriteManager.getINSTANCE();
+    private final DrawingManager spr = DrawingManager.getINSTANCE();
     private final PlayerStats ps = PlayerStats.getINSTANCE();
     private final InputManager input = InputManager.getINSTANCE();
     private Button[] buttons = {
             new Button(ButtonType.SmallAction,"icon1"
-                    ,buttonOffset, buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveLeft)),
+                    ,buttonOffset, buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveLeft), ""),
             new Button(ButtonType.SmallAction,"icon0"
-                    ,buttonOffset * 2 + 336 , buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveRight)),
+                    ,buttonOffset * 2 + 336 , buttonOffset + bottomButtonOffset,()-> input.buttonHold(Controls.MoveRight), ""),
             new Button(ButtonType.SmallAction,"icon3"
-                    ,buttonOffset , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackLeft)),
+                    ,buttonOffset , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackLeft), ""),
             new Button(ButtonType.SmallAction,"icon2"
-                    ,buttonOffset * 2 + 336 , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackRight)),
+                    ,buttonOffset * 2 + 336 , buttonOffset * 2 + 120 + bottomButtonOffset,()-> input.buttonHold(Controls.AttackRight), ""),
     };
 
     // TODO : add a bit more wood to the ui

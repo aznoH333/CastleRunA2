@@ -2,6 +2,7 @@ package com.mygdx.game.logic.player;
 
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.logic.SoundManager;
 
 public class PlayerStats {
     private static PlayerStats INSTANCE;
@@ -20,15 +21,11 @@ public class PlayerStats {
     private int coins = 0;
     private Player player;
 
-    private final InventoryManager inventoryManager;
+    private static final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
+    private static final SoundManager sound = SoundManager.getINSTANCE();
     private PlayerStats(){
-
-        // TODO: starting equipment??
-        inventoryManager = InventoryManager.getINSTANCE();
-
-
+        // TODO: starting equipment
         // temporary
-
         equipWeapon("Nothing", Controls.AttackLeft);
         equipWeapon("Sword", Controls.AttackRight);
     }
@@ -70,6 +67,7 @@ public class PlayerStats {
 
         if (w.getAttackCost() <= energy){
             w.attack(x,y);
+            if (w.getUseSound() != null) sound.playSound(w.getUseSound());
             energy -= w.getAttackCost();
         }
     }
@@ -81,6 +79,7 @@ public class PlayerStats {
 
         if (w.getChargedAttackCost() <= energy){
             w.chargedAttack(x,y);
+            if (w.getChargedUseSound() != null) sound.playSound(w.getChargedUseSound());
             energy -= w.getChargedAttackCost();
         }
     }

@@ -4,8 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -30,7 +29,7 @@ public class Cross extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         spr.drawGame("cross" + (animationIndex+1),x-16,y,2);
     }
 

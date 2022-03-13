@@ -1,20 +1,24 @@
-package com.mygdx.game.logic.sprites;
+package com.mygdx.game.logic.drawing;
 
+import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.data.load.SpriteLoadList;
 import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
-public class SpriteManager {
+public class DrawingManager {
 
-    private static SpriteManager INSTANCE;
-    public static SpriteManager getINSTANCE(){
-        if (INSTANCE == null) INSTANCE = new SpriteManager();
+    private static DrawingManager INSTANCE;
+    public static DrawingManager getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new DrawingManager();
         return INSTANCE;
     }
 
@@ -23,14 +27,25 @@ public class SpriteManager {
     private static final int pixelScale = 4;
     public static final int gamePosition = 426;
     private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
+    private final ArrayList<TextData> texts = new ArrayList<>();
 
-    public SpriteManager(){
+
+    // TODO : get custom font
+    private BitmapFont font;
+
+    public DrawingManager(){
         sprs = new HashMap<>();
     }
 
     public void wtfKterejDebilTohleNapsal(){
-        batch = new SpriteBatch();
+        //font stuff
+        // TODO : get a custom font (required for commercial usage)
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.getFileHandle("fonts/AGoblinAppears-o2aV.ttf", Files.FileType.Internal));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
+        batch = new SpriteBatch();
+        parameter.size = 25;
+        font = generator.generateFont(parameter);
         OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, 720,1280);
         batch.setProjectionMatrix(cam.combined);
@@ -40,6 +55,7 @@ public class SpriteManager {
 
     public void dispose(){
         batch.dispose();
+        font.dispose();
         //dispose of sprites
         try{
             for (Texture t: sprs.values()) {
@@ -50,7 +66,7 @@ public class SpriteManager {
         }
 
         sprs.clear();
-
+        texts.clear();
     }
 
 
@@ -76,7 +92,18 @@ public class SpriteManager {
             }
             layer.clear();
         }
+        // draw text
+        for (TextData text : texts){
+            font.draw(batch, text.getText(), text.getX(), text.getY());
+        }
+
+        texts.clear();
+
         batch.end();
+    }
+
+    public void drawText(String text, float x, float y){
+        texts.add(new TextData(text, x, y));
     }
 
     // draws sprite with the default sprite index

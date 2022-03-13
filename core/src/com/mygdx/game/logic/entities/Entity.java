@@ -2,8 +2,7 @@ package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.player.ItemManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public abstract class Entity {
 
     //abstract methods
     public abstract void update(LevelManager lvl, Random r);
-    public abstract void draw(SpriteManager spr);
+    public abstract void draw(DrawingManager spr);
     public abstract void onCollide(Entity other);
     public abstract Entity getCopy(float x, float y);
     public abstract void onDestroy();

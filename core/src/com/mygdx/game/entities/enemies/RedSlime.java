@@ -7,7 +7,7 @@ import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -68,7 +68,7 @@ public class RedSlime extends Entity {
 
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         if (landed)
             if (jumpTimer%animationSpeed > animationSpeed/2)
                 spr.drawGame("red_slime0",x,y,1);

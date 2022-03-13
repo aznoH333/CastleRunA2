@@ -7,12 +7,25 @@ public abstract class Weapon {
     protected final EntityManager ent;
     private final int attackCost;
     private final int chargedAttackCost;
+    private final String useSound;
+    private final String chargedUseSound;
 
     public Weapon(String sprite, int attackCost, int chargedAttackCost){
         this.sprite = sprite;
         this.ent = EntityManager.getINSTANCE();
         this.attackCost = attackCost;
         this.chargedAttackCost = chargedAttackCost;
+        useSound = null;
+        chargedUseSound = null;
+    }
+
+    public Weapon(String sprite, int attackCost, int chargedAttackCost, String useSound, String chargedUseSound){
+        this.sprite = sprite;
+        this.ent = EntityManager.getINSTANCE();
+        this.attackCost = attackCost;
+        this.chargedAttackCost = chargedAttackCost;
+        this.useSound = useSound;
+        this.chargedUseSound = chargedUseSound;
     }
 
     public String getSprite(){
@@ -28,5 +41,13 @@ public abstract class Weapon {
     }
     public int getChargedAttackCost(){
         return chargedAttackCost;
+    }
+
+    public String getUseSound() {
+        return useSound;
+    }
+
+    public String getChargedUseSound() {
+        return chargedUseSound;
     }
 }

@@ -4,7 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.entities.ParticleManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -57,18 +57,18 @@ public class BreakingPlatform extends TileCollum {
         // TODO : add some collapse particles here
         if(isOn && flickerTimer % 4 < 2){
             if (!isInAStateOfCollapse)
-                SpriteManager.getINSTANCE().drawGame("platform0",x,y,1);
+                DrawingManager.getINSTANCE().drawGame("platform0",x,y,1);
             else{
 
                 if (Game.Time() % 4 == 0){
                     part.addParticle("smoke", x + r.nextInt(48), y + 32 + r.nextInt(16),0,-r.nextFloat(),0.2f);
                 }
 
-                if (timer < 10)     SpriteManager.getINSTANCE().drawGame("platform5",x,y,1);
-                else if (timer < 20)SpriteManager.getINSTANCE().drawGame("platform4",x,y,1);
-                else if (timer < 30)SpriteManager.getINSTANCE().drawGame("platform3",x,y,1);
-                else if (timer < 40)SpriteManager.getINSTANCE().drawGame("platform2",x,y,1);
-                else if (timer < 50)SpriteManager.getINSTANCE().drawGame("platform1",x,y,1);
+                if (timer < 10)     DrawingManager.getINSTANCE().drawGame("platform5",x,y,1);
+                else if (timer < 20) DrawingManager.getINSTANCE().drawGame("platform4",x,y,1);
+                else if (timer < 30) DrawingManager.getINSTANCE().drawGame("platform3",x,y,1);
+                else if (timer < 40) DrawingManager.getINSTANCE().drawGame("platform2",x,y,1);
+                else if (timer < 50) DrawingManager.getINSTANCE().drawGame("platform1",x,y,1);
             }
         }
     }

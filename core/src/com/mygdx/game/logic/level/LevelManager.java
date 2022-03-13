@@ -5,7 +5,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -30,7 +30,7 @@ public class LevelManager {
     public static final int mapWidth = 13;
 
     //vars
-    private final SpriteManager spr = SpriteManager.getINSTANCE();
+    private final DrawingManager spr = DrawingManager.getINSTANCE();
     private float distance = 0;
     private float advanceDistance = 0;
     private final TileCollum[] map = new TileCollum[mapWidth];
@@ -101,7 +101,7 @@ public class LevelManager {
         //change direction
         if (changeFor < 1) {
             if (random.nextFloat() < lvl.changeChance()) {
-                if (random.nextBoolean()) dir = Directions.Up;
+                if (random.nextFloat() <= 0.5) dir = Directions.Up;
                 else dir = Directions.Down;
             } else dir = Directions.None;
             changeFor = random.nextInt(lvl.changeLengthMax() - lvl.changeLengthMin()) + lvl.changeLengthMin();

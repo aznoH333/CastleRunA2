@@ -5,7 +5,7 @@ import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -159,7 +159,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         // player rendering
         if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
             if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)

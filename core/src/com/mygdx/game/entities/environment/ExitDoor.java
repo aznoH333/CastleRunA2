@@ -5,8 +5,7 @@ import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
-import com.mygdx.game.logic.stage.StageManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -24,7 +23,7 @@ public class ExitDoor extends Entity {
     }
 
     @Override
-    public void draw(SpriteManager spr) {
+    public void draw(DrawingManager spr) {
         if (isOpen)     spr.drawGame("door1",x,y,1);
         else            spr.drawGame("door0",x,y,1);
     }

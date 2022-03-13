@@ -5,7 +5,7 @@ import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.player.Weapon;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class ItemViewer {
 
@@ -19,7 +19,7 @@ public class ItemViewer {
     private int height = 0;
     private final PlayerStats playerStats = PlayerStats.getINSTANCE();
     private final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
-    private final SpriteManager spr = SpriteManager.getINSTANCE();
+    private final DrawingManager spr = DrawingManager.getINSTANCE();
     private Button[] buttons = {};
     private Controls itemSlot = Controls.AttackLeft;
 
@@ -40,11 +40,11 @@ public class ItemViewer {
     public void updateValues(){
         buttons = new Button[inventoryManager.getUnlockedWeapons().size()];
         for (int i = 0; i < inventoryManager.getUnlockedWeapons().size(); i++) {
-            // TODO : more UI sprites ASAP
+            // TODO : more UI sprites
             // TODO : scrolling || workaround (inv limit??, scroll buttons??)
-            // TODO : fonts
+            // TODO : weapon names
             final Weapon w = inventoryManager.getUnlockedWeapon(i);
-            buttons[i] = new Button(ButtonType.LargeItemSelect,w.getSprite(),16,y + height - (136*i),()-> playerStats.equipWeapon(w,itemSlot));
+            buttons[i] = new Button(ButtonType.LargeItemSelect,w.getSprite(),16,y + height - (136*i),()-> playerStats.equipWeapon(w,itemSlot), "");
         }
     }
 

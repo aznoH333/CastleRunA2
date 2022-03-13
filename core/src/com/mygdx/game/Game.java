@@ -18,7 +18,7 @@ import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.UI.GameUIManager;
 import com.mygdx.game.logic.player.ItemManager;
-import com.mygdx.game.logic.sprites.SpriteManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.logic.stage.StageMap;
 
@@ -33,7 +33,7 @@ public class Game extends ApplicationAdapter {
 
     private final static Random seededRandom = new Random(258);
     private final static Random generalRandom = new Random();
-    private final static SpriteManager spr = SpriteManager.getINSTANCE();
+    private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final static LevelManager lvl = LevelManager.getINSTANCE();
     private final static ParticleManager part = ParticleManager.getINSTANCE();
     private final static GameUIManager ui = GameUIManager.getINSTANCE();
@@ -49,17 +49,10 @@ public class Game extends ApplicationAdapter {
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
 
 
-
-
-
     @Override
     public void create() {
-        SpriteManager.getINSTANCE().wtfKterejDebilTohleNapsal();
+        DrawingManager.getINSTANCE().wtfKterejDebilTohleNapsal();
         SoundLoadList.loadAllSounds();
-
-        // temporary
-        itemManager.addItem(new DebugItem());
-        itemManager.addItem(new FriendlyOrbItem());
 
         //init stuff
         StageManager.getINSTANCE().startLevel();

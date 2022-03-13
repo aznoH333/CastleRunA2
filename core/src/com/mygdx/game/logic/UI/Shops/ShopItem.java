@@ -8,12 +8,14 @@ public class ShopItem {
     private final int cost;
     private final ILambdaFunction action;
     private int stock;
+    private final String text;
 
-    public ShopItem(String sprite, int cost, int stock, ILambdaFunction action){
+    public ShopItem(String sprite, int cost, int stock, ILambdaFunction action, String text){
         this.sprite = sprite;
         this.cost = cost;
         this.action = action;
         this.stock = stock;
+        this.text = text;
     }
 
     public void buyItem(){
@@ -34,4 +36,6 @@ public class ShopItem {
     }
 
     public ILambdaFunction getAction(){return action;}
+
+    public String getText(){return text;}
 }

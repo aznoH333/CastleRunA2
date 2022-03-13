@@ -32,7 +32,7 @@ public class LevelOwner {
                         Backgrounds.castle())
                 .mapTiles("mIconCastle0", "mTile0")
                 .height(256,96)
-                .chance(1,9,5)
+                .chance(0.7f,3,2)
                 .enemies(new String[]{"slime", "chest"}, new float[]{10,5,1})
                 .build()
         );
