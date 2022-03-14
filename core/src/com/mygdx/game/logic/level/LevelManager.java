@@ -206,6 +206,15 @@ public class LevelManager {
         return x-(x%tileScale)-distance%tileScale;
     }
 
+    public boolean collidesWithLevel(Entity object){
+        // TODO: advanced level collisions
+        return object.getY() < getLevelY(object);
+    }
+
+    public float getLevelY(Entity object){
+        return getOnPos(object.getX() + ((int)object.getXSize()>>1) + (distance%tileScale)).getY() + tileScale;
+    }
+
     public int getTileScale() {
         return tileScale;
     }

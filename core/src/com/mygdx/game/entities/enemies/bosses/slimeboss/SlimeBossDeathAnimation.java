@@ -27,7 +27,7 @@ public class SlimeBossDeathAnimation extends Entity {
 
     @Override
     public void update(LevelManager lvl, Random r) {
-        float lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
+        float lvlY = lvl.getLevelY(this);
 
         //land
         boolean landed = y <= lvlY - yM && yM <= 0;

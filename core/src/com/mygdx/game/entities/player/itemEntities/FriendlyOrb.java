@@ -24,16 +24,14 @@ public class FriendlyOrb extends Entity {
     private final static float speed = 0.2f;
     private static final float maxSpeed = 3.5f;
     private int cooldown = 0;
-    private static final int cooldownMax = 120;
+    private static final int cooldownMax = 240;
     private final EntityManager ent = EntityManager.getINSTANCE();
 
     public FriendlyOrb(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
+        super(x, y, xSize, ySize, hp, Team.Environment);
         PlayerStats stats = PlayerStats.getINSTANCE();
         player = stats.getPlayer();
         shifts = false;
-
-        // FIXME : start at player position
     }
 
     @Override
@@ -47,7 +45,7 @@ public class FriendlyOrb extends Entity {
         y += yM;
         if (player.getX() + 26 > x)      xM = Math.min(xM + speed, maxSpeed);
         else                             xM = Math.max(xM - speed, -maxSpeed);
-        if (player.getY() + 26 > y)      yM = Math.min(yM + speed, maxSpeed);
+        if (player.getY() + 36 > y)      yM = Math.min(yM + speed, maxSpeed);
         else                             yM = Math.min(yM - speed, -maxSpeed);
 
         // shoot projectile
@@ -58,7 +56,7 @@ public class FriendlyOrb extends Entity {
                     || !input.getButton(Controls.AttackLeft) && input.getButtonCharge(Controls.AttackLeft) > 0){
                 cooldown = cooldownMax;
                 // TODO: unique projectile
-                ent.spawnEntity("charged dagger",x,y);
+                ent.spawnEntity("orb attack",x,y+16);
             }
         }
 

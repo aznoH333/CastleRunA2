@@ -44,7 +44,7 @@ public class Player extends Entity {
 
     @Override
     public void update(LevelManager lvl, Random r) {
-        lvlY = lvl.getOnPos(x + (lvl.getTileScale() - 1)).getY() + lvl.getTileScale();
+        lvlY = lvl.getLevelY(this);
         // TODO : a better terrain collision system
         if (actionTimer > 0) actionTimer--;
 

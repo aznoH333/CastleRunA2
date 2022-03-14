@@ -27,7 +27,7 @@ public class Chest extends Entity {
         if(airborne){
             yM -= gravity;
             y += yM;
-            final int lvlY = lvl.getOnPos(x + (lvl.getTileScale() -1)).getY() + lvl.getTileScale();
+            final float lvlY = lvl.getLevelY(this);
 
             if (y <= lvlY - yM && yM <= 0){
                 yM = 0;
