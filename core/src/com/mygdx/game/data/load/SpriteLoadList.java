@@ -7,7 +7,6 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class SpriteLoadList {
     public static void loadAllSprites(DrawingManager spr){
-        //TODO: rework to iterate through folders
 
         //player
         spr.loadSprites("entities/player/player_","player",4);
@@ -56,9 +55,12 @@ public class SpriteLoadList {
         spr.loadSprites("ui/buttons/card_", "item_card", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
         spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
+        spr.loadSprites("ui/icons/shop/item_mini_icon_", "item_mini_icon",3);
+        spr.loadSprites("ui/icons/shop/card_item_backdrop_", "item_backdrop",0);
 
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);
+        spr.loadSprites("ui/ui_elements/transition_", "transition", 0);
 
 
         //map ui
