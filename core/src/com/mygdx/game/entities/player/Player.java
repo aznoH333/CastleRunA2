@@ -90,7 +90,6 @@ public class Player extends Entity {
         }
 
         // attacks
-        // TODO: sprite offsets || a workaround
 
         if (!input.getButton(Controls.AttackRight) && actionTimer == 0 && input.getButtonCharge(Controls.AttackRight) > 0 && landed) {
             if (input.getButtonCharge(Controls.AttackRight) < input.getHoldSensitivity()) {

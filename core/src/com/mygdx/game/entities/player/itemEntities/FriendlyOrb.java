@@ -55,7 +55,6 @@ public class FriendlyOrb extends Entity {
             if (!input.getButton(Controls.AttackRight) && input.getButtonCharge(Controls.AttackRight) > 0
                     || !input.getButton(Controls.AttackLeft) && input.getButtonCharge(Controls.AttackLeft) > 0){
                 cooldown = cooldownMax;
-                // TODO: unique projectile
                 ent.spawnEntity("orb attack",x,y+16);
             }
         }

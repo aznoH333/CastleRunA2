@@ -30,7 +30,6 @@ public class DrawingManager {
     private final ArrayList<TextData> texts = new ArrayList<>();
 
 
-    // TODO : get custom font
     private BitmapFont font;
 
     public DrawingManager(){

@@ -11,11 +11,6 @@ import java.util.Random;
 public class ShopStock {
 
     // shop stock
-    // TODO : refil hp/energy
-    // TODO : health upgrade & energy upgrade
-    // TODO : random weapon
-    // TODO : items | weapon upgrades
-
     private final Random r;
     private final static PlayerStats stats = PlayerStats.getINSTANCE();
     private final static InventoryManager inventory = InventoryManager.getINSTANCE();
@@ -44,11 +39,12 @@ public class ShopStock {
                 else                            items[i] = new ShopItem("shop_icon1", 20, 1, stats::upgradeEnergy, "upgrade energy");
             }else if (random < 0.66f){
                 // random weapon unlock
-                // TODO : unlock randomization
-                items[i] = new ShopItem("player0", 15, 1, ()->inventory.unlockWeapon("Cross"), "buy weapon");
+                String finalWeapon = inventory.getRandomUnseenWeapon();
+                items[i] = new ShopItem(inventory.getWeapon(finalWeapon).getSprite(), 15, 1, ()->inventory.unlockWeapon(finalWeapon), finalWeapon);
             }else{
                 // random item
                 // TODO : item randomization
+                // TODO : more items
                 items[i] = new ShopItem("player3", 15, 1, ()->{
                     item.addItem(new FriendlyOrbItem());
                 }, "buy item");

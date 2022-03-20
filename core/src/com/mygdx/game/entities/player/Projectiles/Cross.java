@@ -42,7 +42,6 @@ public class Cross extends Entity {
         else if (other.getTeam() == Team.Player && thrownTimer == 0){
             destroy();
         }
-        // TODO: hit priority
     }
 
 

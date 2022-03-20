@@ -27,7 +27,8 @@ public class StageManager {
     private static final ArrayList<Stage> stages = new ArrayList<>();
     private static final Shop shop = Shop.getINSTANCE();
     private Stage currentStage;
-    private int currentStageIndex = 0;
+    // ty kokos wtf
+    private int stageCompletionIndex = -1;
 
     public StageManager(){
         stages.add(new Stage(
@@ -39,7 +40,7 @@ public class StageManager {
                         new Decorator("islandDecorator2",-20,270),
                         new Decorator("islandDecorator1",340,385),
                 },
-                120,10));
+                120,4));
 
         advanceStage();
     }
@@ -52,20 +53,23 @@ public class StageManager {
 
     public void advanceInStage(){
         Game.changeState(GameState.StageMenu);
+
+        currentStage.advanceInStage();
+        System.out.println(currentStage.getLevels().length);
+        System.out.println(currentStage.getCurrentStageIndex());
         if (currentStage.getLevels().length == currentStage.getCurrentStageIndex()){
             // TODO : this
-            currentStageIndex++;
-            currentStage = stages.get(currentStageIndex);
+            advanceStage();
             System.out.println("progressed");
         }
-        currentStage.advanceInStage();
         StageMap.getINSTANCE().updateCurrentStage();
     }
 
     public void advanceStage(){
-        currentStage = stages.get(currentStageIndex);
+        stageCompletionIndex++;
+        currentStage = stages.get(stageCompletionIndex);
         shop.restock(currentStage.getShopLevel());
-        currentStageIndex++;
+
     }
 
     public Stage getCurrentStage(){

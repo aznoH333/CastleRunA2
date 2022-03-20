@@ -6,7 +6,7 @@ public class SmallDagger extends Weapon {
 
 
     public SmallDagger() {
-        super("dagger0",1,2);
+        super("dagger0",1,1);
     }
 
     @Override

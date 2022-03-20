@@ -196,7 +196,7 @@ public class LevelManager {
 
     public TileCollum getOnPos(float i) {
         int b = (int) i >> 6;
-        if (b < 0 || b > mapWidth)
+        if (b < 0 || b >= mapWidth)
             return map[0];
         else
             return map[b];
@@ -230,6 +230,7 @@ public class LevelManager {
     public void loadLevel(Level lvl) {
 
         this.lvl = lvl;
+        part.clear();
 
         isBossLevel = lvl.isBossLevel();
         backgroundRenderer.setBackground(lvl.getBackground());

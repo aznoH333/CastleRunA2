@@ -54,7 +54,6 @@ public class BreakingPlatform extends TileCollum {
 
     @Override
     public void draw(float x, float y) {
-        // TODO : add some collapse particles here
         if(isOn && flickerTimer % 4 < 2){
             if (!isInAStateOfCollapse)
                 DrawingManager.getINSTANCE().drawGame("platform0",x,y,1);

@@ -32,7 +32,8 @@ public class Shop {
 
         for (int i = 0; i < shopStock.getLength(); i++) {
             int finalI = i;
-            buttons[i] = new Button(ButtonType.Small,shopStock.getItem(i).getSprite(),96, 270 + (i* 96),()-> shopStock.buyItem(finalI), shopStock.getItem(i).getText());
+            // TODO : smaller shop cards
+            buttons[i] = new Button(ButtonType.LargeItemSelect,shopStock.getItem(i).getSprite(), (i%3 * 232) + 20, (int) (270 + (Math.floor((float)i/3)*272)),()-> shopStock.buyItem(finalI), shopStock.getItem(i).getText());
         }
     }
 

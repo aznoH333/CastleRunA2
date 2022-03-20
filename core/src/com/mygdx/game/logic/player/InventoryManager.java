@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.player;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.weapons.*;
 
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class InventoryManager {
 
     private final HashMap<String,Weapon> weapons = new HashMap<>();
     private final ArrayList<String> unlockedWeapons = new ArrayList<>();
-    // TODO : this
+    private final ArrayList<String> unseenWeapons = new ArrayList<>();
+
+
 
     private InventoryManager(){
         loadWeapons();
@@ -23,28 +26,35 @@ public class InventoryManager {
 
     private void loadWeapons(){
         // TODO: separate permanent unlocks & run unlocks
-        weapons.put("Nothing", new None());
-        weapons.put("Small daggers", new SmallDagger());
-        weapons.put("Sword", new Sword());
-        weapons.put("Axe", new ThrowingAxe());
-        weapons.put("Cross", new BoomerangCross());
+        addWeapon("Nothing", new None());
+        addWeapon("Small daggers", new SmallDagger());
+        addWeapon("Sword", new Sword());
+        addWeapon("Axe", new ThrowingAxe());
+        addWeapon("Cross", new BoomerangCross());
 
 
         unlockWeapon("Nothing");
-        unlockWeapon("Small daggers");
         unlockWeapon("Sword");
-        unlockWeapon("Axe");
+
+
     }
 
     public ArrayList<String> getUnlockedWeapons(){
         return unlockedWeapons;
     }
 
+    private void addWeapon(String name, Weapon weapon){
+        weapons.put(name, weapon);
+        unseenWeapons.add(name);
+    }
+
     // unlocks a weapon
-    // !doesn't check if a weapon exists!
     // TODO: unlock system
     public void unlockWeapon(String name){
-        unlockedWeapons.add(name);
+        if (unseenWeapons.contains(name)){
+            unlockedWeapons.add(name);
+            unseenWeapons.remove(name);
+        }
     }
 
     public Weapon getUnlockedWeapon(int index){
@@ -57,5 +67,12 @@ public class InventoryManager {
 
     public Weapon getWeapon(String weaponName){
         return weapons.get(weaponName);
+    }
+
+    public String getRandomUnseenWeapon(){
+        // weapons can only be seen once per run
+        String temp = unseenWeapons.get(Game.getSeededRandom().nextInt(unseenWeapons.size())-1);
+        unseenWeapons.remove(temp);
+        return temp;
     }
 }

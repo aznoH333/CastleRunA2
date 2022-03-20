@@ -12,11 +12,11 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 import java.util.Random;
 
 public class PickedCoin extends Entity {
-    // TODO : change destinations to player coordinates
     private final static int destinationX = 64;
     private final static int destinationY = 64;
     private final float startX;
     private final float startY;
+    private final static float maxSpeed = 32f;
     private byte animation = 0;
     private final byte animationOffset;
     private static final int animationLength = 4;
@@ -42,6 +42,9 @@ public class PickedCoin extends Entity {
 
         float xM = (destinationX / startX) * (x - destinationX) * -speed;
         float yM = (destinationY / startY) * (y - destinationY) * -speed;
+
+        if (Math.abs(xM) > maxSpeed) xM = maxSpeed * Math.signum(xM);
+        if (Math.abs(yM) > maxSpeed) yM = maxSpeed * Math.signum(yM);
 
         if (Math.abs(xM) < 1) xM = Math.signum(xM);
         if (Math.abs(yM) < 1) yM = Math.signum(yM);
