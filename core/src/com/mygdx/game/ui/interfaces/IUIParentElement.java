@@ -1,6 +1,9 @@
 package com.mygdx.game.ui.interfaces;
 
+import com.mygdx.game.data.enums.UIActionStatus;
+
 public interface IUIParentElement {
-    void uiOpenStrategy();
-    void uiCloseStrategy();
+    void uiOpen();
+    void uiClose();
+    UIActionStatus getStatus();
 }

@@ -19,6 +19,7 @@ import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.logic.stage.StageMap;
+import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;
 
@@ -34,7 +35,8 @@ public class Game extends ApplicationAdapter {
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final static LevelManager lvl = LevelManager.getINSTANCE();
     private final static ParticleManager part = ParticleManager.getINSTANCE();
-    private final static GameUIManager ui = GameUIManager.getINSTANCE();
+    private final static GameUIManager gameui = GameUIManager.getINSTANCE();
+    private final static UIManager ui = UIManager.getINSTANCE();
     private final static InputManager input = InputManager.getINSTANCE();
     private final static EntityManager ent = EntityManager.getINSTANCE();
     private static long time = 1;
@@ -54,6 +56,10 @@ public class Game extends ApplicationAdapter {
 
         //init stuff
         StageManager.getINSTANCE().startLevel();
+
+        //temporary
+        ui.changeUI(GameState.Game);
+        ui.open();
 
         //temporary music
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
@@ -123,6 +129,10 @@ public class Game extends ApplicationAdapter {
 
     public static void changeState(GameState state){
         Game.state = state;
+        ui.changeUI(state);
+        ui.open();
+
+        // TODO: finish the rest of the ui
         if (state != GameState.Game)
             MenuUIManager.getINSTANCE().changeButtonSet(state);
 
@@ -141,7 +151,8 @@ public class Game extends ApplicationAdapter {
         part.update();
         part.draw(spr);
         ent.update();
-        ui.drawGameUI();
+        ui.drawUI();
+        ui.updateUI();
     }
 
     private void stageMenu() {
@@ -171,6 +182,7 @@ public class Game extends ApplicationAdapter {
 
     public static void exitLevel(int time){
         if (exitTime == 0){
+            ui.close();
             exitTime = Game.time + time;
             EntityManager.getINSTANCE().clearEnemyEntities();
         }
