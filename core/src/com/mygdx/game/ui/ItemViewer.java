@@ -1,4 +1,4 @@
-package com.mygdx.game.logic.UI;
+package com.mygdx.game.ui;
 
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;

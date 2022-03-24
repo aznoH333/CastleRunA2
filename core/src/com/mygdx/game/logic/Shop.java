@@ -1,10 +1,9 @@
-package com.mygdx.game.logic.UI.Shops;
+package com.mygdx.game.logic;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
-import com.mygdx.game.logic.UI.Button;
+import com.mygdx.game.ui.Button;
 import com.mygdx.game.logic.drawing.DrawingManager;
-import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.PlayerStats;
 
 import java.util.Random;
