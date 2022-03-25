@@ -25,6 +25,7 @@ public class StageManager {
 
     private static final ArrayList<Stage> stages = new ArrayList<>();
     private static final Shop shop = Shop.getINSTANCE();
+
     private Stage currentStage;
     // ty kokos wtf
     private int stageCompletionIndex = -1;

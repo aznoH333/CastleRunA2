@@ -1,11 +1,14 @@
 package com.mygdx.game.ui;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
+import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.player.InputManager;
-import com.mygdx.game.ui.elements.BottomHudGame;
+import com.mygdx.game.logic.stage.StageManager;
+import com.mygdx.game.ui.elements.BottomHud;
 import com.mygdx.game.ui.elements.Button;
 import com.mygdx.game.ui.elements.Sprite;
 import com.mygdx.game.ui.interfaces.IUIElement;
@@ -26,6 +29,9 @@ public class UIManager {
     private final ArrayList<IUIElement> uiElements = new ArrayList<>();
     private final ArrayList<IUIUpdatable> uiUpdatables = new ArrayList<>();
     private final ArrayList<IUIParentElement> uiParents = new ArrayList<>();
+    private GameState targetState = null;
+    private boolean isTransitioning = false;
+    private final static StageManager stageMan = StageManager.getINSTANCE();
 
 
     // dumb constants
@@ -47,7 +53,7 @@ public class UIManager {
         switch (state){
             case Game:
                 // bottom bar
-                addUIElement(new BottomHudGame());
+                addUIElement(new BottomHud(-515f,-150f));
                 addUIElement(new Button(buttonLX,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveLeft)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
 
@@ -60,6 +66,9 @@ public class UIManager {
                 addUIElement(new Button(buttonRX,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
                 break;
+            case StageMenu:
+                addUIElement(new BottomHud(-515f,-30f));
+                addUIElement(new Button(buttonLX,62,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.advanceInStage();}));
         }
     }
 
@@ -93,11 +102,33 @@ public class UIManager {
         for (IUIUpdatable element: uiUpdatables) {
             element.update();
         }
+
+
+        // transition handling
+        if (isTransitioning){
+            boolean transitionComplete = true;
+            for (IUIParentElement parent: uiParents) {
+                if (parent.getStatus() != UIActionStatus.Closed) transitionComplete = false;
+            }
+
+            if(transitionComplete){
+                isTransitioning = false;
+                Game.changeState(targetState);
+            }
+        }
+
     }
 
     public void clearUI(){
         uiElements.clear();
         uiParents.clear();
         uiUpdatables.clear();
+    }
+
+    public void transition(GameState state){
+        close();
+        isTransitioning = true;
+        targetState = state;
+        // TODO : transition manager
     }
 }

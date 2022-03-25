@@ -157,7 +157,8 @@ public class Game extends ApplicationAdapter {
 
     private void stageMenu() {
         stageMap.update();
-        menuUI.update();
+        ui.drawUI();
+        ui.updateUI();
 
     }
 

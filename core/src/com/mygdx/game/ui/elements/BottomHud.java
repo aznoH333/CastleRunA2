@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements;
 
+import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -7,14 +8,20 @@ import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
 
-public class BottomHudGame implements IUIElement, IUIParentElement, IUIUpdatable {
+public class BottomHud implements IUIElement, IUIParentElement, IUIUpdatable {
 
-    private float y = closedPosition;
-    private final static float closedPosition = -515f;
-    private final static float openPosition = -150f;
-    private final static float animationSpeed = 20;
+    private float y;
+    private final float closedPosition;
+    private final float openPosition;
+    private final static float animationSpeed = Config.getAnimationSpeed();
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private UIActionStatus targetStatus = UIActionStatus.Closed;
+
+    public BottomHud(float closedPosition, float openPosition){
+        this.openPosition = openPosition;
+        this.closedPosition = closedPosition;
+        y = closedPosition;
+    }
 
     @Override
     public void draw() {
@@ -65,6 +72,12 @@ public class BottomHudGame implements IUIElement, IUIParentElement, IUIUpdatable
             else if (targetStatus == UIActionStatus.Closed){
                 y -= (float) Math.max(Math.ceil(Math.abs(y-openPosition)/ animationSpeed),1);
             }
+
+            if (targetStatus == UIActionStatus.Closed && y < closedPosition){
+                y = closedPosition;
+            }
         }
+
+
     }
 }
