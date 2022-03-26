@@ -44,6 +44,7 @@ public class Game extends ApplicationAdapter {
     private static GameState state = GameState.Game;
     private final static MenuUIManager menuUI = MenuUIManager.getINSTANCE();
     private final static StageMap stageMap = StageMap.getINSTANCE();
+    private final static StageManager stageManager = StageManager.getINSTANCE();
     private final static ItemViewer itemViewer = ItemViewer.getINSTANCE();
     private final static Shop shop = Shop.getINSTANCE();
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
@@ -55,7 +56,7 @@ public class Game extends ApplicationAdapter {
         SoundLoadList.loadAllSounds();
 
         //init stuff
-        StageManager.getINSTANCE().startLevel();
+        stageManager.startLevel();
 
         //temporary
         ui.changeUI(GameState.Game);
@@ -109,6 +110,7 @@ public class Game extends ApplicationAdapter {
         //pavliku tohle je validni a drz hubu
         time++;
 
+        //spr.draw("transition",0,0,5);
 
     }
 
@@ -131,6 +133,9 @@ public class Game extends ApplicationAdapter {
         Game.state = state;
         ui.changeUI(state);
         ui.open();
+
+
+
 
         // TODO: finish the rest of the ui
         if (state != GameState.Game)

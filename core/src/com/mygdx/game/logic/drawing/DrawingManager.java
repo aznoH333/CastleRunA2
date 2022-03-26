@@ -91,6 +91,7 @@ public class DrawingManager {
             }
             layer.clear();
         }
+        // TODO : make texts also have a drawing priority
         // draw text
         for (TextData text : texts){
             font.draw(batch, text.getText(), text.getX(), text.getY());
@@ -122,6 +123,7 @@ public class DrawingManager {
     public void draw(String textureName, float x, float y, int zIndex){
         if (textureName != null){
             Texture text = sprs.get(textureName);
+
             if (!spriteDraw.containsKey(zIndex))
                 spriteDraw.put(zIndex, new ArrayList<>());
             spriteDraw.get(zIndex).add(new SpriteData(text, x, y));

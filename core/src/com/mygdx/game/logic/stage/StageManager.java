@@ -55,8 +55,6 @@ public class StageManager {
         Game.changeState(GameState.StageMenu);
 
         currentStage.advanceInStage();
-        System.out.println(currentStage.getLevels().length);
-        System.out.println(currentStage.getCurrentStageIndex());
         if (currentStage.getLevels().length == currentStage.getCurrentStageIndex()){
             // TODO : this
             advanceStage();
