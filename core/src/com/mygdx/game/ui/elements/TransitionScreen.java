@@ -1,6 +1,5 @@
 package com.mygdx.game.ui.elements;
 
-import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
