@@ -9,7 +9,7 @@ import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.ui.ItemViewer;
 import com.mygdx.game.ui.MenuUIManager;
-import com.mygdx.game.logic.Shop;
+import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;

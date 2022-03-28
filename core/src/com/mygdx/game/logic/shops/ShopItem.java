@@ -1,4 +1,4 @@
-package com.mygdx.game.logic;
+package com.mygdx.game.logic.shops;
 
 import com.mygdx.game.data.ILambdaFunction;
 

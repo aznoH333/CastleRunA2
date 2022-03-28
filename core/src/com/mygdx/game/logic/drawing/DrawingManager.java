@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.mygdx.game.data.enums.DrawingDataType;
 import com.mygdx.game.data.load.SpriteLoadList;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -26,8 +27,7 @@ public class DrawingManager {
     private final HashMap<String, Texture> sprs;
     private static final int pixelScale = 4;
     public static final int gamePosition = 426;
-    private final HashMap<Integer,ArrayList<SpriteData>> spriteDraw = new HashMap<>();
-    private final ArrayList<TextData> texts = new ArrayList<>();
+    private final HashMap<Integer,ArrayList<DrawingData>> drawQueue = new HashMap<>();
 
 
     private BitmapFont font;
@@ -65,7 +65,7 @@ public class DrawingManager {
         }
 
         sprs.clear();
-        texts.clear();
+        drawQueue.clear();
     }
 
 
@@ -85,25 +85,28 @@ public class DrawingManager {
 
     public void render(){
         batch.begin();
-        for (ArrayList<SpriteData> layer : spriteDraw.values()) {
-            for (SpriteData s: layer) {
-                batch.draw(s.getTexture(), s.getX(), s.getY(), s.getTexture().getWidth()*pixelScale, s.getTexture().getHeight()*pixelScale);
+        for (ArrayList<DrawingData> layer : drawQueue.values()) {
+            for (DrawingData data: layer) {
+                if (data.getType() == DrawingDataType.Sprite)
+                    batch.draw(data.getTexture(), data.getX(), data.getY(), data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
+                else
+                    font.draw(batch, data.getText(), data.getX(), data.getY());
+
             }
             layer.clear();
         }
-        // TODO : make texts also have a drawing priority
-        // draw text
-        for (TextData text : texts){
-            font.draw(batch, text.getText(), text.getX(), text.getY());
-        }
-
-        texts.clear();
 
         batch.end();
     }
 
+    public void drawText(String text, float x, float y, int zIndex){
+        if (!drawQueue.containsKey(zIndex))
+            drawQueue.put(zIndex, new ArrayList<>());
+        drawQueue.get(zIndex).add(new TextData(text, x, y));
+    }
+
     public void drawText(String text, float x, float y){
-        texts.add(new TextData(text, x, y));
+        drawText(text, x, y, 5);
     }
 
     // draws sprite with the default sprite index
@@ -124,9 +127,9 @@ public class DrawingManager {
         if (textureName != null){
             Texture text = sprs.get(textureName);
 
-            if (!spriteDraw.containsKey(zIndex))
-                spriteDraw.put(zIndex, new ArrayList<>());
-            spriteDraw.get(zIndex).add(new SpriteData(text, x, y));
+            if (!drawQueue.containsKey(zIndex))
+                drawQueue.put(zIndex, new ArrayList<>());
+            drawQueue.get(zIndex).add(new SpriteData(text, x, y));
         }
 
     }

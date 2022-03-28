@@ -1,4 +1,4 @@
-package com.mygdx.game.logic;
+package com.mygdx.game.logic.shops;
 
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.items.items.FriendlyOrbItem;
@@ -45,9 +45,7 @@ public class ShopStock {
                 // random item
                 // TODO : item randomization
                 // TODO : more items
-                items[i] = new ShopItem("player3", 15, 1, ()->{
-                    item.addItem(new FriendlyOrbItem());
-                }, "buy item");
+                items[i] = new ShopItem("player3", 15, 1, ()-> item.addItem(new FriendlyOrbItem()), "buy item");
             }
 
         }

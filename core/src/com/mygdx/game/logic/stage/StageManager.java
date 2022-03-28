@@ -1,9 +1,8 @@
 package com.mygdx.game.logic.stage;
 
-import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.entities.player.Player;
-import com.mygdx.game.logic.Shop;
+import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelOwner;
 import com.mygdx.game.logic.level.LevelManager;

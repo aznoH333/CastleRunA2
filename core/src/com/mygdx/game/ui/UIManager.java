@@ -12,6 +12,7 @@ import com.mygdx.game.ui.elements.BottomHud;
 import com.mygdx.game.ui.elements.Button;
 import com.mygdx.game.ui.elements.Sprite;
 import com.mygdx.game.ui.elements.Text;
+import com.mygdx.game.ui.elements.TopHud;
 import com.mygdx.game.ui.elements.TransitionScreen;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
@@ -70,6 +71,9 @@ public class UIManager {
 
                 addUIElement(new Button(buttonRX,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
+
+                // top hud
+                addUIElement(new TopHud());
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
