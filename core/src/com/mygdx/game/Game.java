@@ -60,7 +60,7 @@ public class Game extends ApplicationAdapter {
 
         //temporary
         ui.changeUI(GameState.Game);
-        ui.open();
+        ui.delayedOpening();
 
         //temporary music
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
@@ -74,6 +74,7 @@ public class Game extends ApplicationAdapter {
         // exit level
         if (time == exitTime){
             exitTime = 0;
+
             StageManager.getINSTANCE().advanceInStage();
         }
 
@@ -132,7 +133,7 @@ public class Game extends ApplicationAdapter {
     public static void changeState(GameState state){
         Game.state = state;
         ui.changeUI(state);
-        ui.open();
+        ui.delayedOpening();
 
 
 
@@ -187,7 +188,7 @@ public class Game extends ApplicationAdapter {
     }
 
     public static void exitLevel(int time){
-        if (exitTime == 0){
+        if (exitTime == 0 && !ui.isTransitioning()){
             ui.close();
             exitTime = Game.time + time;
             EntityManager.getINSTANCE().clearEnemyEntities();

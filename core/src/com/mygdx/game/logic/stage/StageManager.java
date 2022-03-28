@@ -8,6 +8,7 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelOwner;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.ItemManager;
+import com.mygdx.game.ui.UIManager;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class StageManager {
 
     // TODO : shops
     // TODO : save stage unlocks
-
+    private static final UIManager ui = UIManager.getINSTANCE();
     private static final ArrayList<Stage> stages = new ArrayList<>();
     private static final Shop shop = Shop.getINSTANCE();
 
@@ -52,7 +53,9 @@ public class StageManager {
     }
 
     public void advanceInStage(){
-        Game.changeState(GameState.StageMenu);
+
+        ui.transition(GameState.StageMenu);
+        //Game.changeState(GameState.StageMenu);
 
         currentStage.advanceInStage();
         if (currentStage.getLevels().length == currentStage.getCurrentStageIndex()){

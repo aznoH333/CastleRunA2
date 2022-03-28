@@ -101,18 +101,23 @@ public class UIManager {
         }
     }
 
-    public void open(){
+    private boolean openOnTransitionFinish = true;
+    private boolean changeStateOnTransitionClose = false;
+    public void delayedOpening(){
+        openOnTransitionFinish = true;
+        transition.uiOpen();
+    }
+
+    private void open(){
         for (IUIParentElement parent: uiParents) {
             parent.uiOpen();
         }
-        transition.uiOpen();
     }
 
     public void close(){
         for (IUIParentElement parent: uiParents) {
             parent.uiClose();
         }
-        transition.uiClose();
     }
 
     public void updateUI(){
@@ -121,9 +126,19 @@ public class UIManager {
         }
         transition.update();
 
+        if (openOnTransitionFinish && transition.getStatus() == UIActionStatus.Open){
+            openOnTransitionFinish = false;
+            open();
+        }
+
+        if (changeStateOnTransitionClose && transition.getStatus() == UIActionStatus.Closed){
+            changeStateOnTransitionClose = false;
+            Game.changeState(targetState);
+        }
+
         // transition handling
         if (isTransitioning){
-            boolean transitionComplete = transition.getStatus() == UIActionStatus.Closed;
+            boolean transitionComplete = true;
 
             for (IUIParentElement parent: uiParents) {
                 if (parent.getStatus() != UIActionStatus.Closed) transitionComplete = false;
@@ -131,8 +146,8 @@ public class UIManager {
 
             if(transitionComplete){
                 isTransitioning = false;
-
-                Game.changeState(targetState);
+                transition.uiClose();
+                changeStateOnTransitionClose = true;
             }
         }
 
@@ -149,6 +164,9 @@ public class UIManager {
         close();
         isTransitioning = true;
         targetState = state;
-        // TODO : transition manager
+    }
+
+    public boolean isTransitioning(){
+        return transition.getStatus() == UIActionStatus.Transitioning || isTransitioning;
     }
 }

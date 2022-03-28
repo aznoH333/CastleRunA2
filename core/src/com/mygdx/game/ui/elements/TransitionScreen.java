@@ -11,7 +11,7 @@ import com.mygdx.game.ui.interfaces.IUIUpdatable;
 public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdatable {
 
     private static final float defaultPosition = 1312;
-    private float y = -16;
+    private float y;
     private final static float closedPosition = -16;
     private final static float openPosition = -1312;
     private final static float animationSpeed = 60;
@@ -67,6 +67,8 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
             y -= 32;
             if (targetStatus == UIActionStatus.Closed && y < closedPosition){
                 y = closedPosition;
+            }else if (targetStatus == UIActionStatus.Open && y < openPosition){
+                y = openPosition;
             }
         }
     }
