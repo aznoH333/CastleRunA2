@@ -1,4 +1,4 @@
-package com.mygdx.game.ui.elements;
+package com.mygdx.game.ui.elements.regularElements;
 
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;

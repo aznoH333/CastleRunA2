@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.menus.GameOver;
 import com.mygdx.game.ui.ItemViewer;
 import com.mygdx.game.ui.MenuUIManager;
 import com.mygdx.game.logic.shops.Shop;
@@ -35,7 +36,6 @@ public class Game extends ApplicationAdapter {
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final static LevelManager lvl = LevelManager.getINSTANCE();
     private final static ParticleManager part = ParticleManager.getINSTANCE();
-    private final static GameUIManager gameui = GameUIManager.getINSTANCE();
     private final static UIManager ui = UIManager.getINSTANCE();
     private final static InputManager input = InputManager.getINSTANCE();
     private final static EntityManager ent = EntityManager.getINSTANCE();
@@ -47,6 +47,7 @@ public class Game extends ApplicationAdapter {
     private final static StageManager stageManager = StageManager.getINSTANCE();
     private final static ItemViewer itemViewer = ItemViewer.getINSTANCE();
     private final static Shop shop = Shop.getINSTANCE();
+    private final static GameOver gameOver = GameOver.getINSTANCE();
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
 
 
@@ -78,6 +79,8 @@ public class Game extends ApplicationAdapter {
             StageManager.getINSTANCE().advanceInStage();
         }
 
+        ui.drawUI();
+        ui.updateUI();
         if (exitTime < 1)
             input.manageInput();
         switch (state){
@@ -157,25 +160,19 @@ public class Game extends ApplicationAdapter {
         part.update();
         part.draw(spr);
         ent.update();
-        ui.drawUI();
-        ui.updateUI();
     }
 
     private void stageMenu() {
         stageMap.update();
-        ui.drawUI();
-        ui.updateUI();
-
     }
 
     private void shop(){
         shop.draw();
-        if (Gdx.input.isKeyJustPressed(Input.Keys.F)) Game.changeState(GameState.StageMenu);
     }
 
 
     private void gameOver(){
-        // TODO : this
+        gameOver.render();
     }
 
     private void mainMenu(){
@@ -183,7 +180,6 @@ public class Game extends ApplicationAdapter {
     }
 
     private void equipMenu(){
-        menuUI.update();
         itemViewer.update();
     }
 

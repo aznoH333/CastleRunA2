@@ -1,5 +1,6 @@
-package com.mygdx.game.ui.elements;
+package com.mygdx.game.ui.elements.parents;
 
+import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -7,28 +8,28 @@ import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
 
-public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdatable {
-
-    private static final float defaultPosition = 1312;
-    private float y;
-    private final static float closedPosition = -16;
-    private final static float openPosition = -1312;
-    private final static float animationSpeed = 60;
+public class UIBox implements IUIParentElement, IUIUpdatable, IUIElement {
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
+    private final float closedPosition = 1280;
+    private final float openPosition;
+    private float y = closedPosition;
+    private final float x = 64;
     private UIActionStatus targetStatus = UIActionStatus.Closed;
+    private final static float animationSpeed = Config.getAnimationSpeed();
 
-    public TransitionScreen(){
-        y = closedPosition;
+    public UIBox(float openPosition){
+        this.openPosition = openPosition;
     }
 
     @Override
     public void draw() {
-        spr.draw("transition0",0,y,6);
+        // TODO : sprite
+        spr.draw("player0" ,x, y, 4);
     }
 
     @Override
     public float getX() {
-        return 0;
+        return x;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
 
     @Override
     public UIType[] getTypes() {
-        return new UIType[]{UIType.Parent,UIType.Updatable};
+        return new UIType[]{UIType.Updatable, UIType.Parent};
     }
 
     @Override
@@ -48,7 +49,6 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
 
     @Override
     public void uiClose() {
-        y = defaultPosition;
         targetStatus = UIActionStatus.Closed;
     }
 
@@ -62,12 +62,14 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
     @Override
     public void update() {
         if (getStatus() != targetStatus){
-
-            y -= 32;
-            if (targetStatus == UIActionStatus.Closed && y < closedPosition){
-                y = closedPosition;
-            }else if (targetStatus == UIActionStatus.Open && y < openPosition){
-                y = openPosition;
+            // open ui
+            if (targetStatus == UIActionStatus.Open){
+                y -= (float) Math.ceil(Math.abs(y-openPosition)/ animationSpeed);
+            }
+            // close ui
+            else if (targetStatus == UIActionStatus.Closed){
+                y += (float) Math.max(Math.ceil(Math.abs(y-openPosition)/ animationSpeed),1);
+                if (y > closedPosition) y = closedPosition;
             }
         }
     }

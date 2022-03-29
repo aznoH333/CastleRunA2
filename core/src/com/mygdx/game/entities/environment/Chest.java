@@ -1,6 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.Entity;
@@ -24,7 +25,7 @@ public class Chest extends Entity {
 
     @Override
     public void update(LevelManager lvl, Random r) {
-        if(airborne){
+        if(airborne || lvl.getOnPos(x).getSpecial() == TileCollumSpecial.DisappearingPlatform){
             yM -= gravity;
             y += yM;
             final float lvlY = lvl.getLevelY(this);

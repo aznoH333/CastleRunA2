@@ -1,4 +1,4 @@
-package com.mygdx.game.ui.elements;
+package com.mygdx.game.ui.elements.regularElements;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

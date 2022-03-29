@@ -36,6 +36,8 @@ public class Shop {
         }
     }
 
+    // TODO: rework this to use the new ui manager
+
     public void draw(){
         for (int i = 0; i < shopStock.getLength(); i++) {
             buttons[i].manageInput();

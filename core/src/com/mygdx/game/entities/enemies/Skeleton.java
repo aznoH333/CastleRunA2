@@ -1,6 +1,8 @@
 package com.mygdx.game.entities.enemies;
 
+import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
@@ -17,11 +19,14 @@ public class Skeleton extends Entity {
     private final static int throwTimerMin = 200;
     private final static int timerVariance = 40;
     private final static Random r = new Random();
+    private boolean calcGravity = false;
+    private static final float gravity = 0.5f;
+    private float yM = 0f;
 
     public Skeleton(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
-    }
 
+    }
     @Override
     public void update(LevelManager lvl, Random r) {
         if (throwTimer > 0){
@@ -33,6 +38,18 @@ public class Skeleton extends Entity {
         }
         if (animationTimer > 0) animationTimer--;
 
+        if(calcGravity){
+            calcGravity = LevelManager.getINSTANCE().getOnPos(x).getSpecial() == TileCollumSpecial.DisappearingPlatform;
+
+            yM -= gravity;
+            y += yM;
+            final float lvlY = lvl.getLevelY(this);
+
+            if (y <= lvlY - yM && yM <= 0) {
+                yM = 0;
+                y = lvlY;
+            }
+        }
     }
 
     @Override

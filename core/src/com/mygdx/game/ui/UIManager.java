@@ -1,5 +1,6 @@
 package com.mygdx.game.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
@@ -8,12 +9,13 @@ import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.stage.StageManager;
-import com.mygdx.game.ui.elements.BottomHud;
-import com.mygdx.game.ui.elements.Button;
-import com.mygdx.game.ui.elements.Sprite;
-import com.mygdx.game.ui.elements.Text;
-import com.mygdx.game.ui.elements.TopHud;
-import com.mygdx.game.ui.elements.TransitionScreen;
+import com.mygdx.game.ui.elements.parents.BottomHud;
+import com.mygdx.game.ui.elements.regularElements.Button;
+import com.mygdx.game.ui.elements.regularElements.Sprite;
+import com.mygdx.game.ui.elements.regularElements.Text;
+import com.mygdx.game.ui.elements.parents.TopHud;
+import com.mygdx.game.ui.elements.regularElements.TransitionScreen;
+import com.mygdx.game.ui.elements.parents.UIBox;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
@@ -87,7 +89,34 @@ public class UIManager {
                 addUIElement(new Text(110,80,"Shop",uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,338,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();}));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                break;
+            case Shop:
+                addUIElement(new BottomHud(-515f,-284));
+                addUIElement(new Button(buttonLX, 364, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                break;
+            case EquipMenu:
+                addUIElement(new BottomHud(-515f,-150f));
+                addUIElement(new Button(buttonLX, 182, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->transition(GameState.StageMenu)));
+                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->transition(GameState.StageMenu)));
+                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
+                break;
+
+            case GameOver:
+                addUIElement(new UIBox(521));
+                addUIElement(new Button(16,16,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
+                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(16,168,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
+                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                break;
+
         }
     }
 

@@ -1,4 +1,4 @@
-package com.mygdx.game.ui.elements;
+package com.mygdx.game.ui.elements.parents;
 
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;

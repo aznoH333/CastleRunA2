@@ -3,6 +3,7 @@ package com.mygdx.game.entities.player;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Controls;
+import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -11,6 +12,7 @@ import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;
 
@@ -205,7 +207,8 @@ public class Player extends Entity {
 
     @Override
     public void onDestroy() {
-
+        if (inv.getHp() == 0)
+            UIManager.getINSTANCE().transition(GameState.GameOver);
         // TODO : death animations
         // FIXME : player can sometimes clip through the ground (probably something with level scrolling)
         // hard to replicate though
