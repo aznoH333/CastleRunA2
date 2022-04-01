@@ -7,4 +7,6 @@ public enum GameState {
     StageMenu,
     GameOver,
     EquipMenu,
+    NewGameMenu,
+
 }

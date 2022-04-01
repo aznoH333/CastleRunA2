@@ -19,7 +19,6 @@ public class ItemViewer {
     private int height = 0;
     private final PlayerStats playerStats = PlayerStats.getINSTANCE();
     private final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
-    private final DrawingManager spr = DrawingManager.getINSTANCE();
     private Button[] buttons = {};
     private Controls itemSlot = Controls.AttackLeft;
 

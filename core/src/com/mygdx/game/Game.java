@@ -8,6 +8,8 @@ import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.menus.GameOver;
+import com.mygdx.game.logic.menus.MainMenu;
+import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.ui.ItemViewer;
 import com.mygdx.game.ui.MenuUIManager;
 import com.mygdx.game.logic.shops.Shop;
@@ -15,7 +17,6 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
-import com.mygdx.game.ui.GameUIManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.stage.StageManager;
@@ -41,7 +42,7 @@ public class Game extends ApplicationAdapter {
     private final static EntityManager ent = EntityManager.getINSTANCE();
     private static long time = 1;
     private static long exitTime = 0;
-    private static GameState state = GameState.Game;
+    private static GameState state = GameState.MainMenu;
     private final static MenuUIManager menuUI = MenuUIManager.getINSTANCE();
     private final static StageMap stageMap = StageMap.getINSTANCE();
     private final static StageManager stageManager = StageManager.getINSTANCE();
@@ -49,6 +50,8 @@ public class Game extends ApplicationAdapter {
     private final static Shop shop = Shop.getINSTANCE();
     private final static GameOver gameOver = GameOver.getINSTANCE();
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
+    private final static MainMenu mainMenu = MainMenu.getINSTANCE();
+    private final static NewGameMenu newGameMenu = NewGameMenu.getINSTANCE();
 
 
     @Override
@@ -57,11 +60,13 @@ public class Game extends ApplicationAdapter {
         SoundLoadList.loadAllSounds();
 
         //init stuff
-        stageManager.startLevel();
+        //stageManager.startLevel();
 
         //temporary
-        ui.changeUI(GameState.Game);
+        ui.changeUI(GameState.MainMenu);
         ui.delayedOpening();
+        ItemViewer.getINSTANCE().changeDimensions(500,500);
+
 
         //temporary music
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
@@ -102,6 +107,9 @@ public class Game extends ApplicationAdapter {
             case EquipMenu:
                 equipMenu();
                 break;
+            case NewGameMenu:
+                newGameMenu();
+                break;
 
         }
 
@@ -114,7 +122,6 @@ public class Game extends ApplicationAdapter {
         //pavliku tohle je validni a drz hubu
         time++;
 
-        //spr.draw("transition",0,0,5);
 
     }
 
@@ -137,21 +144,9 @@ public class Game extends ApplicationAdapter {
         Game.state = state;
         ui.changeUI(state);
         ui.delayedOpening();
+        // TODO : rework shops && itemviewer to use the new ui system
+        itemViewer.updateValues();
 
-
-
-
-        // TODO: finish the rest of the ui
-        if (state != GameState.Game)
-            MenuUIManager.getINSTANCE().changeButtonSet(state);
-
-        switch(state){
-            case Shop:
-                ItemViewer.getINSTANCE().changeDimensions(0,0);
-                break;
-            case EquipMenu:
-                ItemViewer.getINSTANCE().changeDimensions(500,500);
-        }
     }
 
     //status functions
@@ -170,17 +165,20 @@ public class Game extends ApplicationAdapter {
         shop.draw();
     }
 
-
     private void gameOver(){
         gameOver.render();
     }
 
     private void mainMenu(){
-        // TODO : this
+        mainMenu.draw();
     }
 
     private void equipMenu(){
         itemViewer.update();
+    }
+
+    private void newGameMenu(){
+        newGameMenu.draw();
     }
 
     public static void exitLevel(int time){

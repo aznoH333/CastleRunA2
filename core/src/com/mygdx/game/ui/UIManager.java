@@ -34,6 +34,7 @@ public class UIManager {
     private final ArrayList<IUIElement> uiElements = new ArrayList<>();
     private final ArrayList<IUIUpdatable> uiUpdatables = new ArrayList<>();
     private final ArrayList<IUIParentElement> uiParents = new ArrayList<>();
+    private static final ItemViewer itemViewer = ItemViewer.getINSTANCE();
     private GameState targetState = null;
     private boolean isTransitioning = false;
     private final static StageManager stageMan = StageManager.getINSTANCE();
@@ -79,7 +80,7 @@ public class UIManager {
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
-                addUIElement(new Button(buttonLX,62,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();})); // TODO: send player to main menu
+                addUIElement(new Button(buttonLX,62,ButtonType.Large,uiElements.get(0),()->transition(GameState.MainMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,198,ButtonType.Small,uiElements.get(0),()->transition(GameState.EquipMenu)));
@@ -101,11 +102,11 @@ public class UIManager {
                 addUIElement(new Button(buttonLX, 182, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->transition(GameState.StageMenu)));
+                addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->itemViewer.changeSlot(Controls.AttackLeft)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->transition(GameState.StageMenu)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->itemViewer.changeSlot(Controls.AttackRight)));
+                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
                 break;
 
             case GameOver:
@@ -115,6 +116,18 @@ public class UIManager {
 
                 addUIElement(new Button(16,168,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                break;
+
+            case MainMenu:
+                addUIElement(new BottomHud(-515f,0f));
+                addUIElement(new Button(buttonLX,32,ButtonType.Large,uiElements.get(0),()->Gdx.app.exit()));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonLX,168,ButtonType.Large,uiElements.get(0),()->{}));
+                addUIElement(new Text(94,80,"Options",uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonLX,304,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();}));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
 
         }

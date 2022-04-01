@@ -2,6 +2,7 @@ package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
+import com.mygdx.game.data.tilesets.forest.ForestRegular;
 import com.mygdx.game.data.tilesets.traps.BreakingPlatform;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.Gap;
@@ -54,7 +55,7 @@ public class LevelOwner {
                 Backgrounds.castle())
                 .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{20, 2, 1, 2, 5})
                 .chance(0.9f, 3, 1)
-                .height(96, 64)
+                .height(128, 96)
                 .mapTiles("mIconCastle1", "mTile0")
                 .build());
 
@@ -65,6 +66,44 @@ public class LevelOwner {
                 .mapTiles("mIconCave1", "mTile0")
                 .setBoss("slime boss")
                 .buildBossLevel());
+
+        levels.put("2-1", new Level.LevelBuilder(
+                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
+                new float[]{30f,5.5f,6f},
+                100,128, Backgrounds.forest())
+                .mapTiles("player0", "mTile0")
+                .chance(0.7f, 3,1)
+                .height(256, 96)
+                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .build());
+
+        levels.put("2-2", new Level.LevelBuilder(
+                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
+                new float[]{30f,5.5f,6f},
+                100,128, Backgrounds.forest())
+                .mapTiles("player0", "mTile0")
+                .chance(0.7f, 3,1)
+                .height(256, 96)
+                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .build());
+        levels.put("2-3", new Level.LevelBuilder(
+                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
+                new float[]{30f,5.5f,6f},
+                100,128, Backgrounds.forest())
+                .mapTiles("player0", "mTile0")
+                .chance(0.7f, 3,1)
+                .height(256, 96)
+                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .build());
+        levels.put("2-4", new Level.LevelBuilder(
+                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
+                new float[]{30f,5.5f,6f},
+                100,128, Backgrounds.forest())
+                .mapTiles("player0", "mTile0")
+                .chance(0.7f, 3,1)
+                .height(256, 96)
+                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .build());
 
     }
 

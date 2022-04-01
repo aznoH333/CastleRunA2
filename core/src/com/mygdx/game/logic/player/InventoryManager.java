@@ -34,7 +34,9 @@ public class InventoryManager {
 
 
         unlockWeapon("Nothing");
+        unseenWeapons.remove("Nothing");
         unlockWeapon("Sword");
+        unseenWeapons.remove("Sword");
 
 
     }
@@ -48,13 +50,9 @@ public class InventoryManager {
         unseenWeapons.add(name);
     }
 
-    // unlocks a weapon
-    // TODO: unlock system
+    // unlocks a weapon (for the current run)
     public void unlockWeapon(String name){
-        if (unseenWeapons.contains(name)){
-            unlockedWeapons.add(name);
-            unseenWeapons.remove(name);
-        }
+        unlockedWeapons.add(name);
     }
 
     public Weapon getUnlockedWeapon(int index){

@@ -42,6 +42,17 @@ public class StageManager {
                 },
                 120,4));
 
+        stages.add(new Stage(
+                new String[]{"2-1","2-2","2-3","2-4"},
+                "mapBack1",
+                new Decorator[]{
+                        new Decorator("islandDecorator0",-96,-2),
+                        new Decorator("islandDecorator3",260,130),
+                        new Decorator("islandDecorator2",-20,270),
+                        new Decorator("islandDecorator1",340,385),
+                },
+                120,4));
+
         advanceStage();
     }
 
