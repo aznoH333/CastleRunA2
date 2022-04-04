@@ -1,6 +1,5 @@
 package com.mygdx.game.entities.enemies;
 
-import com.mygdx.game.data.TileCollum;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;

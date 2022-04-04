@@ -1,6 +1,6 @@
 package com.mygdx.game.data.tilesets.cave;
 
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class CaveRegular extends TileCollum {
@@ -23,13 +23,4 @@ public class CaveRegular extends TileCollum {
         return new CaveRegular(y);
     }
 
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void draw(float x, float y) {
-
-    }
 }

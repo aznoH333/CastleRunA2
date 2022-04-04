@@ -1,14 +1,16 @@
 package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
+import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
-public class BreakingPlatform extends TileCollum {
+public class BreakingPlatform extends TileCollum implements ISpecialTile, IOnPlayerStep {
 
     private static final String[] sprites = {};
     private static final String repeated = null;

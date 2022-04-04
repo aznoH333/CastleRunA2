@@ -1,13 +1,14 @@
 package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.LevelManager;
 
-public class SpikeTrap extends TileCollum {
+public class SpikeTrap extends TileCollum implements ISpecialTile {
 
     private static final String[] sprites = {"spikeTrap1", "spikeTrap2"};
     private static final String repeated = "spikeTrap3";

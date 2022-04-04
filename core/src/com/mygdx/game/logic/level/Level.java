@@ -1,7 +1,7 @@
 package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.Background;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.logic.entities.EntityFactory;
 

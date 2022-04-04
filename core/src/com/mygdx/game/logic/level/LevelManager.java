@@ -2,7 +2,8 @@ package com.mygdx.game.logic.level;
 
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.Directions;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -140,8 +141,8 @@ public class LevelManager {
                 }
 
                 // render special tile objects
-                if (currentCollum.getSpecial() != TileCollumSpecial.None)
-                    currentCollum.draw(x * tileScale - (distance % tileScale), currentCollum.getY());
+                if (currentCollum instanceof ISpecialTile)
+                    ((ISpecialTile)currentCollum).draw(x * tileScale - (distance % tileScale), currentCollum.getY());
             }
 
         }
@@ -184,8 +185,8 @@ public class LevelManager {
         }
         // special tile update
         for (final TileCollum collum : map) {
-            if (collum.getSpecial() != TileCollumSpecial.None && collum.getSpecial() != TileCollumSpecial.Gap)
-                collum.update();
+            if (collum instanceof ISpecialTile)
+                ((ISpecialTile)collum).update();
         }
 
         // snap camera to boss

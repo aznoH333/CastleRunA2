@@ -1,6 +1,6 @@
 package com.mygdx.game.data.tilesets.castle;
 
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class CastleRegular extends TileCollum {
@@ -18,13 +18,5 @@ public class CastleRegular extends TileCollum {
     @Override
     public TileCollum getNew(int y) {
         return new CastleRegular(y);
-    }
-    @Override
-    public void update() {
-
-    }
-    @Override
-    public void draw(float x, float y) {
-
     }
 }

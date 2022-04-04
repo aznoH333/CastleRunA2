@@ -1,11 +1,12 @@
 package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
-public class GhostPlatform extends TileCollum {
+public class GhostPlatform extends TileCollum implements ISpecialTile {
 
     private static final String[] sprites = {};
     private static final String repeated = null;

@@ -1,6 +1,6 @@
 package com.mygdx.game.data.tilesets.traps;
 
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class Gap extends TileCollum {
@@ -18,15 +18,6 @@ public class Gap extends TileCollum {
     @Override
     public TileCollum getNew(int y) {
         return new Gap(-9999);
-    }
-
-    @Override
-    public void update() {
-
-    }
-    @Override
-    public void draw(float x, float y) {
-
     }
 
 }

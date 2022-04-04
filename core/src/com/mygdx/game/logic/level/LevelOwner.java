@@ -1,6 +1,6 @@
 package com.mygdx.game.logic.level;
 
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.forest.ForestRegular;
 import com.mygdx.game.data.tilesets.traps.BreakingPlatform;

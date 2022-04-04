@@ -1,4 +1,4 @@
-package com.mygdx.game.data;
+package com.mygdx.game.logic.level.tileCollums;
 
 import com.mygdx.game.data.enums.TileCollumSpecial;
 
@@ -51,11 +51,5 @@ public abstract class TileCollum {
         return hurts;
     }
 
-    public abstract void update();
 
-    public abstract void draw(float x, float y);
-
-    public void onPlayerStep(){
-
-    }
 }

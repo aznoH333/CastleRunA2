@@ -1,7 +1,8 @@
 package com.mygdx.game.entities.player;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.TileCollum;
+import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.Team;
@@ -145,8 +146,8 @@ public class Player extends Entity {
         if (tile.getHurts() && landed) {
             takeDamage(1);
         }
-        if (landed)
-            tile.onPlayerStep();
+        if (landed && tile instanceof IOnPlayerStep)
+            ((IOnPlayerStep) tile).onPlayerStep();
 
 
         // scroll camera
