@@ -63,7 +63,6 @@ public class StageManager {
     }
 
     public void advanceInStage(){
-
         ui.transition(GameState.StageMenu);
         //Game.changeState(GameState.StageMenu);
 
@@ -78,6 +77,13 @@ public class StageManager {
 
     public void advanceStage(){
         stageCompletionIndex++;
+        currentStage = stages.get(stageCompletionIndex);
+        shop.restock(currentStage.getShopLevel());
+
+    }
+
+    public void startNewGameFromStage(int stageIndex){
+        stageCompletionIndex = stageIndex;
         currentStage = stages.get(stageCompletionIndex);
         shop.restock(currentStage.getShopLevel());
 

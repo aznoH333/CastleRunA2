@@ -63,7 +63,7 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
     public void update() {
         if (getStatus() != targetStatus){
 
-            y -= 32;
+            y -= 48;
             if (targetStatus == UIActionStatus.Closed && y < closedPosition){
                 y = closedPosition;
             }else if (targetStatus == UIActionStatus.Open && y < openPosition){

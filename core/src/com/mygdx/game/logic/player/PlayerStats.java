@@ -89,6 +89,14 @@ public class PlayerStats {
         energy = maxEnergy;
     }
 
+    public void resetStats(){
+        maxHp = 3;
+        maxEnergy = 2;
+        hp = 3;
+        energy = 2;
+        coins = 0;
+    }
+
     public void upgradeHp(){
         maxHp++;
         hp++;

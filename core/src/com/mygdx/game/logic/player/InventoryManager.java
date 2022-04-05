@@ -26,6 +26,17 @@ public class InventoryManager {
 
     private void loadWeapons(){
         // TODO: separate permanent unlocks & run unlocks
+        resetState();
+    }
+
+    public ArrayList<String> getUnlockedWeapons(){
+        return unlockedWeapons;
+    }
+
+    public void resetState(){
+        weapons.clear();
+        unseenWeapons.clear();
+        // reload weapons
         addWeapon("Nothing", new None());
         addWeapon("Small daggers", new SmallDagger());
         addWeapon("Sword", new Sword());
@@ -37,12 +48,6 @@ public class InventoryManager {
         unseenWeapons.remove("Nothing");
         unlockWeapon("Sword");
         unseenWeapons.remove("Sword");
-
-
-    }
-
-    public ArrayList<String> getUnlockedWeapons(){
-        return unlockedWeapons;
     }
 
     private void addWeapon(String name, Weapon weapon){
