@@ -36,6 +36,7 @@ public class InventoryManager {
     public void resetState(){
         weapons.clear();
         unseenWeapons.clear();
+        unlockedWeapons.clear();
         // reload weapons
         addWeapon("Nothing", new None());
         addWeapon("Small daggers", new SmallDagger());
@@ -75,7 +76,7 @@ public class InventoryManager {
     // FIXME : crashes the game if it runs out of unseen weapons
     public String getRandomUnseenWeapon(){
         // weapons can only be seen once per run
-        String temp = unseenWeapons.get(Game.getSeededRandom().nextInt(unseenWeapons.size())-1);
+        String temp = unseenWeapons.get(Game.getSeededRandom().nextInt(unseenWeapons.size()));
         unseenWeapons.remove(temp);
         return temp;
     }

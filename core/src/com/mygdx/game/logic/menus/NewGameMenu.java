@@ -33,7 +33,7 @@ public class NewGameMenu {
         // TODO : custom buttons
         for (int i = 0; i < 3; i++) {
             int finalI = i;
-            ui.addUIElement(new Button(16, 1184 - (i * 152) - 16, ButtonType.Large,parent, ()->startNewGame(finalI, Game.getGeneralRandom().nextInt(999))));
+            ui.addUIElement(new Button(16, 1128 - (i * 152) - 16, ButtonType.Large,parent, ()->startNewGame(finalI, Game.getGeneralRandom().nextInt(999))));
         }
     }
 

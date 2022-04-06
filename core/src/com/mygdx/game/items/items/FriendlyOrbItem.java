@@ -12,10 +12,6 @@ public class FriendlyOrbItem implements IItem, IItemOnLevelStart {
     private final EntityManager ent = EntityManager.getINSTANCE();
     private final PlayerStats stats = PlayerStats.getINSTANCE();
 
-    @Override
-    public ItemActivationType[] getActivationType() {
-        return new ItemActivationType[]{ItemActivationType.OnLevelStart};
-    }
 
     @Override
     public String getSprite() {

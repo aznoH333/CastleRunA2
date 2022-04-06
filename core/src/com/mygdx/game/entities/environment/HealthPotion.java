@@ -27,7 +27,7 @@ public class HealthPotion extends Pickup{
     public void onPickup() {
         //set hp
         PlayerStats ps = PlayerStats.getINSTANCE();
-        ps.setHp(Math.min(ps.getHp() + fillHp, ps.getMaxHp()));
+        ps.heal(fillHp);
         SoundManager.getINSTANCE().playSound("pickup");
 
         //spawn particle

@@ -34,24 +34,10 @@ public class ItemManager {
 
     public void addItem(IItem item){
         items.add(item);
-        ItemActivationType[] list = item.getActivationType();
-
-        for (ItemActivationType type: list) {
-            switch (type){
-                case Always:
-                    always.add((IItemAlways) item);
-                    break;
-                case OnKill:
-                    onKills.add((IItemOnKill) item);
-                    break;
-                case OnAttack:
-                    onAttacks.add((IItemOnAttack) item);
-                    break;
-                case OnLevelStart:
-                    onLevelStarts.add((IItemOnLevelStart) item);
-                    break;
-            }
-        }
+        if (item instanceof IItemOnKill) onKills.add((IItemOnKill) item);
+        if (item instanceof IItemOnAttack) onAttacks.add((IItemOnAttack) item);
+        if (item instanceof IItemOnLevelStart) onLevelStarts.add((IItemOnLevelStart) item);
+        if (item instanceof IItemAlways) always.add((IItemAlways) item);
     }
 
     // item activations
@@ -66,4 +52,6 @@ public class ItemManager {
             item.onKillFunction(enemyX, enemyY);
         }
     }
+
+    // TODO : unseen item list
 }

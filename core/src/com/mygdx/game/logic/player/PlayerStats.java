@@ -152,4 +152,9 @@ public class PlayerStats {
         this.coins += coins;
     }
 
+    public void heal(int amount) {
+        hp += amount;
+        if (hp > maxHp) hp = maxHp;
+        // TODO : some heal particle
+    }
 }

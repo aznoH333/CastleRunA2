@@ -67,7 +67,7 @@ public class Game extends ApplicationAdapter {
         ui.delayedOpening();
         ItemViewer.getINSTANCE().changeDimensions(500,500);
 
-
+        // TODO: save and continue games
         //temporary music
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
     }
