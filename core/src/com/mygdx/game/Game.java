@@ -66,7 +66,6 @@ public class Game extends ApplicationAdapter {
         ui.changeUI(GameState.MainMenu);
         ui.delayedOpening();
         ItemViewer.getINSTANCE().changeDimensions(500,500);
-        NewGameMenu.getINSTANCE().startNewGame(1,666L);
 
 
         //temporary music

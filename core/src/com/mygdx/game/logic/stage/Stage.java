@@ -47,4 +47,8 @@ public class Stage {
     public int getShopLevel(){
         return shopLevel;
     }
+
+    public void resetStage() {
+        currentStageIndex = 0;
+    }
 }

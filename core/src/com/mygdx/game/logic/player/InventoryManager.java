@@ -72,6 +72,7 @@ public class InventoryManager {
         return weapons.get(weaponName);
     }
 
+    // FIXME : crashes the game if it runs out of unseen weapons
     public String getRandomUnseenWeapon(){
         // weapons can only be seen once per run
         String temp = unseenWeapons.get(Game.getSeededRandom().nextInt(unseenWeapons.size())-1);

@@ -86,7 +86,12 @@ public class StageManager {
         stageCompletionIndex = stageIndex;
         currentStage = stages.get(stageCompletionIndex);
         shop.restock(currentStage.getShopLevel());
+    }
 
+    private void resetStages(){
+        for (Stage s: stages) {
+            s.resetStage();
+        }
     }
 
     public Stage getCurrentStage(){

@@ -7,6 +7,7 @@ import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
+import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
@@ -114,7 +115,7 @@ public class UIManager {
                 addUIElement(new Button(16,16,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(16,168,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
+                addUIElement(new Button(16,168,ButtonType.Small,uiElements.get(0),()-> transition(GameState.NewGameMenu)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
 
@@ -126,14 +127,21 @@ public class UIManager {
                 addUIElement(new Button(buttonLX,168,ButtonType.Large,uiElements.get(0),()->{}));
                 addUIElement(new Text(94,80,"Options",uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonLX,304,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();}));
+                addUIElement(new Button(buttonLX,304,ButtonType.Large,uiElements.get(0),()->transition(GameState.NewGameMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
+            case NewGameMenu:
+                NewGameMenu.getINSTANCE().onTransition();
+
+                addUIElement(new BottomHud(-515f,-150f));
+                addUIElement(new Button(buttonLX,182, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
+                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+
 
         }
     }
 
-    private void addUIElement(IUIElement element){
+    public void addUIElement(IUIElement element){
         uiElements.add(element);
         for (UIType type: element.getTypes()) {
             switch (type){
