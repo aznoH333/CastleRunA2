@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.enemies;
 
+import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
@@ -24,7 +25,7 @@ public class Skeleton extends Entity {
 
     public Skeleton(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
-
+        tags = new EntityTags[]{EntityTags.Grounded, EntityTags.Undead};
     }
     @Override
     public void update(LevelManager lvl, Random r) {

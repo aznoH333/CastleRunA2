@@ -91,7 +91,7 @@ public class EntityManager {
             if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){
                 Entity ent = entities.get(i);
                 if (ent.getTeam() == Team.Enemies)
-                    ItemManager.getINSTANCE().onKill(ent.getX(),ent.getY());
+                    ItemManager.getINSTANCE().onKill(ent);
                 ent.onDestroy();
                 entities.remove(i);
                 i--;

@@ -1,9 +1,6 @@
 package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.load.EntityLoadList;
-import com.mygdx.game.entities.player.Projectiles.ChargedDagger;
-import com.mygdx.game.entities.player.Projectiles.Dagger;
-import com.mygdx.game.entities.enemies.Slime;
 
 import java.util.HashMap;
 

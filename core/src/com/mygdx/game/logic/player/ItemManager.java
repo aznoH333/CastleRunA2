@@ -5,7 +5,7 @@ import com.mygdx.game.items.interfaces.IItemAlways;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
-import com.mygdx.game.items.interfaces.ItemActivationType;
+import com.mygdx.game.logic.entities.Entity;
 
 import java.util.ArrayList;
 
@@ -47,10 +47,14 @@ public class ItemManager {
         }
     }
 
-    public void onKill(float enemyX, float enemyY){
+    public void onKill(Entity enemy){
         for (IItemOnKill item: onKills) {
-            item.onKillFunction(enemyX, enemyY);
+            item.onKillFunction(enemy);
         }
+    }
+
+    public void onAttack(Entity projectile){
+
     }
 
     // TODO : unseen item list

@@ -3,7 +3,9 @@ package com.mygdx.game.items.items;
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
-import com.mygdx.game.items.interfaces.ItemActivationType;
+import com.mygdx.game.logic.entities.Entity;
+
+import java.util.Arrays;
 
 public class DebugItem implements IItem, IItemOnLevelStart, IItemOnKill {
 
@@ -34,7 +36,7 @@ public class DebugItem implements IItem, IItemOnLevelStart, IItemOnKill {
     }
 
     @Override
-    public void onKillFunction(float enemyX, float enemyY) {
-        System.out.println("vražda je poggers");
+    public void onKillFunction(Entity enemy) {
+        System.out.println(Arrays.toString(enemy.getTags()));
     }
 }

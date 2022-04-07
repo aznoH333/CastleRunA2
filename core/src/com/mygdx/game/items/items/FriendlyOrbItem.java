@@ -2,7 +2,6 @@ package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
-import com.mygdx.game.items.interfaces.ItemActivationType;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.player.PlayerStats;
 

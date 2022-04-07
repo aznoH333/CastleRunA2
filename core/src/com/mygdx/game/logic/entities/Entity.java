@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.entities;
 
+import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -17,6 +18,7 @@ public abstract class Entity {
     protected final Team team;
     private boolean markForDestruction = false;
     protected boolean shifts = true;
+    protected EntityTags[] tags = new EntityTags[]{};
 
     public Entity(float x, float y, float xSize, float ySize, int hp, Team team){
         this.x = x;
@@ -85,4 +87,8 @@ public abstract class Entity {
         markForDestruction = true;
     }
     public boolean isMarked(){return markForDestruction;}
+
+    public EntityTags[] getTags(){
+        return tags;
+    }
 }

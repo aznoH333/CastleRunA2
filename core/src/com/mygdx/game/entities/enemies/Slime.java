@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.enemies;
 
+import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.Entity;
 import com.mygdx.game.data.enums.Team;
@@ -26,6 +27,7 @@ public class Slime extends Entity {
 
     public Slime(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
+        tags = new EntityTags[]{EntityTags.Grounded};
     }
 
     @Override

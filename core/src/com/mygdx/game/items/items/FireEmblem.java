@@ -2,6 +2,7 @@ package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
+import com.mygdx.game.logic.entities.Entity;
 
 public class FireEmblem implements IItem, IItemOnAttack {
 
@@ -26,8 +27,8 @@ public class FireEmblem implements IItem, IItemOnAttack {
     }
 
     @Override
-    public void attackFunction() {
+    public void attackFunction(Entity projectile) {
         // TODO: this
-        // TODO : must rewrite entities to use interfaces first
+
     }
 }
