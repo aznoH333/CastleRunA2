@@ -12,7 +12,7 @@ public class FireEmblem implements IItem, IItemOnAttack {
 
     @Override
     public int getCost() {
-        return 20;
+        return 15;
     }
 
     @Override
@@ -28,5 +28,6 @@ public class FireEmblem implements IItem, IItemOnAttack {
     @Override
     public void attackFunction() {
         // TODO: this
+        // TODO : must rewrite entities to use interfaces first
     }
 }
