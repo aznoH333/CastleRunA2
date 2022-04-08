@@ -54,7 +54,9 @@ public class ItemManager {
     }
 
     public void onAttack(Entity projectile){
-
+        for (IItemOnAttack item: onAttacks) {
+            item.attackFunction(projectile);
+        }
     }
 
     // TODO : unseen item list

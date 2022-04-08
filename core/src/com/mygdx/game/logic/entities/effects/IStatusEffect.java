@@ -1,7 +1,11 @@
 package com.mygdx.game.logic.entities.effects;
 
+import com.mygdx.game.data.enums.EntityTags;
+import com.mygdx.game.logic.entities.Entity;
+
 public interface IStatusEffect {
-    void update();
+    void update(Entity affectedEntity);
     void onDestroy();
-    int getDuration();
+    long getDuration();
+    boolean canBeApplied(EntityTags[] tags);
 }

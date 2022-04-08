@@ -54,6 +54,7 @@ public class EntityManager {
 
 
             ent.update(lvl,r);
+            ent.updateEffects();
         }
 
         deleteEntities();
