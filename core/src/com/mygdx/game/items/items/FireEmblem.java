@@ -2,7 +2,9 @@ package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
-import com.mygdx.game.logic.entities.abstracts.Entity;
+
+import com.mygdx.game.logic.entities.abstracts.Projectile;
+import com.mygdx.game.items.effects.OnFire;
 
 public class FireEmblem implements IItem, IItemOnAttack {
 
@@ -27,8 +29,8 @@ public class FireEmblem implements IItem, IItemOnAttack {
     }
 
     @Override
-    public void attackFunction(Entity projectile) {
-        // TODO: this
+    public void attackFunction(Projectile projectile) {
+        projectile.addStatusEffect(new OnFire(150));
 
     }
 }

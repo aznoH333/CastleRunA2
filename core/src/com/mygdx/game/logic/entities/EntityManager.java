@@ -2,6 +2,7 @@ package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -55,8 +56,8 @@ public class EntityManager {
 
 
             ent.update(lvl,r);
-            // TODO : hodne
-            ent.updateEffects();
+            if (ent instanceof Enemy)
+                ((Enemy)ent).updateEffects();
         }
 
         deleteEntities();

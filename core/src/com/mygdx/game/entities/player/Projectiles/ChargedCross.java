@@ -2,14 +2,16 @@ package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
-public class ChargedCross extends Entity {
+public class ChargedCross extends Projectile {
 
     private float startPositionX;
     private final float startPositionY;
@@ -18,27 +20,31 @@ public class ChargedCross extends Entity {
     private final float offset;
     private float radius = 10;
     private int animationIndex = 0;
-    private int pierceTimer = 0;
     private final static ParticleManager part = ParticleManager.getINSTANCE();
 
 
 
     public ChargedCross(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
+        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,32);
         startPositionX = x + 32;
         startPositionY = y + 32;
         offset = 0;
     }
 
     public ChargedCross(float x, float y, float xSize, float ySize, int hp, int param){
-        super(x,y,xSize,ySize,hp, Team.PlayerProjectiles);
+        super(x,y,xSize,ySize,hp, Team.PlayerProjectiles,32);
         startPositionX = x + 32;
         startPositionY = y + 32;
         offset = param*15;
     }
 
     @Override
-    public void update(LevelManager lvl, Random r) {
+    protected void onEnemyHit(Enemy other) {
+        other.takeDamage(1);
+    }
+
+    @Override
+    protected void projectileUpdate(LevelManager lvl, Random r) {
         x = (float) (startPositionX + ((Math.sin((Game.Time() - offset) * rotationTime) ) * radius));
         y = (float) (startPositionY + ((Math.cos((Game.Time() - offset) * rotationTime)) * radius));
 
@@ -49,9 +55,8 @@ public class ChargedCross extends Entity {
             if (r.nextBoolean())
                 part.addParticle("miniSparkle",x + r.nextInt((int) xSize) - 16,y + r.nextInt((int) ySize) - 16,0,0,0, r.nextInt(30) + 30);
         }
-
-        if (pierceTimer > 0) pierceTimer--;
     }
+
 
     @Override
     public void draw(DrawingManager spr) {
@@ -64,13 +69,7 @@ public class ChargedCross extends Entity {
         super.shiftX(shiftBy);
     }
 
-    @Override
-    public void onCollide(Entity other) {
-        if (other.getTeam() == Team.Enemies && pierceTimer == 0){
-            other.takeDamage(1);
-            pierceTimer = 32;
-        }
-    }
+
 
     @Override
     public Entity getCopy(float x, float y) {

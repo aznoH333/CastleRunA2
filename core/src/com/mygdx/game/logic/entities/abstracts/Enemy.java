@@ -3,9 +3,10 @@ package com.mygdx.game.logic.entities.abstracts;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.entities.effects.IStatusEffect;
+import com.mygdx.game.items.interfaces.IStatusEffect;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Enemy extends Entity {
 
@@ -14,23 +15,25 @@ public abstract class Enemy extends Entity {
     }
 
     public void updateEffects(){
-        for (IStatusEffect effect: effects) {
+        for (IStatusEffect effect: effects.values()) {
             effect.update(this);
         }
 
-        for (IStatusEffect effect: effects) {
+        // je hodne dumb dumb a snazi se pouzit neco na co nema pravo
+        //noinspection Java8CollectionRemoveIf
+        for (IStatusEffect effect: effects.values()) {
             if (effect.getDuration() < Game.Time()){
-                effects.remove(effect);
+                effects.remove(effect.getName());
             }
         }
     }
 
-    private final ArrayList<IStatusEffect> effects = new ArrayList<>();
+    private final HashMap<String, IStatusEffect> effects = new HashMap<>();
     protected EntityTags[] tags = new EntityTags[]{};
 
     public void applyEffect(IStatusEffect effect){
-        if (effect.canBeApplied(tags))
-            effects.add(effect);
+        if (effect.canBeApplied(tags) && !effects.containsKey(effect.getName()))
+            effects.put(effect.getName(), effect);
     }
 
     public EntityTags[] getTags(){

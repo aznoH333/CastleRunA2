@@ -15,9 +15,9 @@ public class ChargedAxe extends Axe{
         super(x, y, xSize, ySize, hp);
     }
 
+
     @Override
-    public void update(LevelManager lvl, Random r) {
-        if (pierceTimer > 0) pierceTimer--;
+    public void projectileUpdate(LevelManager lvl, Random r) {
         yM -= gravity;
         x += xM;
         y += this.yM;

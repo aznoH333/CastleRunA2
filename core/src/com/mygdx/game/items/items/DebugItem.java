@@ -37,6 +37,5 @@ public class DebugItem implements IItem, IItemOnLevelStart, IItemOnKill {
 
     @Override
     public void onKillFunction(Entity enemy) {
-        System.out.println(Arrays.toString(enemy.getTags()));
     }
 }

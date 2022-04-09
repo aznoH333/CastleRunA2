@@ -2,24 +2,35 @@ package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.Random;
 
-public class SwordSwipe extends Entity {
+public class SwordSwipe extends Projectile {
 
     protected int lifeTime = 12;
     protected boolean hurts = true;
     public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
+        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,1);
     }
 
     @Override
-    public void update(LevelManager lvl, Random r) {
+    protected void onEnemyHit(Enemy other) {
+        if (hurts){
+            other.takeDamage(1);
+            hurts = false;
+        }
+    }
+
+    @Override
+    protected void projectileUpdate(LevelManager lvl, Random r) {
         lifeTime--;
         if (lifeTime == 0) destroy();
     }
+
 
     @Override
     public void draw(DrawingManager spr) {
@@ -28,14 +39,6 @@ public class SwordSwipe extends Entity {
         if (lifeTime>0)
             spr.drawGame("sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
 
-    }
-
-    @Override
-    public void onCollide(Entity other) {
-        if (other.getTeam() == Team.Enemies && hurts){
-            other.takeDamage(1);
-            hurts = false;
-        }
     }
 
     @Override

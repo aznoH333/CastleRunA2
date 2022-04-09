@@ -4,6 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.items.items.DebugItem;
+import com.mygdx.game.items.items.FireEmblem;
 import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -50,5 +51,6 @@ public class NewGameMenu {
 
         // Temp for debug purposes only
         ItemManager.getINSTANCE().addItem(new DebugItem());
+        ItemManager.getINSTANCE().addItem(new FireEmblem());
     }
 }

@@ -12,19 +12,19 @@ import java.util.Random;
 
 public class Axe extends Projectile {
 
-    protected int pierceTimer = 0;
     private static final int pierceTimerMax = 16;
     private static final float xM = 6f;
     private float yM = 10f;
     protected static final float gravity = 0.5f;
 
     public Axe(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles);
+        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles, pierceTimerMax);
     }
 
+
+
     @Override
-    public void update(LevelManager lvl, Random r) {
-        if (pierceTimer > 0) pierceTimer--;
+    public void projectileUpdate(LevelManager lvl, Random r) {
         yM -= gravity;
         x += xM;
         y += yM;
@@ -50,13 +50,8 @@ public class Axe extends Projectile {
     }
 
     @Override
-    public void onCollide(Entity other) {
-        if (other.getTeam() == Team.Enemies && pierceTimer == 0){
-            other.takeDamage(2);
-            pierceTimer = pierceTimerMax;
-            super.applyStatusEffect((Enemy) other);
-
-        }
+    protected void onEnemyHit(Enemy other) {
+        other.takeDamage(2);
     }
 
     @Override

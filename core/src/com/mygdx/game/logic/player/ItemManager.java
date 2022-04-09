@@ -6,6 +6,7 @@ import com.mygdx.game.items.interfaces.IItemOnAttack;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
 import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.entities.abstracts.Projectile;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class ItemManager {
         }
     }
 
-    public void onAttack(Entity projectile){
+    public void onAttack(Projectile projectile){
         for (IItemOnAttack item: onAttacks) {
             item.attackFunction(projectile);
         }
