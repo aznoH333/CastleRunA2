@@ -1,6 +1,6 @@
 package com.mygdx.game.entities.player.Projectiles;
 
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 

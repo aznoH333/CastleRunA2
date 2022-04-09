@@ -2,13 +2,15 @@ package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
+import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
-public class Axe extends Entity {
+public class Axe extends Projectile {
 
     protected int pierceTimer = 0;
     private static final int pierceTimerMax = 16;
@@ -52,8 +54,9 @@ public class Axe extends Entity {
         if (other.getTeam() == Team.Enemies && pierceTimer == 0){
             other.takeDamage(2);
             pierceTimer = pierceTimerMax;
-        }
+            super.applyStatusEffect((Enemy) other);
 
+        }
     }
 
     @Override

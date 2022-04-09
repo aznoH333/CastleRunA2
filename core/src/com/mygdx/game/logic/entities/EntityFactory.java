@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.entities;
 
 import com.mygdx.game.data.load.EntityLoadList;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.HashMap;
 

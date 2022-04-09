@@ -5,7 +5,7 @@ import com.mygdx.game.items.interfaces.IItemAlways;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.ArrayList;
 

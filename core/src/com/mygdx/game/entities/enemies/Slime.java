@@ -2,7 +2,8 @@ package com.mygdx.game.entities.enemies;
 
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -11,7 +12,7 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
-public class Slime extends Entity {
+public class Slime extends Enemy {
     // constants
     protected final static int animationSpeed = 32;
     protected final static float gravity = 0.5f;

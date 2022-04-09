@@ -4,7 +4,8 @@ import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Enemy;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
@@ -12,7 +13,7 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
-public class RedSlime extends Entity {
+public class RedSlime extends Enemy {
     // constants
     private final static int animationSpeed = 32;
     private final static float gravity = 0.5f;

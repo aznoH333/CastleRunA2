@@ -7,7 +7,7 @@ import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.HashMap;
 

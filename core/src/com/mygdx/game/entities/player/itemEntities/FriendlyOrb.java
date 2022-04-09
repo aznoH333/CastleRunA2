@@ -4,7 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.entities.player.Player;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;

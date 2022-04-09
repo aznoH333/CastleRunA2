@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 

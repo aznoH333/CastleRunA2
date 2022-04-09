@@ -1,13 +1,10 @@
-package com.mygdx.game.logic.entities;
+package com.mygdx.game.logic.entities.abstracts;
 
-import com.mygdx.game.Game;
-import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.entities.effects.IStatusEffect;
+import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Entity {
@@ -21,8 +18,6 @@ public abstract class Entity {
     protected final Team team;
     private boolean markForDestruction = false;
     protected boolean shifts = true;
-    protected EntityTags[] tags = new EntityTags[]{};
-    private final ArrayList<IStatusEffect> effects = new ArrayList<>();
 
     public Entity(float x, float y, float xSize, float ySize, int hp, Team team){
         this.x = x;
@@ -38,17 +33,7 @@ public abstract class Entity {
 
     //abstract methods
     public abstract void update(LevelManager lvl, Random r);
-    public void updateEffects(){
-        for (IStatusEffect effect: effects) {
-            effect.update();
-        }
 
-        for (IStatusEffect effect: effects) {
-            if (effect.getDuration() < Game.Time()){
-                effects.remove(effect);
-            }
-        }
-    }
     public abstract void draw(DrawingManager spr);
     public abstract void onCollide(Entity other);
     public abstract Entity getCopy(float x, float y);
@@ -103,13 +88,7 @@ public abstract class Entity {
     }
     public boolean isMarked(){return markForDestruction;}
 
-    public EntityTags[] getTags(){
-        return tags;
-    }
 
-    // effect stuff
-    public void applyEffect(IStatusEffect effect){
-        if (effect.canBeApplied(tags))
-            effects.add(effect);
-    }
+
+
 }

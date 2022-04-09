@@ -2,7 +2,7 @@ package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnKill;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.player.PlayerStats;
 
 public class VampireCharm implements IItem, IItemOnKill {

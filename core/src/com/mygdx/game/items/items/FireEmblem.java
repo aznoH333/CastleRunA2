@@ -2,7 +2,7 @@ package com.mygdx.game.items.items;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 
 public class FireEmblem implements IItem, IItemOnAttack {
 

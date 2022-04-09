@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.entities.Entity;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.drawing.DrawingManager;
