@@ -5,6 +5,7 @@ import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.items.items.DebugItem;
 import com.mygdx.game.items.items.FireEmblem;
+import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -40,6 +41,7 @@ public class NewGameMenu {
     }
 
     public void startNewGame(int stageIndex, long newSeed){
+        EntityManager.getINSTANCE().clear();
         Game.getSeededRandom().setSeed(newSeed);
         StageManager s = StageManager.getINSTANCE();
         s.startNewGameFromStage(stageIndex);
@@ -48,9 +50,5 @@ public class NewGameMenu {
         InventoryManager.getINSTANCE().resetState();
         s.startLevel();
         UIManager.getINSTANCE().transition(GameState.Game);
-
-        // Temp for debug purposes only
-        ItemManager.getINSTANCE().addItem(new DebugItem());
-        ItemManager.getINSTANCE().addItem(new FireEmblem());
     }
 }

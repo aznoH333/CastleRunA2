@@ -131,11 +131,10 @@ public class UIManager {
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case NewGameMenu:
-                NewGameMenu.getINSTANCE().onTransition();
-
                 addUIElement(new BottomHud(-515f,-150f));
                 addUIElement(new Button(buttonLX,182, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                NewGameMenu.getINSTANCE().onTransition();
 
 
         }

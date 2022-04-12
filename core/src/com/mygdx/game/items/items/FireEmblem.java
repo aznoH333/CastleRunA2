@@ -15,7 +15,7 @@ public class FireEmblem implements IItem, IItemOnAttack {
 
     @Override
     public int getCost() {
-        return 15;
+        return 20;
     }
 
     @Override
