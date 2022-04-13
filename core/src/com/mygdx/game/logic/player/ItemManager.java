@@ -66,6 +66,7 @@ public class ItemManager {
 
     public IItem getRandomUnseenItem(){
         // weapons can only be seen once per run
+
         if (unseenItems.size() > 0){
             IItem temp = unseenItems.get(Game.getSeededRandom().nextInt(unseenItems.size()));
             unseenItems.remove(temp);

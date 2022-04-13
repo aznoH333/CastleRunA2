@@ -4,10 +4,9 @@ import com.mygdx.game.logic.SoundManager;
 
 public class SoundLoadList {
 
-    // TODO: rewrite these to iterate through folders
     public static void loadAllSounds(){
 
-        /**
+        /*
          * !!Warning!!
          *
          * libgdx is very dumb!

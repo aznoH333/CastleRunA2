@@ -24,7 +24,6 @@ public class BreakingPlatform extends TileCollum implements ISpecialTile, IOnPla
     private int flickerTimer = 0;
     private static ParticleManager part = ParticleManager.getINSTANCE();
     private Random r = new Random();
-    // FIXME : when a platform breaks under and object like chest | skeleton they float in the air
     public BreakingPlatform() {
         super(sprites, repeated, grace, special);
     }

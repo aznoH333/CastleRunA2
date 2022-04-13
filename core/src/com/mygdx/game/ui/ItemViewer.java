@@ -41,7 +41,6 @@ public class ItemViewer {
         for (int i = 0; i < inventoryManager.getUnlockedWeapons().size(); i++) {
             // TODO : more UI sprites
             // TODO : scrolling || workaround (inv limit??, scroll buttons??)
-            // TODO : weapon names
             final Weapon w = inventoryManager.getUnlockedWeapon(i);
             buttons[i] = new Button(ButtonType.LargeItemSelect,w.getSprite(),16,y + height - (136*i),()-> playerStats.equipWeapon(w,itemSlot), "");
         }

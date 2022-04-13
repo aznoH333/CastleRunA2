@@ -42,11 +42,11 @@ public class NewGameMenu {
 
     public void startNewGame(int stageIndex, long newSeed){
         EntityManager.getINSTANCE().clear();
+        ItemManager.getINSTANCE().clearItems();
         Game.getSeededRandom().setSeed(newSeed);
         StageManager s = StageManager.getINSTANCE();
         s.startNewGameFromStage(stageIndex);
         PlayerStats.getINSTANCE().resetStats();
-        ItemManager.getINSTANCE().clearItems();
         InventoryManager.getINSTANCE().resetState();
         s.startLevel();
         UIManager.getINSTANCE().transition(GameState.Game);

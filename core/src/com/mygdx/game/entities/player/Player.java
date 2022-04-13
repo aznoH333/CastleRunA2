@@ -143,10 +143,10 @@ public class Player extends Entity {
 
         // map hazards
         TileCollum tile = lvl.getOnPos(x + (lvl.getTileScale() - 1));
-        if (tile.getHurts() && landed) {
+        if (tile.getHurts() && landed && moveTo == x) {
             takeDamage(1);
         }
-        if (landed && tile instanceof IOnPlayerStep)
+        if (landed && tile instanceof IOnPlayerStep && moveTo == x)
             ((IOnPlayerStep) tile).onPlayerStep();
 
 

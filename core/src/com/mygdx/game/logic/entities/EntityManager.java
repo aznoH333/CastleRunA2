@@ -116,5 +116,6 @@ public class EntityManager {
             entity.destroy();
         }
         deleteEntities();
+        entitySpawnQueue.clear();
     }
 }

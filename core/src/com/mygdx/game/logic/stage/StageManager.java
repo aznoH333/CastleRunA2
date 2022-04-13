@@ -20,7 +20,6 @@ public class StageManager {
         return INSTANCE;
     }
 
-    // TODO : shops
     // TODO : save stage unlocks
     private static final UIManager ui = UIManager.getINSTANCE();
     private static final ArrayList<Stage> stages = new ArrayList<>();

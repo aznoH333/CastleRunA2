@@ -24,6 +24,7 @@ public class SpikeTrap extends TileCollum implements ISpecialTile {
     }
     public SpikeTrap(int y){
         super(y,sprites, repeated, grace, special);
+        // TODO : rework timers
         timer = (int) (LevelManager.getINSTANCE().getTrapOffset() * 18 - Game.Time()) % (timerMax + activeTime);
     }
 

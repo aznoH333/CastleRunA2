@@ -39,7 +39,6 @@ public class GameUIManager {
     };
 
     // TODO : add a bit more wood to the ui
-    // FIXME : player sometimes takes damage from spikes when jumping over them (happen only if the spikes are higher than the player)
 
 
     public void drawGameUI(){
