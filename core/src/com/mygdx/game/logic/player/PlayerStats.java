@@ -95,6 +95,8 @@ public class PlayerStats {
         hp = 3;
         energy = 2;
         coins = 0;
+        equipWeapon("Sword", Controls.AttackRight);
+        equipWeapon("Nothing", Controls.AttackLeft);
     }
 
     public void upgradeHp(){

@@ -49,6 +49,7 @@ public class InventoryManager {
         unseenWeapons.remove("Nothing");
         unlockWeapon("Sword");
         unseenWeapons.remove("Sword");
+
     }
 
     private void addWeapon(String name, Weapon weapon){
