@@ -46,6 +46,7 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_back_","caveBack",2);
+        spr.loadSprites("tiles/forest/foreground/forest_","forest",4);
 
 
         //UI

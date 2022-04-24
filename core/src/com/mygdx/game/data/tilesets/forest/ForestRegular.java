@@ -5,8 +5,8 @@ import com.mygdx.game.data.enums.TileCollumSpecial;
 
 public class ForestRegular extends TileCollum {
 
-    private static final String[] sprites = {"player0", "player1", "player2",};
-    private static final String repeated = "castle3";
+    private static final String[] sprites = {"forest0", "forest1", "forest2","forest3"};
+    private static final String repeated = "forest4";
     private static final TileCollumSpecial special = TileCollumSpecial.None;
     private static final boolean grace = false;
 
