@@ -49,6 +49,9 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/forest/foreground/forest_","forest",4);
 
 
+        // items
+        spr.loadSprites("items/itemprewievs/itempreviews_", "itemPreview",8);
+
         //UI
         spr.loadSprites("ui/bars/ui_bars_", "barUI", 6);
         spr.loadSprites("ui/buttons/button_", "button", 1);

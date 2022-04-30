@@ -3,20 +3,16 @@ package com.mygdx.game.items.items;
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.player.PlayerStats;
 
-public class VampireCharm implements IItem, IItemOnKill {
-
-    private byte enemyKillCounter = 0;
-
+public class MicroBombs implements IItem, IItemOnKill {
     @Override
     public String getSprite() {
-        return "itemPreview1";
+        return "itemPreview2";
     }
 
     @Override
     public int getCost() {
-        return 15;
+        return 30;
     }
 
     @Override
@@ -26,17 +22,11 @@ public class VampireCharm implements IItem, IItemOnKill {
 
     @Override
     public String getName() {
-        return "Vampire charm";
+        return "Micro bombs";
     }
 
     @Override
     public void onKillFunction(Entity enemy) {
-        enemyKillCounter++;
 
-        if (enemyKillCounter == 5){
-            // TODO : some activation particle
-            PlayerStats.getINSTANCE().heal(1);
-            enemyKillCounter = 0;
-        }
     }
 }

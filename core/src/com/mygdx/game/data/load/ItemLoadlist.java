@@ -2,6 +2,7 @@ package com.mygdx.game.data.load;
 
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.items.FireEmblem;
+import com.mygdx.game.items.items.FortuneCrown;
 import com.mygdx.game.items.items.FriendlyOrbItem;
 import com.mygdx.game.items.items.VampireCharm;
 
@@ -13,5 +14,6 @@ public class ItemLoadlist {
         itemlist.add(new FriendlyOrbItem());
         itemlist.add(new VampireCharm());
         itemlist.add(new FireEmblem());
+        itemlist.add(new FortuneCrown());
     }
 }

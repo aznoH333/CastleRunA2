@@ -14,7 +14,7 @@ public class FriendlyOrbItem implements IItem, IItemOnLevelStart {
 
     @Override
     public String getSprite() {
-        return "player0";
+        return "itemPreview2";
     }
 
     @Override

@@ -10,7 +10,7 @@ public class FireEmblem implements IItem, IItemOnAttack {
 
     @Override
     public String getSprite() {
-        return "slime0";
+        return "itemPreview0";
     }
 
     @Override
