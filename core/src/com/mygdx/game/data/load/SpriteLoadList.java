@@ -51,6 +51,8 @@ public class SpriteLoadList {
 
         // items
         spr.loadSprites("items/itemprewievs/itempreviews_", "itemPreview",8);
+        spr.loadSprites("items/minibombs/minibomb_", "minibomb",1);
+        spr.loadSprites("items/minibombs/miniexplosion_", "miniexplosion",5);
 
         //UI
         spr.loadSprites("ui/bars/ui_bars_", "barUI", 6);

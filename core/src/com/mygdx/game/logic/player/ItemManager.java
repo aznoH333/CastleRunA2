@@ -9,6 +9,7 @@ import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
 import com.mygdx.game.items.items.FortuneCrown;
 import com.mygdx.game.items.items.FriendlyOrbItem;
+import com.mygdx.game.items.items.MicroBombs;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 
@@ -36,7 +37,7 @@ public class ItemManager {
         onKills.clear();
         always.clear();
         ItemLoadlist.loadItems(unseenItems);
-        addItem(new FortuneCrown());
+        addItem(new MicroBombs());
     }
 
     public void addItem(IItem item){

@@ -1,7 +1,9 @@
 package com.mygdx.game.items.items;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnKill;
+import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 
 public class MicroBombs implements IItem, IItemOnKill {
@@ -27,6 +29,11 @@ public class MicroBombs implements IItem, IItemOnKill {
 
     @Override
     public void onKillFunction(Entity enemy) {
+
+        EntityManager ent = EntityManager.getINSTANCE();
+        for (int i = Game.getGeneralRandom().nextInt(1)+3; i>0; i--){
+            ent.spawnEntity("micro bomb", enemy.getX(), enemy.getY());
+        }
 
     }
 }

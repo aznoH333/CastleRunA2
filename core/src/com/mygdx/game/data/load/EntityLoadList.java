@@ -7,6 +7,8 @@ import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
+import com.mygdx.game.entities.player.itemEntities.MicroBomb;
+import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.HashMap;
@@ -51,6 +53,8 @@ public class EntityLoadList {
 
         //item entities
         entities.put("friendlyOrb", new FriendlyOrb(0,0,16,16,1));
+        entities.put("micro bomb", new MicroBomb(0,0));
+        entities.put("micro explosion", new MicroExplosion(0,0));
 
 
         // environment
