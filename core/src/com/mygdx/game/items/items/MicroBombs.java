@@ -9,7 +9,7 @@ import com.mygdx.game.logic.entities.abstracts.Entity;
 public class MicroBombs implements IItem, IItemOnKill {
     @Override
     public String getSprite() {
-        return "itemPreview2";
+        return "itemPreview3";
     }
 
     @Override

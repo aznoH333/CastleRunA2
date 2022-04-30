@@ -2,6 +2,7 @@ package com.mygdx.game.entities.player.itemEntities;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
@@ -63,5 +64,6 @@ public class MicroBomb extends Entity {
     @Override
     public void onDestroy() {
         EntityManager.getINSTANCE().spawnEntity("micro explosion", x - 16, y-16);
+        SoundManager.getINSTANCE().playSound("enemyDeath1",0.5f);
     }
 }

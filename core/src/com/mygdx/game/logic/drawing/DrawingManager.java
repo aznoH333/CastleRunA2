@@ -26,7 +26,7 @@ public class DrawingManager {
     private SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
     private static final int pixelScale = 4;
-    public static final int gamePosition = 426;
+
     private final HashMap<Integer,ArrayList<DrawingData>> drawQueue = new HashMap<>();
 
 
@@ -113,13 +113,13 @@ public class DrawingManager {
     // default sprite index is 0
     // use to draw only in game graphics
     public void drawGame(String textureName, float x, float y){
-        draw(textureName, x, y + gamePosition - LevelManager.tileScale,0);
+        draw(textureName, x, y ,0);
     }
 
     // draws with set index
     // use to draw only in game graphics
     public void drawGame(String textureName, float x, float y, int zIndex){
-        draw(textureName, x, y + gamePosition - LevelManager.tileScale, (byte) zIndex);
+        draw(textureName, x, y, (byte) zIndex);
     }
 
     // use to draw ui stuff

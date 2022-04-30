@@ -37,7 +37,7 @@ public class ItemManager {
         onKills.clear();
         always.clear();
         ItemLoadlist.loadItems(unseenItems);
-        addItem(new MicroBombs());
+        // cheat items addItem(new MicroBombs());
     }
 
     public void addItem(IItem item){

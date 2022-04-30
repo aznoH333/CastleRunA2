@@ -41,7 +41,7 @@ public class LevelManager {
     private ParticleManager part = ParticleManager.getINSTANCE();
     private static final EntityManager e = EntityManager.getINSTANCE();
     //lvl generation vars
-    private int height = 0;
+    private int height = gamePosition;
     private boolean grace = false;
     private Directions dir = Directions.None;
     private int changeFor = 0;
@@ -49,10 +49,13 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
 
+    // very dumb
+    // the y offset of level tiles
+    public static final int gamePosition = 426;
 
 
 
-
+    // FIXME : this sucks! clean it up!
     private void generateLevel(int index) {
         // generate starts & ends
         if (startGenerationIndex > 0 || distance > levelLength - (tileScale * 4)) {
@@ -117,11 +120,11 @@ public class LevelManager {
             lastHeight = height;
             switch (dir) {
                 case Down:
-                    if (height > lvl.minHeight())
+                    if (height > lvl.minHeight() + gamePosition)
                         height -= stepHeight;
                     break;
                 case Up:
-                    if (height < lvl.maxHeight())
+                    if (height < lvl.maxHeight() + gamePosition)
                         height += stepHeight;
                     break;
             }
@@ -241,9 +244,9 @@ public class LevelManager {
 
         startGenerationIndex = 3;
         if (!isBossLevel)
-            height = random.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight();
+            height = random.nextInt(lvl.maxHeight()-lvl.minHeight()) + lvl.minHeight() + gamePosition;
         else
-            height = lvl.defaultH;
+            height = lvl.defaultH + gamePosition;
         levelLength = lvl.getLength();
         e.clear();
         // pre generate first screen

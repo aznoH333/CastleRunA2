@@ -24,7 +24,7 @@ public class FriendlyOrb extends Entity {
     private final static float speed = 0.2f;
     private static final float maxSpeed = 3.5f;
     private int cooldown = 0;
-    private static final int cooldownMax = 240;
+    private static final int cooldownMax = 640;
     private final EntityManager ent = EntityManager.getINSTANCE();
 
     public FriendlyOrb(float x, float y, float xSize, float ySize, int hp) {
@@ -37,7 +37,7 @@ public class FriendlyOrb extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         // spawn particle
-        if (Game.Time() % 3 == 0)
+        if (Game.Time() % 3 == 0 && cooldown == 0)
             particles.addParticle("electricity",x + r.nextInt((int) xSize) - 8, y + r.nextInt((int) ySize) - 8,0,0,0.01f);
 
         // orbit player
@@ -63,7 +63,7 @@ public class FriendlyOrb extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        //spr.drawGame("player0",x,y,2);
+        spr.drawGame("miniorb0",x,y,2);
     }
 
     @Override
