@@ -20,7 +20,7 @@ public class BackgroundRenderer {
 
     }
 
-    private final static int veryDumb = 768;
+    private final static int veryDumb = 1280;
 
     public void draw(DrawingManager spr){
         for (int i = 0; i < background.getBackgrounds().length; i++) {

@@ -9,7 +9,7 @@ public class Backgrounds {
     }
 
     public static Background cave(){
-        return new Background(new String[]{"caveBack0","caveBack1","caveBack2"}, new float[]{0.25f,0.50f,0.75f});
+        return new Background(new String[]{"caveBack5","caveBack4","caveBack3","caveBack2","caveBack1","caveBack0"}, new float[]{0f,0.15f,0.25f,0.40f,0.60f,0.75f});
     }
 
     public static Background forest(){
