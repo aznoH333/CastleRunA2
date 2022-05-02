@@ -161,9 +161,7 @@ public class Game extends ApplicationAdapter {
         stageMap.update();
     }
 
-    private void shop(){
-        shop.draw();
-    }
+    private void shop(){ }
 
     private void gameOver(){
         gameOver.render();

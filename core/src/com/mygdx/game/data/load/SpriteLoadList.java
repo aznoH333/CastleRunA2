@@ -59,7 +59,7 @@ public class SpriteLoadList {
         spr.loadSprites("ui/bars/ui_bars_", "barUI", 6);
         spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_large_", "button_large", 1);
-        spr.loadSprites("ui/buttons/card_", "item_card", 1);
+        spr.loadSprites("ui/buttons/shop_card_", "item_card", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
         spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
         spr.loadSprites("ui/icons/shop/item_mini_icon_", "item_mini_icon",3);

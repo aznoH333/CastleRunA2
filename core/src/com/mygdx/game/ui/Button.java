@@ -55,8 +55,8 @@ public class Button {
                 textY = 38;
                 break;
             case LargeItemSelect:
-                sprite = "item_card0";
-                spritePressed = "item_card1";
+                sprite = "player0";
+                spritePressed = "player1";
                 height = 256;
                 width = 216;
                 xIconOffset = 32;

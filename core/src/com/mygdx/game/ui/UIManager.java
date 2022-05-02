@@ -9,6 +9,7 @@ import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
+import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
@@ -97,6 +98,7 @@ public class UIManager {
                 addUIElement(new BottomHud(-515f,-284));
                 addUIElement(new Button(buttonLX, 364, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                Shop.getINSTANCE().loadUI();
                 break;
             case EquipMenu:
                 addUIElement(new BottomHud(-515f,-150f));
@@ -135,7 +137,7 @@ public class UIManager {
                 addUIElement(new Button(buttonLX,182, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
                 NewGameMenu.getINSTANCE().onTransition();
-
+                break;
 
         }
     }

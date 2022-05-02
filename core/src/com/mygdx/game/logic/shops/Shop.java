@@ -2,9 +2,12 @@ package com.mygdx.game.logic.shops;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
-import com.mygdx.game.ui.Button;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.ui.UIManager;
+import com.mygdx.game.ui.elements.parents.InvisUIParent;
+import com.mygdx.game.ui.elements.regularElements.Button;
+import com.mygdx.game.ui.elements.regularElements.Sprite;
 
 import java.util.Random;
 
@@ -20,29 +23,28 @@ public class Shop {
     private ShopStock shopStock;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final static PlayerStats stats = PlayerStats.getINSTANCE();
+    private final static UIManager ui = UIManager.getINSTANCE();
 
-
-    private Button[] buttons = new Button[0];
 
     public void restock(int shopLevel){
         if (shopStock == null) shopStock = new ShopStock(r);
         shopStock.restock(shopLevel);
-        buttons = new Button[shopStock.getLength()];
+    }
 
-        for (int i = 0; i < shopStock.getLength(); i++) {
-            int finalI = i;
-            // TODO : smaller shop cards
-            buttons[i] = new Button(ButtonType.LargeItemSelect,shopStock.getItem(i).getSprite(), (i%3 * 232) + 20, (int) (270 + (Math.floor((float)i/3)*272)),()-> shopStock.buyItem(finalI), shopStock.getItem(i).getText());
+    public void loadUI(){
+        InvisUIParent parent = new InvisUIParent();
+        ui.addUIElement(parent);
+        for (int i = 0; i < shopStock.getLength(); i++){
+            ShopItem shp = shopStock.getItem(i);
+            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent,()->{});
+            Sprite box = new Sprite(16, 64, "item_backdrop0", btn);
+            ui.addUIElement(btn);
+            ui.addUIElement(box);
+            System.out.println(shp.getSprite());
+            ui.addUIElement(new Sprite(8,8, shp.getSprite(), box));
         }
     }
 
-    // TODO: rework this to use the new ui manager
 
-    public void draw(){
-        for (int i = 0; i < shopStock.getLength(); i++) {
-            buttons[i].manageInput();
-            buttons[i].draw();
-        }
-        spr.drawText(String.valueOf(stats.getCoins()),64,64);
-    }
+
 }
