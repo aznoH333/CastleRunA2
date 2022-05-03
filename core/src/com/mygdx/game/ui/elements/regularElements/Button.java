@@ -43,8 +43,8 @@ public class Button implements IUIElement, IUIUpdatable {
             case LargeItemSelect:
                 sprite = "item_card0";
                 spritePressed = "item_card1";
-                height = 256;
-                width = 216;
+                height = 200;
+                width = 668;
                 break;
         }
 

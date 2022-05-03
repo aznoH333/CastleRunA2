@@ -45,7 +45,7 @@ public class ShopStock {
             }else{
                 // random item
                 IItem ritem = ItemManager.getINSTANCE().getRandomUnseenItem();
-                items[i] = new ShopItem(ritem.getSprite(), ritem.getCost(), 1, ()-> item.addItem(ritem), "buy item");
+                items[i] = new ShopItem(ritem.getSprite(), ritem.getCost(), 1, ()-> item.addItem(ritem), "buy " + ritem.getName());
             }
 
         }

@@ -10,7 +10,7 @@ public class FortuneCrown implements IItem, IItemOnKill {
 
     @Override
     public String getSprite() {
-        return "itemPreviews3";
+        return "itemPreview4";
     }
 
     @Override

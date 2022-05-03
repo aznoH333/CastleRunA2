@@ -8,6 +8,7 @@ import com.mygdx.game.ui.UIManager;
 import com.mygdx.game.ui.elements.parents.InvisUIParent;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
+import com.mygdx.game.ui.elements.regularElements.Text;
 
 import java.util.Random;
 
@@ -36,12 +37,12 @@ public class Shop {
         ui.addUIElement(parent);
         for (int i = 0; i < shopStock.getLength(); i++){
             ShopItem shp = shopStock.getItem(i);
-            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent,()->{});
-            Sprite box = new Sprite(16, 64, "item_backdrop0", btn);
+            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent, shp::buyItem);
+            Sprite box = new Sprite(16, 70, "item_backdrop0", btn);
             ui.addUIElement(btn);
             ui.addUIElement(box);
-            System.out.println(shp.getSprite());
             ui.addUIElement(new Sprite(8,8, shp.getSprite(), box));
+            ui.addUIElement(new Text(80,70,shp.getText(),btn));
         }
     }
 
