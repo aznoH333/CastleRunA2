@@ -29,10 +29,10 @@ public class LevelOwner {
         levels.put("1-1", new Level.LevelBuilder(
                         new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new BreakingPlatform()},
                         new float[]{20, 5, 2, 1},
-                        30, 128,
+                        30, 96,
                         Backgrounds.castle())
                 .mapTiles("mIconCastle0", "mTile0")
-                .height(256,96)
+                .height(128,96)
                 .chance(0.7f,3,2)
                 .enemies(new String[]{"slime", "chest"}, new float[]{20,6,2})
                 .build()

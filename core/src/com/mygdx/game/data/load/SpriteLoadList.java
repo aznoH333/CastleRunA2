@@ -42,7 +42,7 @@ public class SpriteLoadList {
 
         //tiles
         spr.loadSprites("tiles/castle/foreground/castle_", "castle", 3);
-        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 1);
+        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 2);
         spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
         spr.loadSprites("tiles/general/platform/platform_", "platform", 5);
         spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
