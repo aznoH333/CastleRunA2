@@ -17,6 +17,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/basic_sword/sword_","sword",6);
         spr.loadSprites("entities/weapons/throwing_axe/Axe_","axe",3);
         spr.loadSprites("entities/weapons/boomerang/cross_","cross",4);
+        spr.loadSprites("entities/weapons/fireball/Fireball_","fireball",4);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
@@ -24,6 +25,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/enemies/slimes/red_slime/red_slime_","red_slime",6);
         spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",2);
         spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
+        spr.loadSprites("entities/enemies/bullshit/skull/skull_", "ghost_skull", 1);
 
         // enemy projectiles
         spr.loadSprites("entities/enemies/projectiles/bone/bone_","bone",5);

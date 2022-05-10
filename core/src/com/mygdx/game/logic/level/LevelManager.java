@@ -171,6 +171,10 @@ public class LevelManager {
     }
 
     public void update() {
+        // camera fail safe
+        if (distance % tileScale > 0 && advanceDistance == distance){
+            advanceToTile((distance%tileScale));
+        }
         //advance
         if (advanceDistance > distance) {
             float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
@@ -186,6 +190,8 @@ public class LevelManager {
                 generateLevel(mapWidth-1);
             }
         }
+
+
         // special tile update
         for (final TileCollum collum : map) {
             if (collum instanceof ISpecialTile)

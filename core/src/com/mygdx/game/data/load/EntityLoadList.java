@@ -21,6 +21,7 @@ public class EntityLoadList {
         entities.put("slime", new Slime(0,0,64,64,1));
         entities.put("red slime", new RedSlime(0,0,64,64,2));
         entities.put("skeleton", new Skeleton(0,0,64,64,1));
+        entities.put("ghost skull", new GhostSkull(0,0));
 
         // bosses
         entities.put("slime boss", new SlimeBoss(0,0,128,128,30));
@@ -41,6 +42,7 @@ public class EntityLoadList {
         entities.put("cross", new Cross(0,0,48,48,1));
         entities.put("charged cross", new ChargedCross(0,0,48,48,1));
         entities.put("orb attack", new OrbAttack(0,0,16,16,1));
+        entities.put("fireball", new FireBall(0, 0));
 
 
         // FIXME normalize naming conventions

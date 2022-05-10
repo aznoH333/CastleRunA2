@@ -10,8 +10,6 @@ import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.menus.GameOver;
 import com.mygdx.game.logic.menus.MainMenu;
 import com.mygdx.game.logic.menus.NewGameMenu;
-import com.mygdx.game.ui.ItemViewer;
-import com.mygdx.game.ui.MenuUIManager;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -43,10 +41,8 @@ public class Game extends ApplicationAdapter {
     private static long time = 1;
     private static long exitTime = 0;
     private static GameState state = GameState.MainMenu;
-    private final static MenuUIManager menuUI = MenuUIManager.getINSTANCE();
     private final static StageMap stageMap = StageMap.getINSTANCE();
     private final static StageManager stageManager = StageManager.getINSTANCE();
-    private final static ItemViewer itemViewer = ItemViewer.getINSTANCE();
     private final static Shop shop = Shop.getINSTANCE();
     private final static GameOver gameOver = GameOver.getINSTANCE();
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
@@ -65,7 +61,6 @@ public class Game extends ApplicationAdapter {
         //temporary
         ui.changeUI(GameState.MainMenu);
         ui.delayedOpening();
-        ItemViewer.getINSTANCE().changeDimensions(500,500);
 
         // TODO: save and continue games
         //temporary music
@@ -145,7 +140,6 @@ public class Game extends ApplicationAdapter {
         ui.changeUI(state);
         ui.delayedOpening();
         // TODO : rework shops && itemviewer to use the new ui system
-        itemViewer.updateValues();
 
     }
 
@@ -172,7 +166,7 @@ public class Game extends ApplicationAdapter {
     }
 
     private void equipMenu(){
-        itemViewer.update();
+
     }
 
     private void newGameMenu(){

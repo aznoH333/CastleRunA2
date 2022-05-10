@@ -29,7 +29,7 @@ public class LevelOwner {
         levels.put("1-1", new Level.LevelBuilder(
                         new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new BreakingPlatform()},
                         new float[]{20, 5, 2, 1},
-                        100, 128,
+                        30, 128,
                         Backgrounds.castle())
                 .mapTiles("mIconCastle0", "mTile0")
                 .height(256,96)
@@ -74,7 +74,7 @@ public class LevelOwner {
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
                 .height(256, 96)
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .enemies(new String[]{"slime", "chest", "red slime", "skeleton", "ghost skull"}, new float[]{25f, 2f, 2f, 5f, 3.5f, 10f})
                 .build());
 
         levels.put("2-2", new Level.LevelBuilder(

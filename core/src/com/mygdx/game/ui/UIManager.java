@@ -7,6 +7,7 @@ import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
+import com.mygdx.game.logic.menus.InventoryScreen;
 import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.shops.Shop;
@@ -36,11 +37,11 @@ public class UIManager {
     private final ArrayList<IUIElement> uiElements = new ArrayList<>();
     private final ArrayList<IUIUpdatable> uiUpdatables = new ArrayList<>();
     private final ArrayList<IUIParentElement> uiParents = new ArrayList<>();
-    private static final ItemViewer itemViewer = ItemViewer.getINSTANCE();
     private GameState targetState = null;
     private boolean isTransitioning = false;
     private final static StageManager stageMan = StageManager.getINSTANCE();
     private final TransitionScreen transition = new TransitionScreen();
+    private final static InventoryScreen invScreen = InventoryScreen.getINSTANCE();
 
 
     // dumb constants
@@ -105,11 +106,12 @@ public class UIManager {
                 addUIElement(new Button(buttonLX, 182, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
                 addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->itemViewer.changeSlot(Controls.AttackLeft)));
+                addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackLeft)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->itemViewer.changeSlot(Controls.AttackRight)));
+                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackRight)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
+                InventoryScreen.getINSTANCE().loadUI();
                 break;
 
             case GameOver:

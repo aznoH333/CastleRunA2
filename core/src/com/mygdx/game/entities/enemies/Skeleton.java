@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.enemies;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.data.enums.TileCollumSpecial;
@@ -76,7 +77,7 @@ public class Skeleton extends Enemy {
     @Override
     public void onDestroy() {
         // TODO: more enemy sounds
-        Random r = new Random();
+        Random r = Game.getGeneralRandom();
         ParticleManager part = ParticleManager.getINSTANCE();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
         // spawn 10 - 20 gore particles

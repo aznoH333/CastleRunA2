@@ -13,7 +13,7 @@ import java.util.Random;
 public class MicroExplosion extends Projectile {
     private final long deletionTime;
     public MicroExplosion(float x, float y) {
-        super(x, y, 32, 32, 1, Team.PlayerProjectiles, 0);
+        super(x, y, 32, 32, 1, Team.PlayerProjectiles, 64);
         deletionTime = Game.Time() + 16;
     }
 

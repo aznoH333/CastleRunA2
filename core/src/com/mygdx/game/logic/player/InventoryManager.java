@@ -43,6 +43,7 @@ public class InventoryManager {
         addWeapon("Sword", new Sword());
         addWeapon("Axe", new ThrowingAxe());
         addWeapon("Cross", new BoomerangCross());
+        addWeapon("Fireball", new FireBall());
 
 
         unlockWeapon("Nothing");
