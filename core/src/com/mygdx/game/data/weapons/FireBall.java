@@ -15,7 +15,6 @@ public class FireBall extends Weapon {
 
         ent.spawnEntity("fireball", x, y+16);
     }
-    // FIXME : screen fallback is dumb and needs to be fixed
 
     @Override
     public void chargedAttack(float x, float y) {

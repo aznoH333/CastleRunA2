@@ -173,7 +173,7 @@ public class LevelManager {
     public void update() {
         // camera fail safe
         if (distance % tileScale > 0 && advanceDistance == distance){
-            advanceToTile((distance%tileScale));
+            advanceToTile(tileScale - (distance%tileScale));
         }
         //advance
         if (advanceDistance > distance) {

@@ -139,8 +139,6 @@ public class Game extends ApplicationAdapter {
         Game.state = state;
         ui.changeUI(state);
         ui.delayedOpening();
-        // TODO : rework shops && itemviewer to use the new ui system
-
     }
 
     //status functions
