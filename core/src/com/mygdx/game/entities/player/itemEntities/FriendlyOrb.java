@@ -39,6 +39,8 @@ public class FriendlyOrb extends Entity {
         // spawn particle
         if (Game.Time() % 3 == 0 && cooldown == 0)
             particles.addParticle("electricity",x + r.nextInt((int) xSize) - 8, y + r.nextInt((int) ySize) - 8,0,0,0.01f);
+        if (Game.Time() % 7 == 0)
+            particles.addParticle("electricity",x + r.nextInt((int) xSize) - 8, y + r.nextInt((int) ySize) - 8,0,0,0.01f);
 
         // orbit player
         x += xM;
