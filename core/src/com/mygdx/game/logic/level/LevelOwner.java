@@ -21,7 +21,7 @@ public class LevelOwner {
         return INSTANCE;
     }
 
-    private HashMap<String, Level> levels = new HashMap<>();
+    private final HashMap<String, Level> levels = new HashMap<>();
     private static final Backgrounds backgrounds = Backgrounds.getINSTANCE();
 
 
@@ -30,7 +30,7 @@ public class LevelOwner {
         levels.put("1-1", new Level.LevelBuilder(
                         new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new BreakingPlatform()},
                         new float[]{20, 5, 2, 1},
-                        30, 96,
+                        75, 96,
                         backgrounds.castle())
                 .mapTiles("mIconCastle0", "mTile0")
                 .height(128,96)
@@ -42,7 +42,7 @@ public class LevelOwner {
         levels.put("1-2", new Level.LevelBuilder(
                 new TileCollum[]{new CaveRegular(), new Gap(), new BreakingPlatform()},
                 new float[]{15, 5, 1},
-                110, 128,
+                85, 128,
                 backgrounds.cave())
                 .mapTiles("mIconCave0", "mTile0")
                 .enemies(new String[]{"slime", "chest", "red slime"}, new float[]{20, 5, 1, 3})
@@ -52,7 +52,7 @@ public class LevelOwner {
         levels.put("1-3", new Level.LevelBuilder(
                 new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new GhostPlatform()},
                 new float[]{20, 5, 2, 3},
-                95,128,
+                80,128,
                 backgrounds.castle())
                 .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{20, 2, 1, 2, 5})
                 .chance(0.9f, 3, 1)
