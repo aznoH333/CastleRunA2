@@ -2,6 +2,7 @@ package com.mygdx.game.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
+import com.mygdx.game.data.enums.BarType;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
@@ -14,6 +15,7 @@ import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
+import com.mygdx.game.ui.elements.regularElements.HudBar;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
 import com.mygdx.game.ui.elements.regularElements.Text;
 import com.mygdx.game.ui.elements.parents.TopHud;
@@ -78,8 +80,12 @@ public class UIManager {
                 addUIElement(new Button(buttonRX,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
                 addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
 
+
                 // top hud
-                addUIElement(new TopHud());
+                TopHud topHud = new TopHud();
+                addUIElement(topHud);
+                addUIElement(new HudBar(16,16,"bar0", BarType.RED, topHud, 6, 10));
+                addUIElement(new HudBar(16, 128,  "bar1", BarType.BLU,  topHud, 5, 9));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
