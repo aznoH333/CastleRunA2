@@ -11,6 +11,7 @@ import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.menus.InventoryScreen;
 import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
+import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
@@ -44,6 +45,7 @@ public class UIManager {
     private final static StageManager stageMan = StageManager.getINSTANCE();
     private final TransitionScreen transition = new TransitionScreen();
     private final static InventoryScreen invScreen = InventoryScreen.getINSTANCE();
+    private final static PlayerStats playerStats = PlayerStats.getINSTANCE();
 
 
     // dumb constants
@@ -84,8 +86,8 @@ public class UIManager {
                 // top hud
                 TopHud topHud = new TopHud();
                 addUIElement(topHud);
-                addUIElement(new HudBar(16,16,"bar0", BarType.RED, topHud, 6, 10));
-                addUIElement(new HudBar(16, 128,  "bar1", BarType.BLU,  topHud, 5, 9));
+                addUIElement(new HudBar(16,32,"bar0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
+                addUIElement(new HudBar(376, 32,  "bar1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
