@@ -157,6 +157,12 @@ public class PlayerStats {
     public void heal(int amount) {
         hp += amount;
         if (hp > maxHp) hp = maxHp;
-        // TODO : some heal particle
+        player.spawnHealthParticles(amount * 20);
+    }
+
+    public void gainEnergy(int amount){
+        energy += amount;
+        if (energy > maxEnergy) energy = maxEnergy;
+        player.spawnEnergyParticles(amount * 20);
     }
 }

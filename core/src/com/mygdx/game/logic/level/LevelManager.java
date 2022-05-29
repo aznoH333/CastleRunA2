@@ -222,7 +222,7 @@ public class LevelManager {
     }
 
     public float getLevelY(Entity object){
-        return getOnPos(object.getX() + ((int)object.getXSize()>>1) + (distance%tileScale)).getY() + tileScale;
+        return getOnPos(object.getX() + (object.getXSize()/2) + (distance%tileScale)).getY() + tileScale;
     }
 
     public int getTileScale() {

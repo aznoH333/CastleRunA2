@@ -141,7 +141,7 @@ public class DrawingManager {
             //dumb piskel stuff
             StringBuilder adder = new StringBuilder();
             int dumb = 9;
-            while (dumb <= amount){
+            while (dumb < amount){
                 if (i <= dumb) adder.append("0");
                 dumb = (dumb * 10) + 9;
             }

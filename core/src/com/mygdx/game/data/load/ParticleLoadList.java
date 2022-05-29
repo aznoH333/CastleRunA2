@@ -43,6 +43,8 @@ public class ParticleLoadList {
 
         // potions
         particleMap.put("potion", new Particle(new String[]{"potion0"},420,0));
+        particleMap.put("healthGain", new Particle(new String[]{"gainPart0", "gainPart1", "gainPart2", "gainPart2", "gainPart2", "gainPart2", "gainPart3", "gainPart4"},0 , 2));
+        particleMap.put("energyGain", new Particle(new String[]{"gainPart5", "gainPart6", "gainPart7", "gainPart7", "gainPart7", "gainPart7", "gainPart8", "gainPart9"},0 , 2));
 
 
         return particleMap;

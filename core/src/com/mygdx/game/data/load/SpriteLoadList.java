@@ -86,5 +86,6 @@ public class SpriteLoadList {
         spr.loadSprites("particles/effects/part_small_","particle",14);
         spr.loadSprites("particles/gore/Blood_","gore",13);
         spr.loadSprites("particles/gore/slime_explosion_","slimeExplosion",2);
+        spr.loadSprites("particles/gainParticles/gain_part_", "gainPart", 9);
     }
 }

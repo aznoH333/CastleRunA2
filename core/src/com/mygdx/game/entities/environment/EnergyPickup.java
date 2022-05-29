@@ -22,9 +22,7 @@ public class EnergyPickup extends Pickup{
 
     @Override
     public void onPickup() {
-        final PlayerStats ps = PlayerStats.getINSTANCE();
-        if (ps.getEnergy() < ps.getMaxEnergy())
-            ps.setEnergy(ps.getEnergy() + 1);
+        PlayerStats.getINSTANCE().gainEnergy(1);
         SoundManager.getINSTANCE().playSound("energy");
     }
 }

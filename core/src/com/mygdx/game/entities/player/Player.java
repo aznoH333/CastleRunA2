@@ -24,6 +24,8 @@ public class Player extends Entity {
     private int actionTimer = 0;
     private int particleTimer = 0;
     private int iFrame = 0;
+    private int healthPartTimer = 0;
+    private int energyPartTimer = 0;
 
     //finals
     private static final float gravity = 1f;
@@ -37,6 +39,7 @@ public class Player extends Entity {
     private static final int iFrameMax = 60;
     private final static InputManager input = InputManager.getINSTANCE();
     private final SoundManager s = SoundManager.getINSTANCE();
+    private final ParticleManager particleManager = ParticleManager.getINSTANCE();
 
     public Player(float x, float y, float sizeX, float sizeY) {
         super(x, y, sizeX, sizeY, 3, Team.Player);
@@ -90,6 +93,7 @@ public class Player extends Entity {
             }
             //prevent player moving out off bounds
             if (moveTo < 0) moveTo = 0;
+
         }
 
         // attacks
@@ -127,7 +131,7 @@ public class Player extends Entity {
                 || input.getButtonCharge(Controls.AttackLeft) > input.getHoldSensitivity() && inv.isAttackAffordable(Controls.AttackLeft,true)) {
             if (particleTimer <= 0) {
                 particleTimer = particleTimerFull;
-                ParticleManager.getINSTANCE().addParticle(
+                particleManager.addParticle(
                         "sparkle",
                         (int) (Math.random() * (lvl.getTileScale() - 16)) + x,
                         (int) (Math.random() * (lvl.getTileScale() - 16)) + y - 16,
@@ -158,6 +162,16 @@ public class Player extends Entity {
         if (moveTo > x) x += moveSpeed;
         if (moveTo < x) x -= moveSpeed;
         y += yM;
+
+        // spawn particles
+        if (healthPartTimer > 0) {
+            healthPartTimer--;
+            if (healthPartTimer % 6 == 0) particleManager.addParticle("healthGain", x + (r.nextFloat() * xSize) - 4, y + (r.nextFloat() * 4),0,r.nextFloat()+1f,0);
+        }
+        if (energyPartTimer > 0) {
+            energyPartTimer--;
+            if (energyPartTimer % 6 == 0) particleManager.addParticle("energyGain", x + (r.nextFloat() * xSize) - 4, y + (r.nextFloat() * 4),0,r.nextFloat()+1f,0);
+        }
     }
 
     @Override
@@ -220,5 +234,12 @@ public class Player extends Entity {
         this.hp = hp;
     }
 
+    public void spawnHealthParticles(int time){
+        healthPartTimer += time;
+    }
+
+    public void spawnEnergyParticles(int time){
+        energyPartTimer += time;
+    }
 
 }
