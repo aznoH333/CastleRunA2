@@ -25,11 +25,6 @@ import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 
-    public static final int androidHeight = 1920;
-    public static final int androidWidth = 1080;
-    public static final int pcHeight = 640;
-    public static final int pcWidth = 360;
-
     private final static Random seededRandom = new Random(258);
     private final static Random generalRandom = new Random();
     private final static DrawingManager spr = DrawingManager.getINSTANCE();

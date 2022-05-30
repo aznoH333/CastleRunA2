@@ -2,6 +2,7 @@ package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,9 @@ public class DrawingManager {
     private SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
     private static final int pixelScale = 4;
+    private final OrthographicCamera cam = new OrthographicCamera();
+    private int screenWidth;
+
 
     private final HashMap<Integer,ArrayList<DrawingData>> drawQueue = new HashMap<>();
 
@@ -45,8 +49,7 @@ public class DrawingManager {
         batch = new SpriteBatch();
         parameter.size = 25;
         font = generator.generateFont(parameter);
-        OrthographicCamera cam = new OrthographicCamera();
-        cam.setToOrtho(false, 720,1280);
+        cam.setToOrtho(false, 720, 1280);
         batch.setProjectionMatrix(cam.combined);
         SpriteLoadList.loadAllSprites(this);
     }
@@ -82,8 +85,16 @@ public class DrawingManager {
      ---------------------
      */
 
-
     public void render(){
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2); //TODO : change pixel size based on viewport height
+            System.out.println(cam.viewportWidth + ", " + cam.viewportHeight + " : " + Gdx.graphics.getWidth() + ", " + Gdx.graphics.getHeight());
+
+            cam.update();
+            batch.setProjectionMatrix(cam.combined);
+
+        }
         batch.begin();
         for (ArrayList<DrawingData> layer : drawQueue.values()) {
             for (DrawingData data: layer) {
