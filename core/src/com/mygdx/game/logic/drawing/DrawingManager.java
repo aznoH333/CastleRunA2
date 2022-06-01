@@ -26,7 +26,7 @@ public class DrawingManager {
 
     private SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
-    private static final int pixelScale = 4;
+    private float pixelScale = 4;
     private final OrthographicCamera cam = new OrthographicCamera();
     private int screenWidth;
 
@@ -86,12 +86,14 @@ public class DrawingManager {
      */
 
     public void render(){
-
+        // TODO : move this somewhere else and optimize
+        // TODO : make level width scale with screen
+        // TODO : somehow do ui scaling
+        // screen scaling
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2); //TODO : change pixel size based on viewport height
-            System.out.println(cam.viewportWidth + ", " + cam.viewportHeight + " : " + Gdx.graphics.getWidth() + ", " + Gdx.graphics.getHeight());
-
+            cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2);
             cam.update();
+            pixelScale = Gdx.graphics.getHeight() / 160f;
             batch.setProjectionMatrix(cam.combined);
 
         }
@@ -140,7 +142,7 @@ public class DrawingManager {
 
             if (!drawQueue.containsKey(zIndex))
                 drawQueue.put(zIndex, new ArrayList<>());
-            drawQueue.get(zIndex).add(new SpriteData(text, x, y));
+            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale));
         }
 
     }
