@@ -33,7 +33,7 @@ public class Player extends Entity {
     private static final float hopStrength = 5f;
     private static final float jumpStrength = 8f;
     private static final float moveSpeed = 8f;
-    private static final float scrollBorder = Gdx.graphics.getWidth() - 128;
+    private static final float scrollBorder = (float) Math.ceil((float) Gdx.graphics.getWidth() / LevelManager.tileScale - 2) * LevelManager.tileScale ;
     private static final int actionTimerFull = 16;
     private final PlayerStats inv;
     private static final int particleTimerFull = 8;
