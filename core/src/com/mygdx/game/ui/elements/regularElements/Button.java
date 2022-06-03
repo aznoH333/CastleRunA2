@@ -6,6 +6,7 @@ import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
 
@@ -23,6 +24,7 @@ public class Button implements IUIElement, IUIUpdatable {
     private boolean pressed = false;
     private final static float pressedOffset = 20;
     private final IUIElement parent;
+    private final static InputManager input = InputManager.getINSTANCE();
 
     public Button(float x, float y, ButtonType type, IUIElement parent, ILambdaFunction function){
         switch (type){
@@ -85,16 +87,12 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void update() {
-        // this is temp (made to work with lower than base resolution)
-        // TODO: move calculation to input manager (this calculates input for every button)
-        int mx = Gdx.input.getX()*2;
-        int my = (640 - Gdx.input.getY())*2;
-        //int mx = (int) (Gdx.input.getX() / 1.5);
-        //int my = (int) ((Game.androidHeight - Gdx.input.getY()) / 1.5);
+
+
 
         boolean lFrameState = pressed;
-        // temp
-        if(mx > x+ parent.getX() && mx < x+ parent.getX() + width && my > y+ parent.getY() && my < y+ parent.getY() + height
+        // FIXME : this realy sucks
+        if(input.getMouseX() > (x+ parent.getX())/4*spr.getPixelScale() && input.getMouseX() < (x+ parent.getX() + width)/4* spr.getPixelScale() && input.getMouseY() > (y + parent.getY()) / 4 * spr.getPixelScale() && input.getMouseY() < (y+ parent.getY() + height)/4* spr.getPixelScale()
                 && (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
             if (actionButton)

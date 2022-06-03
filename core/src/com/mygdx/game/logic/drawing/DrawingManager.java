@@ -115,7 +115,7 @@ public class DrawingManager {
     public void drawText(String text, float x, float y, int zIndex){
         if (!drawQueue.containsKey(zIndex))
             drawQueue.put(zIndex, new ArrayList<>());
-        drawQueue.get(zIndex).add(new TextData(text, x, y));
+        drawQueue.get(zIndex).add(new TextData(text, x/4*pixelScale, y/4*pixelScale));
     }
 
     public void drawText(String text, float x, float y){
@@ -147,6 +147,15 @@ public class DrawingManager {
 
     }
 
+    public void debugDraw(String textureName, float x, float y, int zIndex){
+        if (textureName != null){
+            Texture text = sprs.get(textureName);
+
+            if (!drawQueue.containsKey(zIndex))
+                drawQueue.put(zIndex, new ArrayList<>());
+            drawQueue.get(zIndex).add(new SpriteData(text, x, y));
+        }
+    }
 
     public void loadSprites(String path, String name, int amount){
         for (int i = 0; i <= amount; i++) {
@@ -161,6 +170,10 @@ public class DrawingManager {
 
             sprs.put(name + i,new Texture("sprites/" + path + adder + i + ".png"));
         }
+    }
+
+    public float getPixelScale(){
+        return pixelScale;
     }
 
 }

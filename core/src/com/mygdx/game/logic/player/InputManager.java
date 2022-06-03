@@ -3,6 +3,7 @@ package com.mygdx.game.logic.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.enums.Controls;
+import com.mygdx.game.logic.drawing.DrawingManager;
 
 public class InputManager {
     private static InputManager INSTANCE;
@@ -13,7 +14,8 @@ public class InputManager {
     }
 
 
-    private int holdSensitivity = 16;
+    private final int holdSensitivity = 16;
+    private final static DrawingManager spr = DrawingManager.getINSTANCE();
     //is button pressed
     private boolean left = false;
     private boolean right = false;
@@ -33,6 +35,19 @@ public class InputManager {
     private int chargeLeft = 0;
     private int chargeRight = 0;
     // TODO: sensitivity setting in menu
+
+    // touch & mouse controls
+    private float mouseX = 0;
+    private float mouseY = 0;
+
+    public float getMouseX(){
+        return mouseX;
+    }
+
+    public float getMouseY(){
+        return mouseY;
+    }
+
     public void manageInput(){
         // left
         if (Gdx.input.isKeyPressed(Input.Keys.A) || bLeft){
@@ -62,6 +77,10 @@ public class InputManager {
         }else {
             aRight = false;
         }
+
+        mouseX = Gdx.input.getX()*2;
+        mouseY = (Gdx.graphics.getHeight() - Gdx.input.getY()) * 2;
+        // TODO : touch input
     }
 
     public void resetInput(){
