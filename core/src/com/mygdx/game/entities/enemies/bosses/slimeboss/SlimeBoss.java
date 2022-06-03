@@ -58,7 +58,7 @@ public class SlimeBoss extends Slime {
         //update positions
         if (moveTo > x) x += moveSpeed;
         if (moveTo < x) x -= moveSpeed;
-        targetX = (float) (Math.ceil(((float)hp/(float)hpMax) * (LevelManager.mapWidth - 5))+1) * LevelManager.tileScale;
+        targetX = (float) (Math.ceil(((float)hp/(float)hpMax) * (LevelManager.getINSTANCE().getMapWidth() - 5))+1) * LevelManager.tileScale;
         y += yM;
 
         // spawn slimes

@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.level;
 
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
@@ -28,7 +29,7 @@ public class LevelManager {
     private static final float advanceSpeed = 6f;
     private static final int stepHeight = 16;
     public static final int tileScale = 64;
-    public static final int mapWidth = 13;
+    private static final int mapWidth = Gdx.graphics.getWidth() * 2 / tileScale + 2;
 
     //vars
     private final DrawingManager spr = DrawingManager.getINSTANCE();

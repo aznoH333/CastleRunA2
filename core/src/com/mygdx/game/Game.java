@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -23,7 +22,7 @@ import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;
 
-public class Game extends ApplicationAdapter {
+public class Game {
 
     private final static Random seededRandom = new Random(258);
     private final static Random generalRandom = new Random();
@@ -45,9 +44,7 @@ public class Game extends ApplicationAdapter {
     private final static NewGameMenu newGameMenu = NewGameMenu.getINSTANCE();
 
 
-    @Override
-    public void create() {
-        DrawingManager.getINSTANCE().wtfKterejDebilTohleNapsal();
+    public Game() {
         SoundLoadList.loadAllSounds();
 
         //init stuff
@@ -62,7 +59,6 @@ public class Game extends ApplicationAdapter {
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
     }
 
-    @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
         //main cycle
@@ -115,9 +111,6 @@ public class Game extends ApplicationAdapter {
 
     }
 
-
-
-    @Override
     public void dispose() {
         spr.dispose();
         SoundManager.getINSTANCE().dispose();

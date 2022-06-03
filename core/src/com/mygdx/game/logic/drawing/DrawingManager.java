@@ -3,7 +3,6 @@ package com.mygdx.game.logic.drawing;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.data.enums.DrawingDataType;
 import com.mygdx.game.data.load.SpriteLoadList;
-import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,23 +22,19 @@ public class DrawingManager {
         return INSTANCE;
     }
 
-    private SpriteBatch batch;
+    private final SpriteBatch batch;
     private final HashMap<String, Texture> sprs;
-    private float pixelScale = 4;
-    private final OrthographicCamera cam = new OrthographicCamera();
-    private int screenWidth;
+    private final float pixelScale;
 
 
     private final HashMap<Integer,ArrayList<DrawingData>> drawQueue = new HashMap<>();
 
 
-    private BitmapFont font;
+    private final BitmapFont font;
 
     public DrawingManager(){
         sprs = new HashMap<>();
-    }
-
-    public void wtfKterejDebilTohleNapsal(){
+        SpriteLoadList.loadAllSprites(this);
         //font stuff
         // TODO : get a custom font (required for commercial usage)
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.getFileHandle("fonts/AGoblinAppears-o2aV.ttf", Files.FileType.Internal));
@@ -49,11 +43,14 @@ public class DrawingManager {
         batch = new SpriteBatch();
         parameter.size = 25;
         font = generator.generateFont(parameter);
-        cam.setToOrtho(false, 720, 1280);
-        batch.setProjectionMatrix(cam.combined);
-        SpriteLoadList.loadAllSprites(this);
-    }
 
+
+        OrthographicCamera cam = new OrthographicCamera();
+        cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2);
+        cam.update();
+        pixelScale = Gdx.graphics.getHeight() / 160f;
+        batch.setProjectionMatrix(cam.combined);
+    }
 
     public void dispose(){
         batch.dispose();
@@ -86,17 +83,8 @@ public class DrawingManager {
      */
 
     public void render(){
-        // TODO : move this somewhere else and optimize
-        // TODO : make level width scale with screen
         // TODO : somehow do ui scaling
         // screen scaling
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2);
-            cam.update();
-            pixelScale = Gdx.graphics.getHeight() / 160f;
-            batch.setProjectionMatrix(cam.combined);
-
-        }
         batch.begin();
         for (ArrayList<DrawingData> layer : drawQueue.values()) {
             for (DrawingData data: layer) {
@@ -147,15 +135,6 @@ public class DrawingManager {
 
     }
 
-    public void debugDraw(String textureName, float x, float y, int zIndex){
-        if (textureName != null){
-            Texture text = sprs.get(textureName);
-
-            if (!drawQueue.containsKey(zIndex))
-                drawQueue.put(zIndex, new ArrayList<>());
-            drawQueue.get(zIndex).add(new SpriteData(text, x, y));
-        }
-    }
 
     public void loadSprites(String path, String name, int amount){
         for (int i = 0; i <= amount; i++) {

@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.player;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
@@ -32,7 +33,7 @@ public class Player extends Entity {
     private static final float hopStrength = 5f;
     private static final float jumpStrength = 8f;
     private static final float moveSpeed = 8f;
-    private static final float scrollBorder = 256;
+    private static final float scrollBorder = Gdx.graphics.getWidth() - 128;
     private static final int actionTimerFull = 16;
     private final PlayerStats inv;
     private static final int particleTimerFull = 8;
