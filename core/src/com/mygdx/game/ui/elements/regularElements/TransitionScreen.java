@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -23,7 +24,9 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
 
     @Override
     public void draw() {
-        spr.draw("transition0",0,y,6);
+        for (int i = 0;i < Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()); i += 720 )
+            spr.draw("transition0",i,y,6);
+
     }
 
     @Override

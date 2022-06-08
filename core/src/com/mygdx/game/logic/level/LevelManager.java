@@ -29,7 +29,7 @@ public class LevelManager {
     private static final float advanceSpeed = 6f;
     private static final int stepHeight = 16;
     public static final int tileScale = 64;
-    private static final int mapWidth = Gdx.graphics.getWidth() * 2 / tileScale + 2;
+    private static final int mapWidth = Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()) / tileScale + 2; // TODO : save some of these random constants to a variable
 
     //vars
     private final DrawingManager spr = DrawingManager.getINSTANCE();
@@ -53,8 +53,6 @@ public class LevelManager {
     // very dumb
     // the y offset of level tiles
     public static final int gamePosition = 426;
-
-
 
     // FIXME : this sucks! clean it up!
     private void generateLevel(int index) {
