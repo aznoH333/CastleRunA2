@@ -86,8 +86,8 @@ public class UIManager {
                 // top hud
                 TopHud topHud = new TopHud();
                 addUIElement(topHud);
-                addUIElement(new HudBar(16,32,"bar0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
-                addUIElement(new HudBar(376, 32,  "bar1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
+                addUIElement(new HudBar(16,32,"barStart0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
+                addUIElement(new HudBar(Game.gameWorldWidth/2, 32,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));

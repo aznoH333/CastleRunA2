@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.parents;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
@@ -25,7 +26,8 @@ public class BottomHud implements IUIElement, IUIParentElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        spr.draw("hudBot0",0,y,4);
+        for (int i = 0; i < Game.gameWorldWidth; i += 720)
+            spr.draw("hudBot0",i,y,4);
     }
 
     @Override

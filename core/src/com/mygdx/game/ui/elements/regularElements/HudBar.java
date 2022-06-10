@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.IIntegerFunction;
 import com.mygdx.game.data.enums.BarType;
 import com.mygdx.game.data.enums.UIType;
@@ -18,7 +19,7 @@ public class HudBar implements IUIElement, IUIUpdatable {
     private int maxValue;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final float cellSize;
-    private final static int barLength = 280; // length of the sprite
+    private final static int barLength = (int)Game.gameWorldWidth/2-64; // length of the sprite (default = 280)
     private final static int xOffset = 32;
     private final static int yOffset = 12;
     private final IIntegerFunction valueGetter;
@@ -55,11 +56,15 @@ public class HudBar implements IUIElement, IUIUpdatable {
                 spr.draw("meter5", x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5);
 
             }
-
-
         }
+
+
         // draw overlay
         spr.draw(barSprite, parent.getX() + x, parent.getY() + y, 5);
+        for (int i = 56; i < barLength + 32; i+=16) {
+            spr.draw("bar0", parent.getX() + x + i, y + parent.getY(), 5);
+        }
+        spr.draw("bar1", parent.getX() + x + barLength + 32, parent.getY() + y, 5);
     }
 
     @Override

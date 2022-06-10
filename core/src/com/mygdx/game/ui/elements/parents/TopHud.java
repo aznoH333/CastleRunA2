@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.parents;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
 import com.mygdx.game.data.enums.UIType;
@@ -20,7 +21,8 @@ public class TopHud implements IUIElement, IUIParentElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        spr.draw("hudTop0",0, y, 5);
+        for (int i = 0; i < Game.gameWorldWidth; i += 720)
+            spr.draw("hudTop0",i, y, 5);
     }
 
     @Override

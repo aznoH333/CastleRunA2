@@ -59,7 +59,9 @@ public class SpriteLoadList {
 
         //UI
         spr.loadSprites("ui/bars/meters_", "meter", 8);
-        spr.loadSprites("ui/bars/bars_", "bar", 1);
+        spr.loadSprites("ui/bars/bars_segments_", "bar", 1);
+        spr.loadSprites("ui/bars/bars_start_", "barStart", 1);
+
         spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_large_", "button_large", 1);
         spr.loadSprites("ui/buttons/shop_card_", "item_card", 1);
