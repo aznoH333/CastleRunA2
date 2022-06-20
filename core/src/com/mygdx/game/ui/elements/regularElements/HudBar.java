@@ -43,28 +43,28 @@ public class HudBar implements IUIElement, IUIUpdatable {
     public void draw() {
         for (int i = 0; i < maxValue; i++) {
             if (i < value){
-                spr.draw(barType.barStart, x + i * cellSize + parent.getX() + xOffset, y + parent.getY() + yOffset, 5);
+                spr.draw(barType.barStart, x + i * cellSize + parent.getX() + xOffset, y + parent.getY() + yOffset, 5, false);
                 for (int j = 0; j < cellSize - 24; j+=12) {
-                    spr.draw(barType.bar, x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5);
+                    spr.draw(barType.bar, x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5, false);
                 }
-                spr.draw(barType.barEnd, x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5);
+                spr.draw(barType.barEnd, x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5, false);
             }else{
-                spr.draw("meter3", x + i * cellSize + parent.getX() +xOffset, y + parent.getY() + yOffset, 5);
+                spr.draw("meter3", x + i * cellSize + parent.getX() +xOffset, y + parent.getY() + yOffset, 5, false);
                 for (int j = 0; j < cellSize - 24; j+=12) {
-                    spr.draw("meter4", x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5);
+                    spr.draw("meter4", x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5, false);
                 }
-                spr.draw("meter5", x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5);
+                spr.draw("meter5", x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5, false);
 
             }
         }
 
 
         // draw overlay
-        spr.draw(barSprite, parent.getX() + x, parent.getY() + y, 5);
+        spr.draw(barSprite, parent.getX() + x, parent.getY() + y, 5, false);
         for (int i = 56; i < barLength + 32; i+=16) {
-            spr.draw("bar0", parent.getX() + x + i, y + parent.getY(), 5);
+            spr.draw("bar0", parent.getX() + x + i, y + parent.getY(), 5, false);
         }
-        spr.draw("bar1", parent.getX() + x + barLength + 32, parent.getY() + y, 5);
+        spr.draw("bar1", parent.getX() + x + barLength + 32, parent.getY() + y, 5, false);
     }
 
     @Override

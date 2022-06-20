@@ -50,6 +50,7 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
 
+
     // very dumb
     // the y offset of level tiles
     public static final int gamePosition = 426;
@@ -174,6 +175,9 @@ public class LevelManager {
         if (distance % tileScale > 0 && advanceDistance == distance){
             advanceToTile(tileScale - (distance%tileScale));
         }
+
+
+
         //advance
         if (advanceDistance > distance) {
             float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
@@ -259,4 +263,6 @@ public class LevelManager {
             generateLevel(i);
         }
     }
+
+
 }

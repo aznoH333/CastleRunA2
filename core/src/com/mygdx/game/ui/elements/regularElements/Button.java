@@ -62,10 +62,10 @@ public class Button implements IUIElement, IUIUpdatable {
     @Override
     public void draw() {
         if (pressed){
-            spr.draw(spritePressed,x+parent.getX(),y+parent.getY(),5);
+            spr.draw(spritePressed,x+parent.getX(),y+parent.getY(),5, false);
         }
         else{
-            spr.draw(sprite,x+parent.getX(),y+parent.getY(),5);
+            spr.draw(sprite,x+parent.getX(),y+parent.getY(),5, false);
         }
     }
 

@@ -39,4 +39,9 @@ public class TextData implements DrawingData{
     public DrawingDataType getType() {
         return DrawingDataType.Text;
     }
+
+    @Override
+    public boolean affectedByScreenShake() {
+        return false;
+    }
 }

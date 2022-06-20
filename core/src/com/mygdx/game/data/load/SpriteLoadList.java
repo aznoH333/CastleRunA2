@@ -18,6 +18,8 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/throwing_axe/Axe_","axe",3);
         spr.loadSprites("entities/weapons/boomerang/cross_","cross",4);
         spr.loadSprites("entities/weapons/fireball/Fireball_","fireball",4);
+        spr.loadSprites("entities/weapons/meteor/meteor_", "meteor", 2);
+        spr.loadSprites("entities/weapons/bubble/bubble_", "bubble", 3);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
@@ -54,8 +56,12 @@ public class SpriteLoadList {
         // items
         spr.loadSprites("items/itemprewievs/itempreviews_", "itemPreview",8);
         spr.loadSprites("items/minibombs/minibomb_", "minibomb",1);
-        spr.loadSprites("items/minibombs/miniexplosion_", "miniexplosion",5);
         spr.loadSprites("items/friendlyOrb/miniorb_","miniorb",0);
+
+        // fx
+        spr.loadSprites("items/minibombs/miniexplosion_", "miniexplosion",5);
+        spr.loadSprites("entities/weapons/medium_explosion/medium_explosion_", "explosion" ,6);
+
 
         //UI
         spr.loadSprites("ui/bars/meters_", "meter", 8);

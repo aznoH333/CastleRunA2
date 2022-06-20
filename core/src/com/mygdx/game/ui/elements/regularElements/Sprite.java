@@ -20,7 +20,7 @@ public class Sprite implements IUIElement {
 
     @Override
     public void draw() {
-        spr.draw(sprite,x+parent.getX(),y+parent.getY(),5);
+        spr.draw(sprite,x+parent.getX(),y+parent.getY(),5, false);
     }
 
     @Override

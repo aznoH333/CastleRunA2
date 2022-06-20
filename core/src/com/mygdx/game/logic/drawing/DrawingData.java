@@ -9,4 +9,5 @@ public interface DrawingData {
     Texture getTexture();
     String getText();
     DrawingDataType getType();
+    boolean affectedByScreenShake();
 }

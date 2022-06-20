@@ -7,7 +7,7 @@ public class FireBall extends Weapon {
     private final static EntityManager ent = EntityManager.getINSTANCE();
 
     public FireBall() {
-        super("fireball0", 2, 4);
+        super("fireball0", 2, 0);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class FireBall extends Weapon {
 
     @Override
     public void chargedAttack(float x, float y) {
-
+        ent.spawnEntity("meteor", x - 64, y + 712);
     }
 }

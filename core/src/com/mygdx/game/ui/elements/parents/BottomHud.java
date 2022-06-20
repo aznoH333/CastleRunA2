@@ -27,7 +27,7 @@ public class BottomHud implements IUIElement, IUIParentElement, IUIUpdatable {
     @Override
     public void draw() {
         for (int i = 0; i < Game.gameWorldWidth; i += 720)
-            spr.draw("hudBot0",i,y,4);
+            spr.draw("hudBot0",i,y,4, false);
     }
 
     @Override

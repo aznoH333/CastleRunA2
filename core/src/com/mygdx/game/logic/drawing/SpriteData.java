@@ -7,10 +7,12 @@ public class SpriteData implements DrawingData{
     private final Texture texture;
     private final float x;
     private final float y;
-    public SpriteData(Texture texture, float x, float y){
+    private final boolean affectedByScreenShake;
+    public SpriteData(Texture texture, float x, float y, boolean affectedByScreenShake){
         this.texture = texture;
         this.x = x;
         this.y = y;
+        this.affectedByScreenShake = affectedByScreenShake;
     }
 
     @Override
@@ -36,5 +38,10 @@ public class SpriteData implements DrawingData{
     @Override
     public DrawingDataType getType() {
         return DrawingDataType.Sprite;
+    }
+
+    @Override
+    public boolean affectedByScreenShake() {
+        return affectedByScreenShake;
     }
 }

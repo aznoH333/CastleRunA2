@@ -28,6 +28,9 @@ public class PlayerStats {
         // temporary
         equipWeapon("Nothing", Controls.AttackLeft);
         equipWeapon("Sword", Controls.AttackRight);
+
+
+
     }
     // equips a weapon
     public void equipWeapon(String weaponName, Controls slot){
@@ -96,7 +99,8 @@ public class PlayerStats {
         energy = 2;
         coins = 0;
         equipWeapon("Sword", Controls.AttackRight);
-        equipWeapon("Nothing", Controls.AttackLeft);
+        //equipWeapon("Nothing", Controls.AttackLeft);
+        equipWeapon("Fireball", Controls.AttackLeft);
     }
 
     public void upgradeHp(){

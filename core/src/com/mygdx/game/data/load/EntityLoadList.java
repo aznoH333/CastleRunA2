@@ -6,6 +6,7 @@ import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
 import com.mygdx.game.entities.enemies.projectiles.*;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
+import com.mygdx.game.entities.player.itemEntities.Explosion;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.entities.player.itemEntities.MicroBomb;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
@@ -43,6 +44,8 @@ public class EntityLoadList {
         entities.put("charged cross", new ChargedCross(0,0,48,48,1));
         entities.put("orb attack", new OrbAttack(0,0,16,16,1));
         entities.put("fireball", new FireBall(0, 0));
+        entities.put("meteor", new Meteorite(0,0));
+        entities.put("explosion", new Explosion(0,0));
 
 
         // FIXME normalize naming conventions

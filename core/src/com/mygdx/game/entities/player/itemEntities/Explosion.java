@@ -10,22 +10,21 @@ import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.Random;
 
-public class MicroExplosion extends Projectile {
+public class Explosion extends Projectile {
     private final long deletionTime;
-    public MicroExplosion(float x, float y) {
-        super(x, y, 32, 32, 1, Team.PlayerProjectiles, 64);
+    public Explosion(float x, float y) {
+        super(x, y, 128, 128, 1, Team.PlayerProjectiles, 64);
         deletionTime = Game.Time() + 16;
-        DrawingManager.getINSTANCE().addScreenShake(3);
     }
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("miniexplosion" + (5 -(long)(((double)(deletionTime - Game.Time())/16)*6)),x,y,2);
+        spr.drawGame("explosion" + (6 -(long)(((double)(deletionTime - Game.Time())/3.5))),x,y,2);
     }
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new MicroExplosion(x,y);
+        return new Explosion(x,y);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class MicroExplosion extends Projectile {
 
     @Override
     protected void onEnemyHit(Enemy other) {
-        other.takeDamage(1);
+        other.takeDamage(2);
     }
 
     @Override

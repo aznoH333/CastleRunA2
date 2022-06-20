@@ -24,7 +24,7 @@ public class UIBox implements IUIParentElement, IUIUpdatable, IUIElement {
     @Override
     public void draw() {
         // TODO : sprite
-        spr.draw("player0" ,x, y, 4);
+        spr.draw("player0" ,x, y, 4, false);
     }
 
     @Override

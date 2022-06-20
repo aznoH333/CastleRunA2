@@ -50,6 +50,9 @@ public class InventoryManager {
         unseenWeapons.remove("Nothing");
         unlockWeapon("Sword");
         unseenWeapons.remove("Sword");
+        // temp cheats
+        unlockWeapon("Fireball");
+        unseenWeapons.remove("FireBall");
 
     }
 

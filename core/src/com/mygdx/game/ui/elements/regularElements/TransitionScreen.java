@@ -25,7 +25,7 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
     @Override
     public void draw() {
         for (int i = 0;i < Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()); i += 720 )
-            spr.draw("transition0",i,y,6);
+            spr.draw("transition0",i,y,6, false);
 
     }
 

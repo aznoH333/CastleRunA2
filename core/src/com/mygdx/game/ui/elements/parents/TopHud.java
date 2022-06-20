@@ -22,7 +22,7 @@ public class TopHud implements IUIElement, IUIParentElement, IUIUpdatable {
     @Override
     public void draw() {
         for (int i = 0; i < Game.gameWorldWidth; i += 720)
-            spr.draw("hudTop0",i, y, 5);
+            spr.draw("hudTop0",i, y, 5, false);
     }
 
     @Override
