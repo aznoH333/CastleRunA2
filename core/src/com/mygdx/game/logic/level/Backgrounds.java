@@ -20,6 +20,9 @@ public class Backgrounds {
     }
 
     public Background forest(){
-        return new Background(new String[]{"player0"}, new float[]{0.75f});
+        return new Background(new String[]{"forestBack4","forestBack3","forestBack2","forestBack1","forestBack0"}, new float[]{0.05f,0.35f,0.40f,0.60f,0.75f});
     }
+
+    // TODO : rewrite theese to be smarter
+    // TODO : weather fx (rain + thunder)
 }

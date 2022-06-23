@@ -71,10 +71,10 @@ public class LevelOwner {
         levels.put("2-1", new Level.LevelBuilder(
                 new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
                 new float[]{30f,5.5f,6f},
-                100,128, backgrounds.forest())
+                100,96, backgrounds.forest())
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
-                .height(256, 96)
+                .height(128, 64)
                 .enemies(new String[]{"slime", "chest", "red slime", "skeleton", "ghost skull"}, new float[]{25f, 2f, 2f, 5f, 3.5f, 10f})
                 .build());
 

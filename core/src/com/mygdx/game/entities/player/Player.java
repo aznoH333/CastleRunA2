@@ -173,6 +173,7 @@ public class Player extends Entity {
             energyPartTimer--;
             if (energyPartTimer % 6 == 0) particleManager.addParticle("energyGain", x + (r.nextFloat() * xSize) - 4, y + (r.nextFloat() * 4),0,r.nextFloat()+1f,0);
         }
+        // FIXME : weird collisions with world border (remove border stop for knock back?)
     }
 
     @Override

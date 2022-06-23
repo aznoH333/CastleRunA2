@@ -51,6 +51,7 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
         spr.loadSprites("tiles/forest/foreground/forest_","forest",4);
+        spr.loadSprites("tiles/forest/background/forestback_","forestBack",4);
 
 
         // items
@@ -68,6 +69,7 @@ public class SpriteLoadList {
         spr.loadSprites("ui/bars/bars_segments_", "bar", 1);
         spr.loadSprites("ui/bars/bars_start_", "barStart", 1);
 
+        // TODO : buttons
         spr.loadSprites("ui/buttons/button_", "button", 1);
         //spr.loadSprites("ui/buttons/button_part_", "button", 5);
         spr.loadSprites("ui/buttons/button_large_", "button_large", 1);
