@@ -90,6 +90,7 @@ public class EntityManager {
     }
 
     private void deleteEntities(){
+        // FIXME : can crash the game if called in the same frame as entity spawn
         // delete dead entities or marked
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){

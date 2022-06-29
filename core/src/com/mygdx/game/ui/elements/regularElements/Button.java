@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
+import com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.ILambdaFunction;
@@ -18,8 +19,6 @@ public class Button implements IUIElement, IUIUpdatable {
     private final float width;
     private final float height;
     private final boolean actionButton;
-    private final String sprite;
-    private final String spritePressed;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private boolean pressed = false;
     private final static float pressedOffset = 20;
@@ -31,20 +30,17 @@ public class Button implements IUIElement, IUIUpdatable {
             case Small:
             case SmallAction:
             default:
-                sprite = "button0";
-                spritePressed = "button1";
                 height = 120;
-                width = 336;
+                //width = 336;
+                width = (Game.gameWorldWidth - 32) / 2 - 16; // TODO : smart scaling
                 break;
             case Large:
-                sprite = "button_large0";
-                spritePressed = "button_large1";
                 height = 120;
-                width = 668;
+                //width = 668;
+                width = Game.gameWorldWidth - 4;
                 break;
             case LargeItemSelect:
-                sprite = "item_card0";
-                spritePressed = "item_card1";
+                // TODO : large buttons
                 height = 200;
                 width = 668;
                 break;
@@ -62,10 +58,22 @@ public class Button implements IUIElement, IUIUpdatable {
     @Override
     public void draw() {
         if (pressed){
-            spr.draw(spritePressed,x+parent.getX(),y+parent.getY(),5, false);
+            spr.draw("button3",x+parent.getX(),y+parent.getY(),5, false);
+            for (int i = 12; i < width - 12; i+= 12 ){
+                spr.draw("button4", x+parent.getX()+i,y +parent.getY(), 5, false);
+            }
+            spr.draw("button5",x+parent.getX() + width - 12,y+parent.getY(),5, false);
+
+
         }
         else{
-            spr.draw(sprite,x+parent.getX(),y+parent.getY(),5, false);
+
+            spr.draw("button0",x+parent.getX(),y+parent.getY(),5, false);
+            for (int i = 12; i < width - 12; i+= 12 ){
+                spr.draw("button1", x+parent.getX()+i,y +parent.getY(), 5, false);
+            }
+            spr.draw("button2",x+parent.getX() + width - 12,y+parent.getY(),5, false);
+
         }
     }
 
