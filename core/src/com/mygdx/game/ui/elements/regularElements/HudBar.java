@@ -19,7 +19,7 @@ public class HudBar implements IUIElement, IUIUpdatable {
     private int maxValue;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final float cellSize;
-    private final static int barLength = (int)Game.gameWorldWidth/2-64; // length of the sprite (default = 280)
+    private final static int barLength = (int)Game.gameWorldWidth/2-64 - 8; // length of the sprite (default = 280)
     private final static int xOffset = 32;
     private final static int yOffset = 12;
     private final IIntegerFunction valueGetter;

@@ -37,7 +37,7 @@ public class Button implements IUIElement, IUIUpdatable {
             case Large:
                 height = 120;
                 //width = 668;
-                width = Game.gameWorldWidth - 4;
+                width = Game.gameWorldWidth - 32;
                 break;
             case LargeItemSelect:
                 // TODO : large buttons
@@ -52,16 +52,16 @@ public class Button implements IUIElement, IUIUpdatable {
         this.y = y;
         this.function = function;
         this.parent = parent;
-
     }
 
     @Override
     public void draw() {
         if (pressed){
             spr.draw("button3",x+parent.getX(),y+parent.getY(),5, false);
-            for (int i = 12; i < width - 12; i+= 12 ){
+            for (int i = 12; i < width - 24; i+= 12 ){
                 spr.draw("button4", x+parent.getX()+i,y +parent.getY(), 5, false);
             }
+            spr.draw("button4", x+parent.getX()+ width - 24,y +parent.getY(), 5, false);
             spr.draw("button5",x+parent.getX() + width - 12,y+parent.getY(),5, false);
 
 
@@ -69,9 +69,10 @@ public class Button implements IUIElement, IUIUpdatable {
         else{
 
             spr.draw("button0",x+parent.getX(),y+parent.getY(),5, false);
-            for (int i = 12; i < width - 12; i+= 12 ){
+            for (int i = 12; i < width - 24; i+= 12 ){
                 spr.draw("button1", x+parent.getX()+i,y +parent.getY(), 5, false);
             }
+            spr.draw("button1", x+parent.getX() + width - 24,y +parent.getY(), 5, false);
             spr.draw("button2",x+parent.getX() + width - 12,y+parent.getY(),5, false);
 
         }

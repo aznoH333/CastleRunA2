@@ -52,7 +52,7 @@ public class UIManager {
     private final static float buttonLX = 16f;
     private final static float buttonRX = 368f;
     private final static float xIconOffset = 136;
-    private final static float xIconOffsetLarge = 302;
+    private final static float xIconOffsetLarge = 2;
     private final static float yIconOffset = 38;
 
 
@@ -71,81 +71,81 @@ public class UIManager {
                 // bottom bar
                 addUIElement(new BottomHud(-515f,-150f));
                 addUIElement(new Button(buttonLX,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveLeft)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveRight)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Button(Game.gameWorldWidth/2 + 8,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveRight)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64) / 2, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackLeft)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Button(Game.gameWorldWidth/2 + 8,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
 
 
                 // top hud
                 TopHud topHud = new TopHud();
                 addUIElement(topHud);
                 addUIElement(new HudBar(16,32,"barStart0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
-                addUIElement(new HudBar(Game.gameWorldWidth/2, 32,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
+                addUIElement(new HudBar(Game.gameWorldWidth/2 + 8, 32,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
                 addUIElement(new Button(buttonLX,62,ButtonType.Large,uiElements.get(0),()->transition(GameState.MainMenu)));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,198,ButtonType.Small,uiElements.get(0),()->transition(GameState.EquipMenu)));
                 addUIElement(new Text(94,80,"Items",uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX,198,ButtonType.Small,uiElements.get(0),()->transition(GameState.Shop)));
+                addUIElement(new Button(Game.gameWorldWidth/2 + 8,198,ButtonType.Small,uiElements.get(0),()->transition(GameState.Shop)));
                 addUIElement(new Text(110,80,"Shop",uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,338,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();}));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case Shop:
                 addUIElement(new BottomHud(-515f,-284));
                 addUIElement(new Button(buttonLX, 364, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
                 Shop.getINSTANCE().loadUI();
                 break;
             case EquipMenu:
                 addUIElement(new BottomHud(-515f,-150f));
                 addUIElement(new Button(buttonLX, 182, ButtonType.Large,uiElements.get(0),()->transition(GameState.StageMenu)));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackLeft)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon3", uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonRX, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackRight)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Button(Game.gameWorldWidth/2 + 8, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackRight)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon2", uiElements.get(uiElements.size()-1)));
                 InventoryScreen.getINSTANCE().loadUI();
                 break;
 
             case GameOver:
                 addUIElement(new UIBox(521));
                 addUIElement(new Button(16,16,ButtonType.Small,uiElements.get(0),()-> Gdx.app.exit()));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(16,168,ButtonType.Small,uiElements.get(0),()-> transition(GameState.NewGameMenu)));
-                addUIElement(new Sprite(xIconOffset, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
 
             case MainMenu:
                 addUIElement(new BottomHud(-515f,0f));
                 addUIElement(new Button(buttonLX,32,ButtonType.Large,uiElements.get(0),()->Gdx.app.exit()));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,168,ButtonType.Large,uiElements.get(0),()->{}));
                 addUIElement(new Text(94,80,"Options",uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,304,ButtonType.Large,uiElements.get(0),()->transition(GameState.NewGameMenu)));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case NewGameMenu:
                 addUIElement(new BottomHud(-515f,-150f));
                 addUIElement(new Button(buttonLX,182, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
-                addUIElement(new Sprite(xIconOffsetLarge, yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
                 NewGameMenu.getINSTANCE().onTransition();
                 break;
 
