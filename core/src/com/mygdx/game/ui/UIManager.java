@@ -50,9 +50,6 @@ public class UIManager {
 
     // dumb constants
     private final static float buttonLX = 16f;
-    private final static float buttonRX = 368f;
-    private final static float xIconOffset = 136;
-    private final static float xIconOffsetLarge = 2;
     private final static float yIconOffset = 38;
 
 

@@ -16,6 +16,7 @@ public class Level {
     private final float totalEnemyWeight;
     private final int length;
     private final EntityFactory e = EntityFactory.getInstance();
+    private final int activationRate;
 
     //lvl height
     protected final int defaultH;
@@ -48,6 +49,7 @@ public class Level {
         this.background = builder.background;
         this.mapIcon = builder.mapIcon;
         this.mapTile = builder.mapTile;
+        this.activationRate = builder.activationRate;
 
 
 
@@ -112,6 +114,10 @@ public class Level {
 
     public String getBoss(){ return null; }
 
+    public int getActivationRate(){
+        return activationRate;
+    }
+
 
     public static class LevelBuilder{
 
@@ -132,6 +138,8 @@ public class Level {
         private int clMax = 3;
         private int clMin = 2;
         private String boss;
+
+        private int activationRate = 300;
 
         //map stuff
         private String mapIcon = "mIconCastle0";
@@ -187,6 +195,11 @@ public class Level {
             return this;
         }
 
+        public LevelBuilder setActivationRate(int value){
+            this.activationRate = value;
+            return this;
+        }
+
         private void reset(){
             enemySet = new String[]{};
             enemyWeight = new float[]{1};
@@ -196,8 +209,11 @@ public class Level {
             cChange = 0.8f;
             clMax = 3;
             clMin = 2;
+            activationRate = 300;
             mapIcon = "mIconCastle0";
             mapTile = "mTile0";
         }
+
+
     }
 }

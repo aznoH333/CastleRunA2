@@ -3,6 +3,7 @@ package com.mygdx.game.logic.level;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
+import com.mygdx.game.logic.level.tileCollums.ICollumnActivatavle;
 import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.Directions;
@@ -12,6 +13,7 @@ import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class LevelManager {
@@ -49,6 +51,9 @@ public class LevelManager {
     private int levelLength = 0;
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
+    private final ArrayList<TileActivator> tileActivators = new ArrayList<>();
+    private int activatorId = 0;
+    private float nextActivatorTimer = 0;
 
 
     // very dumb
@@ -155,7 +160,10 @@ public class LevelManager {
     public void advanceToTile(float dist) {
         if (dist + distance > advanceDistance){
             if (dist + distance > levelLength) advanceDistance = levelLength;
-            else advanceDistance = dist + distance;
+            else {
+                nextActivatorTimer += ((dist + distance) - advanceDistance)/2;
+                advanceDistance = dist + distance;
+            }
         }
 
     }
@@ -183,6 +191,12 @@ public class LevelManager {
             float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
             e.shiftAllEntities(advanceBy);
             part.shiftPartsBy(advanceBy);
+
+            // shift activators
+            for (TileActivator a: tileActivators) {
+                a.shiftBy(advanceBy);
+            }
+
             distance += advanceBy;
             backgroundRenderer.advance(advanceBy);
 
@@ -201,6 +215,30 @@ public class LevelManager {
                 ((ISpecialTile)collum).update();
         }
 
+        // spawn tile activators
+        if (nextActivatorTimer < 0){
+            tileActivators.add(new TileActivator(0,activatorId));
+            activatorId++;
+            nextActivatorTimer = lvl.getActivationRate();
+        }
+
+        nextActivatorTimer-=1;
+        // advance activators
+        if (Game.Time()%32==0){
+            for (TileActivator a: tileActivators) {
+                if (a.getX() > distance + Game.gameWorldWidth) {tileActivators.remove(a); break;}
+                a.advance();
+
+            }
+
+        }
+
+        // this sucks...                                oh no, anyway..
+        for (TileActivator a: tileActivators) {
+            if (a.getX() < (mapWidth-1)*tileScale && getOnPos(a.getX() + distance%64) instanceof ICollumnActivatavle) ((ICollumnActivatavle) getOnPos(a.getX() + distance%64)).activate(a);
+        }
+
+
         // snap camera to boss
         if (isBossLevel && Math.abs(levelLength-(tileScale*((mapWidth>>1)-2)) - distance) < 10)
             advanceToTile(levelLength);
@@ -213,10 +251,6 @@ public class LevelManager {
             return map[0];
         else
             return map[b];
-    }
-
-    public float snapToPosition(float x){
-        return x-(x%tileScale)-distance%tileScale;
     }
 
     public boolean collidesWithLevel(Entity object){
@@ -250,6 +284,10 @@ public class LevelManager {
         distance = 0;
         advanceDistance = 0;
         trapOffset = 0;
+        tileActivators.clear();
+        activatorId = 0;
+        nextActivatorTimer = 0;
+
 
         startGenerationIndex = 3;
         if (!isBossLevel)
