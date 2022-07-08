@@ -44,6 +44,7 @@ public class SlimeBossDeathAnimation extends Entity {
         }
 
         if (Game.Time() % animationSpeed == 0){
+            DrawingManager.getINSTANCE().addScreenShake(5);
             part.addParticle("slimeBossDeath",x + random.nextInt((int) xSize),y + random.nextInt((int) ySize) - 64,0,0,0);
             sound.playSound("weapon1");
         }
@@ -74,9 +75,11 @@ public class SlimeBossDeathAnimation extends Entity {
 
     @Override
     public void onDestroy() {
+        DrawingManager.getINSTANCE().addScreenShake(25);
         for (int i = 0; i < random.nextInt(30)+30; i++) {
             part.addParticle("fleshGore" + random.nextInt(3),x + random.nextInt((int) xSize),y + random.nextInt((int) ySize) - 32,random.nextInt(10)-5,5-random.nextInt(10),0.5f,random.nextInt(10) + 10);
         }
-
+        // TODO : add more screen shake
+        // TODO : rework boss to be timed
     }
 }

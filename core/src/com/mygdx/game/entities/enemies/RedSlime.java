@@ -108,6 +108,7 @@ public class RedSlime extends Enemy {
         ParticleManager part = ParticleManager.getINSTANCE();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
         Random r = new Random();
+        DrawingManager.getINSTANCE().addScreenShake(7);
         part.addParticle("redSlimeDeath",x,y,0,0,0);
         // spawn 5 - 10 gore particles
         for (int i = 0; i < r.nextInt(5) + 5; i++)

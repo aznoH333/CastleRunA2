@@ -46,6 +46,7 @@ public class GhostSkull extends Enemy {
         Random r = Game.getGeneralRandom();
         ParticleManager part = ParticleManager.getINSTANCE();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
+        DrawingManager.getINSTANCE().addScreenShake(7);
         // spawn 10 - 20 gore particles
         for (int i = 0; i < r.nextInt(5) + 5; i++)
             part.addParticle("boneGore" + r.nextInt(3),x+(xSize/2),y+(ySize/2),r.nextInt(6)-3,r.nextInt(20)-5,0.7f,r.nextInt(20) + 20);

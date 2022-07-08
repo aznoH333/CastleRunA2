@@ -139,7 +139,7 @@ public class Level {
         private int clMin = 2;
         private String boss;
 
-        private int activationRate = 300;
+        private int activationRate = 180;
 
         //map stuff
         private String mapIcon = "mIconCastle0";
@@ -209,7 +209,7 @@ public class Level {
             cChange = 0.8f;
             clMax = 3;
             clMin = 2;
-            activationRate = 300;
+            activationRate = 180;   // TODO : pre spawn activators
             mapIcon = "mIconCastle0";
             mapTile = "mTile0";
         }
