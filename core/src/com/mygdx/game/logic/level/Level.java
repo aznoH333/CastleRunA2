@@ -1,6 +1,8 @@
 package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.Background;
+import com.mygdx.game.data.levelgeneration.EntityWeightData;
+import com.mygdx.game.data.levelgeneration.TileWeightData;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityFactory;
@@ -8,10 +10,9 @@ import com.mygdx.game.logic.entities.EntityFactory;
 import java.util.Random;
 
 public class Level {
-    private final TileCollum[] tileSet;
-    private final float[] tileWeight;
-    private final String[] enemySet;
-    private final float[] enemyWeight;
+    private final TileWeightData[] tileSet;
+    private final EntityWeightData[] enemySet;
+    private final float emptyChance;
     private final float totalWeight;
     private final float totalEnemyWeight;
     private final int length;
@@ -36,9 +37,8 @@ public class Level {
 
     public Level(LevelBuilder builder){
         this.tileSet = builder.tileSet;
-        this.tileWeight = builder.tileWeight;
         this.enemySet = builder.enemySet;
-        this.enemyWeight = builder.enemyWeight;
+        this.emptyChance = builder.emptyChance;
         this.length = builder.length;
         this.defaultH = builder.defaultH;
         this.maxH = builder.maxH;
@@ -54,10 +54,10 @@ public class Level {
 
 
         float temp = 0;
-        for (float f: tileWeight) temp += f;
+        for (TileWeightData f: tileSet) temp += f.getWeight();
         totalWeight = temp;
-        temp = 0;
-        for (float f: enemyWeight) temp += f;
+        temp = emptyChance;
+        for (EntityWeightData f: enemySet) temp += f.getWeight();
         totalEnemyWeight = temp;
     }
 
@@ -65,22 +65,23 @@ public class Level {
     public TileCollum randomTile(Random r, int y) {
         float rng = r.nextFloat() * totalWeight;
         float currentWeight = 0;
-        for (int i = 0; i < tileSet.length; i++) {
-            currentWeight += tileWeight[i];
-            if (rng < currentWeight) return tileSet[i].getNew(y);
+
+        for (TileWeightData t: tileSet) {
+            currentWeight += t.getWeight();
+            if (rng < currentWeight) return t.getTile().getNew(y);
         }
+
         //fall back
-        return tileSet[0];
+        return tileSet[0].getTile().getNew(y);
     }
 
     public Entity randomEnemy(Random r, float x, int y) {
         float rng = r.nextFloat() * totalEnemyWeight;
         float currentWeight = 0;
-        for (int i = 0; i < enemyWeight.length; i++) {
-            currentWeight += enemyWeight[i];
+        for (EntityWeightData d: enemySet){
+            currentWeight += d.getWeight();
             if (rng < currentWeight)
-                if (i == 0) return null;
-                else return e.getByName(enemySet[i-1],x,y);
+                return e.getByName(d.getEntity(),x,y);
         }
         return null;
     }
@@ -121,13 +122,12 @@ public class Level {
 
     public static class LevelBuilder{
 
-        private final TileCollum[] tileSet;
-        private final float[] tileWeight;
+        private final TileWeightData[] tileSet;
         private final Background background;
         private final int length;
 
-        private String[] enemySet = {};
-        private float[] enemyWeight = {1};
+        private EntityWeightData[] enemySet = {};
+        private float emptyChance = 1;
 
         //lvl height
         protected final int defaultH;
@@ -145,17 +145,17 @@ public class Level {
         private String mapIcon = "mIconCastle0";
         private String mapTile = "mTile0";
 
-        public LevelBuilder(TileCollum[] tileSet, float[] tileWeight, int length, int defaultH, Background background){
+        public LevelBuilder(TileWeightData[] tileSet, int length, int defaultH, Background background){
             this.tileSet = tileSet;
-            this.tileWeight = tileWeight;
+
             this.length = length * LevelManager.tileScale;
             this.defaultH = defaultH;
             this.background = background;
         }
 
-        public LevelBuilder enemies(String[] enemySet,float[] enemyWeight){
+        public LevelBuilder enemies(float emptyChance, EntityWeightData[] enemySet){
             this.enemySet = enemySet;
-            this.enemyWeight = enemyWeight;
+            this.emptyChance = emptyChance;
             return this;
         }
 
@@ -201,8 +201,8 @@ public class Level {
         }
 
         private void reset(){
-            enemySet = new String[]{};
-            enemyWeight = new float[]{1};
+            enemySet = new EntityWeightData[]{};
+            emptyChance = 1;
             boss = null;
             maxH = 192;
             minH = 64;

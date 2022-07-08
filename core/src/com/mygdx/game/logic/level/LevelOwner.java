@@ -1,5 +1,7 @@
 package com.mygdx.game.logic.level;
 
+import com.mygdx.game.data.levelgeneration.EntityWeightData;
+import com.mygdx.game.data.levelgeneration.TileWeightData;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.forest.ForestRegular;
@@ -27,83 +29,137 @@ public class LevelOwner {
 
     public LevelOwner() {
         // 100 tiles = good length for a regular level
+
         levels.put("1-1", new Level.LevelBuilder(
-                        new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new BreakingPlatform()},
-                        new float[]{20, 5, 2, 1},
+                        new TileWeightData[]{
+                                new TileWeightData(20f, new CastleRegular()),
+                                new TileWeightData(5, new Gap()),
+                                new TileWeightData(2, new SpikeTrap()),
+                                new TileWeightData(1, new BreakingPlatform()),
+                        },
                         75, 96,
                         backgrounds.castle())
                 .mapTiles("mIconCastle0", "mTile0")
                 .height(128,96)
                 .chance(0.7f,3,2)
-                .enemies(new String[]{"slime", "chest"}, new float[]{20,6,2})
+                .enemies(20, new EntityWeightData[]{
+                        new EntityWeightData(6, "slime"),
+                        new EntityWeightData(2, "chest")})
                 .build()
         );
 
         levels.put("1-2", new Level.LevelBuilder(
-                new TileCollum[]{new CaveRegular(), new Gap(), new BreakingPlatform()},
-                new float[]{15, 5, 1},
+                new TileWeightData[]{
+                        new TileWeightData(15, new CaveRegular()),
+                        new TileWeightData(5, new Gap()),
+                        new TileWeightData(1, new BreakingPlatform()),
+                },
                 85, 128,
                 backgrounds.cave())
                 .mapTiles("mIconCave0", "mTile0")
-                .enemies(new String[]{"slime", "chest", "red slime"}, new float[]{20, 5, 1, 3})
+                .enemies(20, new EntityWeightData[]{
+                        new EntityWeightData(5, "slime"),
+                        new EntityWeightData(1, "chest"),
+                        new EntityWeightData(3, "red slime")})
                 .build()
         );
 
         levels.put("1-3", new Level.LevelBuilder(
-                new TileCollum[]{new CastleRegular(), new Gap(), new SpikeTrap(), new GhostPlatform()},
-                new float[]{20, 5, 2, 3},
+                new TileWeightData[]{
+                        new TileWeightData(20f, new CastleRegular()),
+                        new TileWeightData(5, new Gap()),
+                        new TileWeightData(2, new SpikeTrap()),
+                        new TileWeightData(3, new GhostPlatform()),
+                },
                 80,128,
                 backgrounds.castle())
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{20, 2, 1, 2, 5})
+                .enemies(20, new EntityWeightData[]{
+                        new EntityWeightData(2, "slime"),
+                        new EntityWeightData(1, "chest"),
+                        new EntityWeightData(2, "red slime"),
+                        new EntityWeightData(5, "skeleton")})
                 .chance(0.9f, 3, 1)
                 .height(128, 96)
                 .mapTiles("mIconCastle1", "mTile0")
                 .build());
 
         levels.put("1-4", new Level.LevelBuilder(
-                new TileCollum[]{new CaveRegular()},
-                new float[]{1},
+                new TileWeightData[]{
+                        new TileWeightData(15, new CaveRegular()),
+                },
                 20,96, backgrounds.cave())
                 .mapTiles("mIconCave1", "mTile0")
                 .setBoss("slime boss")
                 .buildBossLevel());
 
         levels.put("2-1", new Level.LevelBuilder(
-                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
-                new float[]{30f,5.5f,6f},
+                new TileWeightData[]{
+                        new TileWeightData(30, new ForestRegular()),
+                        new TileWeightData(5.5f, new SpikeTrap()),
+                        new TileWeightData(6, new Gap()),
+                },
                 100,96, backgrounds.forest())
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
                 .height(128, 64)
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton", "ghost skull"}, new float[]{25f, 2f, 2f, 5f, 3.5f, 10f})
+                .enemies(25, new EntityWeightData[]{
+                        new EntityWeightData(2, "slime"),
+                        new EntityWeightData(2, "chest"),
+                        new EntityWeightData(5, "red slime"),
+                        new EntityWeightData(3.5f, "skeleton"),
+                        new EntityWeightData(10f, "ghost skull")})
                 .build());
 
         levels.put("2-2", new Level.LevelBuilder(
-                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
-                new float[]{30f,5.5f,6f},
+                new TileWeightData[]{
+                        new TileWeightData(30, new ForestRegular()),
+                        new TileWeightData(5.5f, new SpikeTrap()),
+                        new TileWeightData(6, new Gap()),
+                },
                 100,128, backgrounds.forest())
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
                 .height(256, 96)
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .enemies(25, new EntityWeightData[]{
+                        new EntityWeightData(2, "slime"),
+                        new EntityWeightData(2, "chest"),
+                        new EntityWeightData(5, "red slime"),
+                        new EntityWeightData(3.5f, "skeleton"),
+                        new EntityWeightData(10f, "ghost skull")})
                 .build());
         levels.put("2-3", new Level.LevelBuilder(
-                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
-                new float[]{30f,5.5f,6f},
+                new TileWeightData[]{
+                        new TileWeightData(30, new ForestRegular()),
+                        new TileWeightData(5.5f, new SpikeTrap()),
+                        new TileWeightData(6, new Gap()),
+                },
                 100,128, backgrounds.forest())
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
                 .height(256, 96)
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .enemies(25, new EntityWeightData[]{
+                        new EntityWeightData(2, "slime"),
+                        new EntityWeightData(2, "chest"),
+                        new EntityWeightData(5, "red slime"),
+                        new EntityWeightData(3.5f, "skeleton"),
+                        new EntityWeightData(10f, "ghost skull")})
                 .build());
         levels.put("2-4", new Level.LevelBuilder(
-                new TileCollum[]{new ForestRegular(), new SpikeTrap(), new Gap()},
-                new float[]{30f,5.5f,6f},
+                new TileWeightData[]{
+                        new TileWeightData(30, new ForestRegular()),
+                        new TileWeightData(5.5f, new SpikeTrap()),
+                        new TileWeightData(6, new Gap()),
+                },
                 100,128, backgrounds.forest())
                 .mapTiles("player0", "mTile0")
                 .chance(0.7f, 3,1)
                 .height(256, 96)
-                .enemies(new String[]{"slime", "chest", "red slime", "skeleton"}, new float[]{25f, 2f, 2f, 5f, 3.5f})
+                .enemies(25, new EntityWeightData[]{
+                        new EntityWeightData(2, "slime"),
+                        new EntityWeightData(2, "chest"),
+                        new EntityWeightData(5, "red slime"),
+                        new EntityWeightData(3.5f, "skeleton"),
+                        new EntityWeightData(10f, "ghost skull")})
                 .build());
 
     }
