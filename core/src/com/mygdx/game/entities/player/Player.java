@@ -52,11 +52,10 @@ public class Player extends Entity {
     @Override
     public void update(LevelManager lvl, Random r) {
         lvlY = lvl.getLevelY(this);
-        // TODO : a better terrain collision system
         if (actionTimer > 0) actionTimer--;
 
         //land
-        landed = y <= lvlY - yM && yM <= 0;
+        landed = y <= lvlY - yM && yM <= 0 && lvl.collidesWithLevel(this);
         if (landed) {
             yM = 0;
             y = lvlY;
@@ -190,6 +189,9 @@ public class Player extends Entity {
                 spr.drawGame("player4", x, y,2);
             else
                 spr.drawGame("player0", x, y,2);
+
+
+
 
     }
 

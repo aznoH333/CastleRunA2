@@ -30,7 +30,7 @@ public class Chest extends Entity {
             y += yM;
             final float lvlY = lvl.getLevelY(this);
 
-            if (y <= lvlY - yM && yM <= 0){
+            if (y <= lvlY - yM && yM <= 0 && lvl.collidesWithLevel(this)){
                 yM = 0;
                 y = lvlY;
                 airborne = false;

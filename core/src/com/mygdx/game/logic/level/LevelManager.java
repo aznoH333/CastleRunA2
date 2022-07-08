@@ -32,6 +32,7 @@ public class LevelManager {
     private static final int stepHeight = 16;
     public static final int tileScale = 64;
     private static final int mapWidth = Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()) / tileScale + 2; // TODO : save some of these random constants to a variable
+    private static final int tileThickness = 16; // affects only collision detection
 
     //vars
     private final DrawingManager spr = DrawingManager.getINSTANCE();
@@ -254,8 +255,7 @@ public class LevelManager {
     }
 
     public boolean collidesWithLevel(Entity object){
-        // TODO: advanced level collisions
-        return object.getY() < getLevelY(object);
+        return object.getY() <= getLevelY(object) && object.getY() + object.getYSize() > getLevelY(object) + tileThickness;
     }
 
     public float getLevelY(Entity object){

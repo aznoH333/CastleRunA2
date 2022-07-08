@@ -46,8 +46,10 @@ public class Skeleton extends Enemy {
             yM -= gravity;
             y += yM;
             final float lvlY = lvl.getLevelY(this);
-
-            if (y <= lvlY - yM && yM <= 0) {
+            // TODO : rework skeletons
+            // 1. jump around like green slimes | jump around randomly
+            // 2. make bone throws more consistent
+            if (y <= lvlY - yM && yM <= 0 && lvl.collidesWithLevel(this)) {
                 yM = 0;
                 y = lvlY;
             }
