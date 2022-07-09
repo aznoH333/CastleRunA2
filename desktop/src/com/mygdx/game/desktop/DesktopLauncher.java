@@ -7,11 +7,12 @@ import com.mygdx.game.LibGdxGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = 360;
-        config.height = 640;
+        config.width = 800;
+        config.height = 800;
 		// 360x640 = normal resolution
 		// 270x600 = dumb rare resolution
 		// 640x640 = testing square
+		// 1000x1000 = testing square but bigger
 		// FIXME : performance might be suffering because of unoptimized drawing
 		// FIXME : android studio is drunk and doesn't acknowledge the existence of class Game
         config.fullscreen = false;

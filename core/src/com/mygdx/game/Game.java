@@ -42,11 +42,10 @@ public class Game {
     private final static ItemManager itemManager = ItemManager.getINSTANCE();
     private final static MainMenu mainMenu = MainMenu.getINSTANCE();
     private final static NewGameMenu newGameMenu = NewGameMenu.getINSTANCE();
-    public final static float gameWorldWidth = Gdx.graphics.getWidth() * (float)(1280/Gdx.graphics.getHeight());
+    public final static float gameWorldWidth = (Gdx.graphics.getWidth() * (1280f/Gdx.graphics.getHeight()));
 
     public Game() {
         SoundLoadList.loadAllSounds();
-
         //init stuff
         //stageManager.startLevel();
 

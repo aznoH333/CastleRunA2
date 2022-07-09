@@ -31,7 +31,7 @@ public class LevelManager {
     private static final float advanceSpeed = 6f;
     private static final int stepHeight = 16;
     public static final int tileScale = 64;
-    private static final int mapWidth = Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()) / tileScale + 2; // TODO : save some of these random constants to a variable
+    private static final int mapWidth = (int)(Gdx.graphics.getWidth() * (1280f/Gdx.graphics.getHeight())) / tileScale + 2;
     private static final int tileThickness = 16; // affects only collision detection
 
     //vars
@@ -61,6 +61,7 @@ public class LevelManager {
     public static final int gamePosition = 426;
 
     // FIXME : this sucks! clean it up!
+    // no
     private void generateLevel(int index) {
         // generate starts & ends
         if (startGenerationIndex > 0 || distance > levelLength - (tileScale * 4)) {
