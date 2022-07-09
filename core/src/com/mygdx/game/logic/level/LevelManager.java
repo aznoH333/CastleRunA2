@@ -53,8 +53,7 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
     private final ArrayList<TileActivator> tileActivators = new ArrayList<>();
-    private int activatorId = 0;
-    private float nextActivatorTimer = 0;
+    private int maxActivatorCount = 0;
 
 
     // very dumb
@@ -162,7 +161,6 @@ public class LevelManager {
         if (dist + distance > advanceDistance){
             if (dist + distance > levelLength) advanceDistance = levelLength;
             else {
-                nextActivatorTimer += ((dist + distance) - advanceDistance)/2;
                 advanceDistance = dist + distance;
             }
         }
@@ -216,20 +214,12 @@ public class LevelManager {
                 ((ISpecialTile)collum).update();
         }
 
-        // spawn tile activators
-        if (nextActivatorTimer < 0){
-            tileActivators.add(new TileActivator(0,activatorId));
-            activatorId++;
-            nextActivatorTimer = lvl.getActivationRate();
-        }
 
-        nextActivatorTimer-=1;
+
         // advance activators
         if (Game.Time()%32==0){
             for (TileActivator a: tileActivators) {
-                if (a.getX() > distance + Game.gameWorldWidth) {tileActivators.remove(a); break;}
                 a.advance();
-
             }
 
         }
@@ -285,9 +275,8 @@ public class LevelManager {
         advanceDistance = 0;
         trapOffset = 0;
         tileActivators.clear();
-        activatorId = 0;
-        nextActivatorTimer = 0;
 
+        maxActivatorCount = (mapWidth * tileScale) / lvl.getActivationRate();
 
         startGenerationIndex = 3;
         if (!isBossLevel)
@@ -297,8 +286,19 @@ public class LevelManager {
         levelLength = lvl.getLength();
         e.clear();
         // pre generate first screen
+
+        int tilesSinceLastActivator = 0;
+        tileActivators.add(new TileActivator(0));
+
         for (int i = 0; i < mapWidth; i++) {
             generateLevel(i);
+            // spawn tile activators
+            if (tileActivators.size() <= maxActivatorCount && (tilesSinceLastActivator * tileScale) % lvl.getActivationRate() < tileScale){
+                tileActivators.add(new TileActivator(i * tileScale));
+                tilesSinceLastActivator = 0;
+            }
+            tilesSinceLastActivator++;
+
         }
     }
 
