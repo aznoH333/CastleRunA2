@@ -7,6 +7,7 @@ import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.PlayerStats;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,7 +47,8 @@ public class EntityManager {
         for (Entity ent: entities) {
             //kill if falls outside off lvl
             if (ent.getY() < -ent.getYSize() || ent.getX() < -lvl.getTileScale())
-                ent.takeDamage(9999);
+                if (ent.getTeam() == Team.Player) {PlayerStats.getINSTANCE().setHp(0);ent.destroy();}
+                else ent.safeDelete();
 
             //entity collisions
             for (Entity entOther: entities) {
@@ -90,20 +92,22 @@ public class EntityManager {
     }
 
     private void deleteEntities(){
-        // FIXME : can crash the game if called in the same frame as entity spawn
         // delete dead entities or marked
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).getHP() <= 0 || entities.get(i).isMarked()){
                 Entity ent = entities.get(i);
-                if (ent.getTeam() == Team.Enemies)
-                    ItemManager.getINSTANCE().onKill(ent);
-                ent.onDestroy();
+                if (ent.triggerEffects()){
+                    ent.onDestroy();
+                    if (ent.getTeam() == Team.Enemies)
+                        ItemManager.getINSTANCE().onKill(ent);
+                }
                 entities.remove(i);
                 i--;
             }
         }
     }
 
+    // FIXME : can crash the game if called in the same frame as entity spawn
     public void clearEnemyEntities(){
         for (Entity entity: entities) {
             if (entity.getTeam() == Team.Enemies || entity.getTeam() == Team.EnemyProjectiles)
@@ -114,7 +118,7 @@ public class EntityManager {
 
     public void clear(){
         for (Entity entity: entities) {
-            entity.destroy();
+            entity.safeDelete();
         }
         deleteEntities();
         entitySpawnQueue.clear();

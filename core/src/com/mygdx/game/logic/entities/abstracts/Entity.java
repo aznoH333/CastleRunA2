@@ -17,6 +17,7 @@ public abstract class Entity {
     protected final EntityManager e;
     protected final Team team;
     private boolean markForDestruction = false;
+    private boolean safeDelete = false;
     protected boolean shifts = true;
 
     public Entity(float x, float y, float xSize, float ySize, int hp, Team team){
@@ -86,7 +87,10 @@ public abstract class Entity {
     public void destroy(){
         markForDestruction = true;
     }
+    // removes the entity without triggering any on destroy effects
+    public void safeDelete() {safeDelete = true; destroy();}
     public boolean isMarked(){return markForDestruction;}
+    public boolean triggerEffects(){return !safeDelete;}
 
 
 
