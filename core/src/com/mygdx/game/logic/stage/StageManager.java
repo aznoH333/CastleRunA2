@@ -57,7 +57,7 @@ public class StageManager {
 
     public void startLevel(){
         LevelManager.getINSTANCE().loadLevel(LevelOwner.getINSTANCE().getByName(currentStage.getCurrentLevel()));
-        EntityManager.getINSTANCE().addEntity(new Player(64, 1000, 64, 64));
+        EntityManager.getINSTANCE().addEntity(new Player(64, LevelManager.getINSTANCE().getOnPos(64).getY()+64, 64, 64));
         ItemManager.getINSTANCE().onLevelStart();
     }
 
