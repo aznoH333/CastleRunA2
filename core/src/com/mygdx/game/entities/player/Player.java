@@ -1,6 +1,5 @@
 package com.mygdx.game.entities.player;
 
-import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
@@ -27,6 +26,7 @@ public class Player extends Entity {
     private int iFrame = 0;
     private int healthPartTimer = 0;
     private int energyPartTimer = 0;
+    private int energyRecharge = energyRechargeTime;
 
     //finals
     private static final float gravity = 1f;
@@ -41,6 +41,8 @@ public class Player extends Entity {
     private final static InputManager input = InputManager.getINSTANCE();
     private final SoundManager s = SoundManager.getINSTANCE();
     private final ParticleManager particleManager = ParticleManager.getINSTANCE();
+    private final static int energyRechargeTime = 240;
+
 
     public Player(float x, float y, float sizeX, float sizeY) {
         super(x, y, sizeX, sizeY, 3, Team.Player);
@@ -137,9 +139,8 @@ public class Player extends Entity {
                         (int) (Math.random() * (lvl.getTileScale() - 16)) + y - 16,
                         0,
                         -0.5f,
-                        0,
-                        (int) (Math.random() * 20 + 10));
-            } else particleTimer--;
+                        0);
+            } else particleTimer--; // TODO : rework particles to have an opening and a closing
         }
 
 
@@ -173,6 +174,15 @@ public class Player extends Entity {
             if (energyPartTimer % 6 == 0) particleManager.addParticle("energyGain", x + (r.nextFloat() * xSize) - 4, y + (r.nextFloat() * 4),0,r.nextFloat()+1f,0);
         }
         // FIXME : weird collisions with world border (remove border stop for knock back?)
+
+
+        // energy recharge
+        if (inv.getEnergy() < inv.getMaxEnergy()) energyRecharge--;
+        if (energyRecharge == 0) {
+            energyRecharge = energyRechargeTime;
+            s.playSound("energy");
+            inv.gainEnergy(1);
+        }
     }
 
     @Override

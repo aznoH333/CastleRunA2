@@ -114,8 +114,5 @@ public class RedSlime extends Enemy {
         for (int i = 0; i < r.nextInt(5) + 5; i++)
             part.addParticle("fleshGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
 
-        //spawn pickup
-        if (Math.random() > 0.5)
-            EntityManager.getINSTANCE().spawnEntity("energy pickup",x,y);
     }
 }

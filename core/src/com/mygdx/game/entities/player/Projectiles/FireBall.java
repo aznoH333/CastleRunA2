@@ -26,7 +26,7 @@ public class FireBall extends Projectile {
     @Override
     public void draw(DrawingManager spr) {
         // TODO : fireball sprites
-        spr.drawGame("fireball" + ((Game.Time() / 3) % 4 + 1), x, y);
+        spr.drawGame("fireball" + ((Game.Time() / 3) % 4 + 1), x, y,1);
     }
 
     @Override

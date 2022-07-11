@@ -31,7 +31,7 @@ public class ParticleLoadList {
 
 
         // sparkles
-        particleMap.put("sparkle", new Particle(new String[]{"sparkle0","sparkle1"},30,8));
+        particleMap.put("sparkle", new Particle(new String[]{"particle5","particle3","sparkle0","sparkle1","sparkle0","particle4","particle5"},0,8));
         particleMap.put("miniSparkle", new Particle(new String[]{"particle5","particle3","particle4","particle3","particle5"},0,8));
         particleMap.put("coinSparkle", new Particle(new String[]{"particle2","particle0","particle1","particle0","particle2"},0,8));
 
@@ -45,6 +45,9 @@ public class ParticleLoadList {
         particleMap.put("potion", new Particle(new String[]{"potion0"},420,0));
         particleMap.put("healthGain", new Particle(new String[]{"gainPart0", "gainPart1", "gainPart2", "gainPart2", "gainPart2", "gainPart2", "gainPart3", "gainPart4"},0 , 2));
         particleMap.put("energyGain", new Particle(new String[]{"gainPart5", "gainPart6", "gainPart7", "gainPart7", "gainPart7", "gainPart7", "gainPart8", "gainPart9"},0 , 2));
+
+        //weapon specific
+        particleMap.put("bubble_splash", new Particle(new String[]{"bubble3"},30,0));
 
 
         return particleMap;

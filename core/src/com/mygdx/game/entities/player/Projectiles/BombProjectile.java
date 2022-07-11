@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player.itemEntities;
+package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
@@ -10,45 +10,53 @@ import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.Random;
 
-public class MicroBomb extends Entity {
+public class BombProjectile extends Entity {
 
-    private final long explodeTime;
-    private final static long explosionDelay = 64;
+    private int timer = 120;
     private float xM;
     private float yM;
-    private boolean landed = false;
     private final static float gravity = 1f;
+    private boolean landed = false;
 
-    public MicroBomb(float x, float y) {
-        super(x, y, 16, 16, 1, Team.PlayerProjectiles);
-        explodeTime = Game.Time() + explosionDelay + Game.getGeneralRandom().nextInt(32);
-        xM = (float) Math.random() * 12 - 6;
-        yM = (float) Math.random() * 8 + 3;
+    public BombProjectile(float x, float y) {
+        super(x, y, 64, 64, 1, Team.PlayerProjectiles);
+        xM = 7;
+        yM = 6;
+
     }
 
     @Override
     public void update(LevelManager lvl, Random r) {
-        if (Game.Time() >= explodeTime) destroy();
+        timer--;
+        if (timer <= 0) destroy();
 
         if (!landed){
-
             x += xM;
             y += yM;
             yM -= gravity;
 
 
             if (lvl.collidesWithLevel(this)) {
-                landed = true;
                 y = lvl.getLevelY(this);
-                yM = 0;
-                xM = 0;
+                yM *= -0.5f;
+                xM *= 0.5f;
+                if (yM < 3){
+                    landed = true;
+                    this.y = lvl.getLevelY(this);
+                }
             }
         }
+
     }
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("minibomb" + ((Game.Time()/8)%2),x,y,2);
+        if (timer > 80) spr.draw("bomb0", x, y, 1);
+        else if (timer > 40) spr.draw("bomb1", x, y, 1);
+        else {
+            if (Game.Time()%40 > 20) spr.draw("bomb2", x, y, 1);
+            else spr.draw("bomb3", x, y, 1);
+        }
     }
 
     @Override
@@ -58,12 +66,14 @@ public class MicroBomb extends Entity {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new MicroBomb(x, y);
+        return new BombProjectile(x, y);
     }
 
     @Override
     public void onDestroy() {
-        EntityManager.getINSTANCE().spawnEntity("micro explosion", x - 16, y-16);
+        EntityManager.getINSTANCE().spawnEntity("explosion", x - 32,y - 48);
+        DrawingManager.getINSTANCE().addScreenShake(20);
         SoundManager.getINSTANCE().playSound("enemyDeath1",0.5f);
+        // TODO : sound
     }
 }

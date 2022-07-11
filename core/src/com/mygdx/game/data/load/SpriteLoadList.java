@@ -19,7 +19,9 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/boomerang/cross_","cross",4);
         spr.loadSprites("entities/weapons/fireball/Fireball_","fireball",4);
         spr.loadSprites("entities/weapons/meteor/meteor_", "meteor", 2);
-        spr.loadSprites("entities/weapons/bubble/bubble_", "bubble", 3);
+        spr.loadSprites("entities/weapons/bubble/bubble_", "bubble", 4);
+        spr.loadSprites("entities/weapons/bomb/bomb_", "bomb", 4);
+        spr.loadSprites("entities/weapons/ice_sword/ice_sword_", "ice_sword", 7);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);

@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.Game;
+import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.weapons.*;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class InventoryManager {
         addWeapon("Axe", new ThrowingAxe());
         addWeapon("Cross", new BoomerangCross());
         addWeapon("Fireball", new FireBall());
+        addWeapon("Bubble", new Bubble());
+        addWeapon("Bomb", new Bomb());
 
 
         unlockWeapon("Nothing");
@@ -51,8 +54,9 @@ public class InventoryManager {
         unlockWeapon("Sword");
         unseenWeapons.remove("Sword");
         // temp cheats
-        // unlockWeapon("Fireball");
-        // unseenWeapons.remove("FireBall");
+         unlockWeapon("Bomb");
+         unseenWeapons.remove("Bomb");
+
 
     }
 

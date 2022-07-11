@@ -46,6 +46,8 @@ public class EntityLoadList {
         entities.put("fireball", new FireBall(0, 0));
         entities.put("meteor", new Meteorite(0,0));
         entities.put("explosion", new Explosion(0,0));
+        entities.put("bubble", new BubbleProjectile(0,0));
+        entities.put("bomb", new BombProjectile(0,0));
 
 
         // FIXME normalize naming conventions

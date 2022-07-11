@@ -15,9 +15,9 @@ public class PlayerStats {
     private Weapon currentRightWeapon;
 
     private int maxHp = 3;
-    private int maxEnergy = 2;
+    private int maxEnergy = 1;
     private int hp = 3;
-    private int energy = 2;
+    private int energy = 1;
     private int coins = 0;
     private Player player;
 
@@ -94,13 +94,13 @@ public class PlayerStats {
 
     public void resetStats(){
         maxHp = 3;
-        maxEnergy = 2;
+        maxEnergy = 10;
         hp = 3;
-        energy = 2;
+        energy = 10;
         coins = 0;
         equipWeapon("Sword", Controls.AttackRight);
         //equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon("Fireball", Controls.AttackLeft);
+        equipWeapon("Bomb", Controls.AttackLeft);
     }
 
     public void upgradeHp(){
