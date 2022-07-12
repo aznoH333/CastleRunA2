@@ -35,7 +35,7 @@ public class DrawingManager {
     // screen shake stuff
     private int screenShake = 0;
     private float screenShakeOffset = 0f;
-    private final int maximumScreenShake = 30;
+    private static final int maximumScreenShake = 40;
 
     public DrawingManager(){
         sprs = new HashMap<>();
@@ -94,7 +94,8 @@ public class DrawingManager {
         // screen shake update
         if (screenShake > 0){
             screenShake--;
-            screenShakeOffset = screenShake;
+            if (screenShake > maximumScreenShake) screenShake -= screenShake>>1;
+            screenShakeOffset = Math.min(screenShake,maximumScreenShake);
             if (screenShake%2 == 0) screenShakeOffset *= -1;
         }
 
@@ -178,6 +179,5 @@ public class DrawingManager {
 
     public void addScreenShake(int number){
         this.screenShake += number;
-        if (screenShake > maximumScreenShake) screenShake = maximumScreenShake;
     }
 }

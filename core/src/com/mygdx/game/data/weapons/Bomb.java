@@ -19,6 +19,7 @@ public class Bomb extends Weapon {
     public void attack(float x, float y) {
         ent.spawnEntity("bomb",x + 32,y + 32);
         // TODO : sound
+        // FIXME : collisions with multiple enemies
     }
 
     @Override

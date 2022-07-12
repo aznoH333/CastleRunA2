@@ -39,6 +39,8 @@ public class ParticleLoadList {
         particleMap.put("smoke", new Particle(new String[]{"particle12","particle13","particle14"},0,8));
         particleMap.put("fire", new Particle(new String[]{"particle9","particle10","particle11"},30,8));
         particleMap.put("electricity", new Particle(new String[]{"particle6","particle7","particle8","particle7","particle6","particle8"},0,4));
+        particleMap.put("smallRock0", new Particle(new String[]{"rock5"},30,0));
+        particleMap.put("smallRock1", new Particle(new String[]{"rock6"},30,0));
 
 
         // potions

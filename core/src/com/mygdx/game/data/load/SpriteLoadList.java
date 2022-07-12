@@ -22,6 +22,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/bubble/bubble_", "bubble", 4);
         spr.loadSprites("entities/weapons/bomb/bomb_", "bomb", 4);
         spr.loadSprites("entities/weapons/ice_sword/ice_sword_", "ice_sword", 7);
+        spr.loadSprites("entities/weapons/rocks/rocks_", "rock", 6);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
@@ -99,5 +100,6 @@ public class SpriteLoadList {
         spr.loadSprites("particles/gore/Blood_","gore",13);
         spr.loadSprites("particles/gore/slime_explosion_","slimeExplosion",2);
         spr.loadSprites("particles/gainParticles/gain_part_", "gainPart", 9);
+        spr.loadSprites("particles/effects/ice/ice_flame_","icePart",6);
     }
 }

@@ -100,7 +100,7 @@ public class PlayerStats {
         coins = 0;
         equipWeapon("Sword", Controls.AttackRight);
         //equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon("Bomb", Controls.AttackLeft);
+        equipWeapon("Rocks", Controls.AttackLeft);
     }
 
     public void upgradeHp(){
