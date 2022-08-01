@@ -24,6 +24,8 @@ public class Skeleton extends Enemy {
     private boolean calcGravity = false;
     private static final float gravity = 0.5f;
     private float yM = 0f;
+    private int danceAnimation = 0;
+    private boolean danceToggle = true;
 
     public Skeleton(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
@@ -38,7 +40,17 @@ public class Skeleton extends Enemy {
             throwTimer = r.nextInt(timerVariance) + throwTimerMin;
             animationTimer = 45;
         }
+
         if (animationTimer > 0) animationTimer--;
+        if (Game.Time()%20 == 0) {
+            if (danceToggle){
+                danceAnimation++;
+                if (danceAnimation == 2) danceToggle = false;
+            }else {
+                danceAnimation--;
+                if (danceAnimation == 0) danceToggle = true;
+            }
+        }
 
         if(calcGravity){
             calcGravity = LevelManager.getINSTANCE().getOnPos(x).getSpecial() == TileCollumSpecial.DisappearingPlatform;
@@ -46,9 +58,6 @@ public class Skeleton extends Enemy {
             yM -= gravity;
             y += yM;
             final float lvlY = lvl.getLevelY(this);
-            // TODO : rework skeletons
-            // 1. jump around like green slimes | jump around randomly
-            // 2. make bone throws more consistent
             if (y <= lvlY - yM && yM <= 0 && lvl.collidesWithLevel(this)) {
                 yM = 0;
                 y = lvlY;
@@ -59,11 +68,11 @@ public class Skeleton extends Enemy {
     @Override
     public void draw(DrawingManager spr) {
         if (animationTimer > 30)
-            spr.drawGame("skeleton1",x,y,2);
-        else if (animationTimer > 15)
-            spr.drawGame("skeleton2",x,y,2);
-        else
-            spr.drawGame("skeleton0",x,y,2);
+            spr.drawGame("skeleton3",x,y,2);
+        else{
+            spr.drawGame("skeleton" + danceAnimation,x,y,2);
+
+        }
     }
 
     @Override

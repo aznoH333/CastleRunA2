@@ -28,12 +28,12 @@ public class SpriteLoadList {
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
         spr.loadSprites("entities/enemies/slimes/red_slime/red_slime_","red_slime",6);
-        spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",2);
+        spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",3);
         spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
         spr.loadSprites("entities/enemies/bullshit/skull/skull_", "ghost_skull", 1);
 
         // enemy projectiles
-        spr.loadSprites("entities/enemies/projectiles/bone/bone_","bone",5);
+        spr.loadSprites("entities/enemies/skeletons/bones/bone_","bone",4);
 
 
 
@@ -53,8 +53,8 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
-        spr.loadSprites("tiles/forest/foreground/forest_","forest",4);
-        spr.loadSprites("tiles/forest/background/forestback_","forestBack",4);
+        spr.loadSprites("tiles/forest/foreground/forest_","forest",5);
+        spr.loadSprites("tiles/forest/background/forestback_","forestBack",10);
 
 
         // items

@@ -20,7 +20,7 @@ public class MicroBomb extends Entity {
     private final static float gravity = 1f;
 
     public MicroBomb(float x, float y) {
-        super(x, y, 16, 16, 1, Team.PlayerProjectiles);
+        super(x, y, 32, 32, 1, Team.PlayerProjectiles);
         explodeTime = Game.Time() + explosionDelay + Game.getGeneralRandom().nextInt(32);
         xM = (float) Math.random() * 12 - 6;
         yM = (float) Math.random() * 8 + 3;

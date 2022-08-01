@@ -2,6 +2,8 @@ package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.levelgeneration.EntityWeightData;
 import com.mygdx.game.data.levelgeneration.TileWeightData;
+import com.mygdx.game.data.tilesets.forest.ForestRegular2;
+import com.mygdx.game.data.tilesets.forest.ForestRegular3;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.forest.ForestRegular;
@@ -94,7 +96,9 @@ public class LevelOwner {
 
         levels.put("2-1", new Level.LevelBuilder(
                 new TileWeightData[]{
-                        new TileWeightData(30, new ForestRegular()),
+                        new TileWeightData(10, new ForestRegular()),
+                        new TileWeightData(10f, new ForestRegular2()),
+                        new TileWeightData(10f, new ForestRegular3()),
                         new TileWeightData(5.5f, new SpikeTrap()),
                         new TileWeightData(6, new Gap()),
                 },

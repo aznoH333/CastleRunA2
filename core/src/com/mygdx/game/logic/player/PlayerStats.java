@@ -94,13 +94,14 @@ public class PlayerStats {
 
     public void resetStats(){
         maxHp = 3;
-        maxEnergy = 10;
+        maxEnergy = 1;
         hp = 3;
-        energy = 10;
+        energy = 1;
         coins = 0;
         equipWeapon("Sword", Controls.AttackRight);
-        //equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon("Rocks", Controls.AttackLeft);
+        equipWeapon("Nothing", Controls.AttackLeft);
+        //equipWeapon("Bubble", Controls.AttackLeft);
+        // TODO : mastery system (like sc2 coop)
     }
 
     public void upgradeHp(){

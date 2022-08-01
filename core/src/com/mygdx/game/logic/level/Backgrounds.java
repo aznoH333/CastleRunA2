@@ -20,7 +20,7 @@ public class Backgrounds {
     }
 
     public Background forest(){
-        return new Background(new String[]{"forestBack4","forestBack3","forestBack2","forestBack1","forestBack0"}, new float[]{0.05f,0.35f,0.40f,0.60f,0.75f});
+        return new Background(new String[]{"forestBack10","forestBack9","forestBack8","forestBack7","forestBack6","forestBack5","forestBack4","forestBack3","forestBack2", "forestBack1","forestBack0"}, new float[]{0.15f,0.17f,0.18f,0.25f,0.27f,0.30f,0.45f, 0.50f, 0.45f,0.65f,0.75f});
     }
 
     // TODO : rewrite theese to be smarter

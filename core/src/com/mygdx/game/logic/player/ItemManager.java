@@ -38,7 +38,7 @@ public class ItemManager {
         always.clear();
         ItemLoadlist.loadItems(unseenItems);
         // cheat items
-        //addItem(new FriendlyOrbItem());
+        addItem(new MicroBombs());
     }
 
     public void addItem(IItem item){
