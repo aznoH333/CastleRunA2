@@ -42,6 +42,8 @@ public class SpriteLoadList {
         spr.loadSprites("tiles/general/door/Door_","door",1);
         spr.loadSprites("entities/pickups/Pick_up_","pickup",3);
         spr.loadSprites("entities/pickups/Potion_","potion",2);
+        spr.loadSprites("tiles/general/furniture/furniture_", "furniture", 6);
+        spr.loadSprites("tiles/general/furniture/parts/furniture_part_", "furniturePart", 4);
 
 
 

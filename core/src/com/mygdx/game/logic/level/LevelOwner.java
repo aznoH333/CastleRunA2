@@ -44,9 +44,10 @@ public class LevelOwner {
                 .mapTiles("mIconCastle0", "mTile0")
                 .height(128,96)
                 .chance(0.7f,3,2)
-                .enemies(20, new EntityWeightData[]{
+                .enemies(10, new EntityWeightData[]{
                         new EntityWeightData(6, "slime"),
-                        new EntityWeightData(2, "chest")})
+                        new EntityWeightData(1.5f, "chest"),
+                        new EntityWeightData(10, "furniture")})
                 .build()
         );
 
@@ -59,11 +60,13 @@ public class LevelOwner {
                 85, 128,
                 backgrounds.cave())
                 .mapTiles("mIconCave0", "mTile0")
-                .enemies(20, new EntityWeightData[]{
+                .enemies(15, new EntityWeightData[]{
                         new EntityWeightData(5, "slime"),
                         new EntityWeightData(1, "chest"),
-                        new EntityWeightData(3, "red slime")})
-                .build()
+                        new EntityWeightData(3, "red slime"),
+                        new EntityWeightData(5, "furniture")})
+
+            .build()
         );
 
         levels.put("1-3", new Level.LevelBuilder(
@@ -75,11 +78,12 @@ public class LevelOwner {
                 },
                 80,128,
                 backgrounds.castle())
-                .enemies(20, new EntityWeightData[]{
+                .enemies(10, new EntityWeightData[]{
                         new EntityWeightData(2, "slime"),
                         new EntityWeightData(1, "chest"),
                         new EntityWeightData(2, "red slime"),
-                        new EntityWeightData(5, "skeleton")})
+                        new EntityWeightData(5, "skeleton"),
+                        new EntityWeightData(10, "furniture")})
                 .chance(0.9f, 3, 1)
                 .height(128, 96)
                 .mapTiles("mIconCastle1", "mTile0")

@@ -42,7 +42,7 @@ public class LevelManager {
     private final BackgroundRenderer backgroundRenderer = BackgroundRenderer.getINSTANCE();
     private Level lvl;
     private final Random random = Game.getSeededRandom();
-    private ParticleManager part = ParticleManager.getINSTANCE();
+    private final ParticleManager part = ParticleManager.getINSTANCE();
     private static final EntityManager e = EntityManager.getINSTANCE();
     //lvl generation vars
     private int height = gamePosition;
@@ -302,6 +302,7 @@ public class LevelManager {
 
         }
     }
+
 
 
 }
