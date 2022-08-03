@@ -29,7 +29,7 @@ public class Furniture extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.draw(sprite,x, y, 1);
+        spr.draw(sprite,x, y, 0);
     }
 
     @Override

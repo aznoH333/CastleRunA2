@@ -31,6 +31,8 @@ public class SpriteLoadList {
         spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",3);
         spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
         spr.loadSprites("entities/enemies/bullshit/skull/skull_", "ghost_skull", 1);
+        spr.loadSprites("entities/enemies/goblin/goblin_", "goblin", 3);
+
 
         // enemy projectiles
         spr.loadSprites("entities/enemies/skeletons/bones/bone_","bone",4);

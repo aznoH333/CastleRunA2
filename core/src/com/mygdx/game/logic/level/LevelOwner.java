@@ -46,6 +46,7 @@ public class LevelOwner {
                 .chance(0.7f,3,2)
                 .enemies(10, new EntityWeightData[]{
                         new EntityWeightData(6, "slime"),
+                        new EntityWeightData(20, "goblin"),
                         new EntityWeightData(1.5f, "chest"),
                         new EntityWeightData(10, "furniture")})
                 .build()
