@@ -50,15 +50,26 @@ public class SpriteLoadList {
 
 
         //tiles
+        // castle
         spr.loadSprites("tiles/castle/foreground/castle_", "castle", 3);
         spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 2);
+
+        // general
         spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
         spr.loadSprites("tiles/general/platform/platform_", "platform", 5);
         spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
+
+        // cave
         spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
         spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
+
+        // forest
         spr.loadSprites("tiles/forest/foreground/forest_","forest",5);
         spr.loadSprites("tiles/forest/background/forestback_","forestBack",10);
+
+        // yard
+        spr.loadSprites("tiles/yard/background/castle_yard_","yardBack",7);
+
 
 
         // items

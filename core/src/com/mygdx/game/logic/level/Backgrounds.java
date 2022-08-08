@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.level;
 
 import com.mygdx.game.data.Background;
+import com.mygdx.game.data.BackgroundLayer;
 
 public class Backgrounds {
 
@@ -11,18 +12,68 @@ public class Backgrounds {
         return INSTANCE;
     }
 
+    // backgrounds
+    private final static Background castleBack = new Background(new BackgroundLayer[]{
+            new BackgroundLayer("castleBack2", 0.25f),
+            new BackgroundLayer("castleBack1", 0.50f),
+            new BackgroundLayer("castleBack0", 0.75f),
+    });
+
+    private final static Background caveBack = new Background(new BackgroundLayer[]{
+                new BackgroundLayer("caveBack5", 0),
+                new BackgroundLayer("caveBack4", 0.15f),
+                new BackgroundLayer("caveBack3", 0.25f),
+                new BackgroundLayer("caveBack2", 0.40f),
+                new BackgroundLayer("caveBack1", 0.60f),
+                new BackgroundLayer("caveBack0", 0.75f),
+    });
+
+    private final static Background forestBack = new Background(new BackgroundLayer[]{
+                new BackgroundLayer("forestBack10", 0.15f),
+                new BackgroundLayer("forestBack9", 0.17f),
+                new BackgroundLayer("forestBack8", 0.18f),
+                new BackgroundLayer("forestBack7", 0.25f),
+                new BackgroundLayer("forestBack6", 0.27f),
+                new BackgroundLayer("forestBack5", 0.30f),
+                new BackgroundLayer("forestBack4", 0.45f),
+                new BackgroundLayer("forestBack3", 0.50f),
+                new BackgroundLayer("forestBack2", 0.45f),
+                new BackgroundLayer("forestBack1", 0.65f),
+                new BackgroundLayer("forestBack0", 0.75f),
+    });
+
+    private final static Background yard = new Background(new BackgroundLayer[]{
+                new BackgroundLayer("yardBack7", 0.0f),
+                new BackgroundLayer("yardBack6", 0.08f),
+                new BackgroundLayer("yardBack5", 0.12f),
+                new BackgroundLayer("yardBack4", 0.45f),
+                new BackgroundLayer("yardBack3", 0.45f),
+                new BackgroundLayer("yardBack2", 0.10f, 80f),
+                new BackgroundLayer("yardBack1", 0.15f, 50f),
+                new BackgroundLayer("yardBack0", 0.20f, 30f),
+    });
+
+
+
+
+
+
+
     public Background castle(){
-        return new Background(new String[]{"castleBack2","castleBack1","castleBack0"}, new float[]{0.25f,0.50f,0.75f});
+        return castleBack;
     }
 
     public Background cave(){
-        return new Background(new String[]{"caveBack5","caveBack4","caveBack3","caveBack2","caveBack1","caveBack0"}, new float[]{0f,0.15f,0.25f,0.40f,0.60f,0.75f});
+        return caveBack;
     }
 
     public Background forest(){
-        return new Background(new String[]{"forestBack10","forestBack9","forestBack8","forestBack7","forestBack6","forestBack5","forestBack4","forestBack3","forestBack2", "forestBack1","forestBack0"}, new float[]{0.15f,0.17f,0.18f,0.25f,0.27f,0.30f,0.45f, 0.50f, 0.45f,0.65f,0.75f});
+        return forestBack;
     }
 
-    // TODO : rewrite theese to be smarter
+    public Background yard(){
+        return yard;
+    }
+
     // TODO : weather fx (rain + thunder)
 }

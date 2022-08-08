@@ -46,7 +46,6 @@ public class LevelOwner {
                 .chance(0.7f,3,2)
                 .enemies(10, new EntityWeightData[]{
                         new EntityWeightData(6, "slime"),
-                        new EntityWeightData(20, "goblin"),
                         new EntityWeightData(1.5f, "chest"),
                         new EntityWeightData(10, "furniture")})
                 .build()
@@ -99,7 +98,7 @@ public class LevelOwner {
                 .setBoss("slime boss")
                 .buildBossLevel());
 
-        levels.put("2-1", new Level.LevelBuilder(
+        levels.put("2-2", new Level.LevelBuilder(
                 new TileWeightData[]{
                         new TileWeightData(10, new ForestRegular()),
                         new TileWeightData(10f, new ForestRegular2()),
@@ -119,22 +118,18 @@ public class LevelOwner {
                         new EntityWeightData(10f, "ghost skull")})
                 .build());
 
-        levels.put("2-2", new Level.LevelBuilder(
+        levels.put("2-1", new Level.LevelBuilder(
                 new TileWeightData[]{
-                        new TileWeightData(30, new ForestRegular()),
-                        new TileWeightData(5.5f, new SpikeTrap()),
+                        new TileWeightData(30, new CastleRegular()),
                         new TileWeightData(6, new Gap()),
                 },
-                100,128, backgrounds.forest())
+                100,48, backgrounds.yard())
                 .mapTiles("player0", "mTile0")
-                .chance(0.7f, 3,1)
-                .height(256, 96)
+                .chance(0.2f, 5,3)
+                .height(96, 48)
                 .enemies(25, new EntityWeightData[]{
-                        new EntityWeightData(2, "slime"),
                         new EntityWeightData(2, "chest"),
-                        new EntityWeightData(5, "red slime"),
-                        new EntityWeightData(3.5f, "skeleton"),
-                        new EntityWeightData(10f, "ghost skull")})
+                })
                 .build());
         levels.put("2-3", new Level.LevelBuilder(
                 new TileWeightData[]{

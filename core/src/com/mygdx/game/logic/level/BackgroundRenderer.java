@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.level;
 
 import com.badlogic.gdx.Gdx;
+import com.mygdx.game.Game;
 import com.mygdx.game.data.Background;
 import com.mygdx.game.logic.drawing.DrawingManager;
 
@@ -24,9 +25,10 @@ public class BackgroundRenderer {
     private final static int veryDumb = 1280;
 
     public void draw(DrawingManager spr){
-        for (int i = 0; i < background.getBackgrounds().length; i++) {
+        long t = Game.Time();
+        for (int i = 0; i < background.getLayers().length; i++) {
             for (int j = 0; j < (Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()) + veryDumb*2); j+= veryDumb){
-                spr.drawGame(background.getBackgrounds()[i],(- distance * background.getParallaxes()[i])%veryDumb + j,0, -1);
+                spr.drawGame(background.getLayers()[i].getSprite(),(- (distance + (background.getLayers()[i].getWindSpeed() * t)) * background.getLayers()[i].getParralax())%veryDumb + j,0, -1);
             }
         }
     }

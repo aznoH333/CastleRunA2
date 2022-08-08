@@ -1,19 +1,14 @@
 package com.mygdx.game.data;
 
 public class Background {
-    private final String[] backgrounds;
-    private final float[] parallaxes;
 
-    public Background(String[] backgrounds, float[] parallaxes){
-        this.backgrounds = backgrounds;
-        this.parallaxes = parallaxes;
+    private final BackgroundLayer[] layers;
+
+    public Background(BackgroundLayer[] layers){
+        this.layers = layers;
     }
 
-    public String[] getBackgrounds(){
-        return backgrounds;
-    }
-
-    public float[] getParallaxes() {
-        return parallaxes;
+    public BackgroundLayer[] getLayers() {
+        return layers;
     }
 }
