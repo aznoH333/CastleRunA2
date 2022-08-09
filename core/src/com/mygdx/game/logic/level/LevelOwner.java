@@ -118,7 +118,7 @@ public class LevelOwner {
                         new EntityWeightData(10f, "ghost skull")})
                 .build());
 
-        levels.put("2-1", new Level.LevelBuilder(
+        levels.put("2-3", new Level.LevelBuilder(
                 new TileWeightData[]{
                         new TileWeightData(30, new CastleRegular()),
                         new TileWeightData(6, new Gap()),
@@ -132,23 +132,14 @@ public class LevelOwner {
                         new EntityWeightData(3, "furniture"),
                 })
                 .build());
-        levels.put("2-3", new Level.LevelBuilder(
+        levels.put("2-1", new Level.LevelBuilder(
                 new TileWeightData[]{
-                        new TileWeightData(30, new ForestRegular()),
-                        new TileWeightData(5.5f, new SpikeTrap()),
-                        new TileWeightData(6, new Gap()),
+                        new TileWeightData(30, new CastleRegular()),
                 },
-                100,128, backgrounds.forest())
+                20,48, backgrounds.yard())
                 .mapTiles("player0", "mTile0")
-                .chance(0.7f, 3,1)
-                .height(256, 96)
-                .enemies(25, new EntityWeightData[]{
-                        new EntityWeightData(2, "slime"),
-                        new EntityWeightData(2, "chest"),
-                        new EntityWeightData(5, "red slime"),
-                        new EntityWeightData(3.5f, "skeleton"),
-                        new EntityWeightData(10f, "ghost skull")})
-                .build());
+                .setBoss("mech boss")
+                .buildBossLevel());
         levels.put("2-4", new Level.LevelBuilder(
                 new TileWeightData[]{
                         new TileWeightData(30, new ForestRegular()),
