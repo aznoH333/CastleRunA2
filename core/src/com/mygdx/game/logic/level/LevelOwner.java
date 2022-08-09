@@ -129,6 +129,7 @@ public class LevelOwner {
                 .height(96, 48)
                 .enemies(25, new EntityWeightData[]{
                         new EntityWeightData(2, "chest"),
+                        new EntityWeightData(3, "furniture"),
                 })
                 .build());
         levels.put("2-3", new Level.LevelBuilder(

@@ -2,11 +2,13 @@ package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.Game;
 
+import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.player.PlayerStats;
 
 import java.util.Random;
 
@@ -53,6 +55,10 @@ public class Coin extends Pickup{
 
     @Override
     public void onPickup() {
-        EntityManager.getINSTANCE().spawnEntity("picked coin",x,y);
+        Random r = Game.getGeneralRandom();
+        PlayerStats.getINSTANCE().gainCoin();
+        ParticleManager.getINSTANCE().addParticle("coinFlash", x, y - 4, 0, 0, 0);
+        for (int i = 0; i  < 3; i++)
+            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize) - 16,y + r.nextInt((int)ySize) - 16,0,0,0);
     }
 }

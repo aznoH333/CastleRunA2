@@ -21,6 +21,8 @@ public class PlayerStats {
     private int coins = 0;
     private Player player;
 
+    private int coinCounter = 0;
+
     private static final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
     private static final SoundManager sound = SoundManager.getINSTANCE();
     private PlayerStats(){
@@ -59,6 +61,13 @@ public class PlayerStats {
         player.setHp(hp);
     }
 
+    public void update(){
+        if (coinCounter > 0) {
+            sound.playSound("coin");
+            coinCounter--;
+        }
+    }
+
     public Player getPlayer(){
         return player;
     }
@@ -90,6 +99,7 @@ public class PlayerStats {
     public void restoreStats(){
         hp = maxHp;
         energy = maxEnergy;
+        coinCounter = 0;
     }
 
     public void resetStats(){
@@ -98,6 +108,7 @@ public class PlayerStats {
         hp = 3;
         energy = 1;
         coins = 0;
+        coinCounter = 0;
         equipWeapon("Sword", Controls.AttackRight);
         equipWeapon("Nothing", Controls.AttackLeft);
         //equipWeapon("Bubble", Controls.AttackLeft);
@@ -169,5 +180,10 @@ public class PlayerStats {
         energy += amount;
         if (energy > maxEnergy) energy = maxEnergy;
         player.spawnEnergyParticles(amount * 20);
+    }
+
+    public void gainCoin(){
+        addCoins(1);
+        coinCounter++;
     }
 }

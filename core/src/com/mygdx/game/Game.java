@@ -9,6 +9,7 @@ import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.menus.GameOver;
 import com.mygdx.game.logic.menus.MainMenu;
 import com.mygdx.game.logic.menus.NewGameMenu;
+import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -32,14 +33,12 @@ public class Game {
     private final static UIManager ui = UIManager.getINSTANCE();
     private final static InputManager input = InputManager.getINSTANCE();
     private final static EntityManager ent = EntityManager.getINSTANCE();
+    private final static PlayerStats stats = PlayerStats.getINSTANCE();
     private static long time = 1;
     private static long exitTime = 0;
     private static GameState state = GameState.MainMenu;
     private final static StageMap stageMap = StageMap.getINSTANCE();
-    private final static StageManager stageManager = StageManager.getINSTANCE();
-    private final static Shop shop = Shop.getINSTANCE();
     private final static GameOver gameOver = GameOver.getINSTANCE();
-    private final static ItemManager itemManager = ItemManager.getINSTANCE();
     private final static MainMenu mainMenu = MainMenu.getINSTANCE();
     private final static NewGameMenu newGameMenu = NewGameMenu.getINSTANCE();
     public final static float gameWorldWidth = (Gdx.graphics.getWidth() * (1280f/Gdx.graphics.getHeight()));
@@ -134,6 +133,8 @@ public class Game {
         part.update();
         part.draw(spr);
         ent.update();
+        stats.update();
+
     }
 
     private void stageMenu() {

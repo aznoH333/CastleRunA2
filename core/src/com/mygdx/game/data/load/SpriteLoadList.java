@@ -116,5 +116,6 @@ public class SpriteLoadList {
         spr.loadSprites("particles/gore/slime_explosion_","slimeExplosion",2);
         spr.loadSprites("particles/gainParticles/gain_part_", "gainPart", 9);
         spr.loadSprites("particles/effects/ice/ice_flame_","icePart",6);
+        spr.loadSprites("particles/coinSplash/coin_splash_","coinPart",2);
     }
 }
