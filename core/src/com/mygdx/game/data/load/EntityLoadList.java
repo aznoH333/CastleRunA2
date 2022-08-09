@@ -3,6 +3,8 @@ package com.mygdx.game.data.load;
 import com.mygdx.game.entities.enemies.*;
 import com.mygdx.game.entities.enemies.bosses.mechboss.MechBoss;
 import com.mygdx.game.entities.enemies.bosses.mechboss.MechBossSpawner;
+import com.mygdx.game.entities.enemies.bosses.mechboss.RocketProjectile;
+import com.mygdx.game.entities.enemies.bosses.mechboss.SawbladeProjectile;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBoss;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
 import com.mygdx.game.entities.enemies.projectiles.*;
@@ -37,6 +39,8 @@ public class EntityLoadList {
 
         // add enemy projectiles
         entities.put("bone", new Bone(0,0,64,64,1));
+        entities.put("sawblade", new SawbladeProjectile(0,0));
+        entities.put("rocket", new RocketProjectile(0,0));
 
 
         //add projectiles
