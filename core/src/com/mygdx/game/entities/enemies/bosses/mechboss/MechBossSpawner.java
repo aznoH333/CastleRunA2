@@ -11,6 +11,7 @@ public class MechBossSpawner extends Entity {
     private int timer = 90;
     private boolean mech = false;
     private float yM = 0;
+    private final static float mechOffset = -48;
     public MechBossSpawner(float x, float y) {
         super(x, y, 64, 64, 1, Team.Environment);
     }
@@ -36,11 +37,11 @@ public class MechBossSpawner extends Entity {
     @Override
     public void draw(DrawingManager spr) {
         if (mech){
-            spr.draw("mech3", x, y, -1);
-            spr.draw("mech1", x ,y , -1);
-            spr.draw("mech4", x, y, -1);
-            spr.draw("mech2", x, y, -1);
-            spr.draw("mech0", x, y, -1);
+            spr.draw("mech3", x + mechOffset, y, -1);
+            spr.draw("mech1", x + mechOffset ,y , -1);
+            spr.draw("mech4", x + mechOffset, y, -1);
+            spr.draw("mech2", x + mechOffset, y, -1);
+            spr.draw("mech0", x + mechOffset, y, -1);
         }
         else if (timer > 0)
             spr.draw("goblin0", x, y, 0);
@@ -64,13 +65,13 @@ public class MechBossSpawner extends Entity {
         // TODO : sound
         // shitty hack to make the boss entity appear on the same frame the spawner dies
         DrawingManager spr = DrawingManager.getINSTANCE();
-        spr.draw("mech3", x, y, -1);
-        spr.draw("mech1", x ,y , -1);
-        spr.draw("mech4", x, y, -1);
-        spr.draw("mech2", x, y, -1);
-        spr.draw("mech0", x, y, -1);
+        spr.draw("mech3", x + mechOffset, y, -1);
+        spr.draw("mech1", x + mechOffset ,y , -1);
+        spr.draw("mech4", x + mechOffset, y, -1);
+        spr.draw("mech2", x + mechOffset, y, -1);
+        spr.draw("mech0", x + mechOffset, y, -1);
 
 
-        e.spawnEntity("mech boss actual", x, y);
+        e.spawnEntity("mech boss actual", x + mechOffset, y);
     }
 }

@@ -1,7 +1,9 @@
 package com.mygdx.game.entities.enemies.bosses.mechboss;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -10,6 +12,7 @@ import java.util.Random;
 public class SawbladeProjectile extends Entity {
     private float yM = 10;
     private final static float xM = -4f;
+    private final static ParticleManager pm = ParticleManager.getINSTANCE();
     public SawbladeProjectile(float x, float y) {
         super(x, y, 64, 64, 1, Team.EnemyProjectiles);
     }
@@ -23,6 +26,7 @@ public class SawbladeProjectile extends Entity {
 
         x += xM;
         y += yM;
+        if (Game.Time() % 5 == 0) pm.addParticle("miniSparkle",x,y,0,0,0);
     }
 
     @Override

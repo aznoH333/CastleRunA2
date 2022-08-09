@@ -1,7 +1,9 @@
 package com.mygdx.game.entities.enemies.bosses.mechboss;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -15,11 +17,11 @@ public class RocketProjectile extends Entity {
     private final static float desiredHeight = 1000;
     private boolean deploying = true;
     private final static PlayerStats ps = PlayerStats.getINSTANCE();
+    private final static ParticleManager pm = ParticleManager.getINSTANCE();
     private final static float speed = 12f;
 
     public RocketProjectile(float x, float y) {
         super(x, y, 64, 64, 1, Team.EnemyProjectiles);
-
     }
 
     @Override
@@ -37,6 +39,8 @@ public class RocketProjectile extends Entity {
                 destroy();
             }
         }
+
+        if (Game.Time() % 2 == 0) pm.addParticle("smoke",x,y,0,0,0);
     }
 
     @Override
