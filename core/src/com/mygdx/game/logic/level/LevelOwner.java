@@ -157,6 +157,21 @@ public class LevelOwner {
                         new EntityWeightData(3.5f, "skeleton"),
                         new EntityWeightData(10f, "ghost skull")})
                 .build());
+        // TODO : clean up level owner
+        levels.put("test", new Level.LevelBuilder(
+                new TileWeightData[]{
+                        new TileWeightData(15, new CastleRegular()),
+                        new TileWeightData(6, new Gap()),
+                },
+                200,48, backgrounds.yard())
+                .mapTiles("player0", "mTile0")
+                .chance(0.2f, 5,3)
+                .height(64, 48)
+                .enemies(25, new EntityWeightData[]{
+                        new EntityWeightData(4, "saw knight"),
+
+                })
+                .build());
 
     }
 

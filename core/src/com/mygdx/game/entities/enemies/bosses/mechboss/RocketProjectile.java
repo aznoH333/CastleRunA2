@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class RocketProjectile extends Entity {
 
-    private float targetX = 0;
     private float targetY = 0;
     private final static float desiredHeight = 1000;
     private boolean deploying = true;
@@ -28,9 +27,9 @@ public class RocketProjectile extends Entity {
     public void update(LevelManager lvl, Random r) {
         if (deploying && y < desiredHeight){
             y += speed;
-            targetX = ps.getPlayer().getX();
+            moveTo = ps.getPlayer().getX();
             targetY = ps.getPlayer().getY();
-        }else if (x > targetX){
+        }else if (x > moveTo){
             deploying = false;
             x -= speed;
         }else {
@@ -47,7 +46,7 @@ public class RocketProjectile extends Entity {
     public void draw(DrawingManager spr) {
         // TODO : sprites
         spr.draw("player0",x, y, 1);
-        spr.draw("player0",targetX, targetY, 1);
+        spr.draw("player0", moveTo, targetY, 1);
     }
 
     @Override
