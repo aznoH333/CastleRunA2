@@ -31,8 +31,7 @@ public class SawbladeProjectile extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        // TODO : sprite
-        spr.draw("player0",x ,y, 3);
+        spr.draw("saw" + ((Game.Time() >> 1) % 3),x ,y, 3);
     }
 
     @Override

@@ -20,14 +20,14 @@ public class RocketProjectile extends Entity {
     private final static float speed = 12f;
 
     public RocketProjectile(float x, float y) {
-        super(x, y, 64, 64, 1, Team.EnemyProjectiles);
+        super(x, y, 32, 32, 1, Team.EnemyProjectiles);
     }
 
     @Override
     public void update(LevelManager lvl, Random r) {
         if (deploying && y < desiredHeight){
             y += speed;
-            moveTo = ps.getPlayer().getX();
+            moveTo = ps.getPlayer().getX() + xSize;
             targetY = ps.getPlayer().getY();
         }else if (x > moveTo){
             deploying = false;
@@ -44,9 +44,21 @@ public class RocketProjectile extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        // TODO : sprites
-        spr.draw("player0",x, y, 1);
-        spr.draw("player0", moveTo, targetY, 1);
+
+        if (deploying){
+            spr.draw("rocket1",x, y, 1);
+        }else if (x > moveTo){
+            spr.draw("rocket0",x, y, 1);
+        }else {
+            spr.draw("rocket2",x, y, 1);
+        }
+        if (deploying){
+            spr.draw("tcross" + ((Game.Time() >> 2) % 2), moveTo - xSize, targetY, 2);
+
+        }else{
+            spr.draw("tcross0", moveTo - xSize, targetY, 0);
+
+        }
     }
 
     @Override
@@ -61,6 +73,7 @@ public class RocketProjectile extends Entity {
 
     @Override
     public void onDestroy() {
-
+        e.spawnEntity("micro explosion", x - xSize, y);
+        DrawingManager.getINSTANCE().addScreenShake(10);
     }
 }

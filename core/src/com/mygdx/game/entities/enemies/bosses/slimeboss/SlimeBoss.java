@@ -1,7 +1,7 @@
 package com.mygdx.game.entities.enemies.bosses.slimeboss;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.entities.enemies.Slime;
+import com.mygdx.game.entities.enemies.slimes.Slime;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.ParticleManager;

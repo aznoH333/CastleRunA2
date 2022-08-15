@@ -8,6 +8,9 @@ import com.mygdx.game.entities.enemies.bosses.mechboss.SawbladeProjectile;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBoss;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
 import com.mygdx.game.entities.enemies.projectiles.*;
+import com.mygdx.game.entities.enemies.slimes.PurpleSlime;
+import com.mygdx.game.entities.enemies.slimes.RedSlime;
+import com.mygdx.game.entities.enemies.slimes.Slime;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
 import com.mygdx.game.entities.player.itemEntities.Explosion;
@@ -25,6 +28,7 @@ public class EntityLoadList {
         //add enemies
         entities.put("slime", new Slime(0,0,64,64,1));
         entities.put("red slime", new RedSlime(0,0,64,64,2));
+        entities.put("purple slime", new PurpleSlime(0,0));
         entities.put("skeleton", new Skeleton(0,0,64,64,1));
         entities.put("ghost skull", new GhostSkull(0,0));
         entities.put("goblin", new Goblin(0,0));

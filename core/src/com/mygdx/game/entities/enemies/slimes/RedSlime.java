@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.enemies;
+package com.mygdx.game.entities.enemies.slimes;
 
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
@@ -6,7 +6,6 @@ import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
