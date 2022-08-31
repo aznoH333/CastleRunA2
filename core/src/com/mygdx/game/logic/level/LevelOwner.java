@@ -98,7 +98,7 @@ public class LevelOwner {
                 .setBoss("slime boss")
                 .buildBossLevel());
 
-        levels.put("2-1", new Level.LevelBuilder(
+        levels.put("2-2", new Level.LevelBuilder(
                 new TileWeightData[]{
                         new TileWeightData(10, new ForestRegular()),
                         new TileWeightData(10f, new ForestRegular2()),
@@ -132,7 +132,7 @@ public class LevelOwner {
                         new EntityWeightData(3, "furniture"),
                 })
                 .build());
-        levels.put("2-4", new Level.LevelBuilder(
+        levels.put("2-1", new Level.LevelBuilder(
                 new TileWeightData[]{
                         new TileWeightData(30, new CastleRegular()),
                 },
