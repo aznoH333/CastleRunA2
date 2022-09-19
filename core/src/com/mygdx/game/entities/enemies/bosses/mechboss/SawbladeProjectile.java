@@ -14,7 +14,7 @@ public class SawbladeProjectile extends Entity {
     private final static float xM = -4f;
     private final static ParticleManager pm = ParticleManager.getINSTANCE();
     public SawbladeProjectile(float x, float y) {
-        super(x, y, 64, 64, 1, Team.EnemyProjectiles);
+        super(x, y, 32, 64, 1, Team.EnemyProjectiles);
     }
 
     @Override
