@@ -27,8 +27,6 @@ public class EntityManager {
         return INSTANCE;
     }
 
-    // a nasty workaround but i am very lazy
-
 
     public EntityManager(){
         this.lvl = LevelManager.getINSTANCE();

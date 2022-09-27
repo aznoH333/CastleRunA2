@@ -8,8 +8,6 @@ import com.mygdx.game.logic.entities.abstracts.Entity;
 public class PlayerMage extends PlayerKnight{
 
 
-    protected final int energyRechargeTime = 0;
-
     public PlayerMage(float x, float y) {
         super(x, y);
 
@@ -34,7 +32,7 @@ public class PlayerMage extends PlayerKnight{
 
     @Override
     public int getEnergyRechargeTime() {
-        return 120;
+        return 180;
     }
 
     @Override

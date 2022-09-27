@@ -35,10 +35,7 @@ public class PlayerStats {
     private PlayerStats(){
         // temporary
         inventoryManager = InventoryManager.getINSTANCE();
-        inventoryManager.unlockStartingWeapon(pc.startingWeapon);
 
-        equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon(pc.startingWeapon, Controls.AttackRight);
 
     }
     // equips a weapon
@@ -116,9 +113,10 @@ public class PlayerStats {
         energy = maxEnergy;
         coins = 0;
         coinCounter = 0;
-        equipWeapon("Sword", Controls.AttackRight);
+
+        inventoryManager.unlockStartingWeapon(pc.startingWeapon);
         equipWeapon("Nothing", Controls.AttackLeft);
-        //equipWeapon("Bubble", Controls.AttackLeft);
+        equipWeapon(pc.startingWeapon, Controls.AttackRight);
     }
 
     public void upgradeHp(){
