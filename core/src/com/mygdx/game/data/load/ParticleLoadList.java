@@ -59,6 +59,8 @@ public class ParticleLoadList {
         //weapon specific
         particleMap.put("bubble_splash", new Particle(new String[]{"bubble3"},30,0));
 
+        // misc
+        particleMap.put("crit", new Particle(new String[]{"crit0"}, 45,0));
 
         return particleMap;
     }

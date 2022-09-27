@@ -3,7 +3,7 @@ package com.mygdx.game.entities.player.itemEntities;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -18,7 +18,7 @@ public class FriendlyOrb extends Entity {
 
     private static final InputManager input = InputManager.getINSTANCE();
     private static final ParticleManager particles = ParticleManager.getINSTANCE();
-    private final Player player;
+    private final PlayerKnight playerKnight;
     private float xM = 0;
     private float yM = 0;
     private final static float speed = 0.2f;
@@ -30,7 +30,7 @@ public class FriendlyOrb extends Entity {
     public FriendlyOrb(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Environment);
         PlayerStats stats = PlayerStats.getINSTANCE();
-        player = stats.getPlayer();
+        playerKnight = stats.getPlayer();
         shifts = false;
     }
 
@@ -45,9 +45,9 @@ public class FriendlyOrb extends Entity {
         // orbit player
         x += xM;
         y += yM;
-        if (player.getX() + 26 > x)      xM = Math.min(xM + speed, maxSpeed);
+        if (playerKnight.getX() + 26 > x)      xM = Math.min(xM + speed, maxSpeed);
         else                             xM = Math.max(xM - speed, -maxSpeed);
-        if (player.getY() + 36 > y)      yM = Math.min(yM + speed, maxSpeed);
+        if (playerKnight.getY() + 36 > y)      yM = Math.min(yM + speed, maxSpeed);
         else                             yM = Math.min(yM - speed, -maxSpeed);
 
         // shoot projectile

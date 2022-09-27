@@ -17,6 +17,8 @@ import com.mygdx.game.entities.player.itemEntities.Explosion;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.entities.player.itemEntities.MicroBomb;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
+import com.mygdx.game.entities.player.playerClasses.PlayerMage;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.HashMap;
@@ -85,6 +87,11 @@ public class EntityLoadList {
         entities.put("chest", new Chest(0,0,64,64,1));
         entities.put("exit door", new ExitDoor(0,0,64,64,1));
         entities.put("furniture", new Furniture(0,0));
+
+
+        // players
+        entities.put("playerKnight", new PlayerKnight(0,0));
+        entities.put("playerMage", new PlayerMage(0,0));
 
         //return
         return entities;

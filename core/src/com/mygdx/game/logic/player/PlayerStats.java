@@ -1,8 +1,12 @@
 package com.mygdx.game.logic.player;
 
+import com.mygdx.game.Game;
+import com.mygdx.game.data.PlayerClass;
 import com.mygdx.game.data.enums.Controls;
-import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.logic.SoundManager;
+
+import java.util.Random;
 
 public class PlayerStats {
     private static PlayerStats INSTANCE;
@@ -19,19 +23,22 @@ public class PlayerStats {
     private int hp = 3;
     private int energy = 1;
     private int coins = 0;
-    private Player player;
+    private PlayerKnight playerKnight;
 
     private int coinCounter = 0;
+    private final Random r = Game.getGeneralRandom();
+    private PlayerClass pc = PlayerClass.Mage;
 
-    private static final InventoryManager inventoryManager = InventoryManager.getINSTANCE();
+    private final InventoryManager inventoryManager;
     private static final SoundManager sound = SoundManager.getINSTANCE();
+    private static final ProgressManager prgrs = ProgressManager.getINSTANCE();
     private PlayerStats(){
-        // TODO: starting equipment
         // temporary
+        inventoryManager = InventoryManager.getINSTANCE();
+        inventoryManager.unlockStartingWeapon(pc.startingWeapon);
+
         equipWeapon("Nothing", Controls.AttackLeft);
-        equipWeapon("Sword", Controls.AttackRight);
-
-
+        equipWeapon(pc.startingWeapon, Controls.AttackRight);
 
     }
     // equips a weapon
@@ -56,9 +63,9 @@ public class PlayerStats {
         }
     }
 
-    public void updatePlayerStats(Player player){
-        this.player = player;
-        player.setHp(hp);
+    public void updatePlayerStats(PlayerKnight playerKnight){
+        this.playerKnight = playerKnight;
+        playerKnight.setHp(hp);
     }
 
     public void update(){
@@ -68,8 +75,8 @@ public class PlayerStats {
         }
     }
 
-    public Player getPlayer(){
-        return player;
+    public PlayerKnight getPlayer(){
+        return playerKnight;
     }
 
     public void useWeapon(float x, float y, Controls slot){
@@ -103,16 +110,15 @@ public class PlayerStats {
     }
 
     public void resetStats(){
-        maxHp = 3;
-        maxEnergy = 1;
-        hp = 3;
-        energy = 1;
+        maxHp = pc.startingHp + (int) prgrs.getBonus("health");
+        maxEnergy = pc.startingEnergy + (int) prgrs.getBonus("energy");
+        hp = maxHp;
+        energy = maxEnergy;
         coins = 0;
         coinCounter = 0;
         equipWeapon("Sword", Controls.AttackRight);
         equipWeapon("Nothing", Controls.AttackLeft);
         //equipWeapon("Bubble", Controls.AttackLeft);
-        // TODO : mastery system (like sc2 coop)
     }
 
     public void upgradeHp(){
@@ -167,23 +173,34 @@ public class PlayerStats {
         this.coins = coins;
     }
     public void addCoins(int coins) {
+        if (prgrs.getBonus("coinBonus") > r.nextFloat()){
+            this.coins++;
+        }
         this.coins += coins;
     }
 
     public void heal(int amount) {
         hp += amount;
         if (hp > maxHp) hp = maxHp;
-        player.spawnHealthParticles(amount * 20);
+        playerKnight.spawnHealthParticles(amount * 20);
     }
 
     public void gainEnergy(int amount){
         energy += amount;
         if (energy > maxEnergy) energy = maxEnergy;
-        player.spawnEnergyParticles(amount * 20);
+        playerKnight.spawnEnergyParticles(amount * 20);
     }
 
     public void gainCoin(){
         addCoins(1);
         coinCounter++;
+    }
+
+    public PlayerClass getPlayerClass() {
+        return pc;
+    }
+
+    public void setPlayerClass(PlayerClass pc) {
+        this.pc = pc;
     }
 }

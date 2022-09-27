@@ -22,8 +22,8 @@ public class Shop {
 
     private final static Random r = Game.getSeededRandom();
     private ShopStock shopStock;
-    private final static DrawingManager spr = DrawingManager.getINSTANCE();
-    private final static PlayerStats stats = PlayerStats.getINSTANCE();
+    //private final static DrawingManager spr = DrawingManager.getINSTANCE();
+    //private final static PlayerStats stats = PlayerStats.getINSTANCE();
     private final static UIManager ui = UIManager.getINSTANCE();
 
 

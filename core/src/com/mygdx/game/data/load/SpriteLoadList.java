@@ -9,8 +9,9 @@ public class SpriteLoadList {
     public static void loadAllSprites(DrawingManager spr){
 
         //player
-        spr.loadSprites("entities/player/player_","player",4);
-        spr.loadSprites("entities/player/mapSprites/player_map_","playerMap",5);
+        spr.loadSprites("entities/player/knight/player_knight_","player",4);
+        spr.loadSprites("entities/player/mage/player_mage_","mage",4);
+        spr.loadSprites("entities/player/midas/player_midas_","midas",4);
 
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
@@ -122,5 +123,6 @@ public class SpriteLoadList {
         spr.loadSprites("particles/gainParticles/gain_part_", "gainPart", 9);
         spr.loadSprites("particles/effects/ice/ice_flame_","icePart",6);
         spr.loadSprites("particles/coinSplash/coin_splash_","coinPart",2);
+        spr.loadSprites("particles/misc/crit_icon_","crit",0);
     }
 }

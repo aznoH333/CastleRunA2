@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player;
+package com.mygdx.game.entities.player.playerClasses;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
@@ -17,16 +17,15 @@ import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;
 
-public class Player extends Entity {
-    private float lvlY;
+public class PlayerKnight extends Entity {
+    protected float lvlY;
     private float yM = 0;
     private boolean landed = false;
-    private int actionTimer = 0;
+    protected int actionTimer = 0;
     private int particleTimer = 0;
-    private int iFrame = 0;
+    protected int iFrame = 0;
     private int healthPartTimer = 0;
     private int energyPartTimer = 0;
-    private int energyRecharge = energyRechargeTime;
 
     //finals
     private static final float gravity = 1f;
@@ -34,18 +33,19 @@ public class Player extends Entity {
     private static final float jumpStrength = 8f;
     private static final float moveSpeed = 8f;
     private static final float scrollBorder = (float) Math.ceil((float) LevelManager.getINSTANCE().getMapWidth() / 2  - 2) * 64;
-    private static final int actionTimerFull = 16;
+    protected static final int actionTimerFull = 16;
     private final PlayerStats inv;
     private static final int particleTimerFull = 8;
     private static final int iFrameMax = 60;
-    private final static InputManager input = InputManager.getINSTANCE();
+    protected final static InputManager input = InputManager.getINSTANCE();
     private final SoundManager s = SoundManager.getINSTANCE();
     private final ParticleManager particleManager = ParticleManager.getINSTANCE();
-    private final static int energyRechargeTime = 240;
+    private int energyRecharge = getEnergyRechargeTime();
 
 
-    public Player(float x, float y, float sizeX, float sizeY) {
-        super(x, y, sizeX, sizeY, 3, Team.Player);
+
+    public PlayerKnight(float x, float y) {
+        super(x, y, 64, 64, 3, Team.Player);
         inv = PlayerStats.getINSTANCE();
 
         inv.updatePlayerStats(this);
@@ -179,7 +179,7 @@ public class Player extends Entity {
         // energy recharge
         if (inv.getEnergy() < inv.getMaxEnergy()) energyRecharge--;
         if (energyRecharge == 0) {
-            energyRecharge = energyRechargeTime;
+            energyRecharge = getEnergyRechargeTime();
             s.playSound("energy");
             inv.gainEnergy(1);
         }
@@ -231,7 +231,7 @@ public class Player extends Entity {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return null;
+        return new PlayerKnight(x, y);
     }
 
     @Override
@@ -254,6 +254,10 @@ public class Player extends Entity {
 
     public void spawnEnergyParticles(int time){
         energyPartTimer += time;
+    }
+    // this is very janky...... anyway
+    protected int getEnergyRechargeTime(){
+        return 240;
     }
 
 }

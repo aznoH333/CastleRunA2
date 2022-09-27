@@ -1,7 +1,6 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.weapons.*;
 
 import java.util.ArrayList;
@@ -20,13 +19,11 @@ public class InventoryManager {
     private final ArrayList<String> unseenWeapons = new ArrayList<>();
 
 
-
     private InventoryManager(){
         loadWeapons();
     }
 
     private void loadWeapons(){
-        // TODO: separate permanent unlocks & run unlocks
         resetState();
     }
 
@@ -48,16 +45,6 @@ public class InventoryManager {
         addWeapon("Bubble", new Bubble());
         addWeapon("Bomb", new Bomb());
         addWeapon("Rocks", new Rocks());
-
-
-        unlockWeapon("Nothing");
-        unseenWeapons.remove("Nothing");
-        unlockWeapon("Sword");
-        unseenWeapons.remove("Sword");
-        // temp cheats
-         unlockWeapon("Bubble");
-         unseenWeapons.remove("Bubble");
-
 
     }
 
@@ -92,5 +79,12 @@ public class InventoryManager {
         }
         // TODO : this is literally breakfasting maybe reset the weapon list??
         return "Small daggers";
+    }
+
+    public void unlockStartingWeapon(String startingWeapon){
+        unlockWeapon("Nothing");
+        unseenWeapons.remove("Nothing");
+        unlockWeapon(startingWeapon);
+        unseenWeapons.remove(startingWeapon);
     }
 }

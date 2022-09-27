@@ -1,7 +1,8 @@
 package com.mygdx.game.logic.stage;
 
 import com.mygdx.game.data.enums.GameState;
-import com.mygdx.game.entities.player.Player;
+import com.mygdx.game.entities.player.PlayerSpawner;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelOwner;
@@ -12,7 +13,12 @@ import com.mygdx.game.ui.UIManager;
 import java.util.ArrayList;
 
 public class StageManager {
-
+    // TODO : completely overhaul stage progression
+    // ideas :
+    // levels are randomly chosen from a list
+    // shop regenerates every level (remove the refill option)
+    // bosses happen after a set amount of levels
+    // remove stage map replace with animation
     private static StageManager INSTANCE;
 
     public static StageManager getINSTANCE(){
@@ -67,7 +73,7 @@ public class StageManager {
 
     public void startLevel(){
         LevelManager.getINSTANCE().loadLevel(LevelOwner.getINSTANCE().getByName(currentStage.getCurrentLevel()));
-        EntityManager.getINSTANCE().addEntity(new Player(64, LevelManager.getINSTANCE().getOnPos(64).getY()+64, 64, 64));
+        EntityManager.getINSTANCE().addEntity(new PlayerSpawner(64, LevelManager.getINSTANCE().getOnPos(64).getY()+64));
         ItemManager.getINSTANCE().onLevelStart();
     }
 

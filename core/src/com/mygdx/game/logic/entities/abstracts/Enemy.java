@@ -4,6 +4,8 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.items.interfaces.IStatusEffect;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.player.ProgressManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +21,6 @@ public abstract class Enemy extends Entity {
             effect.update(this);
         }
 
-        // je hodne dumb dumb a snazi se pouzit neco na co nema pravo
-        //noinspection Java8CollectionRemoveIf
         for (IStatusEffect effect: effects.values()) {
             if (effect.getDuration() < Game.Time()){
                 effects.remove(effect.getName());
@@ -38,6 +38,15 @@ public abstract class Enemy extends Entity {
 
     public EntityTags[] getTags(){
         return tags;
+    }
+
+    @Override
+    public void takeDamage(int damage){
+        if (ProgressManager.getINSTANCE().getBonus("critChance") > Game.getGeneralRandom().nextFloat()){
+            ParticleManager.getINSTANCE().addParticle("crit",x + xSize/2 - 32,y + ySize/2, 0, 0.75f,0);
+            hp -= damage;
+        }
+        hp -= damage;
     }
 
 }

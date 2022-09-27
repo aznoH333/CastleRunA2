@@ -13,6 +13,7 @@ public class MechBoss extends Enemy {
 
 
     private final float defaultY;
+    private final float hitBoxOffset = -16;
 
     private boolean moving = false;
 
@@ -104,35 +105,33 @@ public class MechBoss extends Enemy {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.draw("mech3", x + frontLegX, defaultY + frontLegY, 3);
-        spr.draw("mech1", x ,y , 2);
-        spr.draw("mech4", x + backLegX, defaultY + backLegY, 1);
+        spr.draw("mech3", x + frontLegX + hitBoxOffset, defaultY + frontLegY, 3);
+        spr.draw("mech1", x + hitBoxOffset,y , 2);
+        spr.draw("mech4", x + backLegX + hitBoxOffset, defaultY + backLegY, 1);
 
         // rocket hand
         if (rocketAntimationTimer < 10)
-            spr.draw("mech2", x, y, 1);
+            spr.draw("mech2", x + hitBoxOffset, y, 1);
         else if (rocketAntimationTimer < 20)
-            spr.draw("mech6",x,y,1);
+            spr.draw("mech6",x + hitBoxOffset,y,1);
         else if (rocketAntimationTimer < 30)
-            spr.draw("mech5",x,y,1);
+            spr.draw("mech5",x + hitBoxOffset,y,1);
 
         // saw hand
         if (sawAnimationTimer < 5)
-            spr.draw("mech0", x, y, 3);
+            spr.draw("mech0", x + hitBoxOffset, y, 3);
         else
-            spr.draw("mech7", x, y, 3);
-        // TODO : more saw hand sprites
+            spr.draw("mech7", x + hitBoxOffset, y, 3);
 
     }
 
     @Override
     public void onCollide(Entity other) {
-
     }
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new MechBoss(x, y);
+        return new MechBoss(x - hitBoxOffset, y);
     }
 
     @Override
