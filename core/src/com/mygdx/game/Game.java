@@ -10,15 +10,11 @@ import com.mygdx.game.logic.menus.GameOver;
 import com.mygdx.game.logic.menus.MainMenu;
 import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
-import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
-import com.mygdx.game.logic.stage.StageManager;
-import com.mygdx.game.logic.stage.StageMap;
 import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;

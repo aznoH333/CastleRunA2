@@ -13,7 +13,6 @@ import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
-import com.mygdx.game.logic.stage.StageManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
