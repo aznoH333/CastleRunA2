@@ -13,6 +13,7 @@ import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
+import com.mygdx.game.logic.stage.LevelProgressionManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
@@ -41,7 +42,7 @@ public class UIManager {
     private final ArrayList<IUIParentElement> uiParents = new ArrayList<>();
     private GameState targetState = null;
     private boolean isTransitioning = false;
-    private final static StageManager stageMan = StageManager.getINSTANCE();
+    private final static LevelProgressionManager levelMan = LevelProgressionManager.getINSTANCE();
     private final TransitionScreen transition = new TransitionScreen();
     private final static InventoryScreen invScreen = InventoryScreen.getINSTANCE();
     private final static PlayerStats playerStats = PlayerStats.getINSTANCE();
@@ -96,7 +97,7 @@ public class UIManager {
                 addUIElement(new Button(Game.gameWorldWidth/2 + 8,198,ButtonType.Small,uiElements.get(0),()->transition(GameState.Shop)));
                 addUIElement(new Text(110,80,"Shop",uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonLX,338,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);stageMan.startLevel();}));
+                addUIElement(new Button(buttonLX,338,ButtonType.Large,uiElements.get(0),()->{transition(GameState.Game);levelMan.startLevel();}));
                 addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case Shop:

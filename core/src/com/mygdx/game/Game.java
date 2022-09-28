@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.level.BackgroundRenderer;
 import com.mygdx.game.logic.menus.GameOver;
 import com.mygdx.game.logic.menus.MainMenu;
 import com.mygdx.game.logic.menus.NewGameMenu;
@@ -15,6 +16,7 @@ import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.stage.LevelProgressionManager;
 import com.mygdx.game.ui.UIManager;
 
 import java.util.Random;
@@ -33,11 +35,12 @@ public class Game {
     private static long time = 1;
     private static long exitTime = 0;
     private static GameState state = GameState.MainMenu;
-    private final static StageMap stageMap = StageMap.getINSTANCE();
     private final static GameOver gameOver = GameOver.getINSTANCE();
     private final static MainMenu mainMenu = MainMenu.getINSTANCE();
     private final static NewGameMenu newGameMenu = NewGameMenu.getINSTANCE();
     public final static float gameWorldWidth = (Gdx.graphics.getWidth() * (1280f/Gdx.graphics.getHeight()));
+    public final static LevelProgressionManager lvlMan = LevelProgressionManager.getINSTANCE();
+    public final static BackgroundRenderer back = BackgroundRenderer.getINSTANCE();
 
     public Game() {
         SoundLoadList.loadAllSounds();
@@ -52,7 +55,7 @@ public class Game {
         //temporary music
         //SoundManager.getINSTANCE().playMusic("placeholder music",0.5f);
     }
-
+    // TODO : rewrite game states to use objects
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
         //main cycle
@@ -61,7 +64,8 @@ public class Game {
         if (time == exitTime){
             exitTime = 0;
 
-            StageManager.getINSTANCE().advanceInStage();
+            lvlMan.progressLevel();
+            ui.transition(GameState.StageMenu);
         }
 
         ui.drawUI();
@@ -134,7 +138,8 @@ public class Game {
     }
 
     private void stageMenu() {
-        stageMap.update();
+        back.draw(spr);
+        back.advance(1);
     }
 
     private void shop(){ }

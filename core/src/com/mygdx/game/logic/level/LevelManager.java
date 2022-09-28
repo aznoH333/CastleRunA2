@@ -3,6 +3,7 @@ package com.mygdx.game.logic.level;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
+import com.mygdx.game.entities.player.PlayerSpawner;
 import com.mygdx.game.logic.level.tileCollums.ICollumnActivatavle;
 import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
@@ -53,7 +54,6 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
     private final ArrayList<TileActivator> tileActivators = new ArrayList<>();
-    private int maxActivatorCount = 0;
 
 
     // very dumb
@@ -277,7 +277,7 @@ public class LevelManager {
         trapOffset = 0;
         tileActivators.clear();
 
-        maxActivatorCount = (mapWidth * tileScale) / lvl.getActivationRate();
+        int maxActivatorCount = (mapWidth * tileScale) / lvl.getActivationRate();
 
         startGenerationIndex = 3;
         if (!isBossLevel)
@@ -301,6 +301,9 @@ public class LevelManager {
             tilesSinceLastActivator++;
 
         }
+
+        // spawn player
+        e.addEntity(new PlayerSpawner(64,map[1].getY() + 64));
     }
 
 

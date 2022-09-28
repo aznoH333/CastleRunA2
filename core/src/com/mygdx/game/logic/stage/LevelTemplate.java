@@ -24,11 +24,11 @@ public enum LevelTemplate {
             new TileWeightData(10, new ForestRegular()),
             new TileWeightData(10f, new ForestRegular2()),
             new TileWeightData(10f, new ForestRegular3()),
-    }, Backgrounds.getINSTANCE().cave(), 0.7f, 2, 3),
+    }, Backgrounds.getINSTANCE().forest(), 0.7f, 2, 3),
 
     CastleYard(new TileWeightData[]{
             new TileWeightData(30, new CastleRegular()),
-    }, Backgrounds.getINSTANCE().cave(), 0.5f, 3, 5);
+    }, Backgrounds.getINSTANCE().yard(), 0.5f, 3, 5);
 
     public final TileWeightData[] defaultTiles;
     public final Background background;

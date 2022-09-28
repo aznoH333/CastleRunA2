@@ -7,6 +7,7 @@ import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.logic.stage.LevelProgressionManager;
 import com.mygdx.game.ui.UIManager;
 import com.mygdx.game.ui.elements.parents.InvisUIParent;
 import com.mygdx.game.ui.elements.regularElements.Button;
@@ -19,6 +20,7 @@ public class NewGameMenu {
     }
 
     private static final UIManager ui = UIManager.getINSTANCE();
+    private static final LevelProgressionManager lvlMan = LevelProgressionManager.getINSTANCE();
 
     public void draw(){
         // TODO: stage selection
@@ -32,20 +34,19 @@ public class NewGameMenu {
         // TODO : seed picker
         // TODO : custom buttons
         for (int i = 0; i < 3; i++) {
-            int finalI = i;
-            ui.addUIElement(new Button(16, 1128 - (i * 152) - 16, ButtonType.Large,parent, ()->startNewGame(finalI, Game.getGeneralRandom().nextInt(999))));
+            ui.addUIElement(new Button(16, 1128 - (i * 152) - 16, ButtonType.Large,parent, ()->startNewGame(Game.getGeneralRandom().nextInt(999))));
         }
     }
 
-    public void startNewGame(int stageIndex, long newSeed){
+    public void startNewGame(long newSeed){
         EntityManager.getINSTANCE().clear();
         ItemManager.getINSTANCE().clearItems();
         Game.getSeededRandom().setSeed(newSeed);
-        StageManager s = StageManager.getINSTANCE();
-        s.startNewGameFromStage(stageIndex);
         PlayerStats.getINSTANCE().resetStats();
         InventoryManager.getINSTANCE().resetState();
-        s.startLevel();
+        lvlMan.resetProgress();
+        lvlMan.progressLevel();
+        lvlMan.startLevel();
         UIManager.getINSTANCE().transition(GameState.Game);
     }
 }
