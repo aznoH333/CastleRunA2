@@ -2,6 +2,7 @@ package com.mygdx.game.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
+import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.BarType;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
@@ -46,6 +47,7 @@ public class UIManager {
     private final TransitionScreen transition = new TransitionScreen();
     private final static InventoryScreen invScreen = InventoryScreen.getINSTANCE();
     private final static PlayerStats playerStats = PlayerStats.getINSTANCE();
+    private ILambdaFunction execOnTransitionFinish = ()->{};
 
 
     // dumb constants
@@ -196,6 +198,7 @@ public class UIManager {
         if (changeStateOnTransitionClose && transition.getStatus() == UIActionStatus.Closed){
             changeStateOnTransitionClose = false;
             Game.changeState(targetState);
+            execOnTransitionFinish.function();
         }
 
         // transition handling
@@ -222,10 +225,15 @@ public class UIManager {
         uiUpdatables.clear();
     }
 
-    public void transition(GameState state){
+    public void transition(GameState state, ILambdaFunction execOnTransition){
         close();
         isTransitioning = true;
         targetState = state;
+        this.execOnTransitionFinish = execOnTransition;
+    }
+
+    public void transition(GameState state){
+        transition(state, ()->{});
     }
 
     public boolean isTransitioning(){

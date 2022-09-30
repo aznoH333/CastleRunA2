@@ -42,8 +42,8 @@ public class NewGameMenu {
         EntityManager.getINSTANCE().clear();
         ItemManager.getINSTANCE().clearItems();
         Game.getSeededRandom().setSeed(newSeed);
-        PlayerStats.getINSTANCE().resetStats();
         InventoryManager.getINSTANCE().resetState();
+        PlayerStats.getINSTANCE().resetStats();
         lvlMan.resetProgress();
         lvlMan.progressLevel();
         lvlMan.startLevel();

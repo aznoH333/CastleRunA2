@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
@@ -64,8 +65,8 @@ public class Game {
         if (time == exitTime){
             exitTime = 0;
 
-            lvlMan.progressLevel();
-            ui.transition(GameState.StageMenu);
+            //lvlMan.progressLevel();
+            ui.transition(GameState.StageMenu, lvlMan::progressLevel);
         }
 
         ui.drawUI();
@@ -140,6 +141,7 @@ public class Game {
     private void stageMenu() {
         back.draw(spr);
         back.advance(1);
+        lvlMan.drawLevelProgressUI();
     }
 
     private void shop(){ }

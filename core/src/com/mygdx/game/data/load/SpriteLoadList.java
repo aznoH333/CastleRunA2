@@ -107,12 +107,7 @@ public class SpriteLoadList {
         spr.loadSprites("ui/ui_elements/transition_", "transition", 0);
 
         //map ui
-        spr.loadSprites("ui/map/levels/castle/map_icon_castle_", "mIconCastle", 2);
-        spr.loadSprites("ui/map/levels/caves/map_icon_cave_", "mIconCave", 1);
-        spr.loadSprites("ui/map/tiles/map_icon_tiles_", "mTile", 2);
-        spr.loadSprites("ui/map/backgrounds/map_back_", "mapBack", 2);
-        spr.loadSprites("ui/map/decorators/islands/island_decorator_", "islandDecorator", 3);
-        spr.loadSprites("ui/icons/boss_icon_", "bossIcon", 4);
+        spr.loadSprites("ui/map/mapPointer/map_tiles_", "map_tile", 2);
 
 
         //particles

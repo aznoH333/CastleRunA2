@@ -8,9 +8,12 @@ import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
 import com.mygdx.game.entities.environment.Furniture;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
+import com.mygdx.game.ui.UIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +28,7 @@ public class LevelProgressionManager {
     }
 
     int currentLevelIndex = 0;
+    private final static int lastLevel = 15;
     Level currentLevel;
     LevelTemplate lTemplate = LevelTemplate.Castle;
     private final static Random r = Game.getSeededRandom();
@@ -92,7 +96,7 @@ public class LevelProgressionManager {
             }
 
 
-            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 60 + Math.max(currentLevelIndex * 10, 120), 96, lTemplate.background)
+            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 10 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)
@@ -100,10 +104,32 @@ public class LevelProgressionManager {
             shop.restock(3);
             lvl.loadLevel(currentLevel);
         }
+        levelDrawingOffset = (currentLevelIndex-3) * 128;
 
     }
 
     public void resetProgress(){
         currentLevelIndex = 0;
+        levelDrawingOffset = 0;
+    }
+
+    private static final DrawingManager spr = DrawingManager.getINSTANCE();
+    private static final PlayerStats ps = PlayerStats.getINSTANCE();
+    private float levelDrawingOffset = 0;
+    public void drawLevelProgressUI(){
+        for (int i = 0; i < lastLevel; i++){
+            if (levelDrawingOffset < (currentLevelIndex-2) * 128 && !UIManager.getINSTANCE().isTransitioning()) levelDrawingOffset+=0.1f;
+
+            if ((i+1) % 5 == 0)
+                spr.draw("map_tile1", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 128, 512, 2);
+            else
+                spr.draw("map_tile0", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 128, 512, 2);
+            spr.draw("map_tile2", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 64, 512, 2);
+            if (Game.Time() % 20 >= 10 || levelDrawingOffset+1 > (currentLevelIndex-2) * 128)
+                spr.draw("player0", ((Game.gameWorldWidth / 2) - 32), 600, 2);
+            else
+                spr.draw("player2", ((Game.gameWorldWidth / 2) - 32), 600, 2);
+
+        }
     }
 }
