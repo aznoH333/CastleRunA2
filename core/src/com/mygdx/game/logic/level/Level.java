@@ -3,6 +3,7 @@ package com.mygdx.game.logic.level;
 import com.mygdx.game.data.Background;
 import com.mygdx.game.data.levelgeneration.EntityWeightData;
 import com.mygdx.game.data.levelgeneration.TileWeightData;
+import com.mygdx.game.logic.level.levelModifiers.ILevelModifier;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityFactory;
@@ -18,6 +19,10 @@ public class Level {
     private final int length;
     private final EntityFactory e = EntityFactory.getInstance();
     private final int activationRate;
+
+    // level modifiers
+    private final boolean hasModifier;
+    private final ILevelModifier modifier;
 
     //lvl height
     protected final int defaultH;
@@ -50,6 +55,8 @@ public class Level {
         this.mapIcon = builder.mapIcon;
         this.mapTile = builder.mapTile;
         this.activationRate = builder.activationRate;
+        this.hasModifier = builder.hasModifier;
+        this.modifier = builder.modifier;
 
 
 
@@ -119,6 +126,14 @@ public class Level {
         return activationRate;
     }
 
+    public boolean hasModifier(){
+        return hasModifier;
+    }
+
+    public ILevelModifier getModifier(){
+        return modifier;
+    }
+
 
     public static class LevelBuilder{
 
@@ -140,6 +155,9 @@ public class Level {
         private String boss;
 
         private int activationRate = 240;
+
+        private boolean hasModifier = false;
+        private ILevelModifier modifier = null;
 
         //map stuff
         private String mapIcon = "mIconCastle0";
@@ -200,6 +218,15 @@ public class Level {
             return this;
         }
 
+        public LevelBuilder setModifier(ILevelModifier modifier){
+            if (modifier != null){
+                this.modifier = modifier;
+                hasModifier = true;
+            }
+            return this;
+        }
+
+
         private void reset(){
             enemySet = new EntityWeightData[]{};
             emptyChance = 1;
@@ -212,6 +239,8 @@ public class Level {
             activationRate = 240;
             mapIcon = "mIconCastle0";
             mapTile = "mTile0";
+            modifier = null;
+            hasModifier = false;
         }
 
 

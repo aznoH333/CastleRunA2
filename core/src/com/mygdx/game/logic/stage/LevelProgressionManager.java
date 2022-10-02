@@ -3,6 +3,7 @@ package com.mygdx.game.logic.stage;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.levelgeneration.EntityWeightData;
 import com.mygdx.game.data.levelgeneration.TileWeightData;
+import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.traps.BreakingPlatform;
 import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
@@ -11,6 +12,9 @@ import com.mygdx.game.entities.environment.Furniture;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.level.levelModifiers.ILevelModifier;
+import com.mygdx.game.logic.level.levelModifiers.ModifierSlimeRain;
+import com.mygdx.game.logic.level.levelModifiers.ModifierUnstable;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.ui.UIManager;
@@ -49,7 +53,22 @@ public class LevelProgressionManager {
             case 3: lTemplate = LevelTemplate.CastleYard; break;
         }
         if (currentLevelIndex % 5 == 0){
-            // boss level
+
+            String currentBoss;
+
+            switch (currentLevelIndex){
+                case 5:  currentBoss = "slime boss"; break;
+                case 10: currentBoss = "mech boss"; break;
+                default:
+                case 15: currentBoss = "slime"; break;
+            }
+
+            currentLevel = new Level.LevelBuilder(
+                    lTemplate.defaultTiles,
+                    20,96, lTemplate.background)
+                    .setBoss(currentBoss)
+                    .buildBossLevel();
+
         }else{
             // regular level
             // add tiles
@@ -87,24 +106,31 @@ public class LevelProgressionManager {
             */
             if (r.nextFloat() < 0.5 - Math.min((float)currentLevelIndex/10, 0.4) || currentLevelIndex < 3 || tempEntities.size() == 2)      tempEntities.add(new EntityWeightData(10f - Math.min(currentLevelIndex, 7), "slime"));
 
-
+            /*
             //print
             System.out.println("level length is " + (60 + Math.min(currentLevelIndex * 10, 120)));
             System.out.println("added empty : 30");
             for (EntityWeightData w: tempEntities) {
                 System.out.println("added " + w.getEntity() + " : " + w.getWeight());
             }
+            */
 
+            //add level modifier
+            ILevelModifier mod = null;
+            mod = new ModifierSlimeRain();
 
             currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 10 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)
+                    .setModifier(mod)
                     .build();
             shop.restock(3);
-            lvl.loadLevel(currentLevel);
         }
         levelDrawingOffset = (currentLevelIndex-3) * 128;
+        lvl.loadLevel(currentLevel);
+
+
 
     }
 

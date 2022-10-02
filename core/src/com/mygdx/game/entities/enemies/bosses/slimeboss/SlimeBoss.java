@@ -66,7 +66,7 @@ public class SlimeBoss extends Slime {
             slimeTimer = slimeTimerMax;
             ParticleManager part = ParticleManager.getINSTANCE();
             SoundManager.getINSTANCE().playSound("enemyDeath1");
-            e.spawnEntity("red slime", x-64,752);
+            e.spawnEntity("red slime", x-64,1279);
 
             // spawn 5 - 10 gore particles
             for (int i = 0; i < random.nextInt(5) + 5; i++)

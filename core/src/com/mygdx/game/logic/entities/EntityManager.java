@@ -99,13 +99,14 @@ public class EntityManager {
                     if (ent.getTeam() == Team.Enemies)
                         ItemManager.getINSTANCE().onKill(ent);
                 }
-                entities.remove(i);
+                if (i < entities.size())
+                    entities.remove(i);
                 i--;
             }
         }
     }
 
-    // FIXME : can crash the game if called in the same frame as entity spawn
+
     public void clearEnemyEntities(){
         for (Entity entity: entities) {
             if (entity.getTeam() == Team.Enemies || entity.getTeam() == Team.EnemyProjectiles)

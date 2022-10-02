@@ -13,6 +13,9 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.player.ItemManager;
+import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.ui.UIManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,6 +57,8 @@ public class LevelManager {
     private int startGenerationIndex = 3;
     private boolean isBossLevel = false;
     private final ArrayList<TileActivator> tileActivators = new ArrayList<>();
+    private int levelModiferTimer = 20;
+    private long levelStartTimeStamp = 0;
 
 
     // very dumb
@@ -230,6 +235,20 @@ public class LevelManager {
             if (a.getX() < (mapWidth-1)*tileScale && getOnPos(a.getX() + distance%64) instanceof ICollumnActivatavle) ((ICollumnActivatavle) getOnPos(a.getX() + distance%64)).activate(a);
         }
 
+        // modifiers
+        if (lvl.hasModifier()){
+            levelModiferTimer--;
+            if (levelModiferTimer == 0){
+                lvl.getModifier().levelModifierTick();
+                levelModiferTimer = 20;
+            }
+        }
+
+        if (Game.Time() == levelStartTimeStamp + 160) {
+            UIManager.getINSTANCE().displayMessage(lvl.getModifier().getIntroMessage());
+        }
+
+
 
         // snap camera to boss
         if (isBossLevel && Math.abs(levelLength-(tileScale*((mapWidth>>1)-2)) - distance) < 10)
@@ -265,6 +284,10 @@ public class LevelManager {
         return distance;
     }
 
+    public float getAlignedX(float currentX){
+        return ((int) currentX >> 6) * tileScale - (distance % tileScale);
+    }
+
     public void loadLevel(Level lvl) {
 
         this.lvl = lvl;
@@ -276,6 +299,7 @@ public class LevelManager {
         advanceDistance = 0;
         trapOffset = 0;
         tileActivators.clear();
+        levelModiferTimer = 120;
 
         int maxActivatorCount = (mapWidth * tileScale) / lvl.getActivationRate();
 
@@ -304,6 +328,9 @@ public class LevelManager {
 
         // spawn player
         e.addEntity(new PlayerSpawner(64,map[1].getY() + 64));
+        levelStartTimeStamp = Game.Time();
+        ItemManager.getINSTANCE().onLevelStart();
+        PlayerStats.getINSTANCE().restoreStats();
     }
 
 

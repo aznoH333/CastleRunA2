@@ -16,6 +16,7 @@ import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.stage.LevelProgressionManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
+import com.mygdx.game.ui.elements.parents.MessageBox;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
@@ -48,6 +49,7 @@ public class UIManager {
     private final static InventoryScreen invScreen = InventoryScreen.getINSTANCE();
     private final static PlayerStats playerStats = PlayerStats.getINSTANCE();
     private ILambdaFunction execOnTransitionFinish = ()->{};
+    private final MessageBox msgBox = new MessageBox();
 
 
     // dumb constants
@@ -61,6 +63,7 @@ public class UIManager {
             element.draw();
         }
         transition.draw();
+        msgBox.draw();
     }
 
     public void changeUI(GameState state){
@@ -182,6 +185,7 @@ public class UIManager {
         for (IUIParentElement parent: uiParents) {
             parent.uiClose();
         }
+        msgBox.uiClose();
     }
 
     public void updateUI(){
@@ -189,6 +193,7 @@ public class UIManager {
             element.update();
         }
         transition.update();
+        msgBox.update();
 
         if (openOnTransitionFinish && transition.getStatus() == UIActionStatus.Open){
             openOnTransitionFinish = false;
@@ -230,6 +235,12 @@ public class UIManager {
         isTransitioning = true;
         targetState = state;
         this.execOnTransitionFinish = execOnTransition;
+    }
+
+
+    public void displayMessage(String text){
+        msgBox.setText(text);
+        msgBox.uiOpen();
     }
 
     public void transition(GameState state){
