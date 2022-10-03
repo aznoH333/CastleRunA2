@@ -3,6 +3,7 @@ package com.mygdx.game.logic.level.levelModifiers;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 
 import java.util.Random;
 
@@ -34,7 +35,7 @@ public class ModifierSlimeRain implements ILevelModifier{
     }
 
     @Override
-    public void onTileGenerate() {
+    public void onTileGenerate(TileCollum collum) {
 
     }
 }

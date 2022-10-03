@@ -168,7 +168,6 @@ public class Game {
             exitTime = Game.time + time;
             EntityManager.getINSTANCE().clearEnemyEntities();
         }
-
     }
 
     public static Random getSeededRandom(){

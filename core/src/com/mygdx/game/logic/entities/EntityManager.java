@@ -112,7 +112,7 @@ public class EntityManager {
             if (entity.getTeam() == Team.Enemies || entity.getTeam() == Team.EnemyProjectiles)
                 entity.destroy();
         }
-        //deleteEntities();
+        //deleteEntities(); this crashes the, game idk why
     }
 
     public void clear(){

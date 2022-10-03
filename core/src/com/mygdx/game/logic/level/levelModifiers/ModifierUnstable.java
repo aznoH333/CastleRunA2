@@ -2,6 +2,7 @@ package com.mygdx.game.logic.level.levelModifiers;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 
 import java.util.Random;
 
@@ -28,7 +29,7 @@ public class ModifierUnstable implements ILevelModifier {
     }
 
     @Override
-    public void onTileGenerate() {
+    public void onTileGenerate(TileCollum collum) {
 
     }
 }

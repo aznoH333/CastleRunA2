@@ -109,6 +109,7 @@ public class LevelManager {
 
             if (!temp.grace()) grace = false;
             map[index] = temp;
+            lvl.getModifier().onTileGenerate(temp);
         }
     }
 
