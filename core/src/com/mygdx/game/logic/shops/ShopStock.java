@@ -28,9 +28,9 @@ public class ShopStock {
         items = new ShopItem[shopLevel];
 
         // first items is always a restock
-        items[0] = new ShopItem("shop_icon2",15,3, stats::restoreStats, "restore");
+        //items[0] = new ShopItem("shop_icon2",15,3, stats::restoreStats, "restore");
 
-        for (int i = 1; i < shopLevel; i++) {
+        for (int i = 0; i < shopLevel; i++) {
 
             float random = r.nextFloat();
             ILambdaFunction buyFunction;

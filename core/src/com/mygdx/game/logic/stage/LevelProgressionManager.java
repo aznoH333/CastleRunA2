@@ -13,6 +13,7 @@ import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.level.levelModifiers.ILevelModifier;
+import com.mygdx.game.logic.level.levelModifiers.ModifierBoneZone;
 import com.mygdx.game.logic.level.levelModifiers.ModifierSlimeRain;
 import com.mygdx.game.logic.level.levelModifiers.ModifierUnstable;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -117,7 +118,7 @@ public class LevelProgressionManager {
 
             //add level modifier
             ILevelModifier mod = null;
-            mod = new ModifierSlimeRain();
+            mod = new ModifierBoneZone();
 
             currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 10 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))

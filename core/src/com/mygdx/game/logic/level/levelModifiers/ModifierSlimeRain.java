@@ -35,7 +35,7 @@ public class ModifierSlimeRain implements ILevelModifier{
     }
 
     @Override
-    public void onTileGenerate(TileCollum collum) {
+    public void onTileGenerate(TileCollum collum, float x) {
 
     }
 }

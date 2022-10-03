@@ -109,7 +109,8 @@ public class LevelManager {
 
             if (!temp.grace()) grace = false;
             map[index] = temp;
-            lvl.getModifier().onTileGenerate(temp);
+            if (lvl.hasModifier())
+                lvl.getModifier().onTileGenerate(temp, index * 64 - (distance % tileScale));
         }
     }
 
@@ -332,6 +333,8 @@ public class LevelManager {
         levelStartTimeStamp = Game.Time();
         ItemManager.getINSTANCE().onLevelStart();
         PlayerStats.getINSTANCE().restoreStats();
+        if (lvl.hasModifier())
+            lvl.getModifier().onLevelStart();
     }
 
 

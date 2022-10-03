@@ -7,5 +7,5 @@ public interface ILevelModifier {
     String getIntroMessage();
     void levelModifierTick();
     void onLevelStart();
-    void onTileGenerate(TileCollum collum);
+    void onTileGenerate(TileCollum collum, float x);
 }
