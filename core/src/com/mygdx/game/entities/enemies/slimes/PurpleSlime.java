@@ -28,7 +28,7 @@ public class PurpleSlime extends Enemy {
     private boolean direction = false;
 
     public PurpleSlime(float x, float y) {
-        super(x, y, 64, 64, 4, Team.Enemies);
+        super(x, y, 64, 64, 3, Team.Enemies);
         tags = new EntityTags[]{EntityTags.Grounded};
     }
 

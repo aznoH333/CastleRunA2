@@ -27,7 +27,7 @@ public class PlayerStats {
 
     private int coinCounter = 0;
     private final Random r = Game.getGeneralRandom();
-    private PlayerClass pc = PlayerClass.Mage;
+    private PlayerClass pc = PlayerClass.Knight;
 
     private final InventoryManager inventoryManager;
     private static final SoundManager sound = SoundManager.getINSTANCE();

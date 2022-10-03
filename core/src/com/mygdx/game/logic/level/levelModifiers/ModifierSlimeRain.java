@@ -21,8 +21,8 @@ public class ModifierSlimeRain implements ILevelModifier{
     public void levelModifierTick() {
         if (r.nextFloat() < 0.15f){
             String slime;
-            if (r.nextFloat() < 0.35f) slime = "red slime";
-            else if (r.nextFloat() < 0.15f) slime = "purple slime";
+            if (r.nextFloat() < 0.15f) slime = "red slime";
+            else if (r.nextFloat() < 0.05f) slime = "purple slime";
             else slime = "slime";
             e.spawnEntity(slime, lvl.getAlignedX(r.nextInt(lvl.getMapWidth())*64), 1279);
         }

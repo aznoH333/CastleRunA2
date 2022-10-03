@@ -112,7 +112,7 @@ public class EntityManager {
             if (entity.getTeam() == Team.Enemies || entity.getTeam() == Team.EnemyProjectiles)
                 entity.destroy();
         }
-        deleteEntities();
+        //deleteEntities();
     }
 
     public void clear(){
