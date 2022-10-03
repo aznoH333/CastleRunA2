@@ -68,8 +68,8 @@ public class MessageBox implements IUIParentElement, IUIUpdatable, IUIElement {
 
         // backdrop
         for (float x = 0; x < (openingPercentage * ((Game.gameWorldWidth/2) - 64)); x+= 24){
-            spr.draw("msgBox1", (Game.gameWorldWidth/2) + x, y, 3);
-            spr.draw("msgBox1", (Game.gameWorldWidth/2) - 24 - x, y, 3);
+            spr.draw("msgBox" + (openingPercentage == 1 ? 1 : 2), (Game.gameWorldWidth/2) + x, y, 3);
+            spr.draw("msgBox" + (openingPercentage == 1 ? 1 : 2), (Game.gameWorldWidth/2) - 24 - x, y, 3);
         }
         if (openingPercentage == 1) spr.drawText(text, (Game.gameWorldWidth/2) - ((float) (text.length() * 25)/2), y  + 64, 3);
 
