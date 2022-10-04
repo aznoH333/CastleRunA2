@@ -47,6 +47,10 @@ public abstract class Enemy extends Entity {
             hp -= damage;
         }
         hp -= damage;
+        if (hp > 0) onTakeDamage();
     }
+
+
+    protected void onTakeDamage(){}
 
 }

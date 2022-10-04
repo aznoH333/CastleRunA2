@@ -93,12 +93,10 @@ public class LevelProgressionManager {
             if (currentLevelIndex > 1 && currentLevelIndex < 12 && r.nextFloat() < 0.2 + Math.min((float)currentLevelIndex/10, 0.5))        tempEntities.add(new EntityWeightData(10f, "red slime"));
             if (currentLevelIndex > 2 && currentLevelIndex < 8 && r.nextFloat() < 0.2 + Math.min((float)currentLevelIndex/10, 0.5))        tempEntities.add(new EntityWeightData(10f, "skeleton"));
             if (currentLevelIndex > 5 && currentLevelIndex < 10 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "goblin"));
-            // TODO : armored skeletons
-            //if (currentLevelIndex > 5 && currentLevelIndex < 12 && r.nextFloat() < 0.2 + Math.min((float)currentLevelIndex/10, 0.5))        tempEntities.add(new EntityWeightData(10f, "armored skeleton"));
+            if (currentLevelIndex > 5 && currentLevelIndex < 15 && r.nextFloat() < 0.2)        tempEntities.add(new EntityWeightData(10f, "armored skeleton"));
             if (currentLevelIndex > 7 && currentLevelIndex < 15 && r.nextFloat() < 0.8)        tempEntities.add(new EntityWeightData(10f, "purple slime"));
             if (currentLevelIndex > 8 && currentLevelIndex < 15 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "rocket skeleton"));
             if (currentLevelIndex > 8 && currentLevelIndex < 15 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "saw knight"));
-
             /* add green slime
              has 3 special cases
              1 ) always spawns on early levels
@@ -117,8 +115,15 @@ public class LevelProgressionManager {
             */
 
             //add level modifier
+            // FIXME : tohle je garbage implementace
             ILevelModifier mod = null;
-            mod = new ModifierBoneZone();
+            if (currentLevelIndex >= 4){
+                if (r.nextFloat() > 0.25f){
+                    float rng = r.nextFloat();
+                    if (rng < 0.5)  mod = new ModifierBoneZone();
+                    else            mod = new ModifierSlimeRain();
+                }
+            }
 
             currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 10 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))

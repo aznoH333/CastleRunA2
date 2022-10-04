@@ -32,6 +32,7 @@ public class EntityLoadList {
         entities.put("red slime", new RedSlime(0,0,64,64,2));
         entities.put("purple slime", new PurpleSlime(0,0));
         entities.put("skeleton", new Skeleton(0,0,64,64,1));
+        entities.put("armored skeleton", new ArmoredSkeleton(0,0));
         entities.put("ghost skull", new GhostSkull(0,0));
         entities.put("goblin", new Goblin(0,0));
         entities.put("rocket skeleton", new RocketSkeleton(0,0));

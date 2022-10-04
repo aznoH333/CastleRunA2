@@ -55,7 +55,7 @@ public class Furniture extends Entity {
         for (int i = 0; i < r.nextInt(5) + 5; i++)
             part.addParticle("furniture" + r.nextInt(4),x,y,r.nextInt(10)-5,r.nextInt(10),0.5f,r.nextInt(30) + 30);
 
-
+        DrawingManager.getINSTANCE().addScreenShake(3);
 
         // spawn coins
         if (r.nextFloat() < coinSpawnChance) {

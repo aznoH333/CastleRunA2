@@ -104,7 +104,7 @@ public class DrawingManager {
             for (DrawingData data: layer) {
                 if (data.getType() == DrawingDataType.Sprite)
                     if (data.affectedByScreenShake())
-                        batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset, data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
+                        batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset * 3.5f, data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
                     else
                         batch.draw(data.getTexture(), data.getX(), data.getY(), data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
                 else

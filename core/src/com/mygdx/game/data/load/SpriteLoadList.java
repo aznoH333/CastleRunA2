@@ -29,6 +29,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
         spr.loadSprites("entities/enemies/slimes/red_slime/red_slime_","red_slime",6);
         spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",3);
+        spr.loadSprites("entities/enemies/skeletons/armored_skeleton/armored_skeleton_","armoredSkeleton",3);
         spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
         spr.loadSprites("entities/enemies/bullshit/skull/skull_", "ghost_skull", 1);
         spr.loadSprites("entities/enemies/goblin/goblin_", "goblin", 3);

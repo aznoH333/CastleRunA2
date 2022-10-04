@@ -246,7 +246,7 @@ public class LevelManager {
             }
         }
 
-        if (Game.Time() == levelStartTimeStamp + 160) {
+        if (Game.Time() == levelStartTimeStamp + 160 && lvl.hasModifier()) {
             UIManager.getINSTANCE().displayMessage(lvl.getModifier().getIntroMessage());
         }
 

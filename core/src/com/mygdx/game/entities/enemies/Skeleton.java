@@ -17,14 +17,14 @@ import java.util.Random;
 public class Skeleton extends Enemy {
 
     private int throwTimer = throwTimerMin;
-    private int animationTimer = 0;
+    protected int animationTimer = 0;
     private final static int throwTimerMin = 200;
     private final static int timerVariance = 40;
     private final static Random r = new Random();
     private boolean calcGravity = false;
     private static final float gravity = 0.5f;
     private float yM = 0f;
-    private int danceAnimation = 0;
+    protected int danceAnimation = 0;
     private boolean danceToggle = true;
 
     public Skeleton(float x, float y, float xSize, float ySize, int hp) {
