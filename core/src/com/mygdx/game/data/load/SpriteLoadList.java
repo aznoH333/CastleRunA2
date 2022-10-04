@@ -121,5 +121,7 @@ public class SpriteLoadList {
         spr.loadSprites("particles/effects/ice/ice_flame_","icePart",6);
         spr.loadSprites("particles/coinSplash/coin_splash_","coinPart",2);
         spr.loadSprites("particles/misc/crit_icon_","crit",0);
+        spr.loadSprites("particles/misc/xp_icon_","xp",1);
+
     }
 }

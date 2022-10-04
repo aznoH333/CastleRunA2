@@ -97,6 +97,11 @@ public class PurpleSlime extends Enemy {
     }
 
     @Override
+    public int getXpOnKill() {
+        return 50;
+    }
+
+    @Override
     public Entity getCopy(float x, float y) {
         return new PurpleSlime(x,y + LevelManager.tileScale);
         // TODO : death animation + gore

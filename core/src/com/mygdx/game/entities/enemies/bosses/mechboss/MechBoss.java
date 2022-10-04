@@ -138,4 +138,10 @@ public class MechBoss extends Enemy {
     public void onDestroy() {
 
     }
+
+
+    @Override
+    public int getXpOnKill() {
+        return 1000;
+    }
 }

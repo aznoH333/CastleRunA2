@@ -53,4 +53,6 @@ public abstract class Enemy extends Entity {
 
     protected void onTakeDamage(){}
 
+    abstract public int getXpOnKill();
+
 }

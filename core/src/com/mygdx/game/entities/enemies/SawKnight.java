@@ -82,4 +82,9 @@ public class SawKnight extends Enemy {
     public void onDestroy() {
 
     }
+
+    @Override
+    public int getXpOnKill() {
+        return 65;
+    }
 }

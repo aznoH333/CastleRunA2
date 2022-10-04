@@ -94,4 +94,9 @@ public class Slime extends Enemy {
 
 
     }
+
+    @Override
+    public int getXpOnKill() {
+        return 15;
+    }
 }

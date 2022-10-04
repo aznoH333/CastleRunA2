@@ -61,6 +61,8 @@ public class ParticleLoadList {
 
         // misc
         particleMap.put("crit", new Particle(new String[]{"crit0"}, 45,0));
+        particleMap.put("xp", new Particle(new String[]{"xp0"}, 45,0));
+        particleMap.put("xpBig", new Particle(new String[]{"xp1"}, 45,0));
 
         return particleMap;
     }

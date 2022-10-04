@@ -116,4 +116,9 @@ public class SlimeBoss extends Slime {
         e.spawnEntity("slime boss death",x,y);
         Game.exitLevel(600);
     }
+
+    @Override
+    public int getXpOnKill() {
+        return 500;
+    }
 }

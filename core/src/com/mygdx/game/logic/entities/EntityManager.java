@@ -8,6 +8,7 @@ import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.logic.player.ProgressManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -89,6 +90,8 @@ public class EntityManager {
         }
     }
 
+    private static final ProgressManager prgrs = ProgressManager.getINSTANCE();
+    private static final ParticleManager part = ParticleManager.getINSTANCE();
     private void deleteEntities(){
         // delete dead entities or marked
         for (int i = 0; i < entities.size(); i++) {
@@ -96,8 +99,14 @@ public class EntityManager {
                 Entity ent = entities.get(i);
                 if (ent.triggerEffects()){
                     ent.onDestroy();
-                    if (ent.getTeam() == Team.Enemies)
+                    if (ent.getTeam() == Team.Enemies){
                         ItemManager.getINSTANCE().onKill(ent);
+                        // this cast should be safe, all entities with enemy team are also enemies
+                        int xpGain = ((Enemy) ent).getXpOnKill();
+                        if (xpGain > 300)   part.addParticle("xpBig", ent.getX(), ent.getY(), 0, 0.5f,0, 100);
+                        else                part.addParticle("xp", ent.getX(), ent.getY(), 0, 0.5f,0, 45);
+                        prgrs.gainXp(xpGain);
+                    }
                 }
                 if (i < entities.size())
                     entities.remove(i);

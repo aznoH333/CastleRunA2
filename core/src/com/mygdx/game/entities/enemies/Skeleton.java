@@ -96,4 +96,9 @@ public class Skeleton extends Enemy {
         for (int i = 0; i < r.nextInt(10) + 10; i++)
             part.addParticle("boneGore" + r.nextInt(3),x+(xSize/2),y+(ySize/2),r.nextInt(6)-3,r.nextInt(20)-5,0.7f,r.nextInt(20) + 20);
     }
+
+    @Override
+    public int getXpOnKill() {
+        return 35;
+    }
 }

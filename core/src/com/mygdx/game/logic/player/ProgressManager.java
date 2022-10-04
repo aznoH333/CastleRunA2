@@ -1,5 +1,8 @@
 package com.mygdx.game.logic.player;
 
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.ui.UIManager;
+
 import java.util.HashMap;
 
 public class ProgressManager {
@@ -16,14 +19,13 @@ public class ProgressManager {
     private int availableMasteryPoints = 0;
     private final int maxPoints = 40;
     private final int maxPointsPerCategory = 10;
-    private int nextLevelXpRequirement = 10;
+    private int nextLevelXpRequirement = 150;
     private int currentXp = 0;
     private int level = 0;
 
     private ProgressManager(){
         // TODO : load and save progress
         // TODO : save current progress
-        // TODO : classes with custom skin
 
 
         bonuses.put("health", 0);
@@ -56,6 +58,10 @@ public class ProgressManager {
             level++;
             totalMasteryPoints++;
             availableMasteryPoints++;
+            currentXp -= nextLevelXpRequirement;
+            nextLevelXpRequirement = (int) (150 + level * 30 + Math.pow(level,3));
+            System.out.println(level);
+            UIManager.getINSTANCE().displayMessage("Level UP!");
         }
     }
 
@@ -75,10 +81,8 @@ public class ProgressManager {
 
     public void gainXp(int xpCount){
         currentXp += xpCount;
-        if (xpCount > nextLevelXpRequirement){
-            currentXp -= nextLevelXpRequirement;
+        if (currentXp > nextLevelXpRequirement){
             levelUp();
-            nextLevelXpRequirement = (int) (level * 30 + Math.pow(level,3));
         }
     }
 

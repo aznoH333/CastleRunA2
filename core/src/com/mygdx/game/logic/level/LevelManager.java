@@ -330,7 +330,7 @@ public class LevelManager {
 
         // spawn player
         e.addEntity(new PlayerSpawner(64,map[1].getY() + 64));
-        levelStartTimeStamp = Game.Time();
+        levelStartTimeStamp = Game.Time(); // FIXME level modifier announcements are somehow broken they don't appear past level 1
         ItemManager.getINSTANCE().onLevelStart();
         PlayerStats.getINSTANCE().restoreStats();
         if (lvl.hasModifier())

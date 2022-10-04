@@ -97,6 +97,11 @@ public class RedSlime extends Enemy {
     }
 
     @Override
+    public int getXpOnKill() {
+        return 25;
+    }
+
+    @Override
     public Entity getCopy(float x, float y) {
         return new RedSlime(x,y + LevelManager.tileScale, xSize, ySize, hp);
     }
