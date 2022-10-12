@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
@@ -32,7 +31,7 @@ public class Button implements IUIElement, IUIUpdatable {
             default:
                 height = 120;
                 //width = 336;
-                width = (Game.gameWorldWidth - 32) / 2 - 16; // TODO : smart scaling
+                width = (Game.gameWorldWidth - 32) / 2 - 16;
                 break;
             case Large:
                 height = 120;
@@ -43,6 +42,10 @@ public class Button implements IUIElement, IUIUpdatable {
                 // TODO : large buttons
                 height = 200;
                 width = 668;
+                break;
+            case Box:
+                height = 120;
+                width = 102;
                 break;
         }
 
@@ -87,11 +90,6 @@ public class Button implements IUIElement, IUIUpdatable {
     public float getY() {
         if (pressed)    return y - pressedOffset + parent.getY();
         else            return y + parent.getY();
-    }
-
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Updatable};
     }
 
     @Override

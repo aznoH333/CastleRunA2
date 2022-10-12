@@ -107,8 +107,8 @@ public class PlayerStats {
     }
 
     public void resetStats(){
-        maxHp = pc.startingHp + (int) prgrs.getBonus("health");
-        maxEnergy = pc.startingEnergy + (int) prgrs.getBonus("energy");
+        maxHp = pc.startingHp + (int) prgrs.getBonus("Health");
+        maxEnergy = pc.startingEnergy + (int) prgrs.getBonus("Energy");
         hp = maxHp;
         energy = maxEnergy;
         coins = 0;
@@ -171,7 +171,7 @@ public class PlayerStats {
         this.coins = coins;
     }
     public void addCoins(int coins) {
-        if (prgrs.getBonus("coinBonus") > r.nextFloat()){
+        if (prgrs.getBonus("Double coin chance") > r.nextFloat()){
             this.coins++;
         }
         this.coins += coins;

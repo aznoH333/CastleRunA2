@@ -3,7 +3,6 @@ package com.mygdx.game.ui.elements.regularElements;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.IIntegerFunction;
 import com.mygdx.game.data.enums.BarType;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
@@ -75,11 +74,6 @@ public class HudBar implements IUIElement, IUIUpdatable {
     @Override
     public float getY() {
         return y;
-    }
-
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Updatable};
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.mygdx.game.ui.elements.parents;
 import com.mygdx.game.Game;
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
@@ -35,10 +34,6 @@ public class TopHud implements IUIElement, IUIParentElement, IUIUpdatable {
         return y;
     }
 
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Parent,UIType.Updatable};
-    }
 
     @Override
     public void uiOpen() {

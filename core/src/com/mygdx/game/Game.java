@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.load.SoundLoadList;
 import com.mygdx.game.logic.SoundManager;
@@ -163,7 +162,7 @@ public class Game {
     }
 
     public static void exitLevel(int time){
-        if (exitTime == 0 && !ui.isTransitioning()){
+        if (exitTime == 0 && ui.isTransitioning()){
             ui.close();
             exitTime = Game.time + time;
             EntityManager.getINSTANCE().clearEnemyEntities();

@@ -2,7 +2,6 @@ package com.mygdx.game.ui.elements.regularElements;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.data.enums.UIActionStatus;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
@@ -37,11 +36,6 @@ public class TransitionScreen implements IUIParentElement, IUIElement, IUIUpdata
     @Override
     public float getY() {
         return y;
-    }
-
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Parent,UIType.Updatable};
     }
 
     @Override

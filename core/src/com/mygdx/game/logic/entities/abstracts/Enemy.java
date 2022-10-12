@@ -42,7 +42,7 @@ public abstract class Enemy extends Entity {
 
     @Override
     public void takeDamage(int damage){
-        if (ProgressManager.getINSTANCE().getBonus("critChance") > Game.getGeneralRandom().nextFloat()){
+        if (ProgressManager.getINSTANCE().getBonus("Critical chance") > Game.getGeneralRandom().nextFloat()){
             ParticleManager.getINSTANCE().addParticle("crit",x + xSize/2 - 32,y + ySize/2, 0, 0.75f,0);
             hp -= damage;
         }

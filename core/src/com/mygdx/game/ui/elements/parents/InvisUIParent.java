@@ -2,7 +2,6 @@ package com.mygdx.game.ui.elements.parents;
 
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
@@ -30,11 +29,6 @@ public class InvisUIParent implements IUIParentElement, IUIElement, IUIUpdatable
     @Override
     public float getY() {
         return y;
-    }
-
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Parent,UIType.Updatable};
     }
 
     @Override

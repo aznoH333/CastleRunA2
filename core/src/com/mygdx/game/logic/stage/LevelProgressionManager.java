@@ -3,19 +3,16 @@ package com.mygdx.game.logic.stage;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.levelgeneration.EntityWeightData;
 import com.mygdx.game.data.levelgeneration.TileWeightData;
-import com.mygdx.game.data.tilesets.cave.CaveRegular;
 import com.mygdx.game.data.tilesets.traps.BreakingPlatform;
 import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
-import com.mygdx.game.entities.environment.Furniture;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.level.levelModifiers.ILevelModifier;
 import com.mygdx.game.logic.level.levelModifiers.ModifierBoneZone;
 import com.mygdx.game.logic.level.levelModifiers.ModifierSlimeRain;
-import com.mygdx.game.logic.level.levelModifiers.ModifierUnstable;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.ui.UIManager;
@@ -150,7 +147,7 @@ public class LevelProgressionManager {
     private float levelDrawingOffset = 0;
     public void drawLevelProgressUI(){
         for (int i = 0; i < lastLevel; i++){
-            if (levelDrawingOffset < (currentLevelIndex-2) * 128 && !UIManager.getINSTANCE().isTransitioning()) levelDrawingOffset+=0.1f;
+            if (levelDrawingOffset < (currentLevelIndex-2) * 128 && UIManager.getINSTANCE().isTransitioning()) levelDrawingOffset+=0.1f;
 
             if ((i+1) % 5 == 0)
                 spr.draw("map_tile1", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 128, 512, 2);

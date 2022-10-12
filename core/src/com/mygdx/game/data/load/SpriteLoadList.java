@@ -94,6 +94,7 @@ public class SpriteLoadList {
         spr.loadSprites("ui/bars/bars_segments_", "bar", 1);
         spr.loadSprites("ui/bars/bars_start_", "barStart", 1);
         spr.loadSprites("ui/ui_elements/message_box/message_box_","msgBox", 2);
+        spr.loadSprites("ui/ui_elements/levelBar/levelBar_","lvlBar", 6);
 
         //spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_part_", "button", 5);

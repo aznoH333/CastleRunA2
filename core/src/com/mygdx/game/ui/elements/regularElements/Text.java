@@ -1,6 +1,5 @@
 package com.mygdx.game.ui.elements.regularElements;
 
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 
@@ -34,8 +33,4 @@ public class Text implements IUIElement {
         return y+ parent.getY();
     }
 
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[0];
-    }
 }

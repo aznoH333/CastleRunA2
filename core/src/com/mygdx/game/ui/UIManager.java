@@ -8,14 +8,15 @@ import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.UIActionStatus;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.menus.InventoryScreen;
 import com.mygdx.game.logic.menus.NewGameMenu;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
+import com.mygdx.game.logic.player.ProgressManager;
 import com.mygdx.game.logic.shops.Shop;
 import com.mygdx.game.logic.stage.LevelProgressionManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
+import com.mygdx.game.ui.elements.parents.InvisUIParent;
 import com.mygdx.game.ui.elements.parents.MessageBox;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
@@ -24,6 +25,7 @@ import com.mygdx.game.ui.elements.regularElements.Text;
 import com.mygdx.game.ui.elements.parents.TopHud;
 import com.mygdx.game.ui.elements.regularElements.TransitionScreen;
 import com.mygdx.game.ui.elements.parents.UIBox;
+import com.mygdx.game.ui.elements.regularElements.XpBar;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
@@ -50,6 +52,7 @@ public class UIManager {
     private final static PlayerStats playerStats = PlayerStats.getINSTANCE();
     private ILambdaFunction execOnTransitionFinish = ()->{};
     private final MessageBox msgBox = new MessageBox();
+    private static final ProgressManager prgrs = ProgressManager.getINSTANCE();
 
 
     // dumb constants
@@ -90,6 +93,7 @@ public class UIManager {
                 addUIElement(topHud);
                 addUIElement(new HudBar(16,32,"barStart0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
                 addUIElement(new HudBar(Game.gameWorldWidth/2 + 8, 32,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
+                addUIElement(new XpBar(16,64, topHud));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
@@ -145,27 +149,50 @@ public class UIManager {
                 addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case NewGameMenu:
-                addUIElement(new BottomHud(-515f,-150f));
-                addUIElement(new Button(buttonLX,182, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
+
+                addUIElement(new BottomHud(-515f,-30f));
+
+                addUIElement(new Button(buttonLX,62, ButtonType.Large, uiElements.get(0),()-> transition(GameState.MainMenu)));
                 addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon4", uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonLX,198,ButtonType.Large,uiElements.get(0),()->transition(GameState.MasteryScreen)));
+                addUIElement(new Text((Game.gameWorldWidth/2 - (5*25)),80,"Points",uiElements.get(uiElements.size()-1)));
+
+                addUIElement(new Button(buttonLX,338, ButtonType.Large, uiElements.get(0), ()->ng.startNewGame(Game.getGeneralRandom().nextInt(999))));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
+
                 NewGameMenu.getINSTANCE().onTransition();
                 break;
+            case MasteryScreen:
+                addUIElement(new InvisUIParent());
 
+
+                String[] bonuses = prgrs.getBonuses().keySet().toArray(new String[]{});
+                // stats
+                for (int i = 0; i < bonuses.length; i++){
+                    int finalI = i;
+                    addUIElement(new Button(buttonLX, 640 + 258 - (i * 128), ButtonType.Box, uiElements.get(0), ()-> prgrs.refundPoint(bonuses[finalI])));
+                    addUIElement(new Sprite(8,8,"player0", uiElements.get(uiElements.size()-1)));
+
+                    addUIElement(new Text((Game.gameWorldWidth/2 - (5*25)),640 + 256 + 32 - (i * 128),bonuses[finalI],uiElements.get(0)));
+
+                    addUIElement(new Button(Game.gameWorldWidth - 120 - buttonLX, 640 + 256 - (i * 128), ButtonType.Box, uiElements.get(0), ()-> prgrs.spendPoint(bonuses[finalI])));
+                    addUIElement(new Sprite(8,8,"player0", uiElements.get(uiElements.size()-1)));
+                }
+
+                addUIElement(new Button(16,64,ButtonType.Large,uiElements.get(0),()-> transition(GameState.NewGameMenu)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
+
+                break;// TODO : clean this up
         }
     }
 
+    private static final NewGameMenu ng = NewGameMenu.getINSTANCE();
+
     public void addUIElement(IUIElement element){
         uiElements.add(element);
-        for (UIType type: element.getTypes()) {
-            switch (type){
-                case Parent:
-                    uiParents.add((IUIParentElement) element);
-                    break;
-                case Updatable:
-                    uiUpdatables.add((IUIUpdatable) element);
-                    break;
-            }
-        }
+        if (element instanceof IUIParentElement) uiParents.add((IUIParentElement) element);
+        if (element instanceof IUIUpdatable) uiUpdatables.add((IUIUpdatable) element);
     }
 
     private boolean openOnTransitionFinish = true;
@@ -248,6 +275,6 @@ public class UIManager {
     }
 
     public boolean isTransitioning(){
-        return transition.getStatus() == UIActionStatus.Transitioning || isTransitioning;
+        return transition.getStatus() != UIActionStatus.Transitioning && !isTransitioning;
     }
 }

@@ -19,23 +19,16 @@ public class NewGameMenu {
         return INSTANCE;
     }
 
-    private static final UIManager ui = UIManager.getINSTANCE();
     private static final LevelProgressionManager lvlMan = LevelProgressionManager.getINSTANCE();
 
     public void draw(){
-        // TODO: stage selection
-        // TODO: starting equipment selection
     }
 
     public void onTransition(){
-        InvisUIParent parent = new InvisUIParent();
-        ui.addUIElement(parent);
+        // TODO : class selection
+        // TODO : class unlocks
+        // TODO : mastery point screen
 
-        // TODO : seed picker
-        // TODO : custom buttons
-        for (int i = 0; i < 3; i++) {
-            ui.addUIElement(new Button(16, 1128 - (i * 152) - 16, ButtonType.Large,parent, ()->startNewGame(Game.getGeneralRandom().nextInt(999))));
-        }
     }
 
     public void startNewGame(long newSeed){

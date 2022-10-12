@@ -2,7 +2,6 @@ package com.mygdx.game.ui.elements.parents;
 
 import com.mygdx.game.Config;
 import com.mygdx.game.data.enums.UIActionStatus;
-import com.mygdx.game.data.enums.UIType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
@@ -35,11 +34,6 @@ public class UIBox implements IUIParentElement, IUIUpdatable, IUIElement {
     @Override
     public float getY() {
         return y;
-    }
-
-    @Override
-    public UIType[] getTypes() {
-        return new UIType[]{UIType.Updatable, UIType.Parent};
     }
 
     @Override
