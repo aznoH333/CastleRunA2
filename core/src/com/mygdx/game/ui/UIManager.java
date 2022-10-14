@@ -93,7 +93,7 @@ public class UIManager {
                 addUIElement(topHud);
                 addUIElement(new HudBar(16,32,"barStart0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
                 addUIElement(new HudBar(Game.gameWorldWidth/2 + 8, 32,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
-                addUIElement(new XpBar(16,64, topHud));
+                addUIElement(new XpBar(16, 0, topHud));
                 break;
             case StageMenu:
                 addUIElement(new BottomHud(-515f,-30f));
@@ -160,8 +160,6 @@ public class UIManager {
 
                 addUIElement(new Button(buttonLX,338, ButtonType.Large, uiElements.get(0), ()->ng.startNewGame(Game.getGeneralRandom().nextInt(999))));
                 addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
-
-                NewGameMenu.getINSTANCE().onTransition();
                 break;
             case MasteryScreen:
                 addUIElement(new InvisUIParent());

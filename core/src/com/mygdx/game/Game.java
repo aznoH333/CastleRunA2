@@ -73,9 +73,7 @@ public class Game {
         if (exitTime < 1)
             input.manageInput();
         switch (state){
-            case Game:
-                game();
-                break;
+            case Game: game();break;
             case StageMenu:
                 stageMenu();
                 break;
@@ -159,6 +157,7 @@ public class Game {
 
     private void newGameMenu(){
         newGameMenu.draw();
+        newGameMenu.update();
     }
 
     public static void exitLevel(int time){

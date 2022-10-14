@@ -146,4 +146,8 @@ public class InputManager {
                 break;
         }
     }
+
+    public boolean isInputHeld(){// TODO : touch input
+        return Gdx.input.isButtonPressed(Input.Buttons.LEFT);
+    }
 }

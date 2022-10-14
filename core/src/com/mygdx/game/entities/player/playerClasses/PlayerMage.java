@@ -10,7 +10,6 @@ public class PlayerMage extends PlayerKnight{
 
     public PlayerMage(float x, float y) {
         super(x, y);
-
     }
 
 

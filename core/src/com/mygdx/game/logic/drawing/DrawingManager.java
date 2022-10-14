@@ -104,11 +104,11 @@ public class DrawingManager {
             for (DrawingData data: layer) {
                 if (data.getType() == DrawingDataType.Sprite)
                     if (data.affectedByScreenShake())
-                        batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset * 3.5f, data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
+                        batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset * 3.5f, data.getTexture().getWidth()*pixelScale * data.getScale(), data.getTexture().getHeight()*pixelScale * data.getScale());
                     else
-                        batch.draw(data.getTexture(), data.getX(), data.getY(), data.getTexture().getWidth()*pixelScale, data.getTexture().getHeight()*pixelScale);
+                        batch.draw(data.getTexture(), data.getX(), data.getY(), data.getTexture().getWidth()*pixelScale * data.getScale(), data.getTexture().getHeight()*pixelScale * data.getScale());
                 else
-                    font.draw(batch, data.getText(), data.getX(), data.getY());
+                    font.draw(batch, data.getText(), data.getX(), data.getY()); // TODO : different font sizes
 
             }
             layer.clear();
@@ -117,14 +117,17 @@ public class DrawingManager {
         batch.end();
     }
 
-    public void drawText(String text, float x, float y, int zIndex){
+    public void drawText(String text, float x, float y, int zIndex, float scale){
         if (!drawQueue.containsKey(zIndex))
             drawQueue.put(zIndex, new ArrayList<>());
-        drawQueue.get(zIndex).add(new TextData(text, x/4*pixelScale, y/4*pixelScale));
+        drawQueue.get(zIndex).add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale));
     }
 
     public void drawText(String text, float x, float y){
-        drawText(text, x, y, 5);
+        drawText(text, x, y, 5, 1f);
+    }
+    public void drawText(String text, float x, float y, int zIndex) {
+        drawText(text, x, y, zIndex, 1f);
     }
 
     // draws sprite with the default sprite index
@@ -139,17 +142,19 @@ public class DrawingManager {
     public void drawGame(String textureName, float x, float y, int zIndex){
         draw(textureName, x, y, (byte) zIndex, true);
     }
-
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
+        draw(textureName, x, y, zIndex, affectedByScreenShake, 1);
+    }
+
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
         if (textureName != null){
             Texture text = sprs.get(textureName);
 
             if (!drawQueue.containsKey(zIndex))
                 drawQueue.put(zIndex, new ArrayList<>());
-            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale, affectedByScreenShake));
+            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale));
         }
-
     }
 
     public void draw(String textureName, float x, float y, int zIndex){

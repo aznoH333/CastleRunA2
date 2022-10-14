@@ -10,4 +10,5 @@ public interface DrawingData {
     String getText();
     DrawingDataType getType();
     boolean affectedByScreenShake();
+    float getScale();
 }

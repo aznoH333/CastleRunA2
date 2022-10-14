@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.player;
 
+import com.mygdx.game.data.PlayerClass;
 import com.mygdx.game.ui.UIManager;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class ProgressManager {
     }
 
     private final HashMap<String, Integer> bonuses = new HashMap<>();
-    private final HashMap<String, Boolean> classes = new HashMap<>();
+    private final HashMap<PlayerClass, Boolean> classes = new HashMap<>();
     private int totalMasteryPoints = 0;
     private int availableMasteryPoints = 0;
     private final static int maxPoints = 40;
@@ -32,11 +33,11 @@ public class ProgressManager {
         bonuses.put("Critical chance", 0);
 
 
-        classes.put("knight", true);
-        classes.put("mage", false);
-        classes.put("midas", false);
-        classes.put("summoner", false);
-        classes.put("haunted knight", false);
+        classes.put(PlayerClass.Knight, true);
+        classes.put(PlayerClass.Mage, true);
+        classes.put(PlayerClass.Midas, false);
+        classes.put(PlayerClass.Summoner, false);
+        classes.put(PlayerClass.Haunted, false);
     }
 
     public float getBonus(String bonusName){
@@ -88,11 +89,15 @@ public class ProgressManager {
         }
     }
 
-    public void unlockClass(String className){
+    public void unlockClass(PlayerClass className){
         if (level >= 10){
             level -= 10;
             classes.put(className, true);
         }
+    }
+
+    public HashMap<PlayerClass, Boolean> getClasses() {
+        return classes;
     }
 
     public int getXp(){

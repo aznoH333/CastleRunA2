@@ -7,12 +7,14 @@ public class TextData implements DrawingData{
     private final float x;
     private final float y;
     private final String text;
+    private final float scale;
 
 
-    public TextData(String text, float x, float y){
+    public TextData(String text, float x, float y, float scale){
         this.text = text;
         this.x = x;
         this.y = y;
+        this.scale = scale;
     }
 
     @Override
@@ -43,5 +45,10 @@ public class TextData implements DrawingData{
     @Override
     public boolean affectedByScreenShake() {
         return false;
+    }
+
+    @Override
+    public float getScale() {
+        return scale;
     }
 }
