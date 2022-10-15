@@ -159,7 +159,7 @@ public class UIManager {
                 addUIElement(new Text((Game.gameWorldWidth/2 - (5*25)),80,"Points",uiElements.get(uiElements.size()-1)));
 
                 addUIElement(new Button(buttonLX,338, ButtonType.Large, uiElements.get(0), ng.buttonOperation()));
-                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
+                addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon0", uiElements.get(uiElements.size()-1)));
                 break;
             case MasteryScreen:
                 addUIElement(new InvisUIParent());

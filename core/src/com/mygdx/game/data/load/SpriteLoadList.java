@@ -10,7 +10,7 @@ public class SpriteLoadList {
 
         //player
         spr.loadSprites("entities/player/knight/player_knight_","player",4);
-        spr.loadSprites("entities/player/mage/player_mage_","mage",4);
+        spr.loadSprites("entities/player/hunter/player_hunter_","hunter",4);
         spr.loadSprites("entities/player/midas/player_midas_","midas",4);
 
         //weapons
@@ -98,12 +98,8 @@ public class SpriteLoadList {
 
         //spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_part_", "button", 5);
-        spr.loadSprites("ui/buttons/button_large_", "button_large", 1);
-        spr.loadSprites("ui/buttons/shop_card_", "item_card", 1);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
         spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
-        spr.loadSprites("ui/icons/shop/item_mini_icon_", "item_mini_icon",3);
-        spr.loadSprites("ui/icons/shop/card_item_backdrop_", "item_backdrop",0);
 
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);

@@ -9,7 +9,7 @@ public enum PlayerClass {
     // summoner : starts with orb | -1hp -1energy
 
     Knight("playerKnight", 3, 1, "Sword", "player"),
-    Mage("playerMage", 2, 2, "Small daggers", "mage" ),
+    Hunter("playerHunter", 2, 2, "Small daggers", "hunter" ),
     Midas("playerMidas", 4, 0, "Sword", "slime"), // TODO
     Summoner("playerSummoner", 2, 0, "Sword", "slime"), // TODO
     Haunted("playerHaunted", 5, 3, "Sword", "slime"); // TODO

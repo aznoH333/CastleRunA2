@@ -38,7 +38,7 @@ public class Shop {
         for (int i = 0; i < shopStock.getLength(); i++){
             ShopItem shp = shopStock.getItem(i);
             Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent, shp::buyItem);
-            Sprite box = new Sprite(16, 70, "item_backdrop0", btn);
+            Sprite box = new Sprite(16, 70, "player0", btn); // TODO : make shops look acceptable
             ui.addUIElement(btn);
             ui.addUIElement(box);
             ui.addUIElement(new Sprite(8,8, shp.getSprite(), box));
