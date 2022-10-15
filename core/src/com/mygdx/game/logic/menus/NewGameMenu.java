@@ -33,12 +33,12 @@ public class NewGameMenu {
 
     public void draw(){
         for (int i = 0; i < classes.length; i++){
-            // TODO : locked class sprite
+
 
             double rotationValue = (i * ((Math.PI * 2) / classes.length)) + rotation + tempRotation;
-
+            boolean isUnlocked = prgrs.getClasses().get(classes[i]);
             spr.draw(
-                    (prgrs.getClasses().get(classes[i]) ? classes[i].sprite : "slime") + ((i == selectedClass && Game.Time() % 40 > 20) ? "2" : "0"),
+                    (isUnlocked ? classes[i].sprite : "locked_char") + ((i == selectedClass && Game.Time() % 40 > 20 && isUnlocked) ? "2" : "0"),
                     Game.gameWorldWidth/2 - ((2.3f-(float) (Math.cos(rotationValue)))*32) + (float)(Math.sin(rotationValue) * (Game.gameWorldWidth/2 - 128)),
                     600 + (float)(Math.cos(rotationValue) * circleHeight),
                     (Math.cos(rotationValue) < 0.10) ? 5 : 4,

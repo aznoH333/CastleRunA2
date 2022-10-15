@@ -96,17 +96,20 @@ public class SpriteLoadList {
         spr.loadSprites("ui/ui_elements/message_box/message_box_","msgBox", 2);
         spr.loadSprites("ui/ui_elements/levelBar/levelBar_","lvlBar", 6);
 
+
         //spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_part_", "button", 5);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
         spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
+        spr.loadSprites("ui/icons/locked_character_","locked_char", 0);
+
 
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 2);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);
         spr.loadSprites("ui/ui_elements/transition_", "transition", 0);
 
         //map ui
-        spr.loadSprites("ui/map/mapPointer/map_tiles_", "map_tile", 2);
+        spr.loadSprites("ui/map/mapPointer/map_tiles_", "map_tile", 3);
 
 
         //particles

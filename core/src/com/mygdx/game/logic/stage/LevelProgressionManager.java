@@ -149,15 +149,17 @@ public class LevelProgressionManager {
         for (int i = 0; i < lastLevel; i++){
             if (levelDrawingOffset < (currentLevelIndex-2) * 128 && UIManager.getINSTANCE().isTransitioning()) levelDrawingOffset+=0.1f;
 
-            if ((i+1) % 5 == 0)
+            if (i == 0)
+                spr.draw("map_tile3", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset - 128, 512, 2);
+            else if ((i+1) % 5 == 0)
                 spr.draw("map_tile1", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 128, 512, 2);
             else
                 spr.draw("map_tile0", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 128, 512, 2);
             spr.draw("map_tile2", ((Game.gameWorldWidth / 2) - 32) - levelDrawingOffset + i * 128 - 64, 512, 2);
             if (Game.Time() % 20 >= 10 || levelDrawingOffset+1 > (currentLevelIndex-2) * 128)
-                spr.draw("player0", ((Game.gameWorldWidth / 2) - 32), 600, 2);
+                spr.draw(ps.getPlayerClass().sprite + "0", ((Game.gameWorldWidth / 2) - 64), 600, 2, false, 2);
             else
-                spr.draw("player2", ((Game.gameWorldWidth / 2) - 32), 600, 2);
+                spr.draw(ps.getPlayerClass().sprite + "2", ((Game.gameWorldWidth / 2) - 64), 600, 2, false, 2);
 
         }
     }
