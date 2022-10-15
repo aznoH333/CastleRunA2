@@ -158,7 +158,7 @@ public class UIManager {
                 addUIElement(new Button(buttonLX,198,ButtonType.Large,uiElements.get(0),()->transition(GameState.MasteryScreen)));
                 addUIElement(new Text((Game.gameWorldWidth/2 - (5*25)),80,"Points",uiElements.get(uiElements.size()-1)));
 
-                addUIElement(new Button(buttonLX,338, ButtonType.Large, uiElements.get(0), ()->ng.startNewGame(Game.getGeneralRandom().nextInt(999))));
+                addUIElement(new Button(buttonLX,338, ButtonType.Large, uiElements.get(0), ng.buttonOperation()));
                 addUIElement(new Sprite((Game.gameWorldWidth/2 - 64), yIconOffset,"icon1", uiElements.get(uiElements.size()-1)));
                 break;
             case MasteryScreen:

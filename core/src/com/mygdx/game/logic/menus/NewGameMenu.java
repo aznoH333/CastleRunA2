@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.menus;
 
 import com.mygdx.game.Game;
+import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.PlayerClass;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -38,10 +39,10 @@ public class NewGameMenu {
 
             // TODO : running animation for currently selected class
             spr.draw(
-                    (prgrs.getClasses().get(classes[i]) ? classes[i].sprite : "slime") + ((i == selectedClass && Game.Time() % 40 > -1) ? "2" : "0"),
+                    (prgrs.getClasses().get(classes[i]) ? classes[i].sprite : "slime") + ((i == selectedClass && Game.Time() % 40 > 20) ? "2" : "0"),
                     Game.gameWorldWidth/2 - 64 + (float)(Math.sin(rotationValue) * (Game.gameWorldWidth/2 - 128)),
                     600 + (float)(Math.cos(rotationValue) * circleHeight),
-                    (Math.cos(rotationValue) < 0.35) ? 5 : 4,
+                    (Math.cos(rotationValue) < 0.10) ? 5 : 4,
                     true,
                     2.3f-(float) (Math.cos(rotationValue)));
         }
@@ -51,8 +52,9 @@ public class NewGameMenu {
     private float holdPos = 0;
     private float tempRotation;
     public void update(){
-        selectedClass = classes.length - 1 - ((int)Math.round(rotation*0.8) % classes.length);
-        spr.drawText(String.valueOf(rotation), 200, 800, 3);
+        selectedClass = (classes.length - 1 - (((int)Math.round((rotation + tempRotation)*0.8 + 1.5)) % classes.length)) % classes.length;
+        spr.drawText(classes[selectedClass].name(), 200, 800, 3);
+        //spr.drawText(String.valueOf(selectedClass), 200, 800, 3);
         rotation %= Math.PI * 2;
         if (input.getMouseY() > 500 && input.getMouseY() < 700){
             if (!isHold && input.isInputHeld()){
@@ -69,18 +71,22 @@ public class NewGameMenu {
             }
         }
     }
-    // TODO : class selection
-    // TODO : class unlocks
 
     public void startNewGame(long newSeed){
         EntityManager.getINSTANCE().clear();
         ItemManager.getINSTANCE().clearItems();
         Game.getSeededRandom().setSeed(newSeed);
+        PlayerStats.getINSTANCE().setPlayerClass(classes[selectedClass]);
         InventoryManager.getINSTANCE().resetState();
         PlayerStats.getINSTANCE().resetStats();
         lvlMan.resetProgress();
         lvlMan.progressLevel();
         lvlMan.startLevel();
         UIManager.getINSTANCE().transition(GameState.Game);
+    }
+
+    public ILambdaFunction buttonOperation(){
+        if (prgrs.getClasses().get(classes[selectedClass])) return ()-> startNewGame(Game.getGeneralRandom().nextInt(999));
+        else                                                return ()-> prgrs.unlockClass(classes[selectedClass]);
     }
 }
