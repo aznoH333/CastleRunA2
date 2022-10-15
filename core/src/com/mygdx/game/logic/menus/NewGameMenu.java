@@ -26,7 +26,7 @@ public class NewGameMenu {
     private static final DrawingManager spr = DrawingManager.getINSTANCE();
     private static final ProgressManager prgrs = ProgressManager.getINSTANCE();
     private static final InputManager input = InputManager.getINSTANCE();
-    private PlayerClass[] classes = PlayerClass.values();
+    private final PlayerClass[] classes = PlayerClass.values();
     private int selectedClass = 0;
     private float rotation = 180;
     private static final int circleHeight = 50;
