@@ -28,7 +28,7 @@ public class NewGameMenu {
     private static final InputManager input = InputManager.getINSTANCE();
     private final PlayerClass[] classes = PlayerClass.values();
     private int selectedClass = 0;
-    private float rotation = 180;
+    private float rotation = (float) Math.PI;
     private static final int circleHeight = 50;
 
     public void draw(){
@@ -37,10 +37,9 @@ public class NewGameMenu {
 
             double rotationValue = (i * ((Math.PI * 2) / classes.length)) + rotation + tempRotation;
 
-            // TODO : running animation for currently selected class
             spr.draw(
                     (prgrs.getClasses().get(classes[i]) ? classes[i].sprite : "slime") + ((i == selectedClass && Game.Time() % 40 > 20) ? "2" : "0"),
-                    Game.gameWorldWidth/2 - 64 + (float)(Math.sin(rotationValue) * (Game.gameWorldWidth/2 - 128)),
+                    Game.gameWorldWidth/2 - ((2.3f-(float) (Math.cos(rotationValue)))*32) + (float)(Math.sin(rotationValue) * (Game.gameWorldWidth/2 - 128)),
                     600 + (float)(Math.cos(rotationValue) * circleHeight),
                     (Math.cos(rotationValue) < 0.10) ? 5 : 4,
                     true,
@@ -52,10 +51,16 @@ public class NewGameMenu {
     private float holdPos = 0;
     private float tempRotation;
     public void update(){
-        selectedClass = (classes.length - 1 - (((int)Math.round((rotation + tempRotation)*0.8 + 1.5)) % classes.length)) % classes.length;
-        spr.drawText(classes[selectedClass].name(), 200, 800, 3);
-        //spr.drawText(String.valueOf(selectedClass), 200, 800, 3);
+
         rotation %= Math.PI * 2;
+        if (rotation < 0) rotation = (float) (Math.PI * 2) + rotation;
+
+        selectedClass = (classes.length - (int)Math.round(
+                (((rotation - Math.PI) % (Math.PI*2)) / (Math.PI * 2)) * (classes.length - 1)
+        )) % classes.length;
+
+        spr.drawText(classes[selectedClass].name(), 200, 800, 3);
+
         if (input.getMouseY() > 500 && input.getMouseY() < 700){
             if (!isHold && input.isInputHeld()){
                 holdPos = input.getMouseX();
@@ -66,9 +71,16 @@ public class NewGameMenu {
                 rotation += tempRotation;
                 tempRotation = 0;
             }
-            if (isHold){
+            if (isHold)
                 tempRotation = ((holdPos - input.getMouseX())/ (Game.gameWorldWidth/2));
-            }
+        }
+
+        if (!isHold){
+            // snap to selected class
+            double desiredPos = (((1-((float) selectedClass / classes.length)) + 0.5) % 1) * Math.PI * 2;
+            if (rotation < desiredPos - 0.1) rotation+=0.03;
+            else if (rotation > desiredPos + 0.1) rotation-=0.03;
+            else rotation = (float) desiredPos;
         }
     }
 
