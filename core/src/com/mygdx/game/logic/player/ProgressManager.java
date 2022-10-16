@@ -35,7 +35,7 @@ public class ProgressManager {
 
         classes.put(PlayerClass.Knight, true);
         classes.put(PlayerClass.Hunter, true);
-        classes.put(PlayerClass.Midas, false);
+        classes.put(PlayerClass.Midas, true);
         classes.put(PlayerClass.Summoner, false);
         classes.put(PlayerClass.Haunted, false);
     }

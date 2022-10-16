@@ -1,5 +1,8 @@
 package com.mygdx.game.entities.player.Projectiles;
 
+import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -8,8 +11,9 @@ import java.util.Random;
 
 public class ChargedDagger extends Dagger {
     private float yM = 2;
-    private int particleTimer = 0;
-    private static final int particleTimerMax = 4;
+    private final FollowerObject follower = new FollowerObject(0,1, ColorType.Opacity50);
+    private final FollowerObject follower2 = new FollowerObject(0,2, ColorType.Opacity25);
+
 
     public ChargedDagger(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp);
@@ -31,15 +35,16 @@ public class ChargedDagger extends Dagger {
             //detect ground collision
             if (lvlY - lvl.getTileScale() > y - ySize) destroy();
         }
-
-        //particles
-        if(particleTimer == 0){
-            particleTimer = particleTimerMax;
-            ParticleManager.getINSTANCE().addParticle("sparkle",x,y,0,-0.5f,0);
-        }else particleTimer--;
-
     }
 
+    @Override
+    public void draw(DrawingManager spr) {
+        super.draw(spr);
+        follower.addCoordinate(x, y, "dagger1");
+        follower2.addCoordinate(x, y, "dagger1");
+        follower.draw();
+        follower2.draw();
+    }
 
     @Override
     public Entity getCopy(float x, float y) {

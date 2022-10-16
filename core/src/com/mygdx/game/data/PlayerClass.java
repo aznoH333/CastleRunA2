@@ -10,7 +10,7 @@ public enum PlayerClass {
 
     Knight("playerKnight", 3, 1, "Sword", "player"),
     Hunter("playerHunter", 2, 2, "Small daggers", "hunter" ),
-    Midas("playerMidas", 4, 0, "Sword", "slime"), // TODO
+    Midas("playerKnight", 4, 99, "Cross", "slime"), // TODO
     Summoner("playerSummoner", 2, 0, "Sword", "slime"), // TODO
     Haunted("playerHaunted", 5, 3, "Sword", "slime"); // TODO
 

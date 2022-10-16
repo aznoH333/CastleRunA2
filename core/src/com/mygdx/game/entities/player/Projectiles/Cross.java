@@ -2,6 +2,8 @@ package com.mygdx.game.entities.player.Projectiles;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
@@ -16,6 +18,9 @@ public class Cross extends Projectile {
     private float xM = 10f;
     private int thrownTimer = 32;
     private final static float returnForce = 0.25f;
+    private final FollowerObject follower1 = new FollowerObject(1, 1, ColorType.Opacity75);
+    private final FollowerObject follower2 = new FollowerObject(1, 2, ColorType.Opacity50);
+    private final FollowerObject follower3 = new FollowerObject(1, 3, ColorType.Opacity25);
     public Cross(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,24);
     }
@@ -36,7 +41,15 @@ public class Cross extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("cross" + (animationIndex+1),x-16,y,2);
+
+        String sprite = "cross" + (animationIndex+1);
+        spr.drawGame(sprite,x-16,y,2);
+        follower1.addCoordinate(x - 16, y ,sprite);
+        follower2.addCoordinate(x - 16, y ,sprite);
+        follower3.addCoordinate(x - 16, y ,sprite);
+        follower1.draw();
+        follower2.draw();
+        follower3.draw();
     }
 
     @Override
