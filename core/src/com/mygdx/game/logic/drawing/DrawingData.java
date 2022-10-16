@@ -11,4 +11,5 @@ public interface DrawingData {
     DrawingDataType getType();
     boolean affectedByScreenShake();
     float getScale();
+    ColorType getColor();
 }

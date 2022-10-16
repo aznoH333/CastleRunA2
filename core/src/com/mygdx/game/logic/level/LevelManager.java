@@ -184,7 +184,7 @@ public class LevelManager {
     public int getTrapOffset(){
         return trapOffset++;
     }
-
+    private float advanceBy = 0;
     public void update() {
         // camera fail safe
         if (distance % tileScale > 0 && advanceDistance == distance){
@@ -195,7 +195,7 @@ public class LevelManager {
 
         //advance
         if (advanceDistance > distance) {
-            float advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
+            advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
             e.shiftAllEntities(advanceBy);
             part.shiftPartsBy(advanceBy);
 
@@ -288,6 +288,11 @@ public class LevelManager {
 
     public float getAlignedX(float currentX){
         return ((int) currentX >> 6) * tileScale - (distance % tileScale);
+    }
+    // kinda jank
+    public float getAdvanceBy(){
+        if (advanceDistance > distance) return advanceBy;
+        else return 0;
     }
 
     public void loadLevel(Level lvl) {

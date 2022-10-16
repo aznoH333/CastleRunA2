@@ -1,6 +1,8 @@
 package com.mygdx.game.entities.player.playerClasses;
 
 import com.mygdx.game.Game;
+import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.Controls;
@@ -41,6 +43,8 @@ public class PlayerKnight extends Entity {
     private final SoundManager s = SoundManager.getINSTANCE();
     private final ParticleManager particleManager = ParticleManager.getINSTANCE();
     private int energyRecharge = getEnergyRechargeTime();
+    protected boolean longJumping = false;
+
 
 
 
@@ -61,6 +65,7 @@ public class PlayerKnight extends Entity {
         if (landed) {
             yM = 0;
             y = lvlY;
+            longJumping = false;
         } else {
             yM -= gravity;
         }
@@ -78,6 +83,7 @@ public class PlayerKnight extends Entity {
                 yM = jumpStrength;
                 moveTo = x + lvl.getTileScale() * 2;
                 s.playSound("jump");
+                longJumping = true;
             }
             if (moveTo > lvl.getLevelLength() - lvl.getDistance() + (lvl.getMapWidth()-2) * lvl.getTileScale()) moveTo = (lvl.getMapWidth()-2) * lvl.getTileScale();
         }
@@ -185,6 +191,10 @@ public class PlayerKnight extends Entity {
         }
     }
 
+
+    private final FollowerObject test = new FollowerObject(0, 2, ColorType.Opacity75);
+    private final FollowerObject test2 = new FollowerObject(0, 4, ColorType.Opacity50);
+    private final FollowerObject test3 = new FollowerObject(0, 6, ColorType.Opacity25);
     @Override
     public void draw(DrawingManager spr) {
         // player rendering
@@ -200,8 +210,15 @@ public class PlayerKnight extends Entity {
             else
                 spr.drawGame("player0", x, y,2);
 
+        if (longJumping){
+            test.addCoordinate(x,y,"player2");
+            test2.addCoordinate(x,y,"player2");
+            test3.addCoordinate(x,y,"player2");
+        }
 
-
+        test.draw();
+        test2.draw();
+        test3.draw();
 
     }
 

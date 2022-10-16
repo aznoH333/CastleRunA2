@@ -36,6 +36,7 @@ public class DrawingManager {
     private int screenShake = 0;
     private float screenShakeOffset = 0f;
     private static final int maximumScreenShake = 40;
+    private ColorType color = ColorType.Normal;
 
     public DrawingManager(){
         sprs = new HashMap<>();
@@ -88,7 +89,6 @@ public class DrawingManager {
      */
 
     public void render(){
-        // TODO : somehow do ui scaling
         // screen scaling
 
         // screen shake update
@@ -100,8 +100,13 @@ public class DrawingManager {
         }
 
         batch.begin();
+
         for (ArrayList<DrawingData> layer : drawQueue.values()) {
             for (DrawingData data: layer) {
+                if (data.getColor() != color){
+                    color = data.getColor();
+                    batch.setColor(color.r, color.g, color.b, color.a);
+                }
                 if (data.getType() == DrawingDataType.Sprite)
                     if (data.affectedByScreenShake())
                         batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset * 3.5f, data.getTexture().getWidth()*pixelScale * data.getScale(), data.getTexture().getHeight()*pixelScale * data.getScale());
@@ -144,16 +149,19 @@ public class DrawingManager {
     }
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, 1);
+        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, ColorType.Normal);
     }
 
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
+        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, ColorType.Normal);
+    }
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color){
         if (textureName != null){
             Texture text = sprs.get(textureName);
 
             if (!drawQueue.containsKey(zIndex))
                 drawQueue.put(zIndex, new ArrayList<>());
-            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale));
+            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color));
         }
     }
 

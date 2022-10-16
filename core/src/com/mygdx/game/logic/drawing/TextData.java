@@ -51,4 +51,9 @@ public class TextData implements DrawingData{
     public float getScale() {
         return scale;
     }
+
+    @Override
+    public ColorType getColor() {
+        return ColorType.Normal;
+    }
 }
