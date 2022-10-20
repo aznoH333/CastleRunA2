@@ -76,10 +76,19 @@ public class EntityManager {
         entitySpawnQueue.add(ent);
     }
 
-    // spawns a new entity at x y
+
+
+    /**
+     * @deprecated
+     * spawns a new entity at x y
+     * use add entity instead
+     * */
     public void spawnEntity(String name,float x, float y){
         addEntity(EntityFactory.getInstance().getByName(name,x,y));
     }
+    /**
+     * @deprecated
+     * */
     public void spawnEntity(String name,float x, float y, int specialParam){
         addEntity(EntityFactory.getInstance().getByName(name,x,y, specialParam));
     }

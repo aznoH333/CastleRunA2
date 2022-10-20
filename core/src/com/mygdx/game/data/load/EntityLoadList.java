@@ -13,12 +13,23 @@ import com.mygdx.game.entities.enemies.slimes.RedSlime;
 import com.mygdx.game.entities.enemies.slimes.Slime;
 import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
+import com.mygdx.game.entities.player.Projectiles.axe.Axe;
+import com.mygdx.game.entities.player.Projectiles.axe.ChargedAxe;
+import com.mygdx.game.entities.player.Projectiles.cross.ChargedCross;
+import com.mygdx.game.entities.player.Projectiles.cross.Cross;
+import com.mygdx.game.entities.player.Projectiles.dagger.ChargedDagger;
+import com.mygdx.game.entities.player.Projectiles.dagger.Dagger;
+import com.mygdx.game.entities.player.Projectiles.fireball.FireBallProjectile;
+import com.mygdx.game.entities.player.Projectiles.fireball.Meteorite;
+import com.mygdx.game.entities.player.Projectiles.sword.ChargedSwordSwipe;
+import com.mygdx.game.entities.player.Projectiles.sword.SwordSwipe;
 import com.mygdx.game.entities.player.itemEntities.Explosion;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.entities.player.itemEntities.MicroBomb;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
 import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.entities.player.playerClasses.PlayerHunter;
+import com.mygdx.game.entities.player.playerClasses.PlayerMidas;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 
 import java.util.HashMap;
@@ -53,16 +64,16 @@ public class EntityLoadList {
 
 
         //add projectiles
-        entities.put("sword swipe", new SwordSwipe(0,0,48,64, 1));
-        entities.put("charged sword swipe", new ChargedSwordSwipe(0,0,48,64, 1));
+        entities.put("sword swipe", new SwordSwipe(0,0));
+        entities.put("charged sword swipe", new ChargedSwordSwipe(0,0));
         entities.put("dagger", new Dagger(0,0,48,32, 1));
         entities.put("charged dagger", new ChargedDagger(0,0,48,32, 1));
         entities.put("throwing axe", new Axe(0,0,48,32, 1));
         entities.put("charged throwing axe", new ChargedAxe(0,0,48,32, 1));
-        entities.put("cross", new Cross(0,0,48,48,1));
-        entities.put("charged cross", new ChargedCross(0,0,48,48,1));
+        entities.put("cross", new Cross(0,0));
+        entities.put("charged cross", new ChargedCross(0,0));
         entities.put("orb attack", new OrbAttack(0,0,16,16,1));
-        entities.put("fireball", new FireBall(0, 0));
+        entities.put("fireball", new FireBallProjectile(0, 0));
         entities.put("meteor", new Meteorite(0,0));
         entities.put("explosion", new Explosion(0,0));
         entities.put("bubble", new BubbleProjectile(0,0));
@@ -73,7 +84,7 @@ public class EntityLoadList {
         // FIXME normalize naming conventions
         // pickups
         entities.put("energy pickup", new EnergyPickup(0,0,32,32,1));
-        entities.put("coin pickup", new Coin(0,0,32,32,1));
+        entities.put("coin pickup", new Coin(0,0));
         entities.put("picked coin", new PickedCoin(0,0,32,32,1));
         entities.put("health potion", new HealthPotion(0,0,48,48,1));
 
@@ -93,6 +104,7 @@ public class EntityLoadList {
         // players
         entities.put("playerKnight", new PlayerKnight(0,0));
         entities.put("playerHunter", new PlayerHunter(0,0));
+        entities.put("playerMidas", new PlayerMidas(0,0));
 
         //return
         return entities;

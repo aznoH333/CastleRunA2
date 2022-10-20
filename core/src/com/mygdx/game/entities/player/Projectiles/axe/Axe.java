@@ -1,7 +1,9 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.axe;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
@@ -16,6 +18,10 @@ public class Axe extends Projectile {
     private static final float xM = 6f;
     private float yM = 10f;
     protected static final float gravity = 0.5f;
+    private final FollowerObject[] followers = {
+            new FollowerObject(1, 2, ColorType.Opacity50),
+            new FollowerObject(1, 4, ColorType.Opacity25)
+    };
 
     public Axe(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.PlayerProjectiles, pierceTimerMax);
@@ -32,21 +38,13 @@ public class Axe extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        switch ((byte) ((Game.Time()>>2) % 4)){
-            case 0:
-            default:
-                spr.drawGame("axe0",x,y,1);
-                break;
-            case 1:
-                spr.drawGame("axe1",x,y,1);
-                break;
-            case 2:
-                spr.drawGame("axe2",x,y,1);
-                break;
-            case 3:
-                spr.drawGame("axe3",x,y,1);
-                break;
+        String sprite = "axe" + ((Game.Time()>>2) % 4);
+        spr.draw(sprite, x, y, 1);
+        for (FollowerObject f: followers) {
+            f.addCoordinate(x, y , sprite);
+            f.draw();
         }
+
     }
 
     @Override

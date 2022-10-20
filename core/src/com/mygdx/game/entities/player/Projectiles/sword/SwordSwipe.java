@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.sword;
 
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -13,8 +13,8 @@ public class SwordSwipe extends Projectile {
 
     protected int lifeTime = 12;
     protected boolean hurts = true;
-    public SwordSwipe(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,1);
+    public SwordSwipe(float x, float y) {
+        super(x, y, 48, 64, 1, Team.PlayerProjectiles,1);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SwordSwipe extends Projectile {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new SwordSwipe(x,y,64,64,1);
+        return new SwordSwipe(x,y);
     }
 
     @Override

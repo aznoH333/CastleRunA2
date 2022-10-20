@@ -1,7 +1,8 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.fireball;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.entities.player.itemEntities.Explosion;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
@@ -32,7 +33,7 @@ public class Meteorite extends Projectile {
     public void onDestroy() {
         // TODO : sound
         // TODO : screenshake
-        ent.spawnEntity("explosion",x - 32,y - 48);
+        ent.addEntity(new Explosion(x - 32, y - 48));
         DrawingManager.getINSTANCE().addScreenShake(16);
     }
 

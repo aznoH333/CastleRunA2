@@ -23,7 +23,7 @@ public class FollowerObject {
     }
 
     public void addCoordinate(float x, float y, String sprite){
-        coordinates.addLast(new FollowerObjectData(x, y, sprite, Game.Time()));
+        coordinates.addLast(new FollowerObjectData(x, y, sprite, Game.Time() - 1));
     }
 
     public void draw(){
@@ -32,7 +32,9 @@ public class FollowerObject {
             if (temp.getCreationTime() + timeDelay < Game.Time()){
                 spr.draw(temp.getSprite(), temp.getX(), temp.getY(), zIndex, true,1, color);
                 coordinates.removeFirst();
+
             }
+
 
             for (FollowerObjectData f: coordinates) {
                 f.shiftX(lvl.getAdvanceBy()); // TODO : this is shit, but i am lazy rn.

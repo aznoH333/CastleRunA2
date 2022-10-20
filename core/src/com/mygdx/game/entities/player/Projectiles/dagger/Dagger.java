@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.dagger;
 
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;

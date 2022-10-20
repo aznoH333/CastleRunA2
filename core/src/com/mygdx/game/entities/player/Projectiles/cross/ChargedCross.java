@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.cross;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
@@ -6,7 +6,6 @@ import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -34,15 +33,15 @@ public class ChargedCross extends Projectile {
 
 
 
-    public ChargedCross(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,32);
+    public ChargedCross(float x, float y) {
+        super(x, y,48,48,1,Team.PlayerProjectiles,32);
         startPositionX = x - 32;
         startPositionY = y + 32;
         offset = 0;
     }
 
-    public ChargedCross(float x, float y, float xSize, float ySize, int hp, int param){
-        super(x,y,xSize,ySize,hp, Team.PlayerProjectiles,32);
+    public ChargedCross(float x, float y, int param){
+        super(x,y,48,48,1, Team.PlayerProjectiles,32);
         startPositionX = x + 32;
         startPositionY = y + 32;
         offset = param*15;
@@ -88,12 +87,12 @@ public class ChargedCross extends Projectile {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new ChargedCross(x,y,xSize,ySize,hp);
+        return new ChargedCross(x,y);
     }
 
     @Override
     public Entity getCopy(float x, float y, int specialParam) {
-        return new ChargedCross(x,y,xSize,ySize,hp,specialParam);
+        return new ChargedCross(x,y, specialParam);
     }
 
 

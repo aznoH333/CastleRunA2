@@ -18,8 +18,8 @@ public class Coin extends Pickup{
     private static final int animationLength = 4;
     private static final ParticleManager part = ParticleManager.getINSTANCE();
 
-    public Coin(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp);
+    public Coin(float x, float y) {
+        super(x, y, 32,32,1);
         animationOffset = (byte) (Math.random() * animationLength);
     }
 
@@ -50,7 +50,7 @@ public class Coin extends Pickup{
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new Coin(x,y,xSize,ySize,hp);
+        return new Coin(x,y);
     }
 
     @Override

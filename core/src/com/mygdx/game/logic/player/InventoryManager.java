@@ -45,6 +45,7 @@ public class InventoryManager {
         addWeapon("Bubble", new Bubble());
         addWeapon("Bomb", new Bomb());
         addWeapon("Rocks", new Rocks());
+        addWeapon("Midas Sword", new MidasSword());
 
     }
 

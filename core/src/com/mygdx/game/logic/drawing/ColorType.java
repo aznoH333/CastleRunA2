@@ -4,7 +4,8 @@ public enum ColorType {
     Normal(1,1,1,1),
     Opacity25(1,1,1,0.25f),
     Opacity50(1,1,1,0.5f),
-    Opacity75(1,1,1,0.75f);
+    Opacity75(1,1,1,0.75f),
+    GoldTint(1f,1f,0.5f, 1);
 
     public final float r;
     public final float g;

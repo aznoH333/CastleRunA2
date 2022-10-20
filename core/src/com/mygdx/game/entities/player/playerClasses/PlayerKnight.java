@@ -98,6 +98,7 @@ public class PlayerKnight extends Entity {
                 yM = jumpStrength;
                 moveTo = x - lvl.getTileScale() * 2;
                 s.playSound("jump");
+                longJumping = true;
             }
             //prevent player moving out off bounds
             if (moveTo < 0) moveTo = 0;
@@ -191,10 +192,11 @@ public class PlayerKnight extends Entity {
         }
     }
 
-
-    private final FollowerObject test = new FollowerObject(0, 2, ColorType.Opacity75);
-    private final FollowerObject test2 = new FollowerObject(0, 4, ColorType.Opacity50);
-    private final FollowerObject test3 = new FollowerObject(0, 6, ColorType.Opacity25);
+    protected final FollowerObject[] followers = {
+            new FollowerObject(0, 2, ColorType.Opacity75),
+            new FollowerObject(0, 4, ColorType.Opacity50),
+            new FollowerObject(0, 6, ColorType.Opacity25)
+    };
     @Override
     public void draw(DrawingManager spr) {
         // player rendering
@@ -210,16 +212,10 @@ public class PlayerKnight extends Entity {
             else
                 spr.drawGame("player0", x, y,2);
 
-        if (longJumping){
-            test.addCoordinate(x,y,"player2");
-            test2.addCoordinate(x,y,"player2");
-            test3.addCoordinate(x,y,"player2");
+        for (FollowerObject f: followers) {
+            if (longJumping) f.addCoordinate(x, y, "player2");
+            f.draw();
         }
-
-        test.draw();
-        test2.draw();
-        test3.draw();
-
     }
 
     @Override

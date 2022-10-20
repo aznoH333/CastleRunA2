@@ -1,4 +1,4 @@
-package com.mygdx.game.entities.player.Projectiles;
+package com.mygdx.game.entities.player.Projectiles.cross;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
@@ -21,8 +21,8 @@ public class Cross extends Projectile {
     private final FollowerObject follower1 = new FollowerObject(1, 1, ColorType.Opacity75);
     private final FollowerObject follower2 = new FollowerObject(1, 2, ColorType.Opacity50);
     private final FollowerObject follower3 = new FollowerObject(1, 3, ColorType.Opacity25);
-    public Cross(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.PlayerProjectiles,24);
+    public Cross(float x, float y) {
+        super(x, y,48,48,1, Team.PlayerProjectiles,24);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Cross extends Projectile {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new Cross(x,y,xSize,ySize,hp);
+        return new Cross(x,y);
     }
 
     @Override
