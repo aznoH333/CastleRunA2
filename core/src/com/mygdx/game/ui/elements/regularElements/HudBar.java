@@ -41,7 +41,7 @@ public class HudBar implements IUIElement, IUIUpdatable {
     @Override
     public void draw() {
         // FIXME : this is very unoptimized
-
+        /*
         for (int i = 0; i < maxValue; i++) {
             if (i < value){
                 spr.draw(barType.barStart, x + i * cellSize + parent.getX() + xOffset, y + parent.getY() + yOffset, 5, false);
@@ -67,7 +67,7 @@ public class HudBar implements IUIElement, IUIUpdatable {
             spr.draw("bar0", parent.getX() + x + i, y + parent.getY(), 5, false);
         }
         spr.draw("bar1", parent.getX() + x + barLength + 32, parent.getY() + y, 5, false);
-
+        */
 
     }
 

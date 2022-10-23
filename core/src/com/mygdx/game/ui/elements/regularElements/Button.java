@@ -59,6 +59,7 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void draw() {
+        /* FIXME : this is horribly unoptimized
         if (pressed){
             spr.draw("button3",x+parent.getX(),y+parent.getY(),5, false);
             for (int i = 12; i < width - 24; i+= 12 ){
@@ -79,6 +80,7 @@ public class Button implements IUIElement, IUIUpdatable {
             spr.draw("button2",x+parent.getX() + width - 12,y+parent.getY(),5, false);
 
         }
+        */
     }
 
     @Override

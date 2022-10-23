@@ -24,6 +24,7 @@ public class XpBar implements IUIElement, IUIUpdatable {
     private static final DrawingManager spr = DrawingManager.getINSTANCE();
     @Override
     public void draw() {
+        /* FIXME : this is horribly unoptimized
         spr.draw("lvlBar0",x + parent.getX(),y + parent.getY(),5, false);
         for (int i = 8; i < width - 8; i+=8){
             if ((float) i/width < xpPercentage)
@@ -32,6 +33,8 @@ public class XpBar implements IUIElement, IUIUpdatable {
         }
         spr.draw("lvlBar2",x + width + parent.getX(),y + parent.getY(),5, false);
 
+
+         */
     }
 
     @Override
