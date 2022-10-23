@@ -4,4 +4,5 @@ public interface ISpecialTile {
     void update();
 
     void draw(float x, float y);
+
 }

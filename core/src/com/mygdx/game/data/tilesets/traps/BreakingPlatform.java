@@ -73,6 +73,7 @@ public class BreakingPlatform extends TileCollum implements ISpecialTile, IOnPla
         }
     }
 
+
     @Override
     public void onPlayerStep(){
         if (!isInAStateOfCollapse){

@@ -2,7 +2,6 @@ package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -27,7 +26,7 @@ public class DrawingManager {
     private final float pixelScale;
 
 
-    private final HashMap<Integer,ArrayList<DrawingData>> drawQueue = new HashMap<>();
+    private final ArrayList<DrawingData>[] drawQueue = new ArrayList[8];
 
 
     private final BitmapFont font;
@@ -37,6 +36,7 @@ public class DrawingManager {
     private float screenShakeOffset = 0f;
     private static final int maximumScreenShake = 40;
     private ColorType color = ColorType.Normal;
+    public int drawingCalls = 0;
 
     public DrawingManager(){
         sprs = new HashMap<>();
@@ -49,7 +49,9 @@ public class DrawingManager {
         batch = new SpriteBatch();
         parameter.size = 25;
         font = generator.generateFont(parameter);
-
+        for (int i = 0; i < drawQueue.length; i++) {
+            drawQueue[i] = new ArrayList<>();
+        }
 
         OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2);
@@ -71,7 +73,6 @@ public class DrawingManager {
         }
 
         sprs.clear();
-        drawQueue.clear();
     }
 
 
@@ -101,7 +102,7 @@ public class DrawingManager {
 
         batch.begin();
 
-        for (ArrayList<DrawingData> layer : drawQueue.values()) {
+        for (ArrayList<DrawingData> layer : drawQueue) {
             for (DrawingData data: layer) {
                 if (data.getColor() != color){
                     color = data.getColor();
@@ -120,12 +121,11 @@ public class DrawingManager {
         }
 
         batch.end();
+        drawingCalls = 0;
     }
 
     public void drawText(String text, float x, float y, int zIndex, float scale){
-        if (!drawQueue.containsKey(zIndex))
-            drawQueue.put(zIndex, new ArrayList<>());
-        drawQueue.get(zIndex).add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale));
+        drawQueue[zIndex+1].add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale));
     }
 
     public void drawText(String text, float x, float y){
@@ -155,14 +155,17 @@ public class DrawingManager {
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
         draw(textureName, x, y, zIndex, affectedByScreenShake, scale, ColorType.Normal);
     }
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color){
-        if (textureName != null){
-            Texture text = sprs.get(textureName);
 
-            if (!drawQueue.containsKey(zIndex))
-                drawQueue.put(zIndex, new ArrayList<>());
-            drawQueue.get(zIndex).add(new SpriteData(text, x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color));
-        }
+    // this is a bad workaround (._.)
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color){
+        drawingCalls++;
+        if (sprs.get(textureName) == null) {
+            System.out.println(textureName);
+            System.out.println(x);
+            System.out.println(y);
+        }else
+
+        drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color));
     }
 
     public void draw(String textureName, float x, float y, int zIndex){

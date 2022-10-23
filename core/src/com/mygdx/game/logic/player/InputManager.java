@@ -41,14 +41,17 @@ public class InputManager {
     private float mouseY = 0;
 
     public float getMouseX(){
-        return mouseX;
+        return Gdx.input.getX()*2;
     }
 
     public float getMouseY(){
-        return mouseY;
+        return (Gdx.graphics.getHeight() - Gdx.input.getY()) * 2;
     }
 
     public void manageInput(){
+        // TODO : touch input
+
+
         // left
         if (Gdx.input.isKeyPressed(Input.Keys.A) || bLeft){
             jumpLeft++;
@@ -80,7 +83,6 @@ public class InputManager {
 
         mouseX = Gdx.input.getX()*2;
         mouseY = (Gdx.graphics.getHeight() - Gdx.input.getY()) * 2;
-        // TODO : touch input
     }
 
     public void resetInput(){
@@ -91,6 +93,7 @@ public class InputManager {
     }
 
     public boolean getButton(Controls control){
+        // TODO : tohle je mrkda z krtka. přepsat všechno
         switch (control){
             case MoveLeft:
                 return left;
@@ -131,20 +134,11 @@ public class InputManager {
     }
 
     public void buttonHold(Controls button){
-        switch (button){
-            case AttackLeft:
-                bALeft = true;
-                break;
-            case MoveRight:
-                bRight = true;
-                break;
-            case MoveLeft:
-                bLeft = true;
-                break;
-            case AttackRight:
-                bARight = true;
-                break;
-        }
+
+        if      (button == Controls.AttackLeft) bALeft = true;
+        else if (button == Controls.AttackRight) bARight = true;
+        else if (button == Controls.MoveLeft) bLeft = true;
+        else if (button == Controls.MoveRight) bRight = true;
     }
 
     public boolean isInputHeld(){// TODO : touch input

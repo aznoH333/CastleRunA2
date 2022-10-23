@@ -150,17 +150,16 @@ public class LevelManager {
 
         for (int x = 0; x < mapWidth; x++) {
             TileCollum currentCollum = map[x];
-            if (currentCollum.getSpecial() != TileCollumSpecial.Gap) {
+            if (currentCollum.getSpecial().draws) {
                 // render tiles
                 for (int y = 0; y < currentCollum.getY() / tileScale + 2; y++) {
                     spr.drawGame(currentCollum.getTexture(y), x * tileScale - (distance % tileScale), currentCollum.getY() - y * tileScale);
                 }
-
-                // render special tile objects
-                if (currentCollum instanceof ISpecialTile)
-                    ((ISpecialTile)currentCollum).draw(x * tileScale - (distance % tileScale), currentCollum.getY());
             }
-
+            // render special tile objects
+            if (currentCollum instanceof ISpecialTile){
+                ((ISpecialTile)currentCollum).draw(x * tileScale - (distance % tileScale), currentCollum.getY());
+            }
         }
     }
 

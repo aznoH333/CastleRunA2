@@ -11,6 +11,7 @@ public abstract class TileCollum {
     private final boolean grace;
     protected boolean hurts = false;
 
+
     public TileCollum(String[] sprites, String repeated, boolean grace, TileCollumSpecial special){
         this.sprites = sprites;
         this.repeated = repeated;

@@ -94,13 +94,13 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void update() {
-
-
-
         boolean lFrameState = pressed;
         // FIXME : this realy sucks
-        if(input.getMouseX() > (x+ parent.getX())/4*spr.getPixelScale() && input.getMouseX() < (x+ parent.getX() + width)/4* spr.getPixelScale() && input.getMouseY() > (y + parent.getY()) / 4 * spr.getPixelScale() && input.getMouseY() < (y+ parent.getY() + height)/4* spr.getPixelScale()
-                && (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
+        if(input.getMouseX() > (x+ parent.getX())/4*spr.getPixelScale() &&
+                input.getMouseX() < (x+ parent.getX() + width)/4* spr.getPixelScale() &&
+                input.getMouseY() > (y + parent.getY()) / 4 * spr.getPixelScale() &&
+                input.getMouseY() < (y+ parent.getY() + height)/4* spr.getPixelScale() &&
+                (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
             if (actionButton)
                 function.function();

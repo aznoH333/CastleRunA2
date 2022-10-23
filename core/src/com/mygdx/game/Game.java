@@ -68,8 +68,12 @@ public class Game {
             ui.transition(GameState.StageMenu, lvlMan::progressLevel);
         }
 
-        ui.drawUI();
+
+
+
         ui.updateUI();
+        ui.drawUI();
+
         if (exitTime < 1)
             input.manageInput();
         switch (state){
@@ -92,10 +96,12 @@ public class Game {
             case NewGameMenu:
                 newGameMenu();
                 break;
-
         }
-
         input.resetInput();
+
+
+        spr.drawText(String.valueOf(Gdx.graphics.getDeltaTime()),100,100);
+        spr.drawText(String.valueOf(spr.drawingCalls),100,200);
         spr.render();
 
         //temp input
