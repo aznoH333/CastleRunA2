@@ -51,8 +51,6 @@ public class PlayerKnight extends Entity {
     public PlayerKnight(float x, float y) {
         super(x, y, 64, 64, 3, Team.Player);
         inv = PlayerStats.getINSTANCE();
-
-        inv.updatePlayerStats(this);
     }
 
     @Override

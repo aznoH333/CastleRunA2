@@ -90,7 +90,7 @@ public class EntityLoadList {
 
 
         //item entities
-        entities.put("friendlyOrb", new FriendlyOrb(0,0,16,16,1));
+        entities.put("friendlyOrb", new FriendlyOrb(0,0));
         entities.put("micro bomb", new MicroBomb(0,0));
         entities.put("micro explosion", new MicroExplosion(0,0));
 

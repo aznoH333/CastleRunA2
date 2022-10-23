@@ -1,7 +1,9 @@
 package com.mygdx.game.entities.player;
 
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.EntityFactory;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
@@ -12,6 +14,9 @@ import java.util.Random;
 public class PlayerSpawner extends Entity {
     public PlayerSpawner(float x, float y) {
         super(x, y, 0, 0, 1, Team.Player);
+        PlayerKnight p = (PlayerKnight) EntityFactory.getInstance().getByName(PlayerStats.getINSTANCE().getPlayerClass().playerObject, x, y);
+        PlayerStats.getINSTANCE().updatePlayerStats(p);
+        e.addEntity(p);
         destroy();
     }
 
@@ -36,6 +41,7 @@ public class PlayerSpawner extends Entity {
 
     @Override
     public void onDestroy() {
-        EntityManager.getINSTANCE().spawnEntity(PlayerStats.getINSTANCE().getPlayerClass().playerObject, x, y);
+
+
     }
 }

@@ -1,5 +1,6 @@
 package com.mygdx.game.items.items;
 
+import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
 import com.mygdx.game.logic.entities.EntityManager;
@@ -34,6 +35,6 @@ public class FriendlyOrbItem implements IItem, IItemOnLevelStart {
 
     @Override
     public void onLevelStart() {
-        ent.spawnEntity("friendlyOrb",stats.getPlayer().getX()-8, stats.getPlayer().getY()-8);
+        ent.addEntity(new FriendlyOrb(stats.getPlayer().getX() - 8, stats.getPlayer().getY() - 8));
     }
 }

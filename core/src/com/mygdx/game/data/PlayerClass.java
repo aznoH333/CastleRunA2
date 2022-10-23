@@ -8,7 +8,7 @@ public enum PlayerClass {
     // haunted knight : +2 health; +2 energy; better sword | chase by ghosts (pseudo time limit)
     // summoner : starts with orb | -1hp -1energy
 
-    Knight("playerKnight", 3, 1, "Sword", "player"),
+    Knight("playerKnight", 3, 999, "Cross", "player"),
     Hunter("playerHunter", 2, 2, "Small daggers", "hunter" ),
     Midas("playerMidas", 3, 0, "Midas Sword", "midas"),
     Summoner("playerSummoner", 2, 0, "Sword", "slime"), // TODO

@@ -4,6 +4,8 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
+import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -26,9 +28,13 @@ public class FriendlyOrb extends Entity {
     private int cooldown = 0;
     private static final int cooldownMax = 640;
     private final EntityManager ent = EntityManager.getINSTANCE();
+    private final FollowerObject[] followers = {
+            new FollowerObject(2, 3, ColorType.Opacity50),
+            new FollowerObject(2, 6, ColorType.Opacity50)
+    };
 
-    public FriendlyOrb(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.Environment);
+    public FriendlyOrb(float x, float y) {
+        super(x, y,16,16,1, Team.Environment);
         PlayerStats stats = PlayerStats.getINSTANCE();
         playerKnight = stats.getPlayer();
         shifts = false;
@@ -66,6 +72,10 @@ public class FriendlyOrb extends Entity {
     @Override
     public void draw(DrawingManager spr) {
         spr.drawGame("miniorb0",x,y,2);
+        for (FollowerObject f: followers) {
+            f.addCoordinate(x, y, "miniorb0");
+            f.draw();
+        }
     }
 
     @Override
@@ -75,7 +85,7 @@ public class FriendlyOrb extends Entity {
 
     @Override
     public Entity getCopy(float x, float y) {
-        return new FriendlyOrb(x,y,xSize,ySize,hp);
+        return new FriendlyOrb(x,y);
     }
 
     @Override

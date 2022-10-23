@@ -37,9 +37,9 @@ public class ChargedMidasSwordSwipe extends ChargedSwordSwipe {
 
     @Override
     protected void onEnemyHit(Enemy other) {
-        super.onEnemyHit(other);
-        if (r.nextFloat() > 0.66) {
+        if (hurts && r.nextFloat() > 0.66) {
             e.addEntity(new Coin(other.getX(), other.getY()));
         }
+        super.onEnemyHit(other);
     }
 }

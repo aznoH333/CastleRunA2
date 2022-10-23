@@ -8,6 +8,9 @@ import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.EntityFactory;
+import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.level.EntityDistributionObject;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.level.levelModifiers.ILevelModifier;
@@ -19,6 +22,7 @@ import com.mygdx.game.ui.UIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 public class LevelProgressionManager {
@@ -41,9 +45,21 @@ public class LevelProgressionManager {
 
     }
 
+    private final static EntityDistributionObject[] possibleEntities = {
+            new EntityDistributionObject("slime", -5, 6, 30f),
+            new EntityDistributionObject("red slime", 2, 12, 20f),
+            new EntityDistributionObject("skeleton", 3, 7, 14.5f),
+            new EntityDistributionObject("armored skeleton", 6, 14, 14.5f),
+            new EntityDistributionObject("goblin", 5, 10, 30f),
+            new EntityDistributionObject("purple slime", 9, 20, 29f),
+            new EntityDistributionObject("rocket skeleton", 10, 20, 25f),
+            new EntityDistributionObject("saw knight", 11, 20, 20f),
+
+    };
+
     public void progressLevel(){
         currentLevelIndex++;
-        switch (Game.getSeededRandom().nextInt(3)){
+        switch (Game.getSeededRandom().nextInt(4)){
             default:
             case 0: lTemplate = LevelTemplate.Castle; break;
             case 1: lTemplate = LevelTemplate.Cave; break;
@@ -85,31 +101,33 @@ public class LevelProgressionManager {
             tempEntities.add(new EntityWeightData(r.nextFloat() * 10 + 5, "furniture"));
             tempEntities.add(new EntityWeightData(r.nextFloat() * Math.min(currentLevelIndex, 5) + 2, "chest"));
 
-            // enemies
-            // TODO : this also kinda sucks, think of a rework
-            if (currentLevelIndex > 1 && currentLevelIndex < 12 && r.nextFloat() < 0.2 + Math.min((float)currentLevelIndex/10, 0.5))        tempEntities.add(new EntityWeightData(10f, "red slime"));
-            if (currentLevelIndex > 2 && currentLevelIndex < 8 && r.nextFloat() < 0.2 + Math.min((float)currentLevelIndex/10, 0.5))        tempEntities.add(new EntityWeightData(10f, "skeleton"));
-            if (currentLevelIndex > 5 && currentLevelIndex < 10 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "goblin"));
-            if (currentLevelIndex > 5 && currentLevelIndex < 15 && r.nextFloat() < 0.2)        tempEntities.add(new EntityWeightData(10f, "armored skeleton"));
-            if (currentLevelIndex > 7 && currentLevelIndex < 15 && r.nextFloat() < 0.8)        tempEntities.add(new EntityWeightData(10f, "purple slime"));
-            if (currentLevelIndex > 8 && currentLevelIndex < 15 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "rocket skeleton"));
-            if (currentLevelIndex > 8 && currentLevelIndex < 15 && r.nextFloat() < 0.6)        tempEntities.add(new EntityWeightData(10f, "saw knight"));
-            /* add green slime
-             has 3 special cases
-             1 ) always spawns on early levels
-             2 ) spawns if no other enemies spawn (fallback option. should be unlikely)
-             3 ) spawn rate decreases with level
-            */
-            if (r.nextFloat() < 0.5 - Math.min((float)currentLevelIndex/10, 0.4) || currentLevelIndex < 3 || tempEntities.size() == 2)      tempEntities.add(new EntityWeightData(10f - Math.min(currentLevelIndex, 7), "slime"));
 
-            /*
+            // enemies
+            float maxChance = 0;
+            for (EntityDistributionObject o: possibleEntities) {
+                maxChance += o.getDistributionForLevel(currentLevelIndex);
+            }
+
+            do {
+                float number = r.nextFloat() * maxChance;
+                float dumb2 = 0;
+                for (EntityDistributionObject o: possibleEntities) {
+                    if (o.getDistributionForLevel(currentLevelIndex) + dumb2 > number){
+                        tempEntities.add(new EntityWeightData(o.getDistributionForLevel(currentLevelIndex), o.getEntity()));
+                        break;
+                    }
+                    dumb2 += o.getDistributionForLevel(currentLevelIndex);
+                }
+
+            }while ((r.nextBoolean() || tempEntities.size() < 4) && tempEntities.size() >= 6);
+
             //print
             System.out.println("level length is " + (60 + Math.min(currentLevelIndex * 10, 120)));
             System.out.println("added empty : 30");
             for (EntityWeightData w: tempEntities) {
                 System.out.println("added " + w.getEntity() + " : " + w.getWeight());
             }
-            */
+
 
             //add level modifier
             // FIXME : tohle je garbage implementace
