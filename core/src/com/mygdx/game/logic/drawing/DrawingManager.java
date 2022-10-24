@@ -110,9 +110,18 @@ public class DrawingManager {
                 }
                 if (data.getType() == DrawingDataType.Sprite)
                     if (data.affectedByScreenShake())
-                        batch.draw(data.getTexture(), data.getX(), data.getY() + screenShakeOffset * 3.5f, data.getTexture().getWidth()*pixelScale * data.getScale(), data.getTexture().getHeight()*pixelScale * data.getScale());
+                        batch.draw(
+                                data.getTexture(),
+                                data.getX(),
+                                data.getY() + screenShakeOffset * 3.5f,
+                                data.getTexture().getWidth() * pixelScale * data.getScale(),
+                                data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
                     else
-                        batch.draw(data.getTexture(), data.getX(), data.getY(), data.getTexture().getWidth()*pixelScale * data.getScale(), data.getTexture().getHeight()*pixelScale * data.getScale());
+                        batch.draw(
+                                data.getTexture(),
+                                data.getX(), data.getY(),
+                                data.getTexture().getWidth() * pixelScale * data.getScale(),
+                                data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
                 else
                     font.draw(batch, data.getText(), data.getX(), data.getY()); // TODO : different font sizes
 
@@ -149,15 +158,18 @@ public class DrawingManager {
     }
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, ColorType.Normal);
+        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, ColorType.Normal, false);
     }
 
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, ColorType.Normal);
+        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, ColorType.Normal, false);
     }
 
-    // this is a bad workaround (._.)
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color){
+        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, color, false);
+    }
+    // this is a bad workaround (._.)
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color, boolean stretch){
         drawingCalls++;
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
@@ -165,7 +177,7 @@ public class DrawingManager {
             System.out.println(y);
         }else
 
-        drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color));
+        drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color, stretch));
     }
 
     public void draw(String textureName, float x, float y, int zIndex){

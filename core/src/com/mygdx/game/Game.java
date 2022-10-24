@@ -100,8 +100,8 @@ public class Game {
         input.resetInput();
 
 
-        spr.drawText(String.valueOf(Gdx.graphics.getDeltaTime()),100,100);
-        spr.drawText(String.valueOf(spr.drawingCalls),100,200);
+        //spr.drawText(String.valueOf(Gdx.graphics.getDeltaTime()),100,100);
+        //spr.drawText(String.valueOf(spr.drawingCalls),100,200);
         spr.render();
 
         //temp input

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
+import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
@@ -21,35 +22,16 @@ public class Button implements IUIElement, IUIUpdatable {
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private boolean pressed = false;
     private final static float pressedOffset = 20;
+    private final float buttonMiddleSegmentWidth;
     private final IUIElement parent;
     private final static InputManager input = InputManager.getINSTANCE();
 
     public Button(float x, float y, ButtonType type, IUIElement parent, ILambdaFunction function){
-        switch (type){
-            case Small:
-            case SmallAction:
-            default:
-                height = 120;
-                //width = 336;
-                width = (Game.gameWorldWidth - 32) / 2 - 16;
-                break;
-            case Large:
-                height = 120;
-                //width = 668;
-                width = Game.gameWorldWidth - 32;
-                break;
-            case LargeItemSelect:
-                // TODO : large buttons
-                height = 200;
-                width = 668;
-                break;
-            case Box:
-                height = 120;
-                width = 102;
-                break;
-        }
 
+        this.width = type.width;
+        this.height = type.height;
         actionButton = type == ButtonType.SmallAction;
+        this.buttonMiddleSegmentWidth = ((width - 32) / 16) + 0.5f;
 
         this.x = x;
         this.y = y;
@@ -59,28 +41,10 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        /* FIXME : this is horribly unoptimized
-        if (pressed){
-            spr.draw("button3",x+parent.getX(),y+parent.getY(),5, false);
-            for (int i = 12; i < width - 24; i+= 12 ){
-                spr.draw("button4", x+parent.getX()+i,y +parent.getY(), 5, false);
-            }
-            spr.draw("button4", x+parent.getX()+ width - 24,y +parent.getY(), 5, false);
-            spr.draw("button5",x+parent.getX() + width - 12,y+parent.getY(),5, false);
+        spr.draw("button" + ((pressed) ? 3 : 0),x+parent.getX(),y+parent.getY(),5, false);
+        spr.draw("button" + ((pressed) ? 4 : 1), x+parent.getX() + 16,y +parent.getY(), 5, false, buttonMiddleSegmentWidth, ColorType.Normal, true);
+        spr.draw("button" + ((pressed) ? 5 : 2),x+parent.getX() + width - 12,y+parent.getY(),5, false);
 
-
-        }
-        else{
-
-            spr.draw("button0",x+parent.getX(),y+parent.getY(),5, false);
-            for (int i = 12; i < width - 24; i+= 12 ){
-                spr.draw("button1", x+parent.getX()+i,y +parent.getY(), 5, false);
-            }
-            spr.draw("button1", x+parent.getX() + width - 24,y +parent.getY(), 5, false);
-            spr.draw("button2",x+parent.getX() + width - 12,y+parent.getY(),5, false);
-
-        }
-        */
     }
 
     @Override

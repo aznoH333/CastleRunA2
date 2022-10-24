@@ -12,4 +12,5 @@ public interface DrawingData {
     boolean affectedByScreenShake();
     float getScale();
     ColorType getColor();
+    boolean getStretch();
 }

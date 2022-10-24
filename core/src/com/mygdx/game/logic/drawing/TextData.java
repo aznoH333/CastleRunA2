@@ -56,4 +56,9 @@ public class TextData implements DrawingData{
     public ColorType getColor() {
         return ColorType.Normal;
     }
+
+    @Override
+    public boolean getStretch() {
+        return false;
+    }
 }
