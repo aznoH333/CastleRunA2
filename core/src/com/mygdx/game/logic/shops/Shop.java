@@ -22,8 +22,8 @@ public class Shop {
 
     private final static Random r = Game.getSeededRandom();
     private ShopStock shopStock;
-    //private final static DrawingManager spr = DrawingManager.getINSTANCE();
-    //private final static PlayerStats stats = PlayerStats.getINSTANCE();
+    private final static DrawingManager spr = DrawingManager.getINSTANCE();
+    private final static PlayerStats stats = PlayerStats.getINSTANCE();
     private final static UIManager ui = UIManager.getINSTANCE();
 
 
@@ -33,6 +33,7 @@ public class Shop {
     }
 
     public void loadUI(){
+        restock(99); // TODO : this is broken
         InvisUIParent parent = new InvisUIParent();
         ui.addUIElement(parent);
         for (int i = 0; i < shopStock.getLength(); i++){

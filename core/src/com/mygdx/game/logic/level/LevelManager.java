@@ -3,16 +3,16 @@ package com.mygdx.game.logic.level;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Game;
+import com.mygdx.game.data.enums.Directions;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.entities.player.PlayerSpawner;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.EntityManager;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.tileCollums.ICollumnActivatavle;
 import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
-import com.mygdx.game.data.enums.Directions;
-import com.mygdx.game.data.enums.TileCollumSpecial;
-import com.mygdx.game.logic.drawing.DrawingManager;
-import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.entities.EntityManager;
-import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.ui.UIManager;
@@ -244,6 +244,7 @@ public class LevelManager {
                 levelModiferTimer = 20;
             }
         }
+
 
         if (Game.Time() == levelStartTimeStamp + 160 && lvl.hasModifier()) {
             UIManager.getINSTANCE().displayMessage(lvl.getModifier().getIntroMessage());

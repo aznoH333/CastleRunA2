@@ -39,6 +39,7 @@ public class InventoryScreen {
             ui.addUIElement(new Sprite(16, 16, w.getSprite(),spr));
             // TODO : this
         }
+        // TODO : this is broken
     }
 
     public void changeSlot(Controls slot){
