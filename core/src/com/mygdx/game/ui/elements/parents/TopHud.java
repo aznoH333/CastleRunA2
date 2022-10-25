@@ -12,7 +12,7 @@ public class TopHud implements IUIElement, IUIParentElement, IUIUpdatable {
 
 
     private final float closedPosition = 1280;
-    private final float openPosition = 1184;
+    private final float openPosition = 1152;
     private float y = closedPosition;
     private final static float animationSpeed = Config.getAnimationSpeed();
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
@@ -21,7 +21,7 @@ public class TopHud implements IUIElement, IUIParentElement, IUIUpdatable {
     @Override
     public void draw() {
         for (int i = 0; i < Game.gameWorldWidth; i += 720)
-            spr.draw("hudTop0",i, y, 5, false);
+            spr.draw("hudTop0",i, y + 20, 5, false);
     }
 
     @Override

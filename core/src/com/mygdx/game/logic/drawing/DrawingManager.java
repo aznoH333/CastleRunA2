@@ -90,8 +90,6 @@ public class DrawingManager {
      */
 
     public void render(){
-        // screen scaling
-
         // screen shake update
         if (screenShake > 0){
             screenShake--;

@@ -20,7 +20,7 @@ public class HudBar implements IUIElement, IUIUpdatable {
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private final float cellSize;
     private final float cellWidth;
-    private final static int barLength = (int)Game.gameWorldWidth/2 - 16;
+    private final static int barLength = (int)Game.gameWorldWidth - 256;
     private final IIntegerFunction valueGetter;
     private final IIntegerFunction maxValueGetter;
     private final float overLayWidth = (float) (barLength - 64) / 32 + 0.5f;
@@ -42,35 +42,6 @@ public class HudBar implements IUIElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        // FIXME : this is very unoptimized
-        /*
-        for (int i = 0; i < maxValue; i++) {
-            if (i < value){
-                spr.draw(barType.barStart, x + i * cellSize + parent.getX() + xOffset, y + parent.getY() + yOffset, 5, false);
-                for (int j = 0; j < cellSize - 24; j+=12) {
-                    spr.draw(barType.bar, x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5, false);
-                }
-                spr.draw(barType.barEnd, x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5, false);
-            }else{
-                spr.draw("meter3", x + i * cellSize + parent.getX() +xOffset, y + parent.getY() + yOffset, 5, false);
-                for (int j = 0; j < cellSize - 24; j+=12) {
-                    spr.draw("meter4", x + parent.getX() + j  + 12 + i*cellSize + xOffset, y + parent.getY() + yOffset, 5, false);
-                }
-                spr.draw("meter5", x + i * cellSize + parent.getX() + cellSize - 12 + xOffset, y + parent.getY() + yOffset, 5, false);
-
-            }
-        }
-
-
-
-        // draw overlay
-        spr.draw(barSprite, parent.getX() + x, parent.getY() + y, 5, false);
-        for (int i = 56; i < barLength + 32; i+=16) {
-            spr.draw("bar0", parent.getX() + x + i, y + parent.getY(), 5, false);
-        }
-        spr.draw("bar1", parent.getX() + x + barLength + 32, parent.getY() + y, 5, false);
-        */
-
         // intersecting points
         for (int i = 0; i < maxValue; i++) {
             if (i < value) {

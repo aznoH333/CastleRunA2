@@ -32,7 +32,7 @@ public class InventoryScreen {
         for (int i = 0; i < inv.getUnlockedWeapons().size();i++){
             Weapon w = inv.getUnlockedWeapon(i);
 
-            Button btn = new Button(16, 1144 - i* 136, ButtonType.Large, prnt, ()-> stats.equipWeapon(w, equipSlot));
+            Button btn = new Button(16, 1144 - i * 136, ButtonType.Large, prnt, ()-> stats.equipWeapon(w, equipSlot));
             Sprite spr = new Sprite(16, 32, "player0", btn); // TODO : make this look presentable
             ui.addUIElement(btn);
             ui.addUIElement(spr);
