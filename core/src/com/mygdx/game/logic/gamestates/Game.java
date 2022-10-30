@@ -12,6 +12,7 @@ import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.parents.TopHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
+import com.mygdx.game.ui.elements.regularElements.CoinCounter;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
 import com.mygdx.game.ui.elements.regularElements.XpBar;
@@ -48,6 +49,7 @@ public class Game implements IGameState{
         PlayerStats playerStats = PlayerStats.getINSTANCE();
         uiElements.add(new HudBar(16,80,"barStart0", BarType.RED, topHud, playerStats::getHp, playerStats::getMaxHp));
         uiElements.add(new HudBar(16, 40,  "barStart1", BarType.BLU,  topHud, playerStats::getEnergy, playerStats::getMaxEnergy));
+        uiElements.add(new CoinCounter(com.mygdx.game.Game.gameWorldWidth - 232, 40, topHud));
         uiElements.add(new XpBar(16, 0, topHud));
     }
 

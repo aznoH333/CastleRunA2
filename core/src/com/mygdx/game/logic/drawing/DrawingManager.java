@@ -30,25 +30,39 @@ public class DrawingManager {
 
 
     private final BitmapFont font;
+    private final BitmapFont fontShadow;
 
     // screen shake stuff
     private int screenShake = 0;
     private float screenShakeOffset = 0f;
     private static final int maximumScreenShake = 40;
     private ColorType color = ColorType.Normal;
-    public int drawingCalls = 0;
 
     public DrawingManager(){
+        pixelScale = Gdx.graphics.getHeight() / 160f;
+
         sprs = new HashMap<>();
         SpriteLoadList.loadAllSprites(this);
         //font stuff
-        // TODO : get a custom font (required for commercial usage)
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.getFileHandle("fonts/AGoblinAppears-o2aV.ttf", Files.FileType.Internal));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.getFileHandle("fonts/PixeloidSansBold-RpeJo.ttf", Files.FileType.Internal));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
+
+        // generate font
         batch = new SpriteBatch();
-        parameter.size = 25;
+        parameter.size = (int) (10 * pixelScale);
+        // main font
+        parameter.color.r = 0.76f;
+        parameter.color.g = 0.74f;
+        parameter.color.b = 0.79f;
         font = generator.generateFont(parameter);
+        // shadow font
+        parameter.color.r = 0.33f;
+        parameter.color.g = 0.31f;
+        parameter.color.b = 0.35f;
+        fontShadow = generator.generateFont(parameter);
+
+
         for (int i = 0; i < drawQueue.length; i++) {
             drawQueue[i] = new ArrayList<>();
         }
@@ -56,7 +70,6 @@ public class DrawingManager {
         OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, (float)Gdx.graphics.getWidth()*2, (float)Gdx.graphics.getHeight()*2);
         cam.update();
-        pixelScale = Gdx.graphics.getHeight() / 160f;
         batch.setProjectionMatrix(cam.combined);
     }
 
@@ -107,28 +120,23 @@ public class DrawingManager {
                     batch.setColor(color.r, color.g, color.b, color.a);
                 }
                 if (data.getType() == DrawingDataType.Sprite)
-                    if (data.affectedByScreenShake())
-                        batch.draw(
-                                data.getTexture(),
-                                data.getX(),
-                                data.getY() + screenShakeOffset * 3.5f,
-                                data.getTexture().getWidth() * pixelScale * data.getScale(),
-                                data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
-                    else
-                        batch.draw(
-                                data.getTexture(),
-                                data.getX(), data.getY(),
-                                data.getTexture().getWidth() * pixelScale * data.getScale(),
-                                data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
-                else
-                    font.draw(batch, data.getText(), data.getX(), data.getY()); // TODO : different font sizes
+                    batch.draw(
+                            data.getTexture(),
+                            data.getX(),
+                            data.getY() + (data.affectedByScreenShake() ? screenShakeOffset * 3.5f : 0),
+                            data.getTexture().getWidth() * pixelScale * data.getScale(),
+                            data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
+                else{
+                    fontShadow.draw(batch, data.getText(), data.getX() + pixelScale, data.getY() - pixelScale);
+                    font.draw(batch, data.getText(), data.getX(), data.getY());
+                }
+
 
             }
             layer.clear();
         }
 
         batch.end();
-        drawingCalls = 0;
     }
 
     public void drawText(String text, float x, float y, int zIndex, float scale){
@@ -168,7 +176,6 @@ public class DrawingManager {
     }
     // this is a bad workaround (._.)
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color, boolean stretch){
-        drawingCalls++;
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
             System.out.println(x);
