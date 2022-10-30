@@ -58,7 +58,6 @@ public class LevelManager {
     private boolean isBossLevel = false;
     private final ArrayList<TileActivator> tileActivators = new ArrayList<>();
     private int levelModiferTimer = 20;
-    private long levelStartTimeStamp = 0;
 
 
     // very dumb
@@ -184,6 +183,45 @@ public class LevelManager {
         return trapOffset++;
     }
     private float advanceBy = 0;
+    private boolean announceModifier = false;
+
+    public TileCollum getOnPos(float i) {
+        int b = (int) i >> 6;
+        if (b < 0 || b >= mapWidth)
+            return map[0];
+        else
+            return map[b];
+    }
+
+    public boolean collidesWithLevel(Entity object){
+        return object.getY() <= getLevelY(object) && object.getY() + object.getYSize() > getLevelY(object) + tileThickness;
+    }
+
+    public float getLevelY(Entity object){
+        return getOnPos(object.getX() + (object.getXSize()/2) + (distance%tileScale)).getY() + tileScale;
+    }
+
+    public int getTileScale() {
+        return tileScale;
+    }
+
+    public int getLevelLength(){
+        return levelLength;
+    }
+
+    public float getDistance(){
+        return distance;
+    }
+
+    public float getAlignedX(float currentX){
+        return ((int) currentX >> 6) * tileScale - (distance % tileScale);
+    }
+    // kinda jank
+    public float getAdvanceBy(){
+        if (advanceDistance > distance) return advanceBy;
+        else return 0;
+    }
+
     public void update() {
         // camera fail safe
         if (distance % tileScale > 0 && advanceDistance == distance){
@@ -242,13 +280,15 @@ public class LevelManager {
             if (levelModiferTimer == 0){
                 lvl.getModifier().levelModifierTick();
                 levelModiferTimer = 20;
+                if (announceModifier) {
+                    UIManager.getINSTANCE().displayMessage(lvl.getModifier().getIntroMessage());
+                    announceModifier = false;
+                }
             }
-        }
 
 
-        if (Game.Time() == levelStartTimeStamp + 160 && lvl.hasModifier()) {
-            UIManager.getINSTANCE().displayMessage(lvl.getModifier().getIntroMessage());
         }
+
 
 
 
@@ -256,43 +296,6 @@ public class LevelManager {
         if (isBossLevel && Math.abs(levelLength-(tileScale*((mapWidth>>1)-2)) - distance) < 10)
             advanceToTile(levelLength);
         renderLevel();
-    }
-
-    public TileCollum getOnPos(float i) {
-        int b = (int) i >> 6;
-        if (b < 0 || b >= mapWidth)
-            return map[0];
-        else
-            return map[b];
-    }
-
-    public boolean collidesWithLevel(Entity object){
-        return object.getY() <= getLevelY(object) && object.getY() + object.getYSize() > getLevelY(object) + tileThickness;
-    }
-
-    public float getLevelY(Entity object){
-        return getOnPos(object.getX() + (object.getXSize()/2) + (distance%tileScale)).getY() + tileScale;
-    }
-
-    public int getTileScale() {
-        return tileScale;
-    }
-
-    public int getLevelLength(){
-        return levelLength;
-    }
-
-    public float getDistance(){
-        return distance;
-    }
-
-    public float getAlignedX(float currentX){
-        return ((int) currentX >> 6) * tileScale - (distance % tileScale);
-    }
-    // kinda jank
-    public float getAdvanceBy(){
-        if (advanceDistance > distance) return advanceBy;
-        else return 0;
     }
 
     public void loadLevel(Level lvl) {
@@ -306,7 +309,10 @@ public class LevelManager {
         advanceDistance = 0;
         trapOffset = 0;
         tileActivators.clear();
-        levelModiferTimer = 120;
+        if (lvl.hasModifier()){
+            levelModiferTimer = 120;
+            announceModifier = true;
+        }
 
         int maxActivatorCount = (mapWidth * tileScale) / lvl.getActivationRate();
 
@@ -335,7 +341,6 @@ public class LevelManager {
 
         // spawn player
         e.addEntity(new PlayerSpawner(64,map[1].getY() + 64));
-        levelStartTimeStamp = Game.Time(); // FIXME level modifier announcements are somehow broken they don't appear past level 1
         ItemManager.getINSTANCE().onLevelStart();
         PlayerStats.getINSTANCE().restoreStats();
         if (lvl.hasModifier())
