@@ -6,6 +6,7 @@ import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.ui.UIManager;
 import com.mygdx.game.ui.elements.parents.BottomHud;
 import com.mygdx.game.ui.elements.regularElements.Button;
+import com.mygdx.game.ui.elements.regularElements.CoinCounter;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
 import com.mygdx.game.ui.interfaces.IUIElement;
 
@@ -20,7 +21,7 @@ public class Shop implements IGameState{
         uiElements.add(new BottomHud(-515f,-284));
         uiElements.add(new Button(16, 364, ButtonType.Large,uiElements.get(0),()->ui.transition(GameState.StageMenu)));
         uiElements.add(new Sprite((Game.gameWorldWidth/2 - 64), 38,"icon4", uiElements.get(uiElements.size()-1)));
-        com.mygdx.game.logic.shops.Shop.getINSTANCE().loadUI();
+        uiElements.add(new CoinCounter(16, 516, uiElements.get(0)));
     }
 
     @Override
@@ -30,6 +31,7 @@ public class Shop implements IGameState{
 
     @Override
     public IUIElement[] getUI() {
+        com.mygdx.game.logic.shops.Shop.getINSTANCE().loadUI();
         return uiElements.toArray(new IUIElement[0]);
     }
 }

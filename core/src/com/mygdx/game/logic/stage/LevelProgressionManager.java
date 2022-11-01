@@ -121,12 +121,15 @@ public class LevelProgressionManager {
 
             }while ((r.nextBoolean() || tempEntities.size() < 4) && tempEntities.size() >= 6);
 
+            /*
             //print
             System.out.println("level length is " + (60 + Math.min(currentLevelIndex * 10, 120)));
             System.out.println("added empty : 30");
             for (EntityWeightData w: tempEntities) {
                 System.out.println("added " + w.getEntity() + " : " + w.getWeight());
             }
+
+             */
 
 
             //add level modifier

@@ -9,6 +9,7 @@ import com.mygdx.game.ui.elements.regularElements.TransitionScreen;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIParentElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
+import com.mygdx.game.ui.interfaces.IUIUpdateOnInit;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class UIManager {
     private final ArrayList<IUIElement> uiElements = new ArrayList<>();
     private final ArrayList<IUIUpdatable> uiUpdatables = new ArrayList<>();
     private final ArrayList<IUIParentElement> uiParents = new ArrayList<>();
+    private final ArrayList<IUIUpdateOnInit> uiUpdateOnInit = new ArrayList<>();
     private GameState targetState = null;
     private boolean isTransitioning = false;
     private final TransitionScreen transition = new TransitionScreen();
@@ -46,6 +48,9 @@ public class UIManager {
         for (IUIElement element: state.state.getUI()) {
             addUIElement(element);
         }
+        for (IUIUpdateOnInit u: uiUpdateOnInit) {
+            u.updateOnInit();
+        }
     }
 
 
@@ -53,6 +58,7 @@ public class UIManager {
         uiElements.add(element);
         if (element instanceof IUIParentElement) uiParents.add((IUIParentElement) element);
         if (element instanceof IUIUpdatable) uiUpdatables.add((IUIUpdatable) element);
+        if (element instanceof IUIUpdateOnInit) uiUpdateOnInit.add((IUIUpdateOnInit) element);
     }
 
     private boolean openOnTransitionFinish = true;
@@ -115,6 +121,7 @@ public class UIManager {
         uiElements.clear();
         uiParents.clear();
         uiUpdatables.clear();
+        uiUpdateOnInit.clear();
     }
 
     public void transition(GameState state, ILambdaFunction execOnTransition){

@@ -21,8 +21,8 @@ public class MidasSwordSwipe extends SwordSwipe {
 
     @Override
     public void update(LevelManager lvl, Random r) {
-
-        part.addParticle("coinSparkle",x +  r.nextInt((int)xSize) - 16,y + r.nextInt((int)ySize) - 16,0,0,0);
+        if (Game.Time() % 2 == 0)
+            part.addParticle("coinSparkle",x +  r.nextInt((int)xSize) - 16,y + r.nextInt((int)ySize - 48) + 8,0,0,0);
         super.update(lvl, r);
     }
 

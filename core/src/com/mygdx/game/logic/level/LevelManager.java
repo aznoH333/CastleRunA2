@@ -229,7 +229,6 @@ public class LevelManager {
         }
 
 
-
         //advance
         if (advanceDistance > distance) {
             advanceBy = (float) Math.ceil(advanceSpeed * Math.abs((distance / tileScale) - (advanceDistance / tileScale)));
@@ -258,8 +257,6 @@ public class LevelManager {
             if (collum instanceof ISpecialTile)
                 ((ISpecialTile)collum).update();
         }
-
-
 
         // advance activators
         if (Game.Time()%32==0){
@@ -341,12 +338,14 @@ public class LevelManager {
 
         // spawn player
         e.addEntity(new PlayerSpawner(64,map[1].getY() + 64));
-        ItemManager.getINSTANCE().onLevelStart();
         PlayerStats.getINSTANCE().restoreStats();
         if (lvl.hasModifier())
             lvl.getModifier().onLevelStart();
     }
 
+    public void levelStart(){
+        ItemManager.getINSTANCE().onLevelStart();
+    }
 
 
 }

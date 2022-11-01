@@ -64,6 +64,7 @@ public class Game implements IGameState{
     
     @Override
     public IUIElement[] getUI() {
+        lvl.levelStart(); // tohle je mega fuj ale dela to co ma
         return uiElements.toArray(new IUIElement[0]);
     }
 }

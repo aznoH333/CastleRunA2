@@ -9,23 +9,26 @@ public abstract class Weapon {
     private final int chargedAttackCost;
     private final String useSound;
     private final String chargedUseSound;
+    private final String name;
 
-    public Weapon(String sprite, int attackCost, int chargedAttackCost){
+    public Weapon(String name, String sprite, int attackCost, int chargedAttackCost){
         this.sprite = sprite;
         this.ent = EntityManager.getINSTANCE();
         this.attackCost = attackCost;
         this.chargedAttackCost = chargedAttackCost;
         useSound = null;
         chargedUseSound = null;
+        this.name = name;
     }
 
-    public Weapon(String sprite, int attackCost, int chargedAttackCost, String useSound, String chargedUseSound){
+    public Weapon(String name, String sprite, int attackCost, int chargedAttackCost, String useSound, String chargedUseSound){
         this.sprite = sprite;
         this.ent = EntityManager.getINSTANCE();
         this.attackCost = attackCost;
         this.chargedAttackCost = chargedAttackCost;
         this.useSound = useSound;
         this.chargedUseSound = chargedUseSound;
+        this.name = name;
     }
 
     public String getSprite(){
@@ -49,5 +52,9 @@ public abstract class Weapon {
 
     public String getChargedUseSound() {
         return chargedUseSound;
+    }
+
+    public String getName(){
+        return name;
     }
 }

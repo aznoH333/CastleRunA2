@@ -4,7 +4,7 @@ import com.mygdx.game.logic.player.Weapon;
 
 public class None extends Weapon {
     public None() {
-        super(null,999,999);
+        super("Nothing",null,999,999);
     }
 
     @Override

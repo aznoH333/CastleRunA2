@@ -7,8 +7,9 @@ import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;
+import com.mygdx.game.ui.interfaces.IUIUpdateOnInit;
 
-public class HudBar implements IUIElement, IUIUpdatable {
+public class HudBar implements IUIElement, IUIUpdatable, IUIUpdateOnInit {
 
     private final float x;
     private final float y;
@@ -18,8 +19,8 @@ public class HudBar implements IUIElement, IUIUpdatable {
     private int value;
     private int maxValue;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
-    private final float cellSize;
-    private final float cellWidth;
+    private float cellSize;
+    private float cellWidth;
     private final static int barLength = (int)Game.gameWorldWidth - 256;
     private final IIntegerFunction valueGetter;
     private final IIntegerFunction maxValueGetter;
@@ -75,6 +76,12 @@ public class HudBar implements IUIElement, IUIUpdatable {
     @Override
     public void update() {
         this.value = valueGetter.function();
-        this.maxValue = maxValueGetter.function();
+    }
+
+    @Override
+    public void updateOnInit() {
+        maxValue = maxValueGetter.function();
+        cellSize = (float) barLength/maxValue;
+        cellWidth = (cellSize - 32) / 32;
     }
 }

@@ -9,6 +9,7 @@ import com.mygdx.game.ui.UIManager;
 import com.mygdx.game.ui.elements.parents.InvisUIParent;
 import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
+import com.mygdx.game.ui.elements.regularElements.Text;
 
 public class InventoryScreen {
     private static InventoryScreen INSTANCE;
@@ -32,14 +33,16 @@ public class InventoryScreen {
         for (int i = 0; i < inv.getUnlockedWeapons().size();i++){
             Weapon w = inv.getUnlockedWeapon(i);
 
-            Button btn = new Button(16, 1144 - i * 136, ButtonType.Large, prnt, ()-> stats.equipWeapon(w, equipSlot));
-            Sprite spr = new Sprite(16, 32, "player0", btn); // TODO : make this look presentable
-            ui.addUIElement(btn);
-            ui.addUIElement(spr);
-            ui.addUIElement(new Sprite(16, 16, w.getSprite(),spr));
+            if (!w.getName().equals("Nothing")) {
+                Button btn = new Button(16, 1144 - (i - 1)  * 136, ButtonType.Large, prnt, () -> stats.equipWeapon(w, equipSlot));
+                Sprite spr = new Sprite(16, 32, "player0", btn); // TODO : make this look presentable
+                ui.addUIElement(btn);
+                ui.addUIElement(spr);
+                ui.addUIElement(new Sprite(16, 16, w.getSprite(), spr));
+                ui.addUIElement(new Text(16, 128, w.getName(), btn));
+            }
             // TODO : this
         }
-        // TODO : this is broken
     }
 
     public void changeSlot(Controls slot){

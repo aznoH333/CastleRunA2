@@ -33,12 +33,12 @@ public class Shop {
     }
 
     public void loadUI(){
-        restock(99); // TODO : this is broken
         InvisUIParent parent = new InvisUIParent();
         ui.addUIElement(parent);
         for (int i = 0; i < shopStock.getLength(); i++){
             ShopItem shp = shopStock.getItem(i);
-            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent, shp::buyItem);
+            int finalI = i;
+            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.LargeItemSelect, parent, ()->shopStock.buyItem(finalI));
             Sprite box = new Sprite(16, 70, "player0", btn); // TODO : make shops look acceptable
             ui.addUIElement(btn);
             ui.addUIElement(box);

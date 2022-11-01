@@ -27,7 +27,6 @@ public class EquipMenu implements IGameState{
 
         uiElements.add(new Button(Game.gameWorldWidth/2 + 8, 315, ButtonType.Small,uiElements.get(0),()->invScreen.changeSlot(Controls.AttackRight)));
         uiElements.add(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, 38,"icon2", uiElements.get(uiElements.size()-1)));
-        InventoryScreen.getINSTANCE().loadUI();
     }
 
     @Override
@@ -37,6 +36,7 @@ public class EquipMenu implements IGameState{
 
     @Override
     public IUIElement[] getUI() {
+        InventoryScreen.getINSTANCE().loadUI();
         return uiElements.toArray(new IUIElement[0]);
     }
 }
