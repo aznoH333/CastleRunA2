@@ -6,7 +6,7 @@ import com.mygdx.game.logic.player.Weapon;
 
 public class BoomerangCross extends Weapon {
     public BoomerangCross() {
-        super("Cross", "wIcon4","cross0", 1, 3);
+        super("Cross", "wIcon2","cross0", 1, 3);
     }
 
     @Override

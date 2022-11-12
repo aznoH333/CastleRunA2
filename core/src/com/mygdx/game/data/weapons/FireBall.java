@@ -9,7 +9,7 @@ public class FireBall extends Weapon {
     private final static EntityManager ent = EntityManager.getINSTANCE();
 
     public FireBall() {
-        super("Fire tome", "wIcon5","fireball0", 2, 4);
+        super("Fire tome", "wIcon3","fireball0", 2, 4);
     }
 
     @Override

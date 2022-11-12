@@ -8,7 +8,7 @@ public class Bubble extends Weapon {
 
     private final static EntityManager ent = EntityManager.getINSTANCE();
     public Bubble() {
-        super("Bubble tome", "wIcon5","bubble4", 1, 2);
+        super("Bubble tome", "wIcon3","bubble4", 1, 2);
     }
 
     @Override

@@ -26,12 +26,12 @@ public class MasteryScreen implements IGameState{
         for (int i = 0; i < bonuses.length; i++){
             int finalI = i;
             uiElements.add(new Button(16, 640 + 258 - (i * 128), ButtonType.Box, uiElements.get(0), ()-> prgrs.refundPoint(bonuses[finalI])));
-            uiElements.add(new Sprite(8,8,"player0", uiElements.get(uiElements.size()-1)));
+            uiElements.add(new Sprite(8,8,"icon3", uiElements.get(uiElements.size()-1)));
 
             uiElements.add(new Text((Game.gameWorldWidth/2 - (5*25)),640 + 256 + 32 - (i * 128),bonuses[finalI],uiElements.get(0)));
 
             uiElements.add(new Button(Game.gameWorldWidth - 120 - 16, 640 + 256 - (i * 128), ButtonType.Box, uiElements.get(0), ()-> prgrs.spendPoint(bonuses[finalI])));
-            uiElements.add(new Sprite(8,8,"player0", uiElements.get(uiElements.size()-1)));
+            uiElements.add(new Sprite(8,8,"icon2", uiElements.get(uiElements.size()-1)));
         }
 
         uiElements.add(new Button(16,64,ButtonType.Large,uiElements.get(0),()-> ui.transition(GameState.NewGameMenu)));

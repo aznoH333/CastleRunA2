@@ -61,7 +61,8 @@ public class NewGameMenu {
 
         spr.drawText(classes[selectedClass].name(), 200, 800, 3);
 
-        if (input.getMouseY() > 500 && input.getMouseY() < 700){
+        if (input.getMouseY() > 125 * spr.getPixelScale() &&
+                input.getMouseY() < 225 * spr.getPixelScale()){
             if (!isHold && input.isInputHeld()){
                 holdPos = input.getMouseX();
                 isHold = true;

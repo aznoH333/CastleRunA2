@@ -32,17 +32,19 @@ public class Game implements IGameState{
     private final InputManager input = InputManager.getINSTANCE();
     public Game(){
         // bottom hud
-        uiElements.add(new BottomHud(-515f,-150f));
-        uiElements.add(new Button(16,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveLeft)));
-        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,"icon1", uiElements.get(uiElements.size()-1)));
-        uiElements.add(new Button(com.mygdx.game.Game.gameWorldWidth/2 + 8,182, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveRight)));
-        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 64) / 2, 38,"icon0", uiElements.get(uiElements.size()-1)));
+        uiElements.add(new BottomHud(-515f,-115));
+
+        uiElements.add(new Button(16,115, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveLeft)));
+        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 128)  / 2, 48,"large_icon0", uiElements.get(uiElements.size()-1)));
+
+        uiElements.add(new Button(com.mygdx.game.Game.gameWorldWidth/2 + 4,115, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.MoveRight)));
+        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 128) / 2, 48,"large_icon1", uiElements.get(uiElements.size()-1)));
 
         uiElements.add(new Button(16,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackLeft)));
-        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,()-> stats.getLeftWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
+        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 128)  / 2, 48,()-> stats.getLeftWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
 
-        uiElements.add(new Button(com.mygdx.game.Game.gameWorldWidth/2 + 8,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
-        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,()-> stats.getRightWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
+        uiElements.add(new Button(com.mygdx.game.Game.gameWorldWidth/2 + 4,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
+        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 128)  / 2, 48,()-> stats.getRightWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
 
         // top hud
         TopHud topHud = new TopHud();

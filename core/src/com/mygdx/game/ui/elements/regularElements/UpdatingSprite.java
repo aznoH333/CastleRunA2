@@ -1,6 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
-import com.mygdx.game.data.weapons.IStringFunction;
+import com.mygdx.game.data.IStringFunction;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.ui.interfaces.IUIElement;
 import com.mygdx.game.ui.interfaces.IUIUpdatable;

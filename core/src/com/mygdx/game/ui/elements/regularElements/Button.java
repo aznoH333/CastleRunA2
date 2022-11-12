@@ -1,6 +1,5 @@
 package com.mygdx.game.ui.elements.regularElements;
 
-import com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.data.ILambdaFunction;
@@ -16,8 +15,6 @@ public class Button implements IUIElement, IUIUpdatable {
     private final float x;
     private final float y;
     private final ILambdaFunction function;
-    private final float width;
-    private final float height;
     private final boolean actionButton;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private boolean pressed = false;
@@ -25,13 +22,13 @@ public class Button implements IUIElement, IUIUpdatable {
     private final float buttonMiddleSegmentWidth;
     private final IUIElement parent;
     private final static InputManager input = InputManager.getINSTANCE();
+    private final ButtonType type;
 
     public Button(float x, float y, ButtonType type, IUIElement parent, ILambdaFunction function){
+        this.type = type;
 
-        this.width = type.width;
-        this.height = type.height;
         actionButton = type == ButtonType.SmallAction;
-        this.buttonMiddleSegmentWidth = ((width - 32) / 16) + 0.5f;
+        this.buttonMiddleSegmentWidth = ((type.width - 32) / 16) + 0.5f;
 
         this.x = x;
         this.y = y;
@@ -41,10 +38,9 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        spr.draw("button" + ((pressed) ? 3 : 0),x+parent.getX(),y+parent.getY(),5, false);
-        spr.draw("button" + ((pressed) ? 4 : 1), x+parent.getX() + 16,y +parent.getY(), 5, false, buttonMiddleSegmentWidth, ColorType.Normal, true);
-        spr.draw("button" + ((pressed) ? 5 : 2),x+parent.getX() + width - 12,y+parent.getY(),5, false);
-
+        spr.draw(type.sprite + ((pressed) ? 3 : 0),x+parent.getX(),y+parent.getY(),5, false);
+        spr.draw(type.sprite + ((pressed) ? 4 : 1), x+parent.getX() + 16,y +parent.getY(), 5, false, buttonMiddleSegmentWidth, ColorType.Normal, true);
+        spr.draw(type.sprite + ((pressed) ? 5 : 2),x+parent.getX() + type.width - 12,y+parent.getY(),5, false);
     }
 
     @Override
@@ -63,9 +59,9 @@ public class Button implements IUIElement, IUIUpdatable {
         boolean lFrameState = pressed;
         // FIXME : this realy sucks
         if(input.getMouseX() > (x+ parent.getX())/4*spr.getPixelScale() &&
-                input.getMouseX() < (x+ parent.getX() + width)/4* spr.getPixelScale() &&
+                input.getMouseX() < (x+ parent.getX() + type.width)/4* spr.getPixelScale() &&
                 input.getMouseY() > (y + parent.getY()) / 4 * spr.getPixelScale() &&
-                input.getMouseY() < (y+ parent.getY() + height)/4* spr.getPixelScale() &&
+                input.getMouseY() < (y+ parent.getY() + type.height)/4* spr.getPixelScale() &&
                 (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isTouched())){
             pressed = true;
             if (actionButton)

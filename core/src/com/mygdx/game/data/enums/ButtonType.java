@@ -3,17 +3,18 @@ package com.mygdx.game.data.enums;
 import com.mygdx.game.Game;
 
 public enum ButtonType {
-    SmallAction((Game.gameWorldWidth - 32) / 2 - 16, 120),
-    Small((Game.gameWorldWidth - 32) / 2 - 16, 120),
-    Large(Game.gameWorldWidth - 32, 120),
-    LargeItemSelect(668, 200),
-    Box(102, 120);
+    SmallAction((Game.gameWorldWidth - 32) / 2 - 12, 192, "large_button"),
+    Small((Game.gameWorldWidth - 32) / 2 - 12, 120, "button"),
+    Large(Game.gameWorldWidth - 32, 120, "button"),
+    Box(102, 120, "button");
 
     public final float width;
     public final float height;
+    public final String sprite;
 
-    ButtonType(float width, float height){
+    ButtonType(float width, float height, String sprite){
         this.width = width;
         this.height = height;
+        this.sprite = sprite;
     }
 }

@@ -13,7 +13,7 @@ public class Rocks extends Weapon {
     private final static ParticleManager part = ParticleManager.getINSTANCE();
     private final static Random r = Game.getGeneralRandom();
     public Rocks() {
-        super("Rock tome", "wIcon5","rock0", 3, 5);
+        super("Rock tome", "wIcon3","rock0", 3, 5);
     }
 
     @Override

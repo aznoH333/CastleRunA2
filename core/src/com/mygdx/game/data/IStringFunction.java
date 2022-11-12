@@ -1,4 +1,4 @@
-package com.mygdx.game.data.weapons;
+package com.mygdx.game.data;
 
 public interface IStringFunction {
     String function();

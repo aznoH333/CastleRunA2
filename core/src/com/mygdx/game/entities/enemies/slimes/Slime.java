@@ -1,13 +1,14 @@
 package com.mygdx.game.entities.enemies.slimes;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
+import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.entities.ParticleManager;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class Slime extends Enemy {
     protected final static float moveSpeed = 4f;
 
     // vars
-    protected int jumpTimer = 0;
+    protected int jumpTimer;
     protected boolean landed = false;
     protected float yM = 0;
     protected boolean direction = false;
@@ -28,6 +29,7 @@ public class Slime extends Enemy {
     public Slime(float x, float y, float xSize, float ySize, int hp) {
         super(x, y, xSize, ySize, hp, Team.Enemies);
         tags = new EntityTags[]{EntityTags.Grounded};
+        jumpTimer = Game.getGeneralRandom().nextInt(32);
     }
 
     @Override
