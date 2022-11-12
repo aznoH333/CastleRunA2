@@ -23,7 +23,7 @@ public abstract class Weapon {
         this.wIcon = wIcon;
     }
 
-    public Weapon(String name, String sprite, String wIcon,  int attackCost, int chargedAttackCost, String useSound, String chargedUseSound){
+    public Weapon(String name, String wIcon, String sprite, int attackCost, int chargedAttackCost, String useSound, String chargedUseSound){
         this.sprite = sprite;
         this.ent = EntityManager.getINSTANCE();
         this.attackCost = attackCost;

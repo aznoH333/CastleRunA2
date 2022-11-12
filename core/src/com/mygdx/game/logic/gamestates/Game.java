@@ -15,6 +15,7 @@ import com.mygdx.game.ui.elements.regularElements.Button;
 import com.mygdx.game.ui.elements.regularElements.CoinCounter;
 import com.mygdx.game.ui.elements.regularElements.HudBar;
 import com.mygdx.game.ui.elements.regularElements.Sprite;
+import com.mygdx.game.ui.elements.regularElements.UpdatingSprite;
 import com.mygdx.game.ui.elements.regularElements.XpBar;
 import com.mygdx.game.ui.interfaces.IUIElement;
 
@@ -38,10 +39,10 @@ public class Game implements IGameState{
         uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 64) / 2, 38,"icon0", uiElements.get(uiElements.size()-1)));
 
         uiElements.add(new Button(16,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackLeft)));
-        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,"icon3", uiElements.get(uiElements.size()-1)));
+        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,()-> stats.getLeftWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
 
         uiElements.add(new Button(com.mygdx.game.Game.gameWorldWidth/2 + 8,315, ButtonType.SmallAction, uiElements.get(0),()-> input.buttonHold(Controls.AttackRight)));
-        uiElements.add(new Sprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,"icon2", uiElements.get(uiElements.size()-1)));
+        uiElements.add(new UpdatingSprite((com.mygdx.game.Game.gameWorldWidth/2 - 64)  / 2, 38,()-> stats.getRightWeapon().getWeaponIcon(), uiElements.get(uiElements.size()-1)));
 
         // top hud
         TopHud topHud = new TopHud();
