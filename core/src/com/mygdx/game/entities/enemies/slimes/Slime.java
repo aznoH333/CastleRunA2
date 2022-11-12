@@ -3,6 +3,7 @@ package com.mygdx.game.entities.enemies.slimes;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.entities.environment.Giblet;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -85,14 +86,14 @@ public class Slime extends Enemy {
     @Override
     public void onDestroy() {
         // spawn particles
-        ParticleManager part = ParticleManager.getINSTANCE();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
-        Random r = new Random();
-        part.addParticle("greenSlimeDeath",x,y,0,0,0);
+        Random r = Game.getGeneralRandom();
+        ParticleManager.getINSTANCE().addParticle("greenSlimeDeath",x,y,0,0,0);
         DrawingManager.getINSTANCE().addScreenShake(5);
         // spawn 5 - 10 gore particles
         for (int i = 0; i < r.nextInt(5) + 5; i++)
-            part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
+            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + r.nextInt(3)));
+            //part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
 
 
     }

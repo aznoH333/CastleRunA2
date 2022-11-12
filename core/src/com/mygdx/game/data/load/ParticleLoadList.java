@@ -10,10 +10,6 @@ public class ParticleLoadList {
 
         // slimes
         particleMap.put("greenSlimeDeath",new Particle(new String[]{"slime3", "slime4", "slime5", "slime6"},0,2));
-        particleMap.put("greenGore0",new Particle(new String[]{"gore0"},30,0));
-        particleMap.put("greenGore1",new Particle(new String[]{"gore1"},30,0));
-        particleMap.put("greenGore2",new Particle(new String[]{"gore2"},30,0));
-        particleMap.put("greenGore3",new Particle(new String[]{"gore3"},30,0));
         particleMap.put("redSlimeDeath",new Particle(new String[]{"red_slime3", "red_slime4", "red_slime5", "red_slime6"},0,2));
         particleMap.put("fleshGore0",new Particle(new String[]{"gore4"},30,0));
         particleMap.put("fleshGore1",new Particle(new String[]{"gore5"},30,0));

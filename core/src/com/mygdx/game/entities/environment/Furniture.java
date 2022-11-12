@@ -5,7 +5,6 @@ import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.EntityManager;
-import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 
@@ -47,13 +46,13 @@ public class Furniture extends Entity {
     @Override
     public void onDestroy() {
         final Random r = Game.getGeneralRandom();
-        final ParticleManager part = ParticleManager.getINSTANCE();
         // spawn particles
         // TODO : sound
         SoundManager.getINSTANCE().playSound("chest");
 
         for (int i = 0; i < r.nextInt(5) + 5; i++)
-            part.addParticle("furniture" + r.nextInt(4),x,y,r.nextInt(10)-5,r.nextInt(10),0.5f,r.nextInt(30) + 30);
+            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(15),"furniturePart" + r.nextInt(4)));
+
 
         DrawingManager.getINSTANCE().addScreenShake(3);
 

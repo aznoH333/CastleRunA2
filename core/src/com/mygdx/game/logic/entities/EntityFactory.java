@@ -19,15 +19,10 @@ public class EntityFactory {
         entities = EntityLoadList.loadEntities();
     }
 
-    /**
-     * @deprecated
-     * */
     public Entity getByName(String name, float x, float y){
         return entities.get(name).getCopy(x,y);
     }
-    /**
-     * @deprecated
-     * */
+
     public Entity getByName(String name, float x, float y, int specialParam){
         return entities.get(name).getCopy(x,y, specialParam);
     }
