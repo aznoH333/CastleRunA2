@@ -7,7 +7,7 @@ import com.mygdx.game.logic.player.Weapon;
 public class MidasSword extends Weapon {
 
     public MidasSword() {
-        super("Midas sword","midas_sword0", 0, 1);
+        super("Midas sword", "wIcon3","midas_sword0", 0, 1);
     }
 
     @Override

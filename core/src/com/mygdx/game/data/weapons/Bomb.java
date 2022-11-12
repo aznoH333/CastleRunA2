@@ -11,7 +11,7 @@ public class Bomb extends Weapon {
 
 
     public Bomb() {
-        super("Bomb", "bomb4", 2, 6);
+        super("Bomb", "wIcon6","bomb4", 2, 6);
 
     }
 

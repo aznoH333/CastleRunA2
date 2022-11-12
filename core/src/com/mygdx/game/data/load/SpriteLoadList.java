@@ -102,6 +102,7 @@ public class SpriteLoadList {
         //spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_part_", "button", 5);
         spr.loadSprites("ui/icons/icon_", "icon", 4);
+        spr.loadSprites("ui/icons/weapon_icons_", "wIcon", 6);
         spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
         spr.loadSprites("ui/icons/locked_character_","locked_char", 0);
 
