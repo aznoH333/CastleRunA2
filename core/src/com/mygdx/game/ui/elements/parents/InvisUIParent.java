@@ -9,12 +9,23 @@ import com.mygdx.game.ui.interfaces.IUIUpdatable;
 public class InvisUIParent implements IUIParentElement, IUIElement, IUIUpdatable {
 
 
-    private final float closedPosition = 1280;
-    private final float openPosition = 0;
-    private float y = closedPosition;
+    private final float closedPosition;
+    private final float openPosition;
+    private float y;
     private final static float animationSpeed = Config.getAnimationSpeed();
     private UIActionStatus targetStatus = UIActionStatus.Closed;
 
+    public InvisUIParent(){
+        closedPosition = 1280;
+        openPosition = 0;
+        y = closedPosition;
+    }
+
+    public InvisUIParent(float openPosition, float closedPosition){
+        this.closedPosition = closedPosition;
+        this.openPosition = openPosition;
+        y = closedPosition;
+    }
 
     @Override
     public void draw() {
@@ -53,12 +64,14 @@ public class InvisUIParent implements IUIParentElement, IUIElement, IUIUpdatable
         if (getStatus() != targetStatus){
             // open ui
             if (targetStatus == UIActionStatus.Open){
-                y -= (float) Math.ceil(Math.abs(y-openPosition)/ animationSpeed);
+                y += (Math.abs(y-openPosition) / animationSpeed) * -Math.signum(y-openPosition);
+                if (Math.abs(y-openPosition) < 3) y = openPosition;
+
             }
             // close ui
             else if (targetStatus == UIActionStatus.Closed){
-                y += (float) Math.max(Math.ceil(Math.abs(y-openPosition)/ animationSpeed),1);
-                if (y > closedPosition) y = closedPosition;
+                y += (Math.abs(y-closedPosition) / animationSpeed) * -Math.signum(y-closedPosition);
+                if (Math.abs(y-closedPosition) < 3) y = closedPosition;
             }
         }
     }

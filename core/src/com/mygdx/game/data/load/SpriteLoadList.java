@@ -108,6 +108,9 @@ public class SpriteLoadList {
         spr.loadSprites("ui/icons/locked_character_","locked_char", 0);
         spr.loadSprites("ui/icons/large_icon_", "large_icon", 1);
 
+        spr.loadSprites("ui/menu/menu_backdrop_", "menu_back", 0);
+        spr.loadSprites("ui/menu/tittle_", "tittle", 0);
+
 
         spr.loadSprites("ui/ui_elements/gamehud_top/top_bar_", "hudTop", 0);
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);

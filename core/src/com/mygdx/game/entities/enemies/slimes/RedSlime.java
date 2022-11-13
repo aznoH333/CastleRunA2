@@ -1,14 +1,16 @@
 package com.mygdx.game.entities.enemies.slimes;
 
+import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.data.enums.TileCollumSpecial;
+import com.mygdx.game.entities.environment.Giblet;
 import com.mygdx.game.logic.SoundManager;
+import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -87,12 +89,11 @@ public class RedSlime extends Enemy {
     @Override
     public void takeDamage(int damage){
         // TODO: hurt sound
-        Random r = new Random();
-        ParticleManager part = ParticleManager.getINSTANCE();
+        Random r = Game.getGeneralRandom();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
         // spawn 1 - 3 gore particles
         for (int i = 0; i < r.nextInt(2) + 1; i++)
-            part.addParticle("fleshGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
+            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + (r.nextInt(3) + 4)));
         super.takeDamage(damage);
     }
 
@@ -109,14 +110,13 @@ public class RedSlime extends Enemy {
     @Override
     public void onDestroy() {
         // spawn particles
-        ParticleManager part = ParticleManager.getINSTANCE();
         SoundManager.getINSTANCE().playSound("enemyDeath1");
-        Random r = new Random();
+        Random r = Game.getGeneralRandom();
         DrawingManager.getINSTANCE().addScreenShake(7);
-        part.addParticle("redSlimeDeath",x,y,0,0,0);
+        ParticleManager.getINSTANCE().addParticle("redSlimeDeath",x,y,0,0,0);
         // spawn 5 - 10 gore particles
         for (int i = 0; i < r.nextInt(5) + 5; i++)
-            part.addParticle("fleshGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
+            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + (r.nextInt(3) + 4)));
 
     }
 }

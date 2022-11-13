@@ -8,8 +8,6 @@ import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
 import com.mygdx.game.logic.drawing.DrawingManager;
-import com.mygdx.game.logic.entities.EntityFactory;
-import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.level.EntityDistributionObject;
 import com.mygdx.game.logic.level.Level;
 import com.mygdx.game.logic.level.LevelManager;
@@ -22,7 +20,6 @@ import com.mygdx.game.ui.UIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
 
 public class LevelProgressionManager {
@@ -46,10 +43,10 @@ public class LevelProgressionManager {
     }
 
     private final static EntityDistributionObject[] possibleEntities = {
-            new EntityDistributionObject("slime", -5, 6, 30f),
+            new EntityDistributionObject("slime", -5, 6, 10f),
             new EntityDistributionObject("red slime", 2, 12, 20f),
-            new EntityDistributionObject("skeleton", 3, 7, 14.5f),
-            new EntityDistributionObject("armored skeleton", 6, 14, 14.5f),
+            new EntityDistributionObject("skeleton", 2, 7, 14.5f),
+            new EntityDistributionObject("armored skeleton", 4, 14, 14.5f),
             new EntityDistributionObject("goblin", 5, 10, 30f),
             new EntityDistributionObject("purple slime", 9, 20, 29f),
             new EntityDistributionObject("rocket skeleton", 10, 20, 25f),
@@ -119,7 +116,7 @@ public class LevelProgressionManager {
                     dumb2 += o.getDistributionForLevel(currentLevelIndex);
                 }
 
-            }while ((r.nextBoolean() || tempEntities.size() < 4) && tempEntities.size() >= 6);
+            }while ((r.nextBoolean() || tempEntities.size() < 2) && tempEntities.size() <= 6);
 
             /*
             //print
@@ -136,21 +133,22 @@ public class LevelProgressionManager {
             // FIXME : tohle je garbage implementace
             ILevelModifier mod = null;
             if (currentLevelIndex >= 4){
-                if (r.nextFloat() > 0.25f){
+                if (r.nextFloat() < 0.25f){
                     float rng = r.nextFloat();
                     if (rng < 0.5)  mod = new ModifierBoneZone();
                     else            mod = new ModifierSlimeRain();
                 }
             }
 
-            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 10 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
+            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 90 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)
                     .setModifier(mod)
                     .build();
-            shop.restock(3);
         }
+        shop.restock(3);
+
         levelDrawingOffset = (currentLevelIndex-3) * 128;
         lvl.loadLevel(currentLevel);
 

@@ -16,6 +16,8 @@ public class Giblet extends Entity {
     private final FollowerObject follower;
     private float xM;
     private float yM;
+    private int deSpawnTimer = 120;
+    private float deSpawnPercentage = 1f;
 
 
 
@@ -37,19 +39,22 @@ public class Giblet extends Entity {
             else{
                 yM = 0;
                 xM = 0;
+                deSpawnTimer--;
             }
         }
         else yM -= 0.5f;
         y += yM;
         x += xM;
 
+        if (deSpawnTimer <= 0) deSpawnPercentage -= 0.05f;
+        if (deSpawnPercentage <= 0) destroy();
         if (Math.abs(xM) > 1 || Math.abs(yM) > 1) follower.addCoordinate(x, y, sprite);
     }
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.draw(sprite, x, y, 1);
         follower.draw();
+        spr.draw(sprite, x + ((1 - deSpawnPercentage) * 16), y, 0, false, deSpawnPercentage);
     }
 
     @Override
