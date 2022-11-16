@@ -12,7 +12,7 @@ public enum PlayerClass {
     Hunter("playerHunter", 2, 2, "Small daggers", "hunter" ),
     Midas("playerMidas", 3, 0, "Midas Sword", "midas"),
     Summoner("playerSummoner", 2, 0, "Sword", "slime"), // TODO
-    Haunted("playerHaunted", 5, 3, "Sword", "slime"); // TODO
+    Haunted("playerHaunted", 5, 3, "Sword", "haunted"); // TODO
 
     public final String playerObject;
     public final int startingHp;

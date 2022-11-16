@@ -12,6 +12,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/player/knight/player_knight_","player",4);
         spr.loadSprites("entities/player/hunter/player_hunter_","hunter",4);
         spr.loadSprites("entities/player/midas/player_midas_","midas",4);
+        spr.loadSprites("entities/player/haunted/player_haunted_","haunted",4);
 
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
@@ -25,6 +26,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/ice_sword/ice_sword_", "ice_sword", 7);
         spr.loadSprites("entities/weapons/rocks/rocks_", "rock", 6);
         spr.loadSprites("entities/weapons/midas_sword/midas_sword_", "midas_sword", 6);
+        spr.loadSprites("entities/weapons/bone_sword/bone_sword_", "bone_sword", 0);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);

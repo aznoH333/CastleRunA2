@@ -15,6 +15,7 @@ import com.mygdx.game.entities.environment.*;
 import com.mygdx.game.entities.player.Projectiles.*;
 import com.mygdx.game.entities.player.Projectiles.axe.Axe;
 import com.mygdx.game.entities.player.Projectiles.axe.ChargedAxe;
+import com.mygdx.game.entities.player.Projectiles.boneSword.BoneSwordProjectile;
 import com.mygdx.game.entities.player.Projectiles.cross.ChargedCross;
 import com.mygdx.game.entities.player.Projectiles.cross.Cross;
 import com.mygdx.game.entities.player.Projectiles.dagger.ChargedDagger;
@@ -27,6 +28,7 @@ import com.mygdx.game.entities.player.itemEntities.Explosion;
 import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.entities.player.itemEntities.MicroBomb;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
+import com.mygdx.game.entities.player.playerClasses.PlayerHaunted;
 import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.entities.player.playerClasses.PlayerHunter;
 import com.mygdx.game.entities.player.playerClasses.PlayerMidas;
@@ -79,7 +81,7 @@ public class EntityLoadList {
         entities.put("bubble", new BubbleProjectile(0,0));
         entities.put("bomb", new BombProjectile(0,0));
         entities.put("rock", new RockProjectile(0,0));
-
+        entities.put("bone_sword", new BoneSwordProjectile(0, 0));
 
         // FIXME normalize naming conventions
         // pickups
@@ -105,6 +107,8 @@ public class EntityLoadList {
         entities.put("playerKnight", new PlayerKnight(0,0));
         entities.put("playerHunter", new PlayerHunter(0,0));
         entities.put("playerMidas", new PlayerMidas(0,0));
+        entities.put("playerHaunted", new PlayerHaunted(0,0));
+
 
         //return
         return entities;

@@ -3,6 +3,7 @@ package com.mygdx.game.logic.gamestates;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.player.ProgressManager;
 import com.mygdx.game.ui.UIManager;
 import com.mygdx.game.ui.elements.parents.InvisUIParent;
@@ -38,9 +39,12 @@ public class MasteryScreen implements IGameState{
         uiElements.add(new Sprite((Game.gameWorldWidth/2 - 64)  / 2, 38,"icon0", uiElements.get(uiElements.size()-1)));
     }
 
+    private static final DrawingManager spr = DrawingManager.getINSTANCE();
+
     @Override
     public void update() {
-
+        spr.draw("menu_back0", 0, ((float)-Game.Time()/2)%1280, 0, false);
+        spr.draw("menu_back0", 0, (((float)-Game.Time()/2))%1280 + 1280, 0, false);
     }
 
     @Override
