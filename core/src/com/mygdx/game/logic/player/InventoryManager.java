@@ -1,7 +1,17 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.data.weapons.*;
+import com.mygdx.game.data.weapons.Bomb;
+import com.mygdx.game.data.weapons.BoneSword;
+import com.mygdx.game.data.weapons.BoomerangCross;
+import com.mygdx.game.data.weapons.Bubble;
+import com.mygdx.game.data.weapons.FireBall;
+import com.mygdx.game.data.weapons.MidasSword;
+import com.mygdx.game.data.weapons.None;
+import com.mygdx.game.data.weapons.Rocks;
+import com.mygdx.game.data.weapons.SmallDagger;
+import com.mygdx.game.data.weapons.Sword;
+import com.mygdx.game.data.weapons.ThrowingAxe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +56,7 @@ public class InventoryManager {
         addWeapon("Bomb", new Bomb());
         addWeapon("Rocks", new Rocks());
         addWeapon("Midas Sword", new MidasSword());
+        addWeapon("Bone Sword", new BoneSword());
 
     }
 

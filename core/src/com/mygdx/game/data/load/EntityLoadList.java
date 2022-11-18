@@ -1,21 +1,34 @@
 package com.mygdx.game.data.load;
 
-import com.mygdx.game.entities.enemies.*;
+import com.mygdx.game.entities.enemies.ArmoredSkeleton;
+import com.mygdx.game.entities.enemies.GhostSkull;
+import com.mygdx.game.entities.enemies.Goblin;
+import com.mygdx.game.entities.enemies.RocketSkeleton;
+import com.mygdx.game.entities.enemies.SawKnight;
+import com.mygdx.game.entities.enemies.Skeleton;
 import com.mygdx.game.entities.enemies.bosses.mechboss.MechBoss;
 import com.mygdx.game.entities.enemies.bosses.mechboss.MechBossSpawner;
 import com.mygdx.game.entities.enemies.bosses.mechboss.RocketProjectile;
 import com.mygdx.game.entities.enemies.bosses.mechboss.SawbladeProjectile;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBoss;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
-import com.mygdx.game.entities.enemies.projectiles.*;
+import com.mygdx.game.entities.enemies.projectiles.Bone;
 import com.mygdx.game.entities.enemies.slimes.PurpleSlime;
 import com.mygdx.game.entities.enemies.slimes.RedSlime;
 import com.mygdx.game.entities.enemies.slimes.Slime;
-import com.mygdx.game.entities.environment.*;
-import com.mygdx.game.entities.player.Projectiles.*;
+import com.mygdx.game.entities.environment.Chest;
+import com.mygdx.game.entities.environment.Coin;
+import com.mygdx.game.entities.environment.EnergyPickup;
+import com.mygdx.game.entities.environment.ExitDoor;
+import com.mygdx.game.entities.environment.Furniture;
+import com.mygdx.game.entities.environment.HealthPotion;
+import com.mygdx.game.entities.environment.PickedCoin;
+import com.mygdx.game.entities.player.Projectiles.BombProjectile;
+import com.mygdx.game.entities.player.Projectiles.BubbleProjectile;
+import com.mygdx.game.entities.player.Projectiles.OrbAttack;
+import com.mygdx.game.entities.player.Projectiles.RockProjectile;
 import com.mygdx.game.entities.player.Projectiles.axe.Axe;
 import com.mygdx.game.entities.player.Projectiles.axe.ChargedAxe;
-import com.mygdx.game.entities.player.Projectiles.boneSword.BoneSwordProjectile;
 import com.mygdx.game.entities.player.Projectiles.cross.ChargedCross;
 import com.mygdx.game.entities.player.Projectiles.cross.Cross;
 import com.mygdx.game.entities.player.Projectiles.dagger.ChargedDagger;
@@ -29,8 +42,8 @@ import com.mygdx.game.entities.player.itemEntities.FriendlyOrb;
 import com.mygdx.game.entities.player.itemEntities.MicroBomb;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
 import com.mygdx.game.entities.player.playerClasses.PlayerHaunted;
-import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.entities.player.playerClasses.PlayerHunter;
+import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
 import com.mygdx.game.entities.player.playerClasses.PlayerMidas;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 
@@ -81,7 +94,6 @@ public class EntityLoadList {
         entities.put("bubble", new BubbleProjectile(0,0));
         entities.put("bomb", new BombProjectile(0,0));
         entities.put("rock", new RockProjectile(0,0));
-        entities.put("bone_sword", new BoneSwordProjectile(0, 0));
 
         // FIXME normalize naming conventions
         // pickups

@@ -93,7 +93,7 @@ public class Skeleton extends Enemy {
         DrawingManager.getINSTANCE().addScreenShake(7);
         // spawn 10 - 20 gore particles
         for (int i = 0; i < r.nextInt(10) + 10; i++)
-            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + (r.nextInt(4) + 7)));
+            e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + (r.nextInt(4) + 8)));
     }
 
     @Override
