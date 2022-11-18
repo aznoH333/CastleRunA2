@@ -2,13 +2,12 @@ package com.mygdx.game.entities.player.Projectiles.axe;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -19,8 +18,8 @@ public class Axe extends Projectile {
     private float yM = 10f;
     protected static final float gravity = 0.5f;
     private final FollowerObject[] followers = {
-            new FollowerObject(1, 2, ColorType.Opacity50),
-            new FollowerObject(1, 4, ColorType.Opacity25)
+            new FollowerObject(1, 2, 0.5f),
+            new FollowerObject(1, 4, 0.25f)
     };
 
     public Axe(float x, float y, float xSize, float ySize, int hp) {

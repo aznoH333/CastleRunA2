@@ -3,7 +3,6 @@ package com.mygdx.game.entities.player.Projectiles.midasSword;
 import com.mygdx.game.Game;
 import com.mygdx.game.entities.environment.Coin;
 import com.mygdx.game.entities.player.Projectiles.sword.ChargedSwordSwipe;
-import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -21,8 +20,8 @@ public class ChargedMidasSwordSwipe extends ChargedSwordSwipe {
     }
 
     private final FollowerObject[] followers = {
-            new FollowerObject(1, 1, ColorType.Opacity50),
-            new FollowerObject(1, 3, ColorType.Opacity25),
+            new FollowerObject(1, 1, 0.5f),
+            new FollowerObject(1, 3, 0.25f),
     };
 
     private static final ParticleManager part = ParticleManager.getINSTANCE();

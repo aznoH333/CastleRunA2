@@ -1,7 +1,6 @@
 package com.mygdx.game.entities.player.Projectiles.sword;
 
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Entity;
@@ -12,8 +11,8 @@ import java.util.Random;
 public class ChargedSwordSwipe extends SwordSwipe {
 
     private static final float xM = 5f;
-    private final FollowerObject follower = new FollowerObject(0,2, ColorType.Opacity50);
-    private final FollowerObject follower2 = new FollowerObject(0,4, ColorType.Opacity25);
+    private final FollowerObject follower = new FollowerObject(0,2, 0.5f);
+    private final FollowerObject follower2 = new FollowerObject(0,4, 0.25f);
     public ChargedSwordSwipe(float x, float y) {
         super(x, y);
     }

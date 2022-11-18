@@ -1,18 +1,17 @@
 package com.mygdx.game.entities.player.playerClasses;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.logic.drawing.ColorType;
-import com.mygdx.game.logic.drawing.FollowerObject;
-import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
-import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
-import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
+import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.ui.UIManager;
@@ -191,9 +190,13 @@ public class PlayerKnight extends Entity {
     }
 
     protected final FollowerObject[] followers = {
-            new FollowerObject(0, 2, ColorType.Opacity75),
-            new FollowerObject(0, 4, ColorType.Opacity50),
-            new FollowerObject(0, 6, ColorType.Opacity25)
+            new FollowerObject(0, 1, 0.80f),
+            new FollowerObject(0, 2, 0.70f),
+            new FollowerObject(0, 3, 0.60f),
+            new FollowerObject(0, 4, 0.5f),
+            new FollowerObject(0, 5, 0.35f),
+            new FollowerObject(0, 6, 0.25f),
+            new FollowerObject(0, 7, 0.1f)
     };
     @Override
     public void draw(DrawingManager spr) {

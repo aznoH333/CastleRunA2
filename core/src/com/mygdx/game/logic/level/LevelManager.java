@@ -152,7 +152,7 @@ public class LevelManager {
             if (currentCollum.getSpecial().draws) {
                 // render tiles
                 for (int y = 0; y < currentCollum.getY() / tileScale + 2; y++) {
-                    spr.drawGame(currentCollum.getTexture(y), x * tileScale - (distance % tileScale), currentCollum.getY() - y * tileScale);
+                    spr.draw(currentCollum.getTexture(y), x * tileScale - (distance % tileScale), currentCollum.getY() - y * tileScale,0);
                 }
             }
             // render special tile objects

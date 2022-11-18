@@ -53,8 +53,8 @@ public class TextData implements DrawingData{
     }
 
     @Override
-    public ColorType getColor() {
-        return ColorType.Normal;
+    public float getOpacity() {
+        return 1;
     }
 
     @Override

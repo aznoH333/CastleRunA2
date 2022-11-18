@@ -36,7 +36,7 @@ public class DrawingManager {
     private int screenShake = 0;
     private float screenShakeOffset = 0f;
     private static final int maximumScreenShake = 40;
-    private ColorType color = ColorType.Normal;
+    private float opacity = 0;
 
     public DrawingManager(){
         pixelScale = Gdx.graphics.getHeight() / 160f;
@@ -115,9 +115,9 @@ public class DrawingManager {
 
         for (ArrayList<DrawingData> layer : drawQueue) {
             for (DrawingData data: layer) {
-                if (data.getColor() != color){
-                    color = data.getColor();
-                    batch.setColor(color.r, color.g, color.b, color.a);
+                if (data.getOpacity() != opacity){
+                    opacity = data.getOpacity();
+                    batch.setColor(1, 1, 1, opacity);
                 }
                 if (data.getType() == DrawingDataType.Sprite)
                     batch.draw(
@@ -150,13 +150,6 @@ public class DrawingManager {
         drawText(text, x, y, zIndex, 1f);
     }
 
-    // draws sprite with the default sprite index
-    // default sprite index is 0
-    // use to draw only in game graphics
-    public void drawGame(String textureName, float x, float y){
-        draw(textureName, x, y ,0, true);
-    }
-
     // draws with set index
     // use to draw only in game graphics
     public void drawGame(String textureName, float x, float y, int zIndex){
@@ -164,25 +157,24 @@ public class DrawingManager {
     }
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, ColorType.Normal, false);
+        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, 1, false);
     }
 
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, ColorType.Normal, false);
+        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, 1, false);
     }
 
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, color, false);
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, float opacity){
+        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, opacity, false);
     }
     // this is a bad workaround (._.)
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, ColorType color, boolean stretch){
+    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, float opacity, boolean stretch){
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
             System.out.println(x);
             System.out.println(y);
         }else
-
-        drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, color, stretch));
+            drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, opacity, stretch));
     }
 
     public void draw(String textureName, float x, float y, int zIndex){

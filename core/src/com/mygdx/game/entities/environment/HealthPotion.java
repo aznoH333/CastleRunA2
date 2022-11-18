@@ -1,10 +1,10 @@
 package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.logic.SoundManager;
-import com.mygdx.game.logic.entities.abstracts.Entity;
-import com.mygdx.game.logic.entities.ParticleManager;
-import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.entities.abstracts.Entity;
+import com.mygdx.game.logic.player.PlayerStats;
 
 public class HealthPotion extends Pickup{
     private static final int fillHp = 3;
@@ -15,7 +15,7 @@ public class HealthPotion extends Pickup{
 
     @Override
     public void draw(DrawingManager spr) {
-        DrawingManager.getINSTANCE().drawGame("potion1",x,y);
+        DrawingManager.getINSTANCE().draw("potion1",x,y, 0);
     }
 
     @Override

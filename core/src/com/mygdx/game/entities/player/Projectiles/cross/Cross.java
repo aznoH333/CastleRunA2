@@ -2,13 +2,12 @@ package com.mygdx.game.entities.player.Projectiles.cross;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -18,9 +17,9 @@ public class Cross extends Projectile {
     private float xM = 10f;
     private int thrownTimer = 32;
     private final static float returnForce = 0.25f;
-    private final FollowerObject follower1 = new FollowerObject(1, 1, ColorType.Opacity75);
-    private final FollowerObject follower2 = new FollowerObject(1, 2, ColorType.Opacity50);
-    private final FollowerObject follower3 = new FollowerObject(1, 3, ColorType.Opacity25);
+    private final FollowerObject follower1 = new FollowerObject(1, 1, 0.75f);
+    private final FollowerObject follower2 = new FollowerObject(1, 2, 0.5f);
+    private final FollowerObject follower3 = new FollowerObject(1, 3, 0.25f);
     public Cross(float x, float y) {
         super(x, y,48,48,1, Team.PlayerProjectiles,24);
     }

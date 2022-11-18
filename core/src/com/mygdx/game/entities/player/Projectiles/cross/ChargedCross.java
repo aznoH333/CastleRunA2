@@ -2,13 +2,12 @@ package com.mygdx.game.entities.player.Projectiles.cross;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 import com.mygdx.game.logic.level.LevelManager;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -24,11 +23,11 @@ public class ChargedCross extends Projectile {
     //private final static ParticleManager part = ParticleManager.getINSTANCE();
 
     private final FollowerObject[] followers = new FollowerObject[]{
-            new FollowerObject(1, 1, ColorType.Opacity75),
-            new FollowerObject(1, 2, ColorType.Opacity50),
-            new FollowerObject(1, 3, ColorType.Opacity50),
-            new FollowerObject(1, 4, ColorType.Opacity25),
-            new FollowerObject(1, 5, ColorType.Opacity25)
+            new FollowerObject(1, 1, 0.7f),
+            new FollowerObject(1, 2, 0.6f),
+            new FollowerObject(1, 3, 0.5f),
+            new FollowerObject(1, 4, 0.3f),
+            new FollowerObject(1, 5, 0.2f)
     };
 
 

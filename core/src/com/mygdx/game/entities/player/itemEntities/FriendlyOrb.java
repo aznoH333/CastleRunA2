@@ -4,15 +4,14 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.entities.player.playerClasses.PlayerKnight;
-import com.mygdx.game.logic.drawing.ColorType;
+import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
-import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
+import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.player.InputManager;
 import com.mygdx.game.logic.player.PlayerStats;
-import com.mygdx.game.logic.drawing.DrawingManager;
 
 import java.util.Random;
 
@@ -29,8 +28,8 @@ public class FriendlyOrb extends Entity {
     private static final int cooldownMax = 640;
     private final EntityManager ent = EntityManager.getINSTANCE();
     private final FollowerObject[] followers = {
-            new FollowerObject(2, 3, ColorType.Opacity50),
-            new FollowerObject(2, 6, ColorType.Opacity50)
+            new FollowerObject(2, 3, 0.5f),
+            new FollowerObject(2, 6, 0.25f)
     };
 
     public FriendlyOrb(float x, float y) {

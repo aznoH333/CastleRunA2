@@ -2,7 +2,6 @@ package com.mygdx.game.entities.player.playerClasses;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
-import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Entity;

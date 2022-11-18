@@ -2,7 +2,6 @@ package com.mygdx.game.entities.environment;
 
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
 import com.mygdx.game.logic.entities.abstracts.Entity;
@@ -26,7 +25,7 @@ public class Giblet extends Entity {
         this.sprite = sprite;
         this.xM = xM;
         this.yM = yM;
-        follower = new FollowerObject(0, 3, ColorType.Opacity50);
+        follower = new FollowerObject(0, 3, 0.5f);
     }
 
     @Override

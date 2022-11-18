@@ -1,10 +1,10 @@
 package com.mygdx.game.data.tilesets.traps;
 
 import com.mygdx.game.Game;
-import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
-import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.logic.drawing.DrawingManager;
+import com.mygdx.game.logic.level.tileCollums.ISpecialTile;
+import com.mygdx.game.logic.level.tileCollums.TileCollum;
 
 public class GhostPlatform extends TileCollum implements ISpecialTile {
 
@@ -43,7 +43,7 @@ public class GhostPlatform extends TileCollum implements ISpecialTile {
     @Override
     public void draw(float x, float y) {
         if (isOn && timer >= 60 && timer <= 180 || isOn && Game.Time() % 4 >> 1 == 0)
-            DrawingManager.getINSTANCE().drawGame("ghost_platform0",x,y);
+            DrawingManager.getINSTANCE().draw("ghost_platform0",x,y, 0);
     }
 
     @Override

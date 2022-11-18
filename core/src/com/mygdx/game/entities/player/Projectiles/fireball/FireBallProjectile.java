@@ -4,10 +4,8 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.entities.player.itemEntities.MicroExplosion;
 import com.mygdx.game.items.effects.OnFire;
-import com.mygdx.game.logic.drawing.ColorType;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.drawing.FollowerObject;
-import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
@@ -22,9 +20,9 @@ public class FireBallProjectile extends Projectile {
     private final static ParticleManager part = ParticleManager.getINSTANCE();
     private final static Random r = Game.getGeneralRandom();
     private final FollowerObject[] followers = {
-            new FollowerObject(1, 1, ColorType.Opacity25),
-            new FollowerObject(1, 2, ColorType.Opacity25),
-            new FollowerObject(1, 3, ColorType.Opacity25),
+            new FollowerObject(1, 1, 0.25f),
+            new FollowerObject(1, 2, 0.20f),
+            new FollowerObject(1, 3, 0.15f),
     };
 
     public FireBallProjectile(float x, float y) {
