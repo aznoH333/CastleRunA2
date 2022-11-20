@@ -7,9 +7,7 @@ import com.mygdx.game.items.interfaces.IItemAlways;
 import com.mygdx.game.items.interfaces.IItemOnAttack;
 import com.mygdx.game.items.interfaces.IItemOnKill;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
-import com.mygdx.game.items.items.FortuneCrown;
 import com.mygdx.game.items.items.FriendlyOrbItem;
-import com.mygdx.game.items.items.MicroBombs;
 import com.mygdx.game.logic.entities.abstracts.Entity;
 import com.mygdx.game.logic.entities.abstracts.Projectile;
 
@@ -78,5 +76,11 @@ public class ItemManager {
         }
         // TODO : this is literally breakfasting maybe reset the weapon list??
         return new FriendlyOrbItem();
+    }
+
+    public void update(){
+        for (IItemAlways item : always){
+            item.update();
+        }
     }
 }

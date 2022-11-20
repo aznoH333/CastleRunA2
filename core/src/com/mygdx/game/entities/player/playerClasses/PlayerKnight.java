@@ -13,6 +13,7 @@ import com.mygdx.game.logic.level.LevelManager;
 import com.mygdx.game.logic.level.tileCollums.IOnPlayerStep;
 import com.mygdx.game.logic.level.tileCollums.TileCollum;
 import com.mygdx.game.logic.player.InputManager;
+import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
 import com.mygdx.game.ui.UIManager;
 
@@ -43,6 +44,7 @@ public class PlayerKnight extends Entity {
     private final ParticleManager particleManager = ParticleManager.getINSTANCE();
     private int energyRecharge = getEnergyRechargeTime();
     protected boolean longJumping = false;
+    private static final ItemManager items = ItemManager.getINSTANCE();
 
 
 
@@ -187,6 +189,8 @@ public class PlayerKnight extends Entity {
             s.playSound("energy");
             inv.gainEnergy(1);
         }
+
+        items.update();
     }
 
     protected final FollowerObject[] followers = {

@@ -27,6 +27,7 @@ public class SpriteLoadList {
         spr.loadSprites("entities/weapons/rocks/rocks_", "rock", 6);
         spr.loadSprites("entities/weapons/midas_sword/midas_sword_", "midas_sword", 6);
         spr.loadSprites("entities/weapons/bone_sword/bone_sword_", "bone_sword", 0);
+        spr.loadSprites("entities/weapons/bone_sword/shockwave_", "shockwave", 5);
 
         //enemies
         spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
@@ -99,6 +100,9 @@ public class SpriteLoadList {
         spr.loadSprites("ui/bars/bars_start_", "barStart", 1);
         spr.loadSprites("ui/ui_elements/message_box/message_box_","msgBox", 1);
         spr.loadSprites("ui/ui_elements/levelBar/levelBar_","lvlBar", 6);
+        spr.loadSprites("ui/death/damage_overlay_", "damage_overlay", 0);
+        spr.loadSprites("ui/death/death_skull_", "death_skull", 0);
+
 
 
         //spr.loadSprites("ui/buttons/button_", "button", 1);

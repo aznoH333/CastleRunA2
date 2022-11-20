@@ -18,7 +18,7 @@ public class BoneSwordProjectile extends Projectile {
     private int destructionTimer = 30;
 
     public BoneSwordProjectile(float x, float y, float startingYM) {
-        super(x, y, 64, 64, 1, Team.PlayerProjectiles, 1);
+        super(x, y, 64, 64, 1, Team.PlayerProjectiles, 120);
         yM = -startingYM;
     }
 
@@ -54,7 +54,10 @@ public class BoneSwordProjectile extends Projectile {
             y += yM;
 
             if (lvl.collidesWithLevel(this)){
-               falling = false;
+
+                e.addEntity(new BoneSwordShockWave(x + 8, y + 8, true));
+                e.addEntity(new BoneSwordShockWave(x + 8, y + 8, false));
+                falling = false;
                y = lvl.getLevelY(this);
             }
         }

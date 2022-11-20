@@ -109,4 +109,8 @@ public class Game {
     public static void exitLevel(){
         exitLevel(120);
     }
+
+    public static boolean isExitingLevel(){
+        return exitTime > 0;
+    }
 }

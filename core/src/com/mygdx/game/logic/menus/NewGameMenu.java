@@ -4,6 +4,7 @@ import com.mygdx.game.Game;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.PlayerClass;
 import com.mygdx.game.data.enums.GameState;
+import com.mygdx.game.items.items.CursedItem;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.player.InputManager;
@@ -96,6 +97,10 @@ public class NewGameMenu {
         lvlMan.progressLevel();
         lvlMan.startLevel();
         UIManager.getINSTANCE().transition(GameState.Game);
+        // give cursed skull
+        if (PlayerStats.getINSTANCE().getPlayerClass() == PlayerClass.Haunted){
+            ItemManager.getINSTANCE().addItem(new CursedItem());
+        }
     }
 
     public ILambdaFunction buttonOperation(){
