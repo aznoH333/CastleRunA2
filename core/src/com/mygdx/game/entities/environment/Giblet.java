@@ -53,7 +53,8 @@ public class Giblet extends Entity {
     @Override
     public void draw(DrawingManager spr) {
         follower.draw();
-        spr.draw(sprite, x + ((1 - deSpawnPercentage) * 16), y, 0, false, deSpawnPercentage);
+        //spr.draw(sprite, x + ((1 - deSpawnPercentage) * 16), y, 0, false, deSpawnPercentage);
+        spr.draw(sprite , x, y, 0, true, 1, deSpawnPercentage, false);
     }
 
     @Override
