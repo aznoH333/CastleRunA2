@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.drawing;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.data.enums.DrawingDataType;
 
@@ -8,13 +9,15 @@ public class TextData implements DrawingData{
     private final float y;
     private final String text;
     private final float scale;
+    private final Color color;
 
 
-    public TextData(String text, float x, float y, float scale){
+    public TextData(String text, float x, float y, float scale, Color color){
         this.text = text;
         this.x = x;
         this.y = y;
         this.scale = scale;
+        this.color = color;
     }
 
     @Override
@@ -48,17 +51,18 @@ public class TextData implements DrawingData{
     }
 
     @Override
-    public float getScale() {
+    public float getXScale() {
         return scale;
     }
 
-    @Override
-    public float getOpacity() {
-        return 1;
+    public float getYScale() {
+        return scale;
     }
 
+
     @Override
-    public boolean getStretch() {
-        return false;
+    public Color getColor() {
+        return color;
     }
+
 }

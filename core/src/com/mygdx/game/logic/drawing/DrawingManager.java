@@ -2,6 +2,7 @@ package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -36,7 +37,6 @@ public class DrawingManager {
     private int screenShake = 0;
     private float screenShakeOffset = 0f;
     private static final int maximumScreenShake = 40;
-    private float opacity = 0;
 
     public DrawingManager(){
         pixelScale = Gdx.graphics.getHeight() / 160f;
@@ -115,17 +115,16 @@ public class DrawingManager {
 
         for (ArrayList<DrawingData> layer : drawQueue) {
             for (DrawingData data: layer) {
-                if (data.getOpacity() != opacity){
-                    opacity = data.getOpacity();
-                    batch.setColor(1, 1, 1, opacity);
-                }
+                // set color
+                batch.setColor(data.getColor());
+
                 if (data.getType() == DrawingDataType.Sprite)
                     batch.draw(
                             data.getTexture(),
                             data.getX(),
                             data.getY() + (data.affectedByScreenShake() ? screenShakeOffset * 3.5f : 0),
-                            data.getTexture().getWidth() * pixelScale * data.getScale(),
-                            data.getTexture().getHeight()* pixelScale * ((data.getStretch()) ? 1 : data.getScale()));
+                            data.getTexture().getWidth() * pixelScale * data.getXScale(),
+                            data.getTexture().getHeight() * pixelScale * data.getYScale());
                 else{
                     fontShadow.draw(batch, data.getText(), data.getX() + pixelScale, data.getY() - pixelScale);
                     font.draw(batch, data.getText(), data.getX(), data.getY());
@@ -139,8 +138,8 @@ public class DrawingManager {
         batch.end();
     }
 
-    public void drawText(String text, float x, float y, int zIndex, float scale){
-        drawQueue[zIndex+1].add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale));
+    public void drawText(String text, float x, float y, int zIndex, float scale){ // TODO : text coloring
+        drawQueue[zIndex+1].add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale, new Color(1,1,1,1)));
     }
 
     public void drawText(String text, float x, float y){
@@ -169,16 +168,26 @@ public class DrawingManager {
     }
     // this is a bad workaround (._.)
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, float opacity, boolean stretch){
+        /*
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
             System.out.println(x);
             System.out.println(y);
         }else
-            drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, opacity, stretch));
+            drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, opacity));
+        */
     }
 
-    public void draw(String textureName, float x, float y, int zIndex){
-        draw(textureName, x, y, zIndex, true);
+
+
+    // TODO : remove all other drawing functions, use only this one
+    public void draw(String textureName, float x, float y, int zIndex, float xScale, float yScale, Color color, boolean affectedByScreenShake){
+        if (sprs.get(textureName) == null) {
+            System.out.println(textureName);
+            System.out.println(x);
+            System.out.println(y);
+        }else
+            drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, xScale, yScale, color));
     }
 
 

@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.drawing;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.data.enums.DrawingDataType;
 
@@ -8,17 +9,18 @@ public class SpriteData implements DrawingData{
     private final float x;
     private final float y;
     private final boolean affectedByScreenShake;
-    private final float scale;
-    private final float opacity;
-    private final boolean stretch;
-    public SpriteData(Texture texture, float x, float y, boolean affectedByScreenShake, float scale, float color, boolean stretch){
+    private final float scaleX;
+    private final float scaleY;
+    private final Color color;
+
+    public SpriteData(Texture texture, float x, float y, boolean affectedByScreenShake, float scaleX, float scaleY, Color color){
         this.texture = texture;
         this.x = x;
         this.y = y;
         this.affectedByScreenShake = affectedByScreenShake;
-        this.scale = scale;
-        this.opacity = color;
-        this.stretch = stretch;
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+        this.color = color;
     }
 
     @Override
@@ -52,17 +54,18 @@ public class SpriteData implements DrawingData{
     }
 
     @Override
-    public float getScale() {
-        return scale;
+    public float getXScale() {
+        return scaleX;
     }
 
     @Override
-    public boolean getStretch(){
-        return stretch;
+    public float getYScale() {
+        return scaleY;
     }
 
+
     @Override
-    public float getOpacity() {
-        return opacity;
+    public Color getColor() {
+        return color;
     }
 }
