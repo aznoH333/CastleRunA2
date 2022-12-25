@@ -149,11 +149,7 @@ public class DrawingManager {
         drawText(text, x, y, zIndex, 1f);
     }
 
-    // draws with set index
-    // use to draw only in game graphics
-    public void drawGame(String textureName, float x, float y, int zIndex){
-        draw(textureName, x, y, (byte) zIndex, true);
-    }
+
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
         draw(textureName, x, y, zIndex, affectedByScreenShake, 1, 1, false);

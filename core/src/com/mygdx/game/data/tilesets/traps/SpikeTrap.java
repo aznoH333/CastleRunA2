@@ -44,7 +44,7 @@ public class SpikeTrap extends TileCollum implements ISpecialTile, ICollumnActiv
     }
     @Override
     public void draw(float x, float y) {
-        if (hurts) DrawingManager.getINSTANCE().drawGame("spikeTrap0",x, y + LevelManager.tileScale,2);
+        if (hurts) DrawingManager.getINSTANCE().draw("spikeTrap0",x, y + LevelManager.tileScale,2);
     }
 
 

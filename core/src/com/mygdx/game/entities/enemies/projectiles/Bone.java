@@ -29,7 +29,7 @@ public class Bone extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("bone" + (4-(Game.Time()%4)),x,y,2);
+        spr.draw("bone" + (4-(Game.Time()%4)),x,y,2);
     }
 
     @Override

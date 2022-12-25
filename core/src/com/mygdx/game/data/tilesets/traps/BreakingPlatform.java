@@ -57,7 +57,7 @@ public class BreakingPlatform extends TileCollum implements ISpecialTile, IOnPla
     public void draw(float x, float y) {
         if(isOn && flickerTimer % 4 < 2){
             if (!isInAStateOfCollapse)
-                DrawingManager.getINSTANCE().drawGame("platform0",x,y,1);
+                DrawingManager.getINSTANCE().draw("platform0",x,y,1);
             else{
 
                 if (Game.Time() % 4 == 0){
