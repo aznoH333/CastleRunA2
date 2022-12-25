@@ -1,8 +1,6 @@
 package com.mygdx.game.entities.player.Projectiles.boneSword;
 
-import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
-import com.mygdx.game.entities.environment.Giblet;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
 import com.mygdx.game.logic.entities.abstracts.Entity;
@@ -16,6 +14,7 @@ public class BoneSwordProjectile extends Projectile {
     private float yM;
     private boolean falling = true;
     private int destructionTimer = 30;
+    private float opacity = 1;
 
     public BoneSwordProjectile(float x, float y, float startingYM) {
         super(x, y, 64, 64, 1, Team.PlayerProjectiles, 120);
@@ -24,7 +23,8 @@ public class BoneSwordProjectile extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.draw("bone_sword0",x, y - 64, -1);
+        //spr.draw("bone_sword0",x, y - 64, -1);
+        spr.draw("bone_sword0", x, y-64, -1, true, 1, opacity);
     }
 
     @Override
@@ -34,11 +34,7 @@ public class BoneSwordProjectile extends Projectile {
 
     @Override
     public void onDestroy() {
-        for (int i = 0; i < 5; i++)
-            e.addEntity(new Giblet(x, y,
-                    (Game.getGeneralRandom().nextFloat() - 0.5f) * 25,
-                    (Game.getGeneralRandom().nextFloat()) * 10,
-                    "gore" + (Game.getGeneralRandom().nextInt(4) + 8)));
+
     }
 
     @Override
@@ -58,12 +54,17 @@ public class BoneSwordProjectile extends Projectile {
                 e.addEntity(new BoneSwordShockWave(x + 8, y + 8, true));
                 e.addEntity(new BoneSwordShockWave(x + 8, y + 8, false));
                 falling = false;
-               y = lvl.getLevelY(this);
+                DrawingManager.getINSTANCE().addScreenShake(5);
+                y = lvl.getLevelY(this);
             }
         }
         else {
-            destructionTimer--;
-            if (destructionTimer == 0) destroy();
+            if (destructionTimer == 0){
+                opacity-=0.1f;
+                if (opacity <= 0) destroy();
+            }
+            else
+                destructionTimer--;
         }
     }
 }
