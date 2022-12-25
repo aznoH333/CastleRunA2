@@ -20,7 +20,7 @@ public class MicroExplosion extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("miniexplosion" + (5 -(long)(((double)(deletionTime - Game.Time())/16)*6)),x,y,2);
+        spr.draw("miniexplosion" + (5 -(long)(((double)(deletionTime - Game.Time())/16)*6)),x,y,2);
     }
 
     @Override

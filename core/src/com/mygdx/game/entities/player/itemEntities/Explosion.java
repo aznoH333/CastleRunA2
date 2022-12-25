@@ -19,7 +19,7 @@ public class Explosion extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("explosion" + (6 -(long)(((double)(deletionTime - Game.Time())/3.5))),x,y,2);
+        spr.draw("explosion" + (6 -(long)(((double)(deletionTime - Game.Time())/3.5))),x,y,2);
     }
 
     @Override

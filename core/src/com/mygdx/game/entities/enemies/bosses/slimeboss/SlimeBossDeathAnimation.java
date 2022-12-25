@@ -57,9 +57,9 @@ public class SlimeBossDeathAnimation extends Entity {
     @Override
     public void draw(DrawingManager spr) {
         if (Game.Time()%4 > 2){
-            spr.drawGame("slime_boss0",x,y,1);
+            spr.draw("slime_boss0",x,y,1);
         } else{
-            spr.drawGame("slime_boss1",x,y,1);
+            spr.draw("slime_boss1",x,y,1);
         }
     }
 

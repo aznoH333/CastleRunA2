@@ -48,7 +48,7 @@ public class MicroBomb extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("minibomb" + ((Game.Time()/8)%2),x,y,2);
+        spr.draw("minibomb" + ((Game.Time()/8)%2),x,y,2);
     }
 
     @Override

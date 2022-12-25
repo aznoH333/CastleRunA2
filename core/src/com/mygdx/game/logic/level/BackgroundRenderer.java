@@ -28,7 +28,7 @@ public class BackgroundRenderer {
         long t = Game.Time();
         for (int i = 0; i < background.getLayers().length; i++) {
             for (int j = 0; j < (Gdx.graphics.getWidth() * (1280/Gdx.graphics.getHeight()) + veryDumb*2); j+= veryDumb){
-                spr.drawGame(background.getLayers()[i].getSprite(),(- (distance + (background.getLayers()[i].getWindSpeed() * t)) * background.getLayers()[i].getParralax())%veryDumb + j,0, -1);
+                spr.draw(background.getLayers()[i].getSprite(),(- (distance + (background.getLayers()[i].getWindSpeed() * t)) * background.getLayers()[i].getParralax())%veryDumb + j,0, -1);
             }
         }
     }

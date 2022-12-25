@@ -37,7 +37,7 @@ public class SwordSwipe extends Projectile {
         // me when bruh
 
         if (lifeTime>0)
-            spr.drawGame("sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
+            spr.draw("sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
 
     }
 

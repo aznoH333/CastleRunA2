@@ -24,8 +24,8 @@ public class ExitDoor extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        if (isOpen)     spr.drawGame("door1",x,y,1);
-        else            spr.drawGame("door0",x,y,1);
+        if (isOpen)     spr.draw("door1",x,y,1);
+        else            spr.draw("door0",x,y,1);
     }
 
     @Override

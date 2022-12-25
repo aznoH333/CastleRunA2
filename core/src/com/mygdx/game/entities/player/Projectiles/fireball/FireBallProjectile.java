@@ -32,7 +32,7 @@ public class FireBallProjectile extends Projectile {
     @Override
     public void draw(DrawingManager spr) {
         String sprite = "fireball" + ((Game.Time() / 3) % 4 + 1);
-        spr.drawGame(sprite, x, y,1);
+        spr.draw(sprite, x, y,1);
 
         for (FollowerObject f: followers) {
             f.addCoordinate(x, y, sprite);

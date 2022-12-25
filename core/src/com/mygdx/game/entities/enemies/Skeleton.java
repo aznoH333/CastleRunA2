@@ -68,9 +68,9 @@ public class Skeleton extends Enemy {
     @Override
     public void draw(DrawingManager spr) {
         if (animationTimer > 30)
-            spr.drawGame("skeleton3",x,y,2);
+            spr.draw("skeleton3",x,y,2);
         else{
-            spr.drawGame("skeleton" + danceAnimation,x,y,2);
+            spr.draw("skeleton" + danceAnimation,x,y,2);
 
         }
     }

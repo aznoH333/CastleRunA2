@@ -29,7 +29,7 @@ public class MidasSwordSwipe extends SwordSwipe {
     @Override
     public void draw(DrawingManager spr) {
         if (lifeTime>0)
-            spr.drawGame("midas_sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
+            spr.draw("midas_sword" + (int) Math.ceil((13 - lifeTime) >> 1),x,y,1);
     }
 
     @Override

@@ -75,11 +75,11 @@ public class RedSlime extends Enemy {
     public void draw(DrawingManager spr) {
         if (landed)
             if (jumpTimer%animationSpeed > animationSpeed/2)
-                spr.drawGame("red_slime0",x,y,1);
+                spr.draw("red_slime0",x,y,1);
             else
-                spr.drawGame("red_slime1",x,y,1);
+                spr.draw("red_slime1",x,y,1);
         else
-            spr.drawGame("red_slime2",x,y,1);
+            spr.draw("red_slime2",x,y,1);
     }
 
     @Override

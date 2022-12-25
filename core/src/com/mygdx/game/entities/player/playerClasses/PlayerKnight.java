@@ -207,15 +207,15 @@ public class PlayerKnight extends Entity {
         // player rendering
         if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
             if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-                spr.drawGame("player1", x, y,2);
+                spr.draw("player1", x, y,2);
             else if (y != lvlY)
-                spr.drawGame("player2", x, y,2);
+                spr.draw("player2", x, y,2);
             else if (actionTimer > actionTimerFull / 2)
-                spr.drawGame("player3", x, y,2);
+                spr.draw("player3", x, y,2);
             else if (actionTimer > 0)
-                spr.drawGame("player4", x, y,2);
+                spr.draw("player4", x, y,2);
             else
-                spr.drawGame("player0", x, y,2);
+                spr.draw("player0", x, y,2);
 
         for (FollowerObject f: followers) {
             if (longJumping) f.addCoordinate(x, y, "player2");

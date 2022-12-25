@@ -35,7 +35,7 @@ public class ChargedSwordSwipe extends SwordSwipe {
 
         if (lifeTime>0){
             String sprite = "sword" + (int) Math.ceil((13 - lifeTime) >> 1);
-            spr.drawGame(sprite,x,y,1);
+            spr.draw(sprite,x,y,1);
             follower.addCoordinate(x, y, sprite);
             follower2.addCoordinate(x, y, sprite);
             follower.draw();

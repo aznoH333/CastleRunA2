@@ -42,7 +42,7 @@ public class Cross extends Projectile {
     public void draw(DrawingManager spr) {
 
         String sprite = "cross" + (animationIndex+1);
-        spr.drawGame(sprite,x-16,y,2);
+        spr.draw(sprite,x-16,y,2);
         follower1.addCoordinate(x - 16, y ,sprite);
         follower2.addCoordinate(x - 16, y ,sprite);
         follower3.addCoordinate(x - 16, y ,sprite);

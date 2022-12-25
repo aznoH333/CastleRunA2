@@ -43,7 +43,7 @@ public class Dagger extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("dagger1",x,y,1);
+        spr.draw("dagger1",x,y,1);
     }
 
 

@@ -53,7 +53,7 @@ public class ParticleManager {
 
     public void draw(DrawingManager spr){
         for (Particle part: particles) {
-            spr.drawGame(part.getSpr(),part.getX(), part.getY(),3);
+            spr.draw(part.getSpr(),part.getX(), part.getY(),3);
         }
     }
 

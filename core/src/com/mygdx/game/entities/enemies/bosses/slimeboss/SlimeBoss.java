@@ -79,13 +79,13 @@ public class SlimeBoss extends Slime {
     public void draw(DrawingManager spr) {
         if (landed)
             if (jumpTimer%animationSpeed > animationSpeed>>1 && slimeTimer > slimeTimerAnimation || slimeTimer <= slimeTimerAnimation && Game.Time()%4 > 2){
-                spr.drawGame("slime_boss0",x,y,1);
+                spr.draw("slime_boss0",x,y,1);
             } else{
-                spr.drawGame("slime_boss1",x,y,1);
+                spr.draw("slime_boss1",x,y,1);
             }
 
         else{
-            spr.drawGame("slime_boss2",x,y,1);
+            spr.draw("slime_boss2",x,y,1);
         }
     }
 

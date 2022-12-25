@@ -70,7 +70,7 @@ public class FriendlyOrb extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.drawGame("miniorb0",x,y,2);
+        spr.draw("miniorb0",x,y,2);
         for (FollowerObject f: followers) {
             f.addCoordinate(x, y, "miniorb0");
             f.draw();

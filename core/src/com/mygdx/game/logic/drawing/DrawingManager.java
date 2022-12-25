@@ -180,7 +180,7 @@ public class DrawingManager {
 
 
 
-    // TODO : remove all other drawing functions, use only this one
+
     public void draw(String textureName, float x, float y, int zIndex, float xScale, float yScale, Color color, boolean affectedByScreenShake){
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
@@ -188,6 +188,10 @@ public class DrawingManager {
             System.out.println(y);
         }else
             drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, xScale, yScale, color));
+    }
+
+    public void draw(String textureName, float x, float y, int zIndex){
+        draw(textureName, x, y, zIndex, 1, 1, Color.WHITE, true);
     }
 
 

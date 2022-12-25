@@ -50,8 +50,8 @@ public class Chest extends Entity {
 
     @Override
     public void draw(DrawingManager spr) {
-        if (isOpen) spr.drawGame("chest1",x,y, 0);
-        else        spr.drawGame("chest0",x,y,0);
+        if (isOpen) spr.draw("chest1",x,y, 0);
+        else        spr.draw("chest0",x,y,0);
     }
 
     @Override

@@ -16,10 +16,9 @@ public class ArmoredSkeleton extends Skeleton{
     @Override
     public void draw(DrawingManager spr) {
         if (animationTimer > 30)
-            spr.drawGame("armoredSkeleton3",x,y,2);
+            spr.draw("armoredSkeleton3",x,y,2);
         else{
-            spr.drawGame("armoredSkeleton" + danceAnimation,x,y,2);
-
+            spr.draw("armoredSkeleton" + danceAnimation,x,y,2);
         }
     }
 

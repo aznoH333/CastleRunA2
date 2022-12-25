@@ -19,15 +19,15 @@ public class PlayerHunter extends PlayerKnight{
         // player rendering
         if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
             if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-                spr.drawGame("hunter1", x, y,2);
+                spr.draw("hunter1", x, y,2);
             else if (y != lvlY)
-                spr.drawGame("hunter2", x, y,2);
+                spr.draw("hunter2", x, y,2);
             else if (actionTimer > actionTimerFull / 2)
-                spr.drawGame("hunter3", x, y,2);
+                spr.draw("hunter3", x, y,2);
             else if (actionTimer > 0)
-                spr.drawGame("hunter4", x, y,2);
+                spr.draw("hunter4", x, y,2);
             else
-                spr.drawGame("hunter0", x, y,2);
+                spr.draw("hunter0", x, y,2);
 
         for (FollowerObject f: followers) {
             if (longJumping) f.addCoordinate(x, y, "hunter2");

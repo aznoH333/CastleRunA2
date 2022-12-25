@@ -69,7 +69,7 @@ public class ChargedCross extends Projectile {
     @Override
     public void draw(DrawingManager spr) {
         String sprite = "cross" + (animationIndex+1);
-        spr.drawGame(sprite,x-16,y,2);
+        spr.draw(sprite,x-16,y,2);
         for (FollowerObject f: followers) {
             f.addCoordinate(x - 16, y, sprite);
             f.draw();

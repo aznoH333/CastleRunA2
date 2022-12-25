@@ -37,7 +37,7 @@ public class ChargedMidasSwordSwipe extends ChargedSwordSwipe {
     public void draw(DrawingManager spr) {
         if (lifeTime>0){
             String sprite = "midas_sword" + (int) Math.ceil((13 - lifeTime) >> 1);
-            spr.drawGame(sprite,x,y,1);
+            spr.draw(sprite,x,y,1);
             for (FollowerObject f: followers) {
                 f.addCoordinate(x, y, sprite);
                 f.draw();

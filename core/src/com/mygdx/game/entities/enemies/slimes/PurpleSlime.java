@@ -73,11 +73,11 @@ public class PurpleSlime extends Enemy {
     public void draw(DrawingManager spr) {
         if (landed)
             if (jumpTimer%animationSpeed > animationSpeed/2)
-                spr.drawGame("purple_slime0",x,y,1);
+                spr.draw("purple_slime0",x,y,1);
             else
-                spr.drawGame("purple_slime1",x,y,1);
+                spr.draw("purple_slime1",x,y,1);
         else
-            spr.drawGame("purple_slime2",x,y,1);
+            spr.draw("purple_slime2",x,y,1);
     }
 
     @Override
