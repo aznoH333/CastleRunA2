@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.gamestates;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.GameState;
@@ -38,8 +39,8 @@ public class MainMenu implements IGameState{
     @Override
     public void update() {
         // draw background
-        spr.draw("menu_back0", 0, ((float)-Game.Time()/2)%1280, 0, false);
-        spr.draw("menu_back0", 0, (((float)-Game.Time()/2)) %1280 + 1280, 0, false);
+        spr.draw("menu_back0", 0, ((float)-Game.Time()/2)%1280, 0, 1, 1, Color.WHITE, false);
+        spr.draw("menu_back0", 0, (((float)-Game.Time()/2)) %1280 + 1280, 1, 1, 1, Color.WHITE, false);
     }
 
     @Override
