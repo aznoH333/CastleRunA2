@@ -43,14 +43,21 @@ public class DrawingManager {
 
         sprs = new HashMap<>();
         SpriteLoadList.loadAllSprites(this);
+
         //font stuff
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.getFileHandle("fonts/PixeloidSansBold-RpeJo.ttf", Files.FileType.Internal));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
 
+
+
+
         // generate font
         batch = new SpriteBatch();
         parameter.size = (int) (10 * pixelScale);
+
+
+
         // main font
         parameter.color.r = 0.76f;
         parameter.color.g = 0.74f;
@@ -61,6 +68,21 @@ public class DrawingManager {
         parameter.color.g = 0.31f;
         parameter.color.b = 0.35f;
         fontShadow = generator.generateFont(parameter);
+
+
+        /*
+            I don't know why, but...
+            for whatever reason
+
+            changing parameter.color
+            changes Colors.WHITE ????
+
+            took me a while to figure this shit out >:(
+         */
+        parameter.color.r = 1f;
+        parameter.color.g = 1f;
+        parameter.color.b = 1f;
+
 
 
         for (int i = 0; i < drawQueue.length; i++) {
@@ -117,6 +139,7 @@ public class DrawingManager {
             for (DrawingData data: layer) {
                 // set color
                 batch.setColor(data.getColor());
+                //batch.setColor(new Color(1f, 1f, 1f, 1f));
 
                 if (data.getType() == DrawingDataType.Sprite)
                     batch.draw(
@@ -139,7 +162,7 @@ public class DrawingManager {
     }
 
     public void drawText(String text, float x, float y, int zIndex, float scale){ // TODO : text coloring
-        drawQueue[zIndex+1].add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale, new Color(1,1,1,1)));
+        drawQueue[zIndex+1].add(new TextData(text, x/4*pixelScale, y/4*pixelScale, scale, Color.WHITE));
     }
 
     public void drawText(String text, float x, float y){
@@ -152,37 +175,18 @@ public class DrawingManager {
 
     // use to draw ui stuff
     public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, 1, 1, false);
+        draw(textureName, x, y, zIndex, 1, 1, Color.WHITE, affectedByScreenShake);
     }
-
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, 1, false);
-    }
-
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, float opacity){
-        draw(textureName, x, y, zIndex, affectedByScreenShake, scale, opacity, false);
-    }
-    // this is a bad workaround (._.)
-    public void draw(String textureName, float x, float y, int zIndex, boolean affectedByScreenShake, float scale, float opacity, boolean stretch){
-        /*
-        if (sprs.get(textureName) == null) {
-            System.out.println(textureName);
-            System.out.println(x);
-            System.out.println(y);
-        }else
-            drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, scale, opacity));
-        */
-    }
-
-
-
-
+    // full drawing method
+    // TODO : remove null check
     public void draw(String textureName, float x, float y, int zIndex, float xScale, float yScale, Color color, boolean affectedByScreenShake){
         if (sprs.get(textureName) == null) {
             System.out.println(textureName);
             System.out.println(x);
             System.out.println(y);
-        }else
+        }
+
+        else
             drawQueue[zIndex+1].add(new SpriteData(sprs.get(textureName), x/4*pixelScale, y/4*pixelScale, affectedByScreenShake, xScale, yScale, color));
     }
 

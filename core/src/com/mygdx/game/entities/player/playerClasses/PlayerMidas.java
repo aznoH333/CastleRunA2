@@ -16,15 +16,15 @@ public class PlayerMidas extends PlayerKnight{
         // player rendering
         if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
             if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-                spr.draw("midas1", x, y,2, true,1);
+                spr.draw("midas1", x, y,2);
             else if (y != lvlY)
-                spr.draw("midas2", x, y,2, true,1);
+                spr.draw("midas2", x, y,2);
             else if (actionTimer > actionTimerFull / 2)
-                spr.draw("midas3", x, y,2, true,1);
+                spr.draw("midas3", x, y,2);
             else if (actionTimer > 0)
-                spr.draw("midas4", x, y,2, true,1);
+                spr.draw("midas4", x, y,2);
             else
-                spr.draw("midas0", x, y,2, true,1);
+                spr.draw("midas0", x, y,2);
 
         for (FollowerObject f: followers) {
             if (longJumping) f.addCoordinate(x, y, "midas2");

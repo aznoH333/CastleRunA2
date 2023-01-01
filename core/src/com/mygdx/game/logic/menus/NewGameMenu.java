@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.menus;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.PlayerClass;
@@ -38,13 +39,17 @@ public class NewGameMenu {
 
             double rotationValue = (i * ((Math.PI * 2) / classes.length)) + rotation + tempRotation;
             boolean isUnlocked = prgrs.getClasses().get(classes[i]);
+
             spr.draw(
                     (isUnlocked ? classes[i].sprite : "locked_char") + ((i == selectedClass && Game.Time() % 40 > 20 && isUnlocked) ? "2" : "0"),
                     Game.gameWorldWidth/2 - ((2.3f-(float) (Math.cos(rotationValue)))*32) + (float)(Math.sin(rotationValue) * (Game.gameWorldWidth/2 - 128)),
                     600 + (float)(Math.cos(rotationValue) * circleHeight),
                     (Math.cos(rotationValue) < 0.10) ? 5 : 4,
-                    true,
-                    2.3f-(float) (Math.cos(rotationValue)));
+                    2.3f-(float) (Math.cos(rotationValue)),
+                    2.3f-(float) (Math.cos(rotationValue)),
+                    Color.WHITE,
+                    false);
+
         }
     }
 

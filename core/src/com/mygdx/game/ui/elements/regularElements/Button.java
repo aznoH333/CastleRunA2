@@ -2,6 +2,7 @@ package com.mygdx.game.ui.elements.regularElements;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -37,9 +38,11 @@ public class Button implements IUIElement, IUIUpdatable {
 
     @Override
     public void draw() {
-        spr.draw(type.sprite + ((pressed) ? 3 : 0),x+parent.getX(),y+parent.getY(),5, false);
-        spr.draw(type.sprite + ((pressed) ? 4 : 1), x+parent.getX() + 16,y +parent.getY(), 5, false, buttonMiddleSegmentWidth, 1f, true);
-        spr.draw(type.sprite + ((pressed) ? 5 : 2),x+parent.getX() + type.width - 12,y+parent.getY(),5, false);
+        spr.draw(type.sprite + ((pressed) ? 3 : 0),x+parent.getX(),y+parent.getY(), 5, 1f, 1f, Color.WHITE, false);
+        spr.draw(type.sprite + ((pressed) ? 4 : 1), x+parent.getX() + 16,y +parent.getY(), 5, buttonMiddleSegmentWidth, 1f, Color.WHITE, false);
+        spr.draw(type.sprite + ((pressed) ? 5 : 2),x+parent.getX() + type.width - 12,y+parent.getY(), 5, 1f, 1f, Color.WHITE, false);
+
+
     }
 
     @Override

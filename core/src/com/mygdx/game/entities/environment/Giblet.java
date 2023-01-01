@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.environment;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -53,8 +54,7 @@ public class Giblet extends Entity {
     @Override
     public void draw(DrawingManager spr) {
         follower.draw();
-        //spr.draw(sprite, x + ((1 - deSpawnPercentage) * 16), y, 0, false, deSpawnPercentage);
-        spr.draw(sprite , x, y, 0, true, 1, deSpawnPercentage, false);
+        spr.draw(sprite, x, y, 0, 1, 1, new Color(1,1,1, deSpawnPercentage), true);
     }
 
     @Override

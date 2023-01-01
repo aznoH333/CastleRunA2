@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.player.Projectiles.boneSword;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
@@ -21,7 +22,7 @@ public class BoneSwordShockWave extends Projectile {
 
     @Override
     public void draw(DrawingManager spr) {
-        spr.draw("shockwave" + ((2 - (lifeTime/4)) + (left ? 0 : 3)), x, y, 1, true, 1f, (float) lifeTime/12 );
+        spr.draw("shockwave" + ((2 - (lifeTime/4)) + (left ? 0 : 3)), x, y, 1, 1, 1, new Color(1,1,1, (float) lifeTime/12), true);
     }
 
     @Override

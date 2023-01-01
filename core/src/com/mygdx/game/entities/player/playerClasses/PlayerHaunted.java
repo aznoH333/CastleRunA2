@@ -16,15 +16,15 @@ public class PlayerHaunted extends PlayerKnight{
         // player rendering
         if (!(iFrame > 0 && (Game.Time()>>2)%2 == 0))
             if ((input.getButtonCharge(Controls.MoveLeft) > input.getHoldSensitivity() || input.getButtonCharge(Controls.MoveRight) > input.getHoldSensitivity()) && y == lvlY)
-                spr.draw("haunted1", x, y,2, true,1);
+                spr.draw("haunted1", x, y,2);
             else if (y != lvlY)
-                spr.draw("haunted2", x, y,2, true,1);
+                spr.draw("haunted2", x, y,2);
             else if (actionTimer > actionTimerFull / 2)
-                spr.draw("haunted3", x, y,2, true,1);
+                spr.draw("haunted3", x, y,2);
             else if (actionTimer > 0)
-                spr.draw("haunted4", x, y,2, true,1);
+                spr.draw("haunted4", x, y,2);
             else
-                spr.draw("haunted0", x, y,2, true,1);
+                spr.draw("haunted0", x, y,2);
 
         for (FollowerObject f: followers) {
             if (longJumping) f.addCoordinate(x, y, "haunted2");

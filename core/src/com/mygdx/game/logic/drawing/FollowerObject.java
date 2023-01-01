@@ -1,5 +1,6 @@
 package com.mygdx.game.logic.drawing;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Queue;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.level.LevelManager;
@@ -30,7 +31,7 @@ public class FollowerObject {
         if (coordinates.size > 0){
             FollowerObjectData temp = coordinates.first();
             if (temp.getCreationTime() + timeDelay < Game.Time()){
-                spr.draw(temp.getSprite(), temp.getX(), temp.getY(), zIndex, true,1, opacity);
+                spr.draw(temp.getSprite(), temp.getX(), temp.getY(), zIndex, 1, 1, new Color(1,1,1, opacity), true);
                 coordinates.removeFirst();
 
             }

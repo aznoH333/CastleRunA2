@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.IIntegerFunction;
 import com.mygdx.game.data.enums.BarType;
@@ -46,17 +47,19 @@ public class HudBar implements IUIElement, IUIUpdatable, IUIUpdateOnInit {
         for (int i = 0; i < maxValue; i++) {
             if (i < value) {
                 spr.draw(barType.barEnd, x + i * cellSize + parent.getX() + cellSize - 32, y + parent.getY(), 5, false);
-                spr.draw(barType.bar, x + i * cellSize + parent.getX(), y + parent.getY(), 5, false, cellWidth, 1f, true);
+                spr.draw(barType.bar, x + i * cellSize + parent.getX(), y + parent.getY(), 5, cellWidth, 1f, Color.WHITE, false);
+
             }else {
                 spr.draw("meter4", x + i * cellSize + parent.getX() + cellSize - 32, y + parent.getY(), 5, false);
-                spr.draw("meter5", x + i * cellSize + parent.getX(), y + parent.getY(), 5, false, cellWidth, 1f, true);
+                spr.draw("meter5", x + i * cellSize + parent.getX(), y + parent.getY(), 5, cellWidth, 1f, Color.WHITE, false);
+
             }
         }
 
 
         // overlay
         spr.draw(barSprite, parent.getX() + x, parent.getY() + y, 5, false);
-        spr.draw("bar0", parent.getX() + x + 32, y + parent.getY(), 5, false, overLayWidth, 1f, true);
+        spr.draw("bar0", parent.getX() + x + 32, y + parent.getY(), 5, overLayWidth, 1f, Color.WHITE, false);
         spr.draw("bar1", parent.getX() + x + barLength - 32, parent.getY() + y, 5, false);
 
 

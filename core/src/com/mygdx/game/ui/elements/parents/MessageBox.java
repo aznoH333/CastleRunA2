@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.parents;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Config;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.UIActionStatus;
@@ -60,19 +61,14 @@ public class MessageBox implements IUIParentElement, IUIUpdatable, IUIElement {
     @Override
     public void draw() {
         // borders
-        spr.draw("msgBox0", (Game.gameWorldWidth/2)-24 - (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3);
-        spr.draw("msgBox0", (Game.gameWorldWidth/2) + (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3);
-        spr.draw("msgBox1", (Game.gameWorldWidth/2) - (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3, false, openingPercentage * ((Game.gameWorldWidth - 128)/24) ,1f, true);
-        if (openingPercentage == 1) spr.drawText(text, (Game.gameWorldWidth/2) - ((float) (text.length() * 25)/2), y  + 64, 3);
-        /* FIXME : this is horribly unoptimized
-        // backdrop
-        for (float x = 0; x < (openingPercentage * ((Game.gameWorldWidth/2) - 64)); x+= 24){
-            spr.draw("msgBox" + (openingPercentage == 1 ? 1 : 2), (Game.gameWorldWidth/2) + x, y, 3);
-            spr.draw("msgBox" + (openingPercentage == 1 ? 1 : 2), (Game.gameWorldWidth/2) - 24 - x, y, 3);
-        }
+
+        spr.draw("msgBox0", (Game.gameWorldWidth/2)-24 - (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3, 1f, 1f, Color.WHITE, false);
+        spr.draw("msgBox0", (Game.gameWorldWidth/2) + (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3, 1f, 1f, Color.WHITE, false);
+        spr.draw("msgBox1", (Game.gameWorldWidth/2) - (openingPercentage * ((Game.gameWorldWidth/2) - 64)), y, 3, openingPercentage * ((Game.gameWorldWidth - 128)/24), 1f, Color.WHITE, false);
 
 
-         */
+        if (openingPercentage == 1)
+            spr.drawText(text, (Game.gameWorldWidth/2) - ((float) (text.length() * 25)/2), y  + 64, 3);
 
     }
 

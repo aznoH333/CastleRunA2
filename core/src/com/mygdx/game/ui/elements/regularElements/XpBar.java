@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.elements.regularElements;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.player.ProgressManager;
@@ -28,8 +29,8 @@ public class XpBar implements IUIElement, IUIUpdatable {
     @Override
     public void draw() {
         spr.draw("lvlBar0",x + parent.getX(),y + parent.getY(),5, false);
-        spr.draw("lvlBar1",x + parent.getX() + 16,y + parent.getY(),5, false, middleSegmentScale, 1f, true);
-        spr.draw("lvlBar3",x + parent.getX() + 16, y + parent.getY(), 4, false, middleSegmentScale * xpPercentage, 1f, true);
+        spr.draw("lvlBar1",x + parent.getX() + 16,y + parent.getY(), 5, middleSegmentScale, 1f, Color.WHITE, false);
+        spr.draw("lvlBar3",x + parent.getX() + 16, y + parent.getY(), 4, middleSegmentScale * xpPercentage, 1f, Color.WHITE, false);
         spr.draw("lvlBar2",x + width + parent.getX(),y + parent.getY(),5, false);
     }
 

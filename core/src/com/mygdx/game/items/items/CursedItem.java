@@ -1,5 +1,6 @@
 package com.mygdx.game.items.items;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.items.interfaces.IItem;
 import com.mygdx.game.items.interfaces.IItemAlways;
 import com.mygdx.game.items.interfaces.IItemOnLevelStart;
@@ -48,8 +49,10 @@ public class CursedItem implements IItem, IItemAlways, IItemOnLevelStart {
             ps.getPlayer().destroy();
             ps.setHp(0);
         }
-        spr.draw("death_skull0", ps.getPlayer().getX() - 96, ps.getPlayer().getY() - 100, 4, true, 1, skullOpacity);
-        spr.draw("damage_overlay0", 0, 0, 4, false, 1, skullOpacity/4);
+
+        spr.draw("death_skull0", ps.getPlayer().getX() - 96, ps.getPlayer().getY() - 100, 4, 1, 1, new Color(1,1,1, skullOpacity), true);
+        spr.draw("damage_overlay0", 0, 0, 4, 1, 1, new Color(1,1,1, skullOpacity/4), false);
+
     }
 
     @Override

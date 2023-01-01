@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.player.Projectiles.boneSword;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.data.enums.Team;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.abstracts.Enemy;
@@ -24,7 +25,8 @@ public class BoneSwordProjectile extends Projectile {
     @Override
     public void draw(DrawingManager spr) {
         //spr.draw("bone_sword0",x, y - 64, -1);
-        spr.draw("bone_sword0", x, y-64, -1, true, 1, opacity);
+        spr.draw("bone_sword0", x, y - 64, -1, 1, 1, new Color(1,1,1, opacity), true);
+
     }
 
     @Override
