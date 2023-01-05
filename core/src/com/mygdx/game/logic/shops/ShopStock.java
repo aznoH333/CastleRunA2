@@ -2,7 +2,6 @@ package com.mygdx.game.logic.shops;
 
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.items.interfaces.IItem;
-import com.mygdx.game.items.items.FriendlyOrbItem;
 import com.mygdx.game.logic.player.InventoryManager;
 import com.mygdx.game.logic.player.ItemManager;
 import com.mygdx.game.logic.player.PlayerStats;
@@ -45,7 +44,7 @@ public class ShopStock {
             }else{
                 // random item
                 IItem ritem = ItemManager.getINSTANCE().getRandomUnseenItem();
-                items[i] = new ShopItem(ritem.getSprite(), ritem.getCost(), 1, ()-> item.addItem(ritem), "buy " + ritem.getName());
+                items[i] = new ShopItem(ritem.getSprite(), ritem.getCost(), 1, ()-> item.addItem(ritem), ritem.getName());
             }
 
         }

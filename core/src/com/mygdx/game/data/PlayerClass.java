@@ -11,7 +11,6 @@ public enum PlayerClass {
     Knight("playerKnight", 3, 1, "Sword", "player"),
     Hunter("playerHunter", 2, 2, "Small daggers", "hunter" ),
     Midas("playerMidas", 3, 0, "Midas Sword", "midas"),
-    Summoner("playerSummoner", 2, 0, "Sword", "slime"), // TODO
     Haunted("playerHaunted", 5, 3, "Bone Sword", "haunted");
 
     public final String playerObject;

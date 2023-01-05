@@ -141,7 +141,7 @@ public class LevelProgressionManager {
                 }
             }
 
-            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 90 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
+            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 1 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)

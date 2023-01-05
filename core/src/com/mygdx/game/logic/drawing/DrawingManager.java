@@ -205,9 +205,12 @@ public class DrawingManager {
                 if (i <= dumb) adder.append("0");
                 dumb = (dumb * 10) + 9;
             }
-
-            sprs.put(name + i,new Texture("sprites/" + path + adder + i + ".png"));
+            loadSprite(name + i, path + adder + i + ".png");
         }
+    }
+
+    public void loadSprite(String name, String path){
+        sprs.put(name,new Texture("sprites/" + path));
     }
 
     public float getPixelScale(){

@@ -103,6 +103,9 @@ public class SpriteLoadList {
         spr.loadSprites("ui/death/damage_overlay_", "damage_overlay", 0);
         spr.loadSprites("ui/death/death_skull_", "death_skull", 0);
 
+        // shop item backdrop
+        spr.loadSprite("shop_ui_backdrop", "ui/ui_elements/ShopBackGround.png");
+
 
 
         //spr.loadSprites("ui/buttons/button_", "button", 1);

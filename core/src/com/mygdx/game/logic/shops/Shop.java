@@ -38,12 +38,13 @@ public class Shop {
         for (int i = 0; i < shopStock.getLength(); i++){
             ShopItem shp = shopStock.getItem(i);
             int finalI = i;
-            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.Large, parent, ()->shopStock.buyItem(finalI));
-            Sprite box = new Sprite(16, 70, "player0", btn); // TODO : make shops look acceptable
+            Button btn = new Button(16, 1280 - (216 * (i+1)), ButtonType.ShopItem, parent, ()->shopStock.buyItem(finalI));
+            Sprite box = new Sprite(16, 64, "shop_ui_backdrop", btn);
             ui.addUIElement(btn);
             ui.addUIElement(box);
-            ui.addUIElement(new Sprite(8,8, shp.getSprite(), box));
-            ui.addUIElement(new Text(80,70,shp.getText(),btn));
+            ui.addUIElement(new Sprite(16,16, shp.getSprite(), box));
+            ui.addUIElement(new Text(112,128,shp.getText(),btn));
+            ui.addUIElement(new Text(ButtonType.ShopItem.width - 96, 128,String.valueOf(shp.getCost()),btn));
         }
     }
 

@@ -11,7 +11,7 @@ public class Bomb extends Weapon {
 
 
     public Bomb() {
-        super("Bomb", "wIcon4","bomb4", 2, 6);
+        super("Bomb", "wIcon4","bomb4", 2, 4);
 
     }
 
@@ -24,6 +24,10 @@ public class Bomb extends Weapon {
 
     @Override
     public void chargedAttack(float x, float y) {
-        // TODO : big bomb
+        ent.spawnEntity("bomb",x + 16,y + 16);
+        ent.spawnEntity("bomb",x + 32,y + 32);
+        ent.spawnEntity("bomb",x,y + 20);
+
+
     }
 }
