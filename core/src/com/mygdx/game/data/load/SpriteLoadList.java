@@ -106,6 +106,10 @@ public class SpriteLoadList {
         // shop item backdrop
         spr.loadSprite("shop_ui_backdrop", "ui/ui_elements/ShopBackGround.png");
 
+        // equip item mark
+        spr.loadSprite("equip_ui_mark", "ui/ui_elements/EquipItemMark.png");
+
+
 
 
         //spr.loadSprites("ui/buttons/button_", "button", 1);

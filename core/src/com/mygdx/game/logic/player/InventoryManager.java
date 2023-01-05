@@ -56,7 +56,7 @@ public class InventoryManager {
         addWeapon("Bomb", new Bomb());
         addWeapon("Rocks", new Rocks());
         addWeapon("Midas Sword", new MidasSword());
-        addWeapon("Bone Sword", new BoneSword());
+        weapons.put("Bone Sword", new BoneSword()); // cannot appear in shops
 
     }
 
@@ -98,5 +98,6 @@ public class InventoryManager {
         unseenWeapons.remove("Nothing");
         unlockWeapon(startingWeapon);
         unseenWeapons.remove(startingWeapon);
+
     }
 }

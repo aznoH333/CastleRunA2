@@ -3,6 +3,7 @@ package com.mygdx.game.ui.elements.regularElements;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.mygdx.game.data.IAdditionalButtonFunction;
 import com.mygdx.game.data.ILambdaFunction;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -15,6 +16,7 @@ public class Button implements IUIElement, IUIUpdatable {
     private final float x;
     private final float y;
     private final ILambdaFunction function;
+    private final IAdditionalButtonFunction additionalUpdateFunction;
     private final boolean actionButton;
     private final static DrawingManager spr = DrawingManager.getINSTANCE();
     private boolean pressed = false;
@@ -26,10 +28,21 @@ public class Button implements IUIElement, IUIUpdatable {
 
     public Button(float x, float y, ButtonType type, IUIElement parent, ILambdaFunction function){
         this.type = type;
+        actionButton = type == ButtonType.SmallAction;
+        this.buttonMiddleSegmentWidth = ((type.width - 32) / 16) + 0.5f;
+        this.additionalUpdateFunction = (Button button)->{};
+        this.x = x;
+        this.y = y;
+        this.function = function;
+        this.parent = parent;
+    }
+
+    public Button(float x, float y, ButtonType type, IUIElement parent, ILambdaFunction function, IAdditionalButtonFunction additionalUpdateFunction){
+        this.type = type;
 
         actionButton = type == ButtonType.SmallAction;
         this.buttonMiddleSegmentWidth = ((type.width - 32) / 16) + 0.5f;
-
+        this.additionalUpdateFunction = additionalUpdateFunction;
         this.x = x;
         this.y = y;
         this.function = function;
@@ -59,7 +72,6 @@ public class Button implements IUIElement, IUIUpdatable {
     @Override
     public void update() {
         boolean lFrameState = pressed;
-        // FIXME : this realy sucks
         if(input.getMouseX() > (x+ parent.getX())/4*spr.getPixelScale() &&
                 input.getMouseX() < (x+ parent.getX() + type.width)/4* spr.getPixelScale() &&
                 input.getMouseY() > (y + parent.getY()) / 4 * spr.getPixelScale() &&
@@ -73,5 +85,9 @@ public class Button implements IUIElement, IUIUpdatable {
         }
         if (lFrameState && !pressed && !actionButton)
             function.function();
+
+        additionalUpdateFunction.function(this);
     }
+
+
 }
