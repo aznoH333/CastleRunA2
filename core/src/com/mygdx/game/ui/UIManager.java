@@ -96,8 +96,10 @@ public class UIManager {
         if (changeStateOnTransitionClose && transition.getStatus() == UIActionStatus.Closed){
             changeStateOnTransitionClose = false;
             Game.changeState(targetState);
+
             execOnTransitionFinish.function();
         }
+
 
         // transition handling
         if (isTransitioning){
@@ -143,5 +145,12 @@ public class UIManager {
 
     public boolean isTransitioning(){
         return transition.getStatus() != UIActionStatus.Transitioning && !isTransitioning;
+    }
+
+    public boolean isOpened(){
+        for (IUIParentElement parent : uiParents){
+            if (parent.getStatus() != UIActionStatus.Open) return false;
+        }
+        return true;
     }
 }

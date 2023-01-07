@@ -50,8 +50,8 @@ public class PlayerStats {
     }
 
     public void equipWeapon(Weapon weapon, Controls slot) {
-        if (slot == Controls.AttackLeft) currentLeftWeapon = weapon;
-        else currentRightWeapon = weapon;
+        if (slot == Controls.AttackLeft && !currentRightWeapon.getName().equals(weapon.getName())) currentLeftWeapon = weapon;
+        else if (!currentLeftWeapon.getName().equals(weapon.getName())) currentRightWeapon = weapon;
     }
 
     public boolean isAttackAffordable(Controls slot, boolean isCharged) {

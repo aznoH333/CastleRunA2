@@ -51,12 +51,14 @@ public class InventoryScreen {
                 ui.addUIElement(new Sprite(16, 16, w.getSprite(), spr));
                 ui.addUIElement(new Text(128, 70, w.getName(), btn));
             }
-            // TODO : this
         }
     }
 
     public void changeSlot(Controls slot){
         equipSlot = slot;
-        // TODO : change button color?
+    }
+
+    public Controls getEquipSlot(){
+        return equipSlot;
     }
 }
