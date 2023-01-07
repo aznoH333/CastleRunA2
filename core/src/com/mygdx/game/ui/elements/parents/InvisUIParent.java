@@ -62,17 +62,12 @@ public class InvisUIParent implements IUIParentElement, IUIElement, IUIUpdatable
     @Override
     public void update() {
         if (getStatus() != targetStatus){
-            // open ui
-            if (targetStatus == UIActionStatus.Open){
-                y += (Math.abs(y-openPosition) / animationSpeed) * -Math.signum(y-openPosition);
-                if (Math.abs(y-openPosition) < 3) y = openPosition;
 
-            }
-            // close ui
-            else if (targetStatus == UIActionStatus.Closed){
-                y += (Math.abs(y-closedPosition) / animationSpeed) * -Math.signum(y-closedPosition);
-                if (Math.abs(y-closedPosition) < 3) y = closedPosition;
-            }
+            float targetPos = ((targetStatus == UIActionStatus.Open)? openPosition : closedPosition);
+
+            y += Math.min(Math.max((Math.abs(y - openPosition) / animationSpeed),0.5f) * Math.signum(targetPos - y), Math.abs(y-targetPos));
+
+            if (Math.abs(y - targetPos) < 5) y = targetPos;
         }
     }
 }
