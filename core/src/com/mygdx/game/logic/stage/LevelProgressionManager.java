@@ -44,14 +44,14 @@ public class LevelProgressionManager {
     }
 
     private final static EntityDistributionObject[] possibleEntities = {
-            new EntityDistributionObject("slime", -5, 6, 10f),
-            new EntityDistributionObject("red slime", 2, 12, 20f),
-            new EntityDistributionObject("skeleton", 2, 7, 14.5f),
-            new EntityDistributionObject("armored skeleton", 4, 14, 14.5f),
-            new EntityDistributionObject("goblin", 5, 10, 30f),
-            new EntityDistributionObject("purple slime", 9, 20, 29f),
-            new EntityDistributionObject("rocket skeleton", 10, 20, 25f),
-            new EntityDistributionObject("saw knight", 11, 20, 20f),
+            new EntityDistributionObject("slime", 0, 6),
+            new EntityDistributionObject("red slime", 2, 12),
+            new EntityDistributionObject("skeleton", 1, 7),
+            new EntityDistributionObject("armored skeleton", 4, 14),
+            new EntityDistributionObject("goblin", 4, 10),
+            new EntityDistributionObject("purple slime", 7, 15),
+            new EntityDistributionObject("rocket skeleton", 10, 15),
+            new EntityDistributionObject("saw knight", 11, 15),
 
     };
 
@@ -95,29 +95,41 @@ public class LevelProgressionManager {
 
             // add entities
             ArrayList<EntityWeightData> tempEntities = new ArrayList<>();
+
+
             // always occurring entities
             tempEntities.add(new EntityWeightData(r.nextFloat() * 10 + 5, "furniture"));
             tempEntities.add(new EntityWeightData(r.nextFloat() * Math.min(currentLevelIndex, 5) + 2, "chest"));
 
 
             // enemies
-            float maxChance = 0;
+            ArrayList<EntityDistributionObject> tempEnemies = new ArrayList<>();
+
             for (EntityDistributionObject o: possibleEntities) {
-                maxChance += o.getDistributionForLevel(currentLevelIndex);
+                if (o.canEnemyAppear(currentLevelIndex)){
+                    tempEnemies.add(o);
+
+                }
             }
 
-            do {
-                float number = r.nextFloat() * maxChance;
-                float dumb2 = 0;
-                for (EntityDistributionObject o: possibleEntities) {
-                    if (o.getDistributionForLevel(currentLevelIndex) + dumb2 > number){
-                        tempEntities.add(new EntityWeightData(o.getDistributionForLevel(currentLevelIndex), o.getEntity()));
-                        break;
-                    }
-                    dumb2 += o.getDistributionForLevel(currentLevelIndex);
-                }
 
-            }while ((r.nextBoolean() || tempEntities.size() < 2) && tempEntities.size() <= 6);
+            int enemyCount = r.nextInt(2) + 2;
+            if (enemyCount >= tempEnemies.size()){
+
+                // add all enemies
+                for (EntityDistributionObject e: tempEnemies) {
+                    tempEntities.add(new EntityWeightData(10, e.getEntity()));
+                }
+            }else {
+                // add only a portion of enemies
+                for (int i = enemyCount; i > 0; i--){
+                    int rng = r.nextInt(tempEnemies.size());
+                    String chosenEntityName = tempEnemies.get(rng).getEntity();
+                    tempEnemies.remove(rng);
+                    tempEntities.add(new EntityWeightData(10, chosenEntityName)); // TODO : enemy weigths?
+                }
+            }
+
 
             /*
             //print
@@ -126,8 +138,8 @@ public class LevelProgressionManager {
             for (EntityWeightData w: tempEntities) {
                 System.out.println("added " + w.getEntity() + " : " + w.getWeight());
             }
+            */
 
-             */
 
 
             //add level modifier
@@ -141,7 +153,7 @@ public class LevelProgressionManager {
                 }
             }
 
-            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 1 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
+            currentLevel = new Level.LevelBuilder(tempTiles.toArray(new TileWeightData[0]), 50 + Math.min(currentLevelIndex * 10, 120), 96, lTemplate.background)
                     .enemies(30f, tempEntities.toArray(new EntityWeightData[0]))
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)
