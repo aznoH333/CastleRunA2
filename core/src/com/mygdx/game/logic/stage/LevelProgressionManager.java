@@ -45,11 +45,10 @@ public class LevelProgressionManager {
 
     private final static EntityDistributionObject[] possibleEntities = {
             new EntityDistributionObject("slime", 0, 6),
-            new EntityDistributionObject("red slime", 2, 12),
-            new EntityDistributionObject("skeleton", 1, 7),
+            new EntityDistributionObject("red slime", 7, 12),
+            new EntityDistributionObject("skeleton", 1, 5),
             new EntityDistributionObject("armored skeleton", 4, 14),
             new EntityDistributionObject("goblin", 4, 10),
-            new EntityDistributionObject("purple slime", 7, 15),
             new EntityDistributionObject("rocket skeleton", 10, 15),
             new EntityDistributionObject("saw knight", 11, 15),
 
@@ -158,6 +157,7 @@ public class LevelProgressionManager {
                     .height(128,96)
                     .chance(lTemplate.cChance, lTemplate.cMax, lTemplate.cMin)
                     .setModifier(mod)
+                    .setActivationRate(300)// fixme : tile activators are still wierd
                     .build();
         }
         shop.restock(3);

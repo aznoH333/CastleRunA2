@@ -3,6 +3,7 @@ package com.mygdx.game.entities.enemies.slimes;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.EntityTags;
 import com.mygdx.game.data.enums.Team;
+import com.mygdx.game.data.enums.TileCollumSpecial;
 import com.mygdx.game.entities.environment.Giblet;
 import com.mygdx.game.logic.SoundManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
@@ -15,11 +16,12 @@ import java.util.Random;
 
 public class Slime extends Enemy {
     // constants
-    protected final static int animationSpeed = 32;
     protected final static float gravity = 0.5f;
-    protected final static float hopStrength = 3.5f;
+    protected final static float hopStrength = 4f;
+    protected final static float jumpStrength = 8f;
     protected final static int jumpTime = 60;
     protected final static float moveSpeed = 4f;
+    protected final static int animationSpeed = 32;
 
     // vars
     protected int jumpTimer;
@@ -41,7 +43,6 @@ public class Slime extends Enemy {
         //land
         landed = y <= lvlY - yM && yM <= 0;
         if (landed){
-            x = Math.round(x);
             yM = 0;
             y = lvlY;
         }else{
@@ -50,9 +51,15 @@ public class Slime extends Enemy {
         //hop
         if (jumpTimer > jumpTime){
             jumpTimer = 0;
-            yM = hopStrength;
-            if (direction)  moveTo = x + lvl.getTileScale();
-            else            moveTo = x - lvl.getTileScale();
+
+            if (lvl.getOnPos(x + (lvl.getTileScale() -1) - lvl.getTileScale()).getSpecial() == TileCollumSpecial.Gap){
+                moveTo = x - (lvl.getTileScale() * 2);
+                yM = jumpStrength;
+            } else {
+                moveTo = x - lvl.getTileScale();
+                yM = hopStrength;
+            }
+
             direction = !direction;
             SoundManager.getINSTANCE().playSound("slimeJump");
         }

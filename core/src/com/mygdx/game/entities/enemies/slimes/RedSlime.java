@@ -14,61 +14,12 @@ import com.mygdx.game.logic.level.LevelManager;
 
 import java.util.Random;
 
-public class RedSlime extends Enemy {
-    // constants
-    private final static int animationSpeed = 32;
-    private final static float gravity = 0.5f;
-    private final static float hopStrength = 4f;
-    private final static float jumpStrength = 8f;
-    private final static int jumpTime = 60;
-    private final static float moveSpeed = 4f;
-
-    // vars
-    private int jumpTimer = 0;
-    private boolean landed = false;
-    private float yM = 0;
-    private boolean direction = false;
-
+public class RedSlime extends Slime {
     public RedSlime(float x, float y, float xSize, float ySize, int hp) {
-        super(x, y, xSize, ySize, hp, Team.Enemies);
+        super(x, y, xSize, ySize, hp);
         tags = new EntityTags[]{EntityTags.Grounded};
     }
 
-    @Override
-    public void update(LevelManager lvl, Random r) {
-        if (landed) jumpTimer++;
-        float lvlY = lvl.getLevelY(this);
-
-        //land
-        landed = y <= lvlY - yM && yM <= 0;
-        if (landed){
-            yM = 0;
-            y = lvlY;
-        }else{
-            yM -= gravity;
-        }
-        //hop
-        if (jumpTimer > jumpTime){
-            jumpTimer = 0;
-
-            if (lvl.getOnPos(x + (lvl.getTileScale() -1) - lvl.getTileScale()).getSpecial() == TileCollumSpecial.Gap){
-                moveTo = x - (lvl.getTileScale() * 2);
-                yM = jumpStrength;
-            } else {
-                moveTo = x - lvl.getTileScale();
-                yM = hopStrength;
-            }
-
-            direction = !direction;
-            SoundManager.getINSTANCE().playSound("slimeJump");
-        }
-
-
-        //update positions
-        if (moveTo > x) x += moveSpeed;
-        if (moveTo < x) x -= moveSpeed;
-        y += yM;
-    }
 
 
     @Override
