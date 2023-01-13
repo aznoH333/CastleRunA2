@@ -92,7 +92,7 @@ public class Skeleton extends Enemy {
         SoundManager.getINSTANCE().playSound("enemyDeath1");
         DrawingManager.getINSTANCE().addScreenShake(7);
         // spawn 10 - 20 gore particles
-        for (int i = 0; i < r.nextInt(10) + 10; i++)
+        for (int i = 0; i < r.nextInt(3) + 4; i++)
             e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + (r.nextInt(4) + 8)));
     }
 

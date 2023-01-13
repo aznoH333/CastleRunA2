@@ -98,7 +98,7 @@ public class Slime extends Enemy {
         ParticleManager.getINSTANCE().addParticle("greenSlimeDeath",x,y,0,0,0);
         DrawingManager.getINSTANCE().addScreenShake(5);
         // spawn 5 - 10 gore particles
-        for (int i = 0; i < r.nextInt(5) + 5; i++)
+        for (int i = 0; i < r.nextInt(3) + 4; i++)
             e.addEntity(new Giblet(x, y,r.nextInt(20)-10,r.nextInt(20)-10,"gore" + r.nextInt(3)));
             //part.addParticle("greenGore" + r.nextInt(3),x,y,r.nextInt(10)-5,r.nextInt(10)-5,0.5f,r.nextInt(10) + 10);
 
