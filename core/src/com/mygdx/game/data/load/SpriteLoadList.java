@@ -14,6 +14,10 @@ public class SpriteLoadList {
         spr.loadSprites("entities/player/midas/player_midas_","midas",4);
         spr.loadSprites("entities/player/haunted/player_haunted_","haunted",4);
 
+        // player light entity
+        spr.loadSprite("light", "entities/player/light_entities/light.png");
+        spr.loadSprite("darkness", "entities/player/light_entities/darkness.png");
+
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
         spr.loadSprites("entities/weapons/basic_sword/sword_","sword",6);

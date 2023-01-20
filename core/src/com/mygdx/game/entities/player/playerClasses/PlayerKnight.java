@@ -221,6 +221,8 @@ public class PlayerKnight extends Entity {
             if (longJumping) f.addCoordinate(x, y, "player2");
             f.draw();
         }
+        // TODO : some king of lighting effect
+        spr.draw("darkness", x - 608, y - 608, 4);
     }
 
     @Override

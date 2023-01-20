@@ -125,6 +125,7 @@ public class DrawingManager {
      */
 
     public void render(){
+
         // screen shake update
         if (screenShake > 0){
             screenShake--;
@@ -134,6 +135,12 @@ public class DrawingManager {
         }
 
         batch.begin();
+
+
+
+        // TODO : remove this
+
+
 
         for (ArrayList<DrawingData> layer : drawQueue) {
             for (DrawingData data: layer) {
