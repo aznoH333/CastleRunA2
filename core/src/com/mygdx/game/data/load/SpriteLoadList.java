@@ -17,6 +17,7 @@ public class SpriteLoadList {
         // player light entity
         spr.loadSprite("light", "entities/player/light_entities/light.png");
         spr.loadSprite("darkness", "entities/player/light_entities/darkness.png");
+        spr.loadSprite("tma", "entities/player/light_entities/tma.png");
 
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);

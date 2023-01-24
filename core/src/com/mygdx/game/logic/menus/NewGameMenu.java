@@ -53,36 +53,33 @@ public class NewGameMenu {
         }
     }
 
-    private boolean isHold = false; // FIXME : this is eangrish
+    private boolean isCurrentlyRotating = false;
     private float holdPos = 0;
     private float tempRotation;
     public void update(){
 
-        rotation %= Math.PI * 2;
-        if (rotation < 0) rotation = (float) (Math.PI * 2) + rotation;
-
-        selectedClass = (classes.length - (int)Math.round(
-                (((rotation - Math.PI) % (Math.PI*2)) / (Math.PI * 2)) * (classes.length - 1)
-        )) % classes.length;
+        rotation = loopRotationValue(rotation);
+        float offsetRotationalValue = loopRotationValue(rotation + (float) (0.5f * Math.PI));
+        selectedClass = classes.length - 1 - (int) Math.round((offsetRotationalValue / (Math.PI * 2)) * (classes.length)) % classes.length;
 
         spr.drawText(classes[selectedClass].name(), 200, 800, 3);
 
         if (input.getMouseY() > 125 * spr.getPixelScale() &&
                 input.getMouseY() < 225 * spr.getPixelScale()){
-            if (!isHold && input.isInputHeld()){
+            if (!isCurrentlyRotating && input.isInputHeld()){
                 holdPos = input.getMouseX();
-                isHold = true;
+                isCurrentlyRotating = true;
 
-            }else if (isHold && !input.isInputHeld()){
-                isHold = false;
+            }else if (isCurrentlyRotating && !input.isInputHeld()){
+                isCurrentlyRotating = false;
                 rotation += tempRotation;
                 tempRotation = 0;
             }
-            if (isHold)
+            if (isCurrentlyRotating)
                 tempRotation = ((holdPos - input.getMouseX())/ (Game.gameWorldWidth/2));
         }
 
-        if (!isHold){
+        if (!isCurrentlyRotating){
             // snap to selected class
             double desiredPos = (((1-((float) selectedClass / classes.length)) + 0.5) % 1) * Math.PI * 2;
             if (rotation < desiredPos - 0.1) rotation+=0.03;
@@ -111,5 +108,13 @@ public class NewGameMenu {
     public ILambdaFunction buttonOperation(){
         if (prgrs.getClasses().get(classes[selectedClass])) return ()-> startNewGame(Game.getGeneralRandom().nextInt(999));
         else                                                return ()-> prgrs.unlockClass(classes[selectedClass]);
+    }
+
+
+    private float loopRotationValue(float rotationValue){
+        float output = rotationValue;
+        output %= Math.PI * 2;
+        if (output < 0) output = (float) (Math.PI * 2) + output;
+        return output;
     }
 }

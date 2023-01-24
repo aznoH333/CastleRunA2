@@ -1,5 +1,6 @@
 package com.mygdx.game.entities.player.playerClasses;
 
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.data.enums.Controls;
 import com.mygdx.game.data.enums.GameState;
@@ -222,7 +223,7 @@ public class PlayerKnight extends Entity {
             f.draw();
         }
         // TODO : some king of lighting effect
-        spr.draw("darkness", x - 608, y - 608, 4);
+        spr.draw("tma", x - 2096, y - 2096, 3);
     }
 
     @Override
