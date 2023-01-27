@@ -3,6 +3,7 @@ package com.mygdx.game.logic.gamestates;
 import com.mygdx.game.data.enums.BarType;
 import com.mygdx.game.data.enums.ButtonType;
 import com.mygdx.game.data.enums.Controls;
+import com.mygdx.game.logic.ScreenOverlayManager;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.entities.EntityManager;
 import com.mygdx.game.logic.entities.ParticleManager;
@@ -30,6 +31,7 @@ public class Game implements IGameState{
     private final PlayerStats stats = PlayerStats.getINSTANCE();
     private final DrawingManager spr = DrawingManager.getINSTANCE();
     private final InputManager input = InputManager.getINSTANCE();
+    private static final ScreenOverlayManager screenOverlayManager = ScreenOverlayManager.getINSTANCE();
     public Game(){
         // bottom hud
         uiElements.add(new BottomHud(-515f,-115));
@@ -63,6 +65,7 @@ public class Game implements IGameState{
         part.draw(spr);
         ent.update();
         stats.update();
+        screenOverlayManager.draw();
     }
     
     @Override

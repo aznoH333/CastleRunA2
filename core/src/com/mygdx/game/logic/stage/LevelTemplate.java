@@ -21,9 +21,9 @@ public enum LevelTemplate {
     }, Backgrounds.getINSTANCE().cave(), 0.7f, 1, 2),
 
     Forest(new TileWeightData[]{
-            new TileWeightData(10, new ForestRegular()),
-            new TileWeightData(10f, new ForestRegular2()),
-            new TileWeightData(10f, new ForestRegular3()),
+            new TileWeightData(6f, new ForestRegular()),
+            new TileWeightData(12f, new ForestRegular2()),
+            new TileWeightData(12f, new ForestRegular3()),
     }, Backgrounds.getINSTANCE().forest(), 0.7f, 2, 3),
 
     CastleYard(new TileWeightData[]{
