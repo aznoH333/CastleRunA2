@@ -12,6 +12,9 @@ import com.mygdx.game.entities.enemies.bosses.mechboss.RocketProjectile;
 import com.mygdx.game.entities.enemies.bosses.mechboss.SawbladeProjectile;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBoss;
 import com.mygdx.game.entities.enemies.bosses.slimeboss.SlimeBossDeathAnimation;
+import com.mygdx.game.entities.enemies.frogs.BlueFrog;
+import com.mygdx.game.entities.enemies.frogs.GreenFrog;
+import com.mygdx.game.entities.enemies.frogs.RedFrog;
 import com.mygdx.game.entities.enemies.projectiles.Bone;
 import com.mygdx.game.entities.enemies.slimes.PurpleSlime;
 import com.mygdx.game.entities.enemies.slimes.RedSlime;
@@ -63,6 +66,11 @@ public class EntityLoadList {
         entities.put("goblin", new Goblin(0,0));
         entities.put("rocket skeleton", new RocketSkeleton(0,0));
         entities.put("saw knight", new SawKnight(0,0));
+
+        // add frogs
+        entities.put("green frog", new GreenFrog(0,0));
+        entities.put("red frog", new RedFrog(0,0));
+        entities.put("blue frog", new BlueFrog(0,0));
 
         // bosses
         entities.put("slime boss", new SlimeBoss(0,0,128,128,30));

@@ -92,6 +92,11 @@ public class NewGameMenu {
         EntityManager.getINSTANCE().clear();
         ItemManager.getINSTANCE().clearItems();
         Game.getSeededRandom().setSeed(newSeed);
+
+        // ???
+        Game.getSeededRandom().nextInt();
+
+
         PlayerStats.getINSTANCE().setPlayerClass(classes[selectedClass]);
         InventoryManager.getINSTANCE().resetState();
         PlayerStats.getINSTANCE().resetStats();

@@ -34,35 +34,51 @@ public class LevelProgressionManager {
     int currentLevelIndex = 0;
     private final static int lastLevel = 15;
     Level currentLevel;
-    LevelTemplate lTemplate = LevelTemplate.Castle;
+    private final static EntityDistributionObject[] possibleEntities = {
+
+            // slimes
+            new EntityDistributionObject("slime", 1, 6),
+            new EntityDistributionObject("red slime", 7, 12),
+
+            // skeletons
+            new EntityDistributionObject("skeleton", 1, 5),
+            new EntityDistributionObject("armored skeleton", 4, 14),
+            new EntityDistributionObject("rocket skeleton", 10, 15),
+
+            // knights
+            new EntityDistributionObject("goblin", 4, 10),
+            new EntityDistributionObject("saw knight", 11, 15),
+
+            // frogs
+            new EntityDistributionObject("green frog", 1,6),
+            new EntityDistributionObject("red frog", 4, 12),
+            new EntityDistributionObject("blue frog", 10, 15),
+
+    };
     private final static Random r = Game.getSeededRandom();
     private final static LevelManager lvl = LevelManager.getINSTANCE();
     private final static Shop shop = Shop.getINSTANCE();
 
+
+
     public void startLevel(){
 
     }
-
-    private final static EntityDistributionObject[] possibleEntities = {
-            new EntityDistributionObject("slime", 0, 6),
-            new EntityDistributionObject("red slime", 7, 12),
-            new EntityDistributionObject("skeleton", 1, 5),
-            new EntityDistributionObject("armored skeleton", 4, 14),
-            new EntityDistributionObject("goblin", 4, 10),
-            new EntityDistributionObject("rocket skeleton", 10, 15),
-            new EntityDistributionObject("saw knight", 11, 15),
-
-    };
+    LevelTemplate lTemplate = null;
 
     public void progressLevel(){
         currentLevelIndex++;
-        switch (Game.getSeededRandom().nextInt(4)){
-            default:
-            case 0: lTemplate = LevelTemplate.Castle; break;
-            case 1: lTemplate = LevelTemplate.Cave; break;
-            case 2: lTemplate = LevelTemplate.Forest; break;
-            case 3: lTemplate = LevelTemplate.CastleYard; break;
-        }
+
+
+        LevelTemplate temporaryLevelTemplate;
+        do{
+            int randomNumber = Game.getSeededRandom().nextInt(LevelTemplate.values().length);
+            temporaryLevelTemplate = LevelTemplate.values()[randomNumber];
+        }while (temporaryLevelTemplate == lTemplate);
+        lTemplate = temporaryLevelTemplate;
+
+
+        // boss logic
         if (currentLevelIndex % 5 == 0){
 
             String currentBoss;

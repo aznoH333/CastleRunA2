@@ -47,6 +47,12 @@ public class SpriteLoadList {
         spr.loadSprites("entities/enemies/slimes/purple_slime/purple_slime_", "purple_slime", 6);
 
 
+        //frogs
+        spr.loadSprites("entities/enemies/frogs/green_frog/frog_green", "frog_green", 2);
+        spr.loadSprites("entities/enemies/frogs/red_frog/frog_red", "frog_red", 2);
+        spr.loadSprites("entities/enemies/frogs/blue_frog/frog_blue", "frog_blue", 2);
+
+
         // enemy projectiles
         spr.loadSprites("entities/enemies/skeletons/bones/bone_","bone",4);
         spr.loadSprites("entities/enemies/general_projectiles/saw_", "saw", 2);

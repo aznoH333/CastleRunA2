@@ -30,6 +30,8 @@ public enum LevelTemplate {
             new TileWeightData(30, new CastleRegular()),
     }, Backgrounds.getINSTANCE().yard(), 0.5f, 3, 5);
 
+
+
     public final TileWeightData[] defaultTiles;
     public final Background background;
     public final float cChance;
