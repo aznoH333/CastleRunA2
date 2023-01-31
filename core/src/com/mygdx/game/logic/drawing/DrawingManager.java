@@ -138,7 +138,6 @@ public class DrawingManager {
 
 
 
-        // TODO : remove this
 
 
 
@@ -219,6 +218,8 @@ public class DrawingManager {
     public void loadSprite(String name, String path){
         sprs.put(name,new Texture("sprites/" + path));
     }
+
+
 
     public float getPixelScale(){
         return pixelScale;
