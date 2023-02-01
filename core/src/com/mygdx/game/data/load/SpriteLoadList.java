@@ -15,9 +15,9 @@ public class SpriteLoadList {
         spr.loadSprites("entities/player/haunted/player_haunted_","haunted",4);
 
         // player light entity
-        spr.loadSprite("light", "entities/player/light_entities/light.png");
-        spr.loadSprite("darkness", "entities/player/light_entities/darkness.png");
-        spr.loadSprite("tma", "entities/player/light_entities/tma.png");
+        spr.loadTextureAndSprite("light", "entities/player/light_entities/light.png");
+        spr.loadTextureAndSprite("darkness", "entities/player/light_entities/darkness.png");
+        spr.loadTextureAndSprite("tma", "entities/player/light_entities/tma.png");
 
         //weapons
         spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
@@ -71,26 +71,14 @@ public class SpriteLoadList {
 
 
 
-        //tiles
-        // castle
-        spr.loadSprites("tiles/castle/foreground/castle_", "castle", 3);
-        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 2);
 
-        // general
-        spr.loadSprites("tiles/general/spike_trap/spike_trap_", "spikeTrap", 3);
-        spr.loadSprites("tiles/general/platform/platform_", "platform", 5);
-        spr.loadSprites("tiles/general/ghost_platform/ghost_platform_", "ghost_platform", 0);
 
-        // cave
-        spr.loadSprites("tiles/cave/foreground/cave_","cave",3);
-        spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
+
 
         // forest
-        spr.loadSprites("tiles/forest/foreground/forest_","forest",5);
-        spr.loadSprites("tiles/forest/background/forestback_","forestBack",10);
+        //spr.loadSprites("tiles/forest/foreground/forest_","forest",5);
 
         // yard
-        spr.loadSprites("tiles/yard/background/castle_yard_","yardBack",7);
 
 
 
@@ -115,13 +103,13 @@ public class SpriteLoadList {
         spr.loadSprites("ui/death/death_skull_", "death_skull", 0);
 
         // shop item backdrop
-        spr.loadSprite("shop_ui_backdrop", "ui/ui_elements/ShopBackGround.png");
+        spr.loadTextureAndSprite("shop_ui_backdrop", "ui/ui_elements/ShopBackGround.png");
 
         // button select indicator
         spr.loadSprites("ui/buttons/selected_button_indicator", "selected_button_indicator",3);
 
         // equip item mark
-        spr.loadSprite("equip_ui_mark", "ui/ui_elements/EquipItemMark.png");
+        spr.loadTextureAndSprite("equip_ui_mark", "ui/ui_elements/EquipItemMark.png");
 
 
 
@@ -157,6 +145,30 @@ public class SpriteLoadList {
         spr.loadSprites("particles/coinSplash/coin_splash_","coinPart",2);
         spr.loadSprites("particles/misc/crit_icon_","crit",0);
         spr.loadSprites("particles/misc/xp_icon_","xp",1);
+
+
+        // temporary bogus
+        // TODO : clean up
+
+        // load tilesets
+        spr.loadTexture("tiles", "SpriteSheets/tiles.png");
+
+
+        // load tiles
+        spr.loadSpriteCollectionFromTexture("castle", "tiles", 4, 0, 0, 16, 16);
+        spr.loadSpriteCollectionFromTexture("cave", "tiles", 4, 0, 16, 16, 16);
+        spr.loadSpriteCollectionFromTexture("forest", "tiles", 6, 0, 32, 16, 16);
+
+        spr.loadSpriteCollectionFromTexture("spikeTrap", "tiles", 4, 32, 48, 16, 16);
+        spr.loadSpriteCollectionFromTexture("platform", "tiles", 6, 48, 80, 16, 16);
+        spr.loadSpriteFromTexture("ghost_platform", "tiles", 32, 64, 16, 16);
+
+
+        // load backgrounds
+        spr.loadSprites("tiles/forest/background/forestback_","forestBack",10);
+        spr.loadSprites("tiles/yard/background/castle_yard_","yardBack",7);
+        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 2);
+        spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
 
     }
 }

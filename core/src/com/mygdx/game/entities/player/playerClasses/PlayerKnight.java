@@ -222,7 +222,6 @@ public class PlayerKnight extends Entity {
             if (longJumping) f.addCoordinate(x, y, "player2");
             f.draw();
         }
-
     }
 
     @Override

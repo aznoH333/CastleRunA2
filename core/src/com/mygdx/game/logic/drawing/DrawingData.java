@@ -1,13 +1,13 @@
 package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.data.enums.DrawingDataType;
 
 public interface DrawingData {
     float getX();
     float getY();
-    Texture getTexture();
+    TextureRegion getSprite();
     String getText();
     DrawingDataType getType();
     boolean affectedByScreenShake();

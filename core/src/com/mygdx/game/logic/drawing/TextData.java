@@ -2,6 +2,7 @@ package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.data.enums.DrawingDataType;
 
 public class TextData implements DrawingData{
@@ -31,7 +32,7 @@ public class TextData implements DrawingData{
     }
 
     @Override
-    public Texture getTexture() {
+    public Sprite getSprite() {
         return null;
     }
 

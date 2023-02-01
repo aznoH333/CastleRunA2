@@ -1,11 +1,11 @@
 package com.mygdx.game.logic.drawing;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.data.enums.DrawingDataType;
 
 public class SpriteData implements DrawingData{
-    private final Texture texture;
+    private final TextureRegion sprite;
     private final float x;
     private final float y;
     private final boolean affectedByScreenShake;
@@ -13,8 +13,8 @@ public class SpriteData implements DrawingData{
     private final float scaleY;
     private final Color color;
 
-    public SpriteData(Texture texture, float x, float y, boolean affectedByScreenShake, float scaleX, float scaleY, Color color){
-        this.texture = texture;
+    public SpriteData(TextureRegion sprite, float x, float y, boolean affectedByScreenShake, float scaleX, float scaleY, Color color){
+        this.sprite = sprite;
         this.x = x;
         this.y = y;
         this.affectedByScreenShake = affectedByScreenShake;
@@ -24,8 +24,8 @@ public class SpriteData implements DrawingData{
     }
 
     @Override
-    public Texture getTexture() {
-        return texture;
+    public TextureRegion getSprite() {
+        return sprite;
     }
 
     @Override

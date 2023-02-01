@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.data.enums.DrawingDataType;
 import com.mygdx.game.data.load.SpriteLoadList;
@@ -23,7 +25,8 @@ public class DrawingManager {
     }
 
     private final SpriteBatch batch;
-    private final HashMap<String, Texture> sprs;
+    private final HashMap<String, TextureRegion> sprs;
+    private final HashMap<String, Texture> textures;
     private final float pixelScale;
 
 
@@ -42,6 +45,7 @@ public class DrawingManager {
         pixelScale = Gdx.graphics.getHeight() / 160f;
 
         sprs = new HashMap<>();
+        textures = new HashMap<>();
         SpriteLoadList.loadAllSprites(this);
 
         //font stuff
@@ -100,7 +104,7 @@ public class DrawingManager {
         font.dispose();
         //dispose of sprites
         try{
-            for (Texture t: sprs.values()) {
+            for (Texture t: textures.values()) {
                 t.dispose();
             }
         }catch (Exception e){
@@ -149,11 +153,11 @@ public class DrawingManager {
 
                 if (data.getType() == DrawingDataType.Sprite)
                     batch.draw(
-                            data.getTexture(),
+                            data.getSprite(),
                             data.getX(),
                             data.getY() + (data.affectedByScreenShake() ? screenShakeOffset * 3.5f : 0),
-                            data.getTexture().getWidth() * pixelScale * data.getXScale(),
-                            data.getTexture().getHeight() * pixelScale * data.getYScale());
+                            data.getSprite().getRegionWidth() * pixelScale * data.getXScale(),
+                            data.getSprite().getRegionHeight() * pixelScale * data.getYScale());
                 else{
                     fontShadow.draw(batch, data.getText(), data.getX() + pixelScale, data.getY() - pixelScale);
                     font.draw(batch, data.getText(), data.getX(), data.getY());
@@ -163,6 +167,8 @@ public class DrawingManager {
             }
             layer.clear();
         }
+
+        System.out.println("texture binds per frame : " + batch.renderCalls);
 
         batch.end();
     }
@@ -211,13 +217,37 @@ public class DrawingManager {
                 if (i <= dumb) adder.append("0");
                 dumb = (dumb * 10) + 9;
             }
-            loadSprite(name + i, path + adder + i + ".png");
+            loadTextureAndSprite(name + i, path + adder + i + ".png");
         }
     }
 
-    public void loadSprite(String name, String path){
-        sprs.put(name,new Texture("sprites/" + path));
+    public void loadTextureAndSprite(String name, String path){
+        textures.put(name,new Texture("sprites/" + path));
+        sprs.put(name, new Sprite(textures.get(name)));
     }
+
+    public void loadTexture(String name, String path){
+        textures.put(name, new Texture("sprites/" + path));
+    }
+
+    public void loadSpriteFromTexture(String spriteName, String textureName, int startX, int startY, int width, int height){
+        sprs.put(spriteName, new TextureRegion(textures.get(textureName), startX, startY, width, height));
+    }
+
+    public void loadSpriteCollectionFromTexture(String baseName, String textureName, int count, int startX, int startY, int width, int height){
+        int temporaryX = startX;
+        int temporaryY = startY;
+        for (int i = 0; i < count; i++){
+            loadSpriteFromTexture(baseName + i, textureName, temporaryX, temporaryY, width, height);
+            temporaryX += width;
+            if (temporaryX >= textures.get(textureName).getWidth()){
+                temporaryX = 0;
+                temporaryY += height;
+            }
+        }
+    }
+
+
 
 
 
