@@ -258,9 +258,7 @@ public class PlayerKnight extends Entity {
         if (inv.getHp() == 0)
             UIManager.getINSTANCE().transition(GameState.GameOver);
         // TODO : death animations
-        // FIXME : player can sometimes clip through the ground (probably something with level scrolling)
         // hard to replicate though
-
     }
 
     public void setHp(int hp){

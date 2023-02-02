@@ -9,10 +9,7 @@ public class SpriteLoadList {
     public static void loadAllSprites(DrawingManager spr){
 
         //player
-        spr.loadSprites("entities/player/knight/player_knight_","player",4);
-        spr.loadSprites("entities/player/hunter/player_hunter_","hunter",4);
-        spr.loadSprites("entities/player/midas/player_midas_","midas",4);
-        spr.loadSprites("entities/player/haunted/player_haunted_","haunted",4);
+
 
         // player light entity
         spr.loadTextureAndSprite("light", "entities/player/light_entities/light.png");
@@ -20,53 +17,29 @@ public class SpriteLoadList {
         spr.loadTextureAndSprite("tma", "entities/player/light_entities/tma.png");
 
         //weapons
-        spr.loadSprites("entities/weapons/small_dagger/small_dagger_","dagger",1);
-        spr.loadSprites("entities/weapons/basic_sword/sword_","sword",6);
-        spr.loadSprites("entities/weapons/throwing_axe/Axe_","axe",3);
-        spr.loadSprites("entities/weapons/boomerang/cross_","cross",4);
-        spr.loadSprites("entities/weapons/fireball/Fireball_","fireball",4);
         spr.loadSprites("entities/weapons/meteor/meteor_", "meteor", 2);
         spr.loadSprites("entities/weapons/bubble/bubble_", "bubble", 4);
-        spr.loadSprites("entities/weapons/bomb/bomb_", "bomb", 4);
-        spr.loadSprites("entities/weapons/ice_sword/ice_sword_", "ice_sword", 7);
         spr.loadSprites("entities/weapons/rocks/rocks_", "rock", 6);
-        spr.loadSprites("entities/weapons/midas_sword/midas_sword_", "midas_sword", 6);
         spr.loadSprites("entities/weapons/bone_sword/bone_sword_", "bone_sword", 0);
         spr.loadSprites("entities/weapons/bone_sword/shockwave_", "shockwave", 5);
 
         //enemies
-        spr.loadSprites("entities/enemies/slimes/green_slime/green_slime_","slime",6);
-        spr.loadSprites("entities/enemies/slimes/red_slime/red_slime_","red_slime",6);
-        spr.loadSprites("entities/enemies/skeletons/basic_skeleton/skeleton_","skeleton",3);
-        spr.loadSprites("entities/enemies/skeletons/armored_skeleton/armored_skeleton_","armoredSkeleton",3);
         spr.loadSprites("entities/enemies/slimeboss/slime_boss_","slime_boss",2);
-        spr.loadSprites("entities/enemies/bullshit/skull/skull_", "ghost_skull", 1);
-        spr.loadSprites("entities/enemies/goblin/goblin_", "goblin", 3);
         spr.loadSprites("entities/enemies/mechboss/goblin_mech_", "mech", 7);
         spr.loadSprites("entities/enemies/skeletons/rocket_skeleton/rocket_skeleton_", "rocket_skeleton", 3);
-        spr.loadSprites("entities/enemies/slimes/purple_slime/purple_slime_", "purple_slime", 6);
 
 
-        //frogs
-        spr.loadSprites("entities/enemies/frogs/green_frog/frog_green", "frog_green", 2);
-        spr.loadSprites("entities/enemies/frogs/red_frog/frog_red", "frog_red", 2);
-        spr.loadSprites("entities/enemies/frogs/blue_frog/frog_blue", "frog_blue", 2);
 
 
         // enemy projectiles
         spr.loadSprites("entities/enemies/skeletons/bones/bone_","bone",4);
-        spr.loadSprites("entities/enemies/general_projectiles/saw_", "saw", 2);
         spr.loadSprites("entities/enemies/general_projectiles/rocket_", "rocket", 2);
-        spr.loadSprites("entities/enemies/general_projectiles/target_cross_", "tcross", 1);
 
 
 
         // environmental objects
-        spr.loadSprites("tiles/general/chest/Chest_","chest",1);
-        spr.loadSprites("tiles/general/door/Door_","door",1);
+
         spr.loadSprites("entities/pickups/Pick_up_","pickup",3);
-        spr.loadSprites("entities/pickups/Potion_","potion",2);
-        spr.loadSprites("tiles/general/furniture/furniture_", "furniture", 6);
         spr.loadSprites("tiles/general/furniture/parts/furniture_part_", "furniturePart", 4);
 
 
@@ -74,21 +47,11 @@ public class SpriteLoadList {
 
 
 
-
-        // forest
-        //spr.loadSprites("tiles/forest/foreground/forest_","forest",5);
-
-        // yard
-
-
-
         // items
-        spr.loadSprites("items/itemprewievs/itempreviews_", "itemPreview",8);
         spr.loadSprites("items/minibombs/minibomb_", "minibomb",1);
         spr.loadSprites("items/friendlyOrb/miniorb_","miniorb",0);
 
         // fx
-        spr.loadSprites("items/minibombs/miniexplosion_", "miniexplosion",5);
         spr.loadSprites("entities/weapons/medium_explosion/medium_explosion_", "explosion" ,6);
 
 
@@ -108,8 +71,6 @@ public class SpriteLoadList {
         // button select indicator
         spr.loadSprites("ui/buttons/selected_button_indicator", "selected_button_indicator",3);
 
-        // equip item mark
-        spr.loadTextureAndSprite("equip_ui_mark", "ui/ui_elements/EquipItemMark.png");
 
 
 
@@ -117,10 +78,7 @@ public class SpriteLoadList {
         //spr.loadSprites("ui/buttons/button_", "button", 1);
         spr.loadSprites("ui/buttons/button_part_", "button", 5);
         spr.loadSprites("ui/large_buttons/button_", "large_button", 5);
-        spr.loadSprites("ui/icons/icon_", "icon", 4);
         spr.loadSprites("ui/icons/weapon_icons_", "wIcon", 5);
-        spr.loadSprites("ui/icons/shop_icon_", "shop_icon", 2);
-        spr.loadSprites("ui/icons/locked_character_","locked_char", 0);
         spr.loadSprites("ui/icons/large_icon_", "large_icon", 1);
 
         spr.loadSprites("ui/menu/menu_backdrop_", "menu_back", 0);
@@ -131,8 +89,6 @@ public class SpriteLoadList {
         spr.loadSprites("ui/ui_elements/gamehud_bottom/hud_bot_", "hudBot", 0);
         spr.loadSprites("ui/ui_elements/transition_", "transition", 0);
 
-        //map ui
-        spr.loadSprites("ui/map/mapPointer/map_tiles_", "map_tile", 3);
 
 
         //particles
@@ -151,24 +107,72 @@ public class SpriteLoadList {
         // TODO : clean up
 
         // load tilesets
-        spr.loadTexture("tiles", "SpriteSheets/tiles.png");
+        spr.loadTexture("16tiles", "SpriteSheets/16xTiles.png", 16, 16);
+        spr.loadTexture("320tiles", "SpriteSheets/320xTiles.png", 320, 320);
+
 
 
         // load tiles
-        spr.loadSpriteCollectionFromTexture("castle", "tiles", 4, 0, 0, 16, 16);
-        spr.loadSpriteCollectionFromTexture("cave", "tiles", 4, 0, 16, 16, 16);
-        spr.loadSpriteCollectionFromTexture("forest", "tiles", 6, 0, 32, 16, 16);
+        spr.loadSpriteCollectionFromHelper("castle", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("cave", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("forest", "16tiles", 6);
 
-        spr.loadSpriteCollectionFromTexture("spikeTrap", "tiles", 4, 32, 48, 16, 16);
-        spr.loadSpriteCollectionFromTexture("platform", "tiles", 6, 48, 80, 16, 16);
-        spr.loadSpriteFromTexture("ghost_platform", "tiles", 32, 64, 16, 16);
-
+        spr.loadSpriteCollectionFromHelper("spikeTrap", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("spikes", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("ghost_platform", "16tiles", 1);
+        spr.loadSpriteCollectionFromHelper("platform", "16tiles", 6);
 
         // load backgrounds
-        spr.loadSprites("tiles/forest/background/forestback_","forestBack",10);
-        spr.loadSprites("tiles/yard/background/castle_yard_","yardBack",7);
-        spr.loadSprites("tiles/castle/background/castle_back_", "castleBack", 2);
-        spr.loadSprites("tiles/cave/background/cave_background_","caveBack",5);
+        spr.loadSpriteCollectionFromHelper("castleBack", "320tiles", 3);
+        spr.loadSpriteCollectionFromHelper("caveBack", "320tiles", 6);
+        spr.loadSpriteCollectionFromHelper("forestBack", "320tiles", 11);
+        spr.loadSpriteCollectionFromHelper("yardBack", "320tiles", 8);
+
+
+        // load entities
+        spr.loadSpriteCollectionFromHelper("chest", "16tiles", 2);
+        spr.loadSpriteCollectionFromHelper("door", "16tiles", 2);
+        spr.loadSpriteCollectionFromHelper("furniture", "16tiles", 7);
+        spr.loadSpriteCollectionFromHelper("slime", "16tiles",7);
+        spr.loadSpriteCollectionFromHelper("red_slime", "16tiles", 7);
+        spr.loadSpriteCollectionFromHelper("purple_slime", "16tiles", 7);
+        spr.loadSpriteCollectionFromHelper("frog_green", "16tiles", 3);
+        spr.loadSpriteCollectionFromHelper("frog_red", "16tiles", 3);
+        spr.loadSpriteCollectionFromHelper("frog_blue", "16tiles", 3);
+        spr.loadSpriteCollectionFromHelper("skeleton", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("armoredSkeleton", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("saw", "16tiles", 3);
+        spr.loadSpriteCollectionFromHelper("tCross", "16tiles", 2);
+        spr.loadSpriteCollectionFromHelper("goblin", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("potion", "16tiles", 3);
+        spr.loadSpriteCollectionFromHelper("player", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("hunter", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("midas", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("haunted", "16tiles", 5);
+
+        // load weapons
+        spr.loadSpriteCollectionFromHelper("sword", "16tiles", 7);
+        spr.loadSpriteCollectionFromHelper("bomb", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("cross", "16tiles", 5);
+        spr.loadSpriteFromHelper("bubble4", "16tiles");
+        spr.loadSpriteCollectionFromHelper("fireball", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("midas_sword", "16tiles", 7);
+        spr.loadSpriteCollectionFromHelper("rocks", "16tiles", 1);
+        spr.loadSpriteCollectionFromHelper("dagger", "16tiles", 2);
+        spr.loadSpriteCollectionFromHelper("axe", "16tiles", 4);
+        spr.loadSpriteCollectionFromHelper("itemPreview", "16tiles", 9);
+        spr.loadSpriteCollectionFromHelper("miniexplosion", "16tiles", 6);
+
+        // misc ui stuff
+        spr.loadSpriteCollectionFromHelper("map_tile", "16tiles", 4);
+        spr.loadSpriteFromHelper("equip_ui_mark", "16tiles");
+        spr.loadSpriteCollectionFromHelper("icon", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("locked_char", "16tiles", 1);
+        spr.loadSpriteCollectionFromHelper("shop_icon", "16tiles", 3);
+
+        spr.loadSpriteCollectionFromHelper("bone", "16tiles", 5);
+
+
 
     }
 }

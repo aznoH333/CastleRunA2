@@ -26,7 +26,7 @@ public class DrawingManager {
 
     private final SpriteBatch batch;
     private final HashMap<String, TextureRegion> sprs;
-    private final HashMap<String, Texture> textures;
+    private final HashMap<String, TextureLoadingHelperObject> textures;
     private final float pixelScale;
 
 
@@ -104,8 +104,8 @@ public class DrawingManager {
         font.dispose();
         //dispose of sprites
         try{
-            for (Texture t: textures.values()) {
-                t.dispose();
+            for (TextureLoadingHelperObject t: textures.values()) {
+                t.getTexture().dispose();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -222,32 +222,17 @@ public class DrawingManager {
     }
 
     public void loadTextureAndSprite(String name, String path){
-        textures.put(name,new Texture("sprites/" + path));
-        sprs.put(name, new Sprite(textures.get(name)));
+        textures.put(name,new TextureLoadingHelperObject(new Texture("sprites/" + path),0,0));
+        sprs.put(name, new Sprite(textures.get(name).getTexture()));
     }
 
-    public void loadTexture(String name, String path){
-        textures.put(name, new Texture("sprites/" + path));
+    public void loadTexture(String name, String path, int spriteWidth, int spriteHeight){
+        textures.put(name, new TextureLoadingHelperObject(new Texture("sprites/" + path), spriteWidth, spriteHeight));
     }
 
     public void loadSpriteFromTexture(String spriteName, String textureName, int startX, int startY, int width, int height){
-        sprs.put(spriteName, new TextureRegion(textures.get(textureName), startX, startY, width, height));
+        sprs.put(spriteName, new TextureRegion(textures.get(textureName).getTexture(), startX, startY, width, height));
     }
-
-    public void loadSpriteCollectionFromTexture(String baseName, String textureName, int count, int startX, int startY, int width, int height){
-        int temporaryX = startX;
-        int temporaryY = startY;
-        for (int i = 0; i < count; i++){
-            loadSpriteFromTexture(baseName + i, textureName, temporaryX, temporaryY, width, height);
-            temporaryX += width;
-            if (temporaryX >= textures.get(textureName).getWidth()){
-                temporaryX = 0;
-                temporaryY += height;
-            }
-        }
-    }
-
-
 
 
 
@@ -258,5 +243,15 @@ public class DrawingManager {
 
     public void addScreenShake(int number){
         this.screenShake += number;
+    }
+
+    public void loadSpriteCollectionFromHelper(String spriteNames, String textureName, int count){
+        for (int i = 0; i < count; i++){
+            sprs.put(spriteNames + i, textures.get(textureName).getNext());
+        }
+    }
+
+    public void loadSpriteFromHelper(String spriteName, String textureName){
+        sprs.put(spriteName, textures.get(textureName).getNext());
     }
 }
