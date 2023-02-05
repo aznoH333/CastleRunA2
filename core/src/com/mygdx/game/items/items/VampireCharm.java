@@ -34,7 +34,6 @@ public class VampireCharm implements IItem, IItemOnKill {
         enemyKillCounter++;
 
         if (enemyKillCounter == 5){
-            // TODO : some activation particle
             PlayerStats.getINSTANCE().heal(1);
             enemyKillCounter = 0;
         }

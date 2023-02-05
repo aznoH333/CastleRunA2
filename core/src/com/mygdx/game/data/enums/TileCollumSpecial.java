@@ -6,7 +6,8 @@ public enum TileCollumSpecial {
     None(true),
     Gap(false),
     SpikeTrap(true),
-    DisappearingPlatform(false);
+    DisappearingPlatform(false),
+    Spikes(true);
 
     public final boolean draws;
 

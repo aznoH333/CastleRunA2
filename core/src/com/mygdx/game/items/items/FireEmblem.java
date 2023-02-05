@@ -30,7 +30,7 @@ public class FireEmblem implements IItem, IItemOnAttack {
 
     @Override
     public void attackFunction(Projectile projectile) {
-        projectile.addStatusEffect(new OnFire(150));
+        projectile.addStatusEffect(new OnFire(60));
 
     }
 }

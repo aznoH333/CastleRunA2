@@ -168,8 +168,6 @@ public class DrawingManager {
             layer.clear();
         }
 
-        System.out.println("texture binds per frame : " + batch.renderCalls);
-
         batch.end();
     }
 
@@ -193,9 +191,8 @@ public class DrawingManager {
     // TODO : remove null check
     public void draw(String textureName, float x, float y, int zIndex, float xScale, float yScale, Color color, boolean affectedByScreenShake){
         if (sprs.get(textureName) == null) {
-            System.out.println(textureName);
-            System.out.println(x);
-            System.out.println(y);
+            System.out.println("failed to find texture : " + textureName);
+
         }
 
         else

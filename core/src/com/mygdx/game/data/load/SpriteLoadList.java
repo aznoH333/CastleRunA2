@@ -33,23 +33,16 @@ public class SpriteLoadList {
 
         // enemy projectiles
         spr.loadSprites("entities/enemies/skeletons/bones/bone_","bone",4);
-        spr.loadSprites("entities/enemies/general_projectiles/rocket_", "rocket", 2);
 
 
 
         // environmental objects
 
-        spr.loadSprites("entities/pickups/Pick_up_","pickup",3);
-        spr.loadSprites("tiles/general/furniture/parts/furniture_part_", "furniturePart", 4);
 
 
 
 
 
-
-        // items
-        spr.loadSprites("items/minibombs/minibomb_", "minibomb",1);
-        spr.loadSprites("items/friendlyOrb/miniorb_","miniorb",0);
 
         // fx
         spr.loadSprites("entities/weapons/medium_explosion/medium_explosion_", "explosion" ,6);
@@ -92,13 +85,8 @@ public class SpriteLoadList {
 
 
         //particles
-        spr.loadSprites("particles/effects/Sparkle_","sparkle",1);
-        spr.loadSprites("particles/effects/part_small_","particle",14);
-        spr.loadSprites("particles/gore/Blood_","gore",13);
         spr.loadSprites("particles/gore/slime_explosion_","slimeExplosion",2);
-        spr.loadSprites("particles/gainParticles/gain_part_", "gainPart", 9);
         spr.loadSprites("particles/effects/ice/ice_flame_","icePart",6);
-        spr.loadSprites("particles/coinSplash/coin_splash_","coinPart",2);
         spr.loadSprites("particles/misc/crit_icon_","crit",0);
         spr.loadSprites("particles/misc/xp_icon_","xp",1);
 
@@ -109,7 +97,7 @@ public class SpriteLoadList {
         // load tilesets
         spr.loadTexture("16tiles", "SpriteSheets/16xTiles.png", 16, 16);
         spr.loadTexture("320tiles", "SpriteSheets/320xTiles.png", 320, 320);
-
+        spr.loadTexture("9tiles", "SpriteSheets/9xTiles.png", 9, 9);
 
 
         // load tiles
@@ -127,7 +115,6 @@ public class SpriteLoadList {
         spr.loadSpriteCollectionFromHelper("caveBack", "320tiles", 6);
         spr.loadSpriteCollectionFromHelper("forestBack", "320tiles", 11);
         spr.loadSpriteCollectionFromHelper("yardBack", "320tiles", 8);
-
 
         // load entities
         spr.loadSpriteCollectionFromHelper("chest", "16tiles", 2);
@@ -169,9 +156,22 @@ public class SpriteLoadList {
         spr.loadSpriteCollectionFromHelper("icon", "16tiles", 5);
         spr.loadSpriteCollectionFromHelper("locked_char", "16tiles", 1);
         spr.loadSpriteCollectionFromHelper("shop_icon", "16tiles", 3);
-
         spr.loadSpriteCollectionFromHelper("bone", "16tiles", 5);
+        spr.loadSpriteCollectionFromHelper("crit", "16tiles", 1);
+        spr.loadSpriteCollectionFromHelper("xp", "16tiles", 2);
 
+
+        // particles
+        spr.loadSpriteCollectionFromHelper("pickup", "9tiles", 3);
+        spr.loadSpriteCollectionFromHelper("rocket", "9tiles", 3);
+        spr.loadSpriteCollectionFromHelper("miniorb", "9tiles", 1);
+        spr.loadSpriteCollectionFromHelper("minibomb", "9tiles", 2);
+        spr.loadSpriteCollectionFromHelper("coinPart", "9tiles", 3);
+        spr.loadSpriteCollectionFromHelper("particle", "9tiles", 15);
+        spr.loadSpriteCollectionFromHelper("sparkle", "9tiles", 2);
+        spr.loadSpriteCollectionFromHelper("gainPart", "9tiles", 10);
+        spr.loadSpriteCollectionFromHelper("gore", "9tiles", 14);
+        spr.loadSpriteCollectionFromHelper("furniturePart", "9tiles", 5);
 
 
     }

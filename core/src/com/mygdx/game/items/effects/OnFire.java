@@ -27,8 +27,6 @@ public class OnFire implements IStatusEffect {
             part.addParticle("fire",affectedEntity.getX() + r.nextInt((int) affectedEntity.getXSize())-8, affectedEntity.getY() + r.nextInt((int) affectedEntity.getYSize())-8,0,0,-0.05f,r.nextInt(30)+30);
         }
 
-        // TODO : make weapons spawn particles if they apply them on hit
-        // FIXME : swords can apply effects even if they touched an enemy (may become a feature :)
     }
 
     @Override

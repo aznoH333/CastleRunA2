@@ -54,7 +54,7 @@ public class FireBallProjectile extends Projectile {
 
     @Override
     protected void onEnemyHit(Enemy other) {
-        other.applyEffect(new OnFire(100));
+        other.applyEffect(new OnFire(90));
         destroy();
     }
 

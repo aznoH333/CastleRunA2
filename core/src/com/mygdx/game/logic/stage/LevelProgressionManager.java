@@ -8,6 +8,7 @@ import com.mygdx.game.data.tilesets.traps.BreakingPlatform;
 import com.mygdx.game.data.tilesets.traps.Gap;
 import com.mygdx.game.data.tilesets.traps.GhostPlatform;
 import com.mygdx.game.data.tilesets.traps.SpikeTrap;
+import com.mygdx.game.data.tilesets.traps.Spikes;
 import com.mygdx.game.logic.drawing.DrawingManager;
 import com.mygdx.game.logic.level.EntityDistributionObject;
 import com.mygdx.game.logic.level.Level;
@@ -103,10 +104,27 @@ public class LevelProgressionManager {
 
             // add traps
             // TODO : this is kinda dumb. think of a rework
-            tempTiles.add(new TileWeightData(5f, new Gap()));
-            if (currentLevelIndex >= 1)     tempTiles.add(new TileWeightData(2f, new SpikeTrap()));
-            if (currentLevelIndex >= 2)     tempTiles.add(new TileWeightData(2f, new BreakingPlatform()));
-            if (currentLevelIndex >= 4)     tempTiles.add(new TileWeightData(2f, new GhostPlatform()));
+
+            do {
+                switch (r.nextInt(6)){
+                    case 0:
+                        tempTiles.add(new TileWeightData(5f, new Gap()));
+                        break;
+                    case 1:
+                        tempTiles.add(new TileWeightData(2f, new SpikeTrap()));
+                        break;
+                    case 3:
+                        tempTiles.add(new TileWeightData(3f, new Spikes()));
+                        break;
+                    case 4:
+                        tempTiles.add(new TileWeightData(2f, new BreakingPlatform()));
+                        break;
+                    case 5:
+                        tempTiles.add(new TileWeightData(2f, new GhostPlatform()));
+                        break;
+
+                }
+            } while (r.nextBoolean());
 
             // add entities
             ArrayList<EntityWeightData> tempEntities = new ArrayList<>();

@@ -35,7 +35,8 @@ public class MidasSwordSwipe extends SwordSwipe {
     @Override
     protected void onEnemyHit(Enemy other) {
         if (hurts && r.nextFloat() > 0.66) {
-            e.addEntity(new Coin(other.getX(), other.getY()));
+            for (int i = 0; i < Game.getGeneralRandom().nextInt(2) + 4; i++)
+                e.addEntity(new Coin(other.getX(), other.getY()));
         }
         super.onEnemyHit(other);
     }

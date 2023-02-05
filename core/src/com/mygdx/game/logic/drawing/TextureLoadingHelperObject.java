@@ -22,8 +22,6 @@ public class TextureLoadingHelperObject {
     }
 
     public TextureRegion getNext(){
-        System.out.println(currentX);
-        System.out.println((float) currentX);
         TextureRegion output = new TextureRegion(texture, currentX, currentY, spriteWidth, spriteHeight);
         currentX += spriteWidth + 1;
         if (currentX >= texture.getWidth()){

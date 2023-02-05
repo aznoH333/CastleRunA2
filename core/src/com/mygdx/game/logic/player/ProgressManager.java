@@ -1,6 +1,7 @@
 package com.mygdx.game.logic.player;
 
 import com.mygdx.game.data.PlayerClass;
+import com.mygdx.game.logic.ProgressPersistence.PersistenceData;
 import com.mygdx.game.ui.UIManager;
 
 import java.util.HashMap;
@@ -24,19 +25,13 @@ public class ProgressManager {
     private int level = 0;
 
     private ProgressManager(){
-        // TODO : load and save progress
-        // TODO : save current progress
-
-        bonuses.put("Health", 0);
-        bonuses.put("Energy", 0);
-        bonuses.put("Double coin chance", 0);
-        bonuses.put("Critical chance", 0);
 
 
-        classes.put(PlayerClass.Knight, true);
-        classes.put(PlayerClass.Hunter, true);
-        classes.put(PlayerClass.Midas, true);
-        classes.put(PlayerClass.Haunted, true);
+        // TODO load file
+        if (null != null)
+            loadData(null);
+        else
+            initNewData();
     }
 
     public float getBonus(String bonusName){
@@ -105,5 +100,24 @@ public class ProgressManager {
 
     public int getNextLevelXpRequirement(){
         return nextLevelXpRequirement;
+    }
+
+
+    private void loadData(PersistenceData data){
+        currentXp = data.getCurrentXp();
+        level = data.getLvl();
+    }
+
+    private void initNewData(){
+        bonuses.put("Health", 0);
+        bonuses.put("Energy", 0);
+        bonuses.put("Double coin chance", 0);
+        bonuses.put("Critical chance", 0);
+
+
+        classes.put(PlayerClass.Knight, true);
+        classes.put(PlayerClass.Hunter, true);
+        classes.put(PlayerClass.Midas, true);
+        classes.put(PlayerClass.Haunted, true);
     }
 }

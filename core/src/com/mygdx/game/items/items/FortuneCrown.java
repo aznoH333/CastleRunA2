@@ -31,11 +31,10 @@ public class FortuneCrown implements IItem, IItemOnKill {
     @Override
     public void onKillFunction(Entity enemy) {
 
-        // TODO : add more feedback on activation (sound, particles etc)
         // maybe some luck stat??
-        if (Game.getGeneralRandom().nextFloat() > 0.7f){
+        if (Game.getGeneralRandom().nextFloat() > 0.5f){
             EntityManager ent = EntityManager.getINSTANCE();
-            for (int i = Game.getGeneralRandom().nextInt(2)+1; i>0; i--){
+            for (int i = Game.getGeneralRandom().nextInt(2)+6; i > 0; i--){
                 ent.spawnEntity("coin pickup", enemy.getX(), enemy.getY());
             }
         }
